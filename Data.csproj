@@ -1,0 +1,544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{478FF72B-D674-47EA-867E-BA4C4603887F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>BudgetExecution</RootNamespace>
+    <AssemblyName>BudgetData</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include=".editorconfig" />
+    <None Include="db\sqlce\UPDATE\R6.db" />
+    <None Include="db\sqlite\R6.db" />
+    <None Include="db\sqlite\UPDATE\R6.db" />
+    <None Include="db\sqlserver\R6.db" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="BudgetBadger">
+      <HintPath>..\Badger\bin\Debug\BudgetBadger.dll</HintPath>
+    </Reference>
+    <Reference Include="BudgetData, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\BudgetData.dll</HintPath>
+    </Reference>
+    <Reference Include="BudgetEnumerations">
+      <HintPath>..\Enumerations\bin\Debug\BudgetEnumerations.dll</HintPath>
+    </Reference>
+    <Reference Include="BudgetExtensions">
+      <HintPath>..\Extensions\bin\Debug\BudgetExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="BudgetNinja">
+      <HintPath>..\Ninja\bin\Debug\BudgetNinja.dll</HintPath>
+    </Reference>
+    <Reference Include="BudgetStatic">
+      <HintPath>..\Static\bin\Debug\BudgetStatic.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\Ninja\lib\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Syncfusion.Shared.Base">
+      <HintPath>..\Static\lib\Syncfusion.Shared.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SqlClient.4.8.1\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.113.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SQLite.Core.1.0.113.1\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="conversion\ColumnSchema.cs" />
+    <Compile Include="conversion\DatabaseSchema.cs" />
+    <Compile Include="conversion\FailedViewDefinitionHandler.cs" />
+    <Compile Include="conversion\ForeignKeySchema.cs" />
+    <Compile Include="conversion\IndexSchema.cs" />
+    <Compile Include="conversion\SqlConversionHandler.cs" />
+    <Compile Include="conversion\SqlServerConverter.cs" />
+    <Compile Include="conversion\SqlTableSelectionHandler.cs" />
+    <Compile Include="conversion\TableSchema.cs" />
+    <Compile Include="conversion\TriggerBuilder.cs" />
+    <Compile Include="conversion\TriggerSchema.cs" />
+    <Compile Include="conversion\ViewSchema.cs" />
+    <Compile Include="worker\DataWorker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="sql\ISqlStatement.cs" />
+    <Compile Include="schema\DataSchema.cs" />
+    <Compile Include="query\AccessQuery.cs" />
+    <Compile Include="adapter\AdapterBuilder.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="adapter\AdapterFactory.cs" />
+    <Compile Include="adapter\IAdapter.cs" />
+    <Compile Include="query\CsvQuery.cs" />
+    <Compile Include="query\ExcelQuery.cs" />
+    <Compile Include="query\IQuery.cs" />
+    <Compile Include="map\Amount.cs" />
+    <Compile Include="map\AmountBase.cs" />
+    <Compile Include="map\Arg.cs" />
+    <Compile Include="builder\Builder.cs" />
+    <Compile Include="builder\BuilderBase.cs" />
+    <Compile Include="builder\DataAccess.cs" />
+    <Compile Include="builder\DataBuilder.cs" />
+    <Compile Include="builder\DataConfig.cs" />
+    <Compile Include="builder\IBuilder.cs" />
+    <Compile Include="builder\IDataAccess.cs" />
+    <Compile Include="builder\IDataBuilder.cs" />
+    <Compile Include="builder\IDataSchema.cs" />
+    <Compile Include="command\CommandBase.cs" />
+    <Compile Include="command\CommandBuilder.cs" />
+    <Compile Include="command\CommandFactory.cs" />
+    <Compile Include="command\ICommandBuilder.cs" />
+    <Compile Include="command\ICommandFactory.cs" />
+    <Compile Include="connection\ConnectionBase.cs" />
+    <Compile Include="connection\ConnectionBuilder.cs" />
+    <Compile Include="connection\ConnectionFactory.cs" />
+    <Compile Include="connection\IConnectionBuilder.cs" />
+    <Compile Include="connection\IConnectionFactory.cs" />
+    <Compile Include="connection\IProvider.cs" />
+    <Compile Include="connection\ISource.cs" />
+    <Compile Include="map\Element.cs" />
+    <Compile Include="map\ElementBase.cs" />
+    <Compile Include="map\IAmount.cs" />
+    <Compile Include="map\IElement.cs" />
+    <Compile Include="map\IKey.cs" />
+    <Compile Include="map\IMap.cs" />
+    <Compile Include="map\IUnit.cs" />
+    <Compile Include="map\Key.cs" />
+    <Compile Include="map\KeyBase.cs" />
+    <Compile Include="map\Map.cs" />
+    <Compile Include="map\Unit.cs" />
+    <Compile Include="map\UnitBase.cs" />
+    <Compile Include="query\Query.cs" />
+    <Compile Include="query\QueryBase.cs" />
+    <Compile Include="query\SqlCeQuery.cs" />
+    <Compile Include="query\SQLiteQuery.cs" />
+    <Compile Include="query\SqlServerQuery.cs" />
+    <Compile Include="sql\SqlBase.cs" />
+    <Compile Include="sql\SqlConfig.cs" />
+    <Compile Include="sql\SqlFactory.cs" />
+    <Compile Include="sql\SqlStatement.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="BudgetData.sln.DotSettings.user" />
+    <Content Include="db\accdb\R6.accdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="db\sqlce\CREATE\DATABASE\R6.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Accounts.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Activity.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Allocations.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\AllowanceHolders.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\AppropriationBills.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Appropriations.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\BudgetLevels.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\BudgetObjectClass.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\ControlNumbers.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Divisions.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Employees.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\FinanceObjectClass.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\FiscalYears.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\FullTimeUtilization.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Funds.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Goals.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\HumanResourceOrganizations.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\InformationTechnology.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\LeaveProjections.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\NationalPrograms.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Objectives.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Organizations.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Outlays.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Payments.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\PayrollHours.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\PayrollObligations.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\PRC.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Procurements.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\ProgramAreas.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\ProgramProjects.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Projects.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Purchases.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Reimbursables.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Requisitions.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\ResourcePlanningOffice.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\ResponsibilityCenter.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Sites.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Supplemental.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Transfers.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\TravelObligations.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\Vendors.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\WorkCodes.sql" />
+    <Content Include="db\sqlce\CREATE\TABLE\WorkforceData.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\AppropriationBills.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\ARD.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Awards.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\BudgetLevels.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Carryover.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\CategoricalGrants.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\CleanWaterStateRevolvingFund.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Commitments.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\CongressionalProjects.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Contracts.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\DeepWaterHorizon.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Deobligations.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\DivisionAccounts.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\DivisionAuthority.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\DivisionExecution.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\DrinkingWaterStateRevolvingFund.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Earmarks.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\ECAD.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\EPM.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Expenditures.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Expenses.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\FTE.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Grants.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\LCARD.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\LSASD.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\LUST.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\LustSupplemental.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\MSD.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\NetTransfers.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\NewObligationalAuthority.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\NonSiteTravel.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Obligations.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\OldEarmarks.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\OpenCommitments.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\ORA.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\ORC.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Overtime.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Payroll.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\PurchaseActivity.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\RegionAuthority.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\RegionExecution.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Reprogrammings.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Schema.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\SEMD.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\SF6A.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\SiteTravel.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\SpecialAccounts.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\STAG.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\StatusOfFunds.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Superfund.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\SuperfundSupplemental.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\TimeOff.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Travel.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\UnliquidatedObligations.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\Utilization.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\WCF.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\WD.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\WorkingCapitalFund.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\WSA.sql" />
+    <Content Include="db\sqlce\CREATE\VIEW\XA.sql" />
+    <Content Include="db\sqlce\DELETE\DeleteOperationsTables.sql" />
+    <Content Include="db\sqlce\R6.sdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="db\sqlce\SELECT\CategoricalGrants.sql" />
+    <Content Include="db\sqlce\SELECT\DivisionObligationsCaseStatement.sql" />
+    <Content Include="db\sqlce\SELECT\PrcCleanerQuery.sql" />
+    <Content Include="db\sqlce\SELECT\PrcReferenceQuery.sql" />
+    <Content Include="db\sqlce\SELECT\Utilization.sql" />
+    <Content Include="db\sqlce\UPDATE\CleanAllocations.sql" />
+    <Content Include="db\sqlce\UPDATE\CleanOutlaysImport.sql" />
+    <Content Include="db\sqlce\UPDATE\ElementQuery.sql" />
+    <Content Include="db\sqlite\CREATE\DATABASE\R6.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Accounts.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Activity.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Allocations.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\AllowanceHolders.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\AppropriationBills.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Appropriations.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\BudgetLevels.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\BudgetObjectClass.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\ControlNumbers.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Divisions.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Employees.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\FinanceObjectClass.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\FiscalYears.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\FullTimeUtilization.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Funds.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Goals.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\HumanResourceOrganizations.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\InformationTechnology.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\LeaveProjections.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\NationalPrograms.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Objectives.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Organizations.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Outlays.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Payments.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\PayrollHours.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\PayrollObligations.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\PRC.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Procurements.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\ProgramAreas.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\ProgramProjects.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Projects.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Purchases.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Reimbursables.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Requisitions.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\ResourcePlanningOffice.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\ResponsibilityCenter.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Sites.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Supplemental.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Transfers.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\TravelObligations.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\Vendors.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\WorkCodes.sql" />
+    <Content Include="db\sqlite\CREATE\TABLE\WorkforceData.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\AppropriationBills.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\ARD.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Awards.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\BudgetLevels.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Carryover.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\CategoricalGrants.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\CleanWaterStateRevolvingFund.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Commitments.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\CongressionalProjects.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Contracts.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\DeepWaterHorizon.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Deobligations.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\DivisionAccounts.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\DivisionAuthority.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\DivisionExecution.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\DrinkingWaterStateRevolvingFund.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Earmarks.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\ECAD.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\EPM.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Expenditures.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Expenses.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\FTE.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Grants.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\LCARD.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\LSASD.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\LUST.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\LustSupplemental.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\MSD.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\NetTransfers.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\NewObligationalAuthority.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\NonSiteTravel.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Obligations.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\OldEarmarks.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\OpenCommitments.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\ORA.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\ORC.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Overtime.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Payroll.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\PurchaseActivity.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\RegionAuthority.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\RegionExecution.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Reprogrammings.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Schema.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\SEMD.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\SF6A.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\SiteTravel.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\SpecialAccounts.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\STAG.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\StatusOfFunds.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Superfund.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\SuperfundSupplemental.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\TimeOff.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Travel.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\UnliquidatedObligations.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\Utilization.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\WCF.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\WD.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\WorkingCapitalFund.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\WSA.sql" />
+    <Content Include="db\sqlite\CREATE\VIEW\XA.sql" />
+    <Content Include="db\sqlite\DELETE\DeleteOperationsTables.sql" />
+    <Content Include="db\sqlite\SELECT\CategoricalGrants.sql" />
+    <Content Include="db\sqlite\SELECT\DivisionObligationsCaseStatement.sql" />
+    <Content Include="db\sqlite\SELECT\PrcCleanerQuery.sql" />
+    <Content Include="db\sqlite\SELECT\PrcReferenceQuery.sql" />
+    <Content Include="db\sqlite\SELECT\Utilization.sql" />
+    <Content Include="db\sqlite\UPDATE\CleanAllocations.sql" />
+    <Content Include="db\sqlite\UPDATE\CleanOutlaysImport.sql" />
+    <Content Include="db\sqlite\UPDATE\ElementQuery.sql" />
+    <Content Include="db\sqlserver\CREATE\DATABASE\R6.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Accounts.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Activity.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Allocations.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.AllowanceHolders.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.BudgetLevels.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.BudgetObjectClass.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.ControlNumbers.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Divisions.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Employees.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.FinanceObjectClass.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.FiscalYears.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Funds.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Goals.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.HumanResourceOrganizations.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.InformationTechnology.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.NationalPrograms.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Objectives.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Organizations.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Outlays.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.PayrollHours.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.PayrollObligations.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.PRC.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.ProgramAreas.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.ProgramProjects.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Projects.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Purchases.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.ResourcePlanningOffices.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.ResponsibilityCenters.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Sites.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.SubAppropriations.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Supplemental.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Transfers.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.TravelObligations.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.Vendors.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\TABLE\dbo.WorkCodes.Table.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.ARD.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.BudgetLevels.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.Carryover.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.CategoricalGrants.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.CleanWaterStateRevolvingFund.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.Commitments.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.Contracts.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.DivisionAccounts.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.DWH.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.ECAD.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.EJ.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.EPM.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.ExecutionLevel7.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.ExecutionLevel8.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.Expenses.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.ExpiringFunds.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.FTE.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.Grants.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.LCARD.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.LSASD.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.LUST.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.NewObligationalAuthority.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.OilSpill.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.ORA.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.ORC.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.Payroll.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.RegionalAccounts.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.SEMD.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.SF6A.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.SiteTravel.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.STAG.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.Superfund.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.Travel.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.Utilization.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.WCF.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.WD.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.WQ.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.WSA.View.sql" />
+    <Content Include="db\sqlserver\CREATE\VIEW\dbo.XA.View.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="db\oledb\" />
+    <Folder Include="db\sqlce\ALTER\ADD\" />
+    <Folder Include="db\sqlce\ALTER\RENAME\" />
+    <Folder Include="db\sqlce\COMMIT\" />
+    <Folder Include="db\sqlce\DETACH\" />
+    <Folder Include="db\sqlce\DROP\TABLE\" />
+    <Folder Include="db\sqlce\DROP\VIEW\" />
+    <Folder Include="db\sqlce\INSERT\" />
+    <Folder Include="db\sqlce\ROLLBACK\" />
+    <Folder Include="db\sqlce\TRANSACTION\" />
+    <Folder Include="db\sqlite\ALTER\ADD\" />
+    <Folder Include="db\sqlite\ALTER\RENAME\" />
+    <Folder Include="db\sqlite\COMMIT\" />
+    <Folder Include="db\sqlite\DETACH\" />
+    <Folder Include="db\sqlite\DROP\TABLE\" />
+    <Folder Include="db\sqlite\DROP\VIEW\" />
+    <Folder Include="db\sqlite\INSERT\" />
+    <Folder Include="db\sqlite\ROLLBACK\" />
+    <Folder Include="db\sqlite\TRANSACTION\" />
+    <Folder Include="db\sqlserver\ALTER\" />
+    <Folder Include="db\sqlserver\COMMIT\" />
+    <Folder Include="db\sqlserver\DELETE\" />
+    <Folder Include="db\sqlserver\DETACH\" />
+    <Folder Include="db\sqlserver\DROP\" />
+    <Folder Include="db\sqlserver\INSERT\" />
+    <Folder Include="db\sqlserver\ROLLBACK\" />
+    <Folder Include="db\sqlserver\SELECT\" />
+    <Folder Include="db\sqlserver\TRANSACTION\" />
+    <Folder Include="db\sqlserver\UPDATE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Enumerations\Enumerations.csproj">
+      <Project>{7E4815FC-F938-48BF-AF14-676F61AB5F30}</Project>
+      <Name>Enumerations</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('packages\System.Data.SQLite.Core.1.0.113.1\build\net46\System.Data.SQLite.Core.targets')" />
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
+    if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
+  </PropertyGroup>
+</Project>
