@@ -170,7 +170,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    using var error = new StaticError( ex );
+                    using var error = new Error( ex );
                     error?.SetText();
                     error?.ShowDialog();
                 }
@@ -221,7 +221,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    using var error = new StaticError( ex );
+                    using var error = new Error( ex );
                     error?.SetText();
                     error?.ShowDialog();
                     return default;
@@ -278,7 +278,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    using var error = new StaticError( ex );
+                    using var error = new Error( ex );
                     error?.SetText();
                     error?.ShowDialog();
                     return default;
@@ -327,7 +327,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    using var error = new StaticError( ex );
+                    using var error = new Error( ex );
                     error?.SetText();
                     error?.ShowDialog();
                 }
@@ -373,7 +373,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    using var error = new StaticError( ex );
+                    using var error = new Error( ex );
                     error?.SetText();
                     error?.ShowDialog();
                 }
@@ -399,7 +399,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    using var error = new StaticError( ex );
+                    using var error = new Error( ex );
                     error?.SetText();
                     error?.ShowDialog();
                     return default;
@@ -438,7 +438,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                using var error = new StaticError( ex );
+                using var error = new Error( ex );
                 error?.SetText();
                 error?.ShowDialog();
                 return default;
@@ -479,7 +479,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    using var error = new StaticError( ex );
+                    using var error = new Error( ex );
                     error?.SetText();
                     error?.ShowDialog();
                 }
@@ -519,7 +519,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                using var error = new StaticError( ex );
+                using var error = new Error( ex );
                 error?.SetText();
                 error?.ShowDialog();
                 Dispose( true );
