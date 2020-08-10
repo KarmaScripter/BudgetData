@@ -1,6 +1,8 @@
-﻿// <copyright file="ExcelQuery.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "ExcelQuery.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
+
+using DataTable = System.Data.DataTable;
 
 namespace BudgetExecution
 {
@@ -19,7 +21,7 @@ namespace BudgetExecution
     using Microsoft.Office.Interop.Excel;
     using OfficeOpenXml;
     using App = Microsoft.Office.Interop.Excel.Application;
-    using DataTable = System.Data.DataTable;
+    using DataTable = DataTable;
 
     /// <inheritdoc/>
     /// <summary>
@@ -322,7 +324,7 @@ namespace BudgetExecution
                     var sql = "SELECT * FROM [" + sheetname + "]";
 
                     var conectionstring =
-                        $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={Path.GetDirectoryName( filename )};" 
+                        $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={Path.GetDirectoryName( filename )};"
                         + @"Extended Properties='Text;HDR=YES;FMT=Delimited'";
 
                     using var connection = new OleDbConnection( conectionstring );

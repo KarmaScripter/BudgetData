@@ -1,5 +1,5 @@
-﻿// <copyright file="{Class Name}.cs" company="Terry D. Eppler">
-// Copyright (c) Eppler. All rights reserved.
+﻿// <copyright file = "ConnectionBase.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -264,10 +264,9 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( filepath ) 
-                    && File.Exists( filepath )
-                        ? Path.GetFullPath( filepath )
-                        : default;
+                return Verify.Input( filepath ) && File.Exists( filepath )
+                    ? Path.GetFullPath( filepath )
+                    : default;
             }
             catch( Exception ex )
             {
@@ -287,10 +286,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var filext = Path.GetExtension( filepath )
-                        ?.Trim( '.' )
-                        ?.ToUpper();
-
+                    var filext = Path.GetExtension( filepath )?.Trim( '.' )?.ToUpper();
                     var ext = (EXT)Enum.Parse( typeof( EXT ), filext );
 
                     return Verify.EXT( ext )

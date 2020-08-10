@@ -1,5 +1,5 @@
-﻿// <copyright file="Key.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "Key.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -173,11 +173,9 @@ namespace BudgetExecution
         {
             try
             {
-                return !Verify.PrimaryKey( PrimaryKey ) 
-                    && Index > -1 
-                    && Verify.Input( Name )
-                        ? Name + " = " + Index
-                        : string.Empty;
+                return !Verify.PrimaryKey( PrimaryKey ) && Index > -1 && Verify.Input( Name )
+                    ? Name + " = " + Index
+                    : string.Empty;
             }
             catch( Exception ex )
             {
@@ -208,8 +206,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    return key?.GetIndex() == Index
-                        && key?.GetName()?.Equals( Name ) == true;
+                    return key?.GetIndex() == Index && key?.GetName()?.Equals( Name ) == true;
                 }
                 catch( Exception ex )
                 {

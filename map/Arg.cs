@@ -1,5 +1,5 @@
-﻿// <copyright file="Arg.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "Arg.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -86,7 +86,7 @@ namespace BudgetExecution
                 try
                 {
                     var args = new Dictionary<string, object>();
-                    var fields = Enum.GetNames( typeof( Field ) ); 
+                    var fields = Enum.GetNames( typeof( Field ) );
 
                     foreach( var kvp in dict )
                     {

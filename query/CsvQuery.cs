@@ -1,6 +1,8 @@
-﻿// <copyright file="CsvQuery.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "CsvQuery.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
+
+using DataTable = System.Data.DataTable;
 
 namespace BudgetExecution
 {
@@ -14,13 +16,11 @@ namespace BudgetExecution
     using System.Data.OleDb;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.Runtime.InteropServices;
     using System.Threading;
     using System.Windows.Forms;
-    using Microsoft.Office.Interop.Excel;
     using OfficeOpenXml;
     using App = Microsoft.Office.Interop.Excel.Application;
-    using DataTable = System.Data.DataTable;
+    using DataTable = DataTable;
 
     /// <summary>
     /// </summary>
@@ -148,7 +148,7 @@ namespace BudgetExecution
         /// <param name = "workbook" >
         /// The workbook.
         /// </param>
-        public void SaveFile( Workbook workbook )
+        public void SaveFile( ExcelPackage workbook )
         {
             if( workbook != null )
             {
@@ -162,7 +162,7 @@ namespace BudgetExecution
 
                     if( dialog.ShowDialog() == DialogResult.OK )
                     {
-                        workbook.SaveAs( dialog.FileName );
+                        workbook.SaveAs( new FileInfo( dialog.FileName ) );
                         const string msg = "Save Successful!";
                         using var message = new Message( msg );
                         message?.ShowDialog();
@@ -170,9 +170,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    using var error = new Error( ex );
-                    error?.SetText();
-                    error?.ShowDialog();
+                    Fail( ex );
                 }
             }
         }
@@ -221,9 +219,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    using var error = new Error( ex );
-                    error?.SetText();
-                    error?.ShowDialog();
+                    Fail( ex );
                     return default;
                 }
             }
@@ -278,9 +274,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    using var error = new Error( ex );
-                    error?.SetText();
-                    error?.ShowDialog();
+                    Fail( ex );
                     return default;
                 }
             }
@@ -327,9 +321,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    using var error = new Error( ex );
-                    error?.SetText();
-                    error?.ShowDialog();
+                    Fail( ex );
                 }
             }
         }
@@ -347,12 +339,11 @@ namespace BudgetExecution
                 try
                 {
                     var filepath = GetConnectionBuilder().GetFilePath();
-                    var excel = new App();
-                    var workbook = excel.Workbooks.Open( filepath );
-                    Worksheet worksheet = workbook.Sheets[ 1 ];
-                    var range = worksheet.UsedRange;
-                    var rows = range.Rows.Count;
-                    var columns = range.Columns.Count;
+                    using var excel = new ExcelPackage( new FileInfo( filepath ) );
+                    var workbook = excel.Workbook;
+                    var worksheet = workbook.Worksheets[ 1 ];
+                    var rows = worksheet.SelectedRange.Rows;
+                    var columns = worksheet.SelectedRange.Columns;
                     datagrid.ColumnCount = columns;
                     datagrid.RowCount = rows;
 
@@ -360,22 +351,18 @@ namespace BudgetExecution
                     {
                         for( var j = 1; j <= columns; j++ )
                         {
-                            if( range.Cells[ i, j ] != null
-                                && range.Cells[ i, j ].Value2 != null )
+                            if( worksheet.Cells[ i, j ] != null
+                                && worksheet.Cells[ i, j ].Value != null )
                             {
                                 datagrid.Rows[ i - 1 ].Cells[ j - 1 ].Value =
-                                    range.Cells[ i, j ].Value2.ToString();
+                                    worksheet.Cells[ i, j ].Value.ToString();
                             }
                         }
                     }
-
-                    Release( range, worksheet, workbook, excel );
                 }
                 catch( Exception ex )
                 {
-                    using var error = new Error( ex );
-                    error?.SetText();
-                    error?.ShowDialog();
+                    Fail( ex );
                 }
             }
         }
@@ -399,9 +386,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    using var error = new Error( ex );
-                    error?.SetText();
-                    error?.ShowDialog();
+                    Fail( ex );
                     return default;
                 }
             }
@@ -438,9 +423,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                using var error = new Error( ex );
-                error?.SetText();
-                error?.ShowDialog();
+                Fail( ex );
                 return default;
             }
         }
@@ -479,72 +462,11 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    using var error = new Error( ex );
-                    error?.SetText();
-                    error?.ShowDialog();
+                    Fail( ex );
                 }
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// Releases the specified range.
-        /// </summary>
-        /// <param name = "range" >
-        /// The range.
-        /// </param>
-        /// <param name = "worksheet" >
-        /// The worksheet.
-        /// </param>
-        /// <param name = "workbook" >
-        /// The workbook.
-        /// </param>
-        /// <param name = "excel" >
-        /// The excel.
-        /// </param>
-        private void Release( Range range, Worksheet worksheet, _Workbook workbook,
-            _Application excel )
-        {
-            try
-            {
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                Marshal.ReleaseComObject( range );
-                Marshal.ReleaseComObject( worksheet );
-                workbook.Close();
-                Marshal.ReleaseComObject( workbook );
-                excel.Quit();
-                Marshal.ReleaseComObject( excel );
-            }
-            catch( Exception ex )
-            {
-                using var error = new Error( ex );
-                error?.SetText();
-                error?.ShowDialog();
-                Dispose( true );
-            }
-        }
-
-        /// <summary>
-        /// Releases unmanaged and - optionally - managed resources.
-        /// </summary>
-        /// <param name = "disposing" >
-        /// <c>
-        /// true
-        /// </c>
-        /// to release both managed and unmanaged resources;
-        /// <c>
-        /// false
-        /// </c>
-        /// to release only unmanaged resources.
-        /// </param>
-        protected override void Dispose( bool disposing )
-        {
-            if( disposing )
-            {
-                base.Dispose();
-            }
         }
     }
 }

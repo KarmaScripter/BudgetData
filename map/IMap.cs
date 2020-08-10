@@ -1,5 +1,5 @@
-﻿// <copyright file="IKeyMap.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "IMap.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -7,7 +7,7 @@ namespace BudgetExecution
     // ******************************************************************************************************************************
     // ******************************************************   ASSEMBLIES   ********************************************************
     // ******************************************************************************************************************************
-    
+
     using System;
     using System.Collections.Generic;
     using System.Threading;

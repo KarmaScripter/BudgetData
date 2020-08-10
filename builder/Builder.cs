@@ -1,5 +1,5 @@
-﻿// <copyright file="Builder.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "Builder.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -134,9 +134,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var query = data
-                        ?.Select( p => p.Field<string>( column ) )
-                        ?.Distinct();
+                    var query = data?.Select( p => p.Field<string>( column ) )?.Distinct();
 
                     return query?.Any() == true
                         ? query
@@ -167,8 +165,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var query = data
-                        ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
+                    var query = data?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
                         ?.Select( p => p.Field<string>( $"{field}" ) )
                         ?.Distinct();
 
@@ -202,7 +199,7 @@ namespace BudgetExecution
 
                     for( var i = 0; i < columns?.Count; i++ )
                     {
-                        if( Verify.Input( columns[ i ]?.ColumnName ) 
+                        if( Verify.Input( columns[ i ]?.ColumnName )
                             && columns[ i ]?.DataType == typeof( string ) )
                         {
                             dict?.Add( columns[ i ]?.ColumnName,
@@ -279,8 +276,8 @@ namespace BudgetExecution
                         {
                             var name = columns[ i ].ColumnName;
 
-                            if( Verify.Input( name ) 
-                                && columns[ i ]?.DataType == typeof( string ) ) 
+                            if( Verify.Input( name )
+                                && columns[ i ]?.DataType == typeof( string ) )
                             {
                                 dict.Add( columns[ i ].ColumnName, values );
                             }
@@ -337,8 +334,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var query = data
-                        ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
+                    var query = data?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
                         ?.Select( p => p );
 
                     return query?.Any() == true

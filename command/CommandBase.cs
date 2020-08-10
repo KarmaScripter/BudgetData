@@ -1,5 +1,5 @@
-﻿// <copyright file="{ClassName}.cs" company="Terry D. Eppler">
-// Copyright (c) Eppler. All rights reserved.
+﻿// <copyright file = "CommandBase.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -303,8 +303,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var connection = new ConnectionFactory( ConnectionBuilder )
-                        ?.GetConnection();
+                    var connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
 
                     switch( sqlstatement?.GetCommandType() )
                     {
@@ -378,8 +377,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var connection = new ConnectionFactory( ConnectionBuilder )
-                        ?.GetConnection();
+                    var connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
 
                     switch( sqlstatement?.GetCommandType() )
                     {

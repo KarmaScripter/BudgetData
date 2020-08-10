@@ -1,5 +1,5 @@
-﻿// <copyright file="UnitBase.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "UnitBase.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -18,7 +18,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    public abstract class UnitBase 
+    public abstract class UnitBase
     {
         // **************************************************************************************************************************
         // ********************************************      PROPERTIES    **********************************************************
@@ -134,8 +134,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    return unit.GetName()?.Equals( Name ) == true
-                        && unit.GetValue()?.Equals( Value ) == true;
+                    return unit.GetName()?.Equals( Name ) == true && unit.GetValue()?.Equals( Value ) == true;
                 }
                 catch( Exception ex )
                 {

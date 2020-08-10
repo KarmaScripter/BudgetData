@@ -1,5 +1,5 @@
-﻿// <copyright file="ElementBase.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "ElementBase.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -380,17 +380,6 @@ namespace BudgetExecution
             }
 
             return Field.NS.ToString();
-        }
-
-        /// <summary>
-        /// Get Error Dialog.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        private protected static new void Fail( Exception ex )
-        {
-            using var error = new Error( ex );
-            error?.SetText();
-            error?.ShowDialog();
         }
     }
 }

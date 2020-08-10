@@ -1,5 +1,5 @@
-﻿// <copyright file="AccessQuery.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "AccessQuery.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -11,7 +11,7 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Threading;
 
-    public sealed class AccessQuery : Query
+    public class AccessQuery : Query
     {
         // *************************************************************************************************************************
         // ****************************************************     FIELDS    ******************************************************

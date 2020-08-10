@@ -1,5 +1,5 @@
-// <copyright file="ColumnSchema.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "ColumnSchema.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -12,7 +12,7 @@ namespace BudgetExecution
     /// Contains the schema of a single DB column.
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    public sealed class ColumnSchema
+    public class ColumnSchema
     {
         public string ColumnName;
 

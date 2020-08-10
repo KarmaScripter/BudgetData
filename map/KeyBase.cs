@@ -1,5 +1,5 @@
-﻿// <copyright file="KeyBase.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "KeyBase.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -86,10 +86,9 @@ namespace BudgetExecution
                     var colname = datarow[ 0 ].ToString();
                     var names = datarow?.Table?.GetColumnNames();
 
-                    return Verify.Input( colname ) 
-                        && names?.Contains( colname ) == true
-                            ? colname
-                            : PrimaryKey.NS.ToString();
+                    return Verify.Input( colname ) && names?.Contains( colname ) == true
+                        ? colname
+                        : PrimaryKey.NS.ToString();
                 }
                 catch( Exception ex )
                 {
@@ -340,17 +339,6 @@ namespace BudgetExecution
             }
 
             return (int)PrimaryKey.NS;
-        }
-
-        /// <summary>
-        /// Get Error Dialog.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        private protected static new void Fail( Exception ex )
-        {
-            using var error = new Error( ex );
-            error?.SetText();
-            error?.ShowDialog();
         }
     }
 }

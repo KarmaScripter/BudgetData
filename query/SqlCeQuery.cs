@@ -1,5 +1,5 @@
-﻿// <copyright file="SqlCeQuery.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "SqlCeQuery.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -19,7 +19,7 @@ namespace BudgetExecution
     /// <summary>
     /// </summary>
     /// <seealso cref = "T:BudgetExecution.Query"/>
-    public sealed class SqlCeQuery : Query
+    public class SqlCeQuery : Query
     {
         // **********************************************************************************************************************
         // ********************************************      FIELDS     *********************************************************
@@ -122,9 +122,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                using var error = new Error( ex );
-                error?.SetText();
-                error?.ShowDialog();
+                Fail( ex );
                 return default;
             }
         }
@@ -169,9 +167,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    using var error = new Error( ex );
-                    error?.SetText();
-                    error?.ShowDialog();
+                    Fail( ex );
                     return default;
                 }
             }
@@ -218,9 +214,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    using var error = new Error( ex );
-                    error?.SetText();
-                    error?.ShowDialog();
+                    Fail( ex );
                     return default;
                 }
             }

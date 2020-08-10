@@ -1,5 +1,5 @@
-﻿// <copyright file="{ClassName}.cs" company="Terry D. Eppler">
-// Copyright (c) Eppler. All rights reserved.
+﻿// <copyright file = "BuilderBase.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -80,14 +80,11 @@ namespace BudgetExecution
         {
             try
             {
-                var columns = Record?.ToDictionary()
-                    ?.Keys
-                    ?.ToArray();
+                var columns = Record?.ToDictionary()?.Keys?.ToArray();
 
                 if( columns?.Any() == true )
                 {
-                    var elements = columns
-                        ?.Select( e => e.ToEnum<Field>() );
+                    var elements = columns?.Select( e => e.ToEnum<Field>() );
 
                     return elements?.Any() == true
                         ? elements

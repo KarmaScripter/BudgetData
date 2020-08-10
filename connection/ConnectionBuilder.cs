@@ -96,10 +96,9 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( FilePath ) 
-                    && File.Exists( FilePath )
-                        ? Path.GetFullPath( FilePath )
-                        : default;
+                return Verify.Input( FilePath ) && File.Exists( FilePath )
+                    ? Path.GetFullPath( FilePath )
+                    : default;
             }
             catch( Exception ex )
             {
@@ -135,10 +134,9 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( FilePath ) 
-                    && File.Exists( FilePath )
-                        ? Path.GetFullPath( FilePath )
-                        : default;
+                return Verify.Input( FilePath ) && File.Exists( FilePath )
+                    ? Path.GetFullPath( FilePath )
+                    : default;
             }
             catch( Exception ex )
             {

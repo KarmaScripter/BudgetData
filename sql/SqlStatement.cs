@@ -1,5 +1,5 @@
-﻿// <copyright file="SqlStatement.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "SqlStatement.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -77,7 +77,8 @@ namespace BudgetExecution
         /// <param name = "dict" >
         /// The dictionary.
         /// </param>
-        public SqlStatement( IConnectionBuilder builder, IDictionary<string, object> dict, SQL commandtype = SQL.SELECT )
+        public SqlStatement( IConnectionBuilder builder, IDictionary<string, object> dict,
+            SQL commandtype = SQL.SELECT )
         {
             ConnectionBuilder = builder;
             CommandType = GetCommandType( commandtype );

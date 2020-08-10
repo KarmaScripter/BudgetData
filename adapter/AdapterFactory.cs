@@ -1,5 +1,5 @@
-﻿// <copyright file="AdapterFactory.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "AdapterFactory.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -335,8 +335,8 @@ namespace BudgetExecution
         private protected static void Fail( Exception ex )
         {
             using var error = new Error( ex );
-            error?.SetText();
-            error?.ShowDialog();
+            error.SetText();
+            error.ShowDialog();
         }
     }
 }

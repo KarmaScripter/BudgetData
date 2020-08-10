@@ -1,5 +1,5 @@
-﻿// <copyright file="DataAccess.cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
+﻿// <copyright file = "DataAccess.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
@@ -69,7 +69,7 @@ namespace BudgetExecution
             var provider = connectionbuilder.GetProvider();
 
             if( Verify.Source( source )
-                && Verify.Provider( provider ) ) 
+                && Verify.Provider( provider ) )
             {
                 try
                 {
@@ -141,8 +141,7 @@ namespace BudgetExecution
         {
             try
             {
-                var data = GetDataTable()
-                    ?.AsEnumerable();
+                var data = GetDataTable()?.AsEnumerable();
 
                 return Verify.Input( data )
                     ? data
