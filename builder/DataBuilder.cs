@@ -2,6 +2,9 @@
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
+using System.IO;
+using OfficeOpenXml;
+
 namespace BudgetExecution
 {
     // **************************************************************************************************************************
@@ -142,6 +145,58 @@ namespace BudgetExecution
             }
         }
 
+        /// <summary>
+        /// Loads from excel.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="header">if set to <c>true</c> [header].</param>
+        /// <returns></returns>
+        public DataTable LoadFromExcel( string path, bool header = true )
+        {
+            if( Verify.Input( path ) )
+            {
+                try
+                {
+                    using var excel = new ExcelPackage();
+                    using var stream = File.OpenRead( path );
+                    excel.Load( stream );
+                    var worksheet = excel.Workbook.Worksheets.First();
+                    var table = new DataTable();
+
+                    foreach( var firstrowcell in worksheet.Cells[ 1, 1, 1, worksheet.Dimension.End.Column ] )
+                    {
+                        table.Columns.Add( header
+                            ? firstrowcell.Text
+                            : $"Column {firstrowcell.Start.Column}" );
+                    }
+
+                    var startrow = header
+                        ? 2
+                        : 1;
+
+                    for( var rownum = startrow; rownum <= worksheet.Dimension.End.Row; rownum++ )
+                    {
+                        var range = worksheet.Cells[ rownum, 1, rownum, worksheet.Dimension.End.Column ];
+                        var row = table.Rows.Add();
+
+                        foreach( var cell in range )
+                        {
+                            row[ cell.Start.Column - 1 ] = cell.Text;
+                        }
+                    }
+
+                    return table;
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default;
+                }
+            }
+
+            return default;
+        }
+        
         /// <summary>
         /// Gets the data.
         /// </summary>
