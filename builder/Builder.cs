@@ -2,6 +2,10 @@
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
+using System.Data.OleDb;
+using System.IO;
+using OfficeOpenXml;
+
 namespace BudgetExecution
 {
     // ******************************************************************************************************************************
@@ -24,6 +28,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "ImplicitlyCapturedClosure" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
     public class Builder : BuilderBase, IBuilder
     {
         // ***************************************************************************************************************************
@@ -238,6 +243,120 @@ namespace BudgetExecution
                     return table?.Rows?.Count > 0
                         ? table
                         : default;
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default;
+                }
+            }
+
+            return default;
+        }
+
+        /// <summary>
+        /// Creates the table from excel.
+        /// </summary>
+        /// <param name="filepath">The filepath.</param>
+        /// <returns></returns>
+        public static DataTable CreateTableFromExcel( string filepath )
+        {
+            if( Verify.Input( filepath )
+                && File.Exists( filepath ) )
+            {
+                try
+                {
+                    var sheets = 0;
+
+                    var connectionstring = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="
+                        + filepath
+                        + ";Extended Properties='Excel 12.0;HDR=YES;IMEX=1;';";
+
+                    using var connection = new OleDbConnection( connectionstring );
+                    connection.Open();
+                    using var dataset = new DataSet();
+                    using var schematable = connection.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
+                    var sheetname = string.Empty;
+
+                    if( schematable != null )
+                    {
+                        var datatable = schematable?.AsEnumerable()
+                            .Where( r => r.Field<string>( "TABLE_NAME" ).Contains( "FilterDatabase" ) )
+                            ?.Select( r => r )
+                            ?.CopyToDataTable();
+
+                        sheetname = datatable.Rows[ 0 ][ "TABLE_NAME" ].ToString();
+                    }
+
+                    using var command = new OleDbCommand();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT * FROM [" + sheetname + "]";
+                    using var adapter = new OleDbDataAdapter( command );
+                    adapter.Fill( dataset, "excelData" );
+                    using var table = dataset.Tables[ "ExcelData" ];
+                    connection.Close();
+                    return table;
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default;
+                }
+            }
+
+            return default;
+        }
+
+        /// <summary>
+        /// Loads from excel.
+        /// </summary>
+        /// <param name="filepath">The path.</param>
+        /// <param name="header">if set to <c>true</c> [header].</param>
+        /// <returns></returns>
+        public static DataTable CreateTableFromExcel( string filepath, bool header = true )
+        {
+            if( Verify.Input( filepath )
+                && File.Exists( filepath ) )
+            {
+                try
+                {
+                    using var excel = new ExcelPackage();
+                    using var stream = File.OpenRead( filepath );
+                    excel.Load( stream );
+
+                    var worksheet = excel?.Workbook
+                        ?.Worksheets
+                        ?.First();
+
+                    var table = new DataTable();
+
+                    if( worksheet?.Cells != null )
+                    {
+                        foreach( var firstrowcell in worksheet?.Cells[ 1, 1, 1,
+                            worksheet.Dimension.End.Column ] )
+                        {
+                            table.Columns.Add( header
+                                ? firstrowcell.Text
+                                : $"Column {firstrowcell.Start.Column}" );
+                        }
+
+                        var startrow = header
+                            ? 2
+                            : 1;
+
+                        for( var rownum = startrow; rownum <= worksheet.Dimension.End.Row; rownum++ )
+                        {
+                            var range = worksheet.Cells[ rownum, 1, rownum, worksheet.Dimension.End.Column ];
+                            var row = table.Rows.Add();
+
+                            foreach( var cell in range )
+                            {
+                                row[ cell.Start.Column - 1 ] = cell.Text;
+                            }
+                        }
+                    }
+
+                    return table;
                 }
                 catch( Exception ex )
                 {
