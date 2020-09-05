@@ -118,12 +118,12 @@ namespace BudgetExecution
             {
                 return Verify.Provider( Provider )
                     ? Provider
-                    : Provider.None;
+                    : Provider.NS;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return Provider.None;
+                return Provider.NS;
             }
         }
 

@@ -175,16 +175,16 @@ namespace BudgetExecution
                 {
                     return Resource.Providers?.Contains( provider.ToString() ) == true
                         ? (Provider)Enum.Parse( typeof( Provider ), $"{provider}" )
-                        : Provider.None;
+                        : Provider.NS;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return Provider.None;
+                    return Provider.NS;
                 }
             }
 
-            return Provider.None;
+            return Provider.NS;
         }
 
         /// <summary>
@@ -214,11 +214,11 @@ namespace BudgetExecution
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return Provider.None;
+                    return Provider.NS;
                 }
             }
 
-            return Provider.None;
+            return Provider.NS;
         }
 
         /// <summary>
@@ -241,7 +241,7 @@ namespace BudgetExecution
                         Provider.SqlServer => ProviderPath[ "SqlServer" ],
                         Provider.CSV => ProviderPath[ "CSV" ],
                         Provider.Excel => ProviderPath[ "Excel" ],
-                        Provider.None => ProviderPath[ "Excel" ],
+                        Provider.NS => ProviderPath[ "Excel" ],
                         _ => ProviderPath[ "SQLite" ]
                     };
                 }

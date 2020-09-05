@@ -266,12 +266,12 @@ namespace BudgetExecution
 
                 return Verify.Provider( provider )
                     ? provider
-                    : Provider.None;
+                    : Provider.NS;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return Provider.None;
+                return Provider.NS;
             }
         }
 

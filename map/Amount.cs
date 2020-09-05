@@ -29,7 +29,7 @@ namespace BudgetExecution
         /// <summary>
         /// The default
         /// </summary>
-        public static readonly IAmount Default = new Amount( Numeric.Default, 0.0 );
+        public static readonly IAmount Default = new Amount( Numeric.NS, 0.0 );
 
         // **************************************************************************************************************************
         // ********************************************   CONSTRUCTORS     **********************************************************
@@ -154,7 +154,7 @@ namespace BudgetExecution
             {
                 return Enum.IsDefined( typeof( Numeric ), Numeric )
                     ? Numeric
-                    : Numeric.Default;
+                    : Numeric.NS;
             }
             catch( Exception ex )
             {

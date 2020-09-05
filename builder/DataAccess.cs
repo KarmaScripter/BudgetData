@@ -113,7 +113,7 @@ namespace BudgetExecution
                             return new CsvQuery( filepath );
                         }
 
-                        case Provider.None:
+                        case Provider.NS:
                             break;
 
                         default:
