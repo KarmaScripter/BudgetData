@@ -2,10 +2,6 @@
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
-using System.Data.OleDb;
-using System.IO;
-using OfficeOpenXml;
-
 namespace BudgetExecution
 {
     // ******************************************************************************************************************************
@@ -18,6 +14,9 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading;
+    using System.Data.OleDb;
+    using System.IO;
+    using OfficeOpenXml;
 
     /// <summary>
     /// 
