@@ -28,7 +28,14 @@ namespace BudgetExecution
 
         private static string MakeTriggerName( ForeignKeySchema fks, string prefix )
         {
-            return prefix + "" + fks.TableName + "" + fks.ColumnName + "" + fks.ForeignTableName + ""
+            return prefix
+                + ""
+                + fks.TableName
+                + ""
+                + fks.ColumnName
+                + ""
+                + fks.ForeignTableName
+                + ""
                 + fks.ForeignColumnName;
         }
 
@@ -49,10 +56,22 @@ namespace BudgetExecution
                 nullstring = " NEW." + fks.ColumnName + " IS NOT NULL AND";
             }
 
-            trigger.Body = "SELECT RAISE(ROLLBACK, 'insert on table " + fks.TableName
-                + " violates foreign key constraint " + trigger.Name + "')" + " WHERE" + nullstring
-                + " (SELECT " + fks.ForeignColumnName + " FROM " + fks.ForeignTableName + " WHERE "
-                + fks.ForeignColumnName + " = NEW." + fks.ColumnName + ") IS NULL; ";
+            trigger.Body = "SELECT RAISE(ROLLBACK, 'insert on table "
+                + fks.TableName
+                + " violates foreign key constraint "
+                + trigger.Name
+                + "')"
+                + " WHERE"
+                + nullstring
+                + " (SELECT "
+                + fks.ForeignColumnName
+                + " FROM "
+                + fks.ForeignTableName
+                + " WHERE "
+                + fks.ForeignColumnName
+                + " = NEW."
+                + fks.ColumnName
+                + ") IS NULL; ";
 
             return trigger;
         }
@@ -75,10 +94,22 @@ namespace BudgetExecution
                 nullstring = " NEW." + fks.ColumnName + " IS NOT NULL AND";
             }
 
-            trigger.Body = "SELECT RAISE(ROLLBACK, 'update on table " + fks.TableName
-                + " violates foreign key constraint " + triggername + "')" + " WHERE" + nullstring
-                + " (SELECT " + fks.ForeignColumnName + " FROM " + fks.ForeignTableName + " WHERE "
-                + fks.ForeignColumnName + " = NEW." + fks.ColumnName + ") IS NULL; ";
+            trigger.Body = "SELECT RAISE(ROLLBACK, 'update on table "
+                + fks.TableName
+                + " violates foreign key constraint "
+                + triggername
+                + "')"
+                + " WHERE"
+                + nullstring
+                + " (SELECT "
+                + fks.ForeignColumnName
+                + " FROM "
+                + fks.ForeignTableName
+                + " WHERE "
+                + fks.ForeignColumnName
+                + " = NEW."
+                + fks.ColumnName
+                + ") IS NULL; ";
 
             return trigger;
         }
@@ -96,12 +127,27 @@ namespace BudgetExecution
             var triggername = trigger.Name;
 
             trigger.Body = !fks.CascadeOnDelete
-                ? "SELECT RAISE(ROLLBACK, 'delete on table " + fks.ForeignTableName
-                + " violates foreign key constraint " + triggername + "')" + " WHERE (SELECT "
-                + fks.ColumnName + " FROM " + fks.TableName + " WHERE " + fks.ColumnName + " = OLD."
-                + fks.ForeignColumnName + ") IS NOT NULL; "
-                : "DELETE FROM [" + fks.TableName + "] WHERE " + fks.ColumnName + " = OLD."
-                + fks.ForeignColumnName + "; ";
+                ? "SELECT RAISE(ROLLBACK, 'delete on table "
+                + fks.ForeignTableName
+                + " violates foreign key constraint "
+                + triggername
+                + "')"
+                + " WHERE (SELECT "
+                + fks.ColumnName
+                + " FROM "
+                + fks.TableName
+                + " WHERE "
+                + fks.ColumnName
+                + " = OLD."
+                + fks.ForeignColumnName
+                + ") IS NOT NULL; "
+                : "DELETE FROM ["
+                + fks.TableName
+                + "] WHERE "
+                + fks.ColumnName
+                + " = OLD."
+                + fks.ForeignColumnName
+                + "; ";
 
             return trigger;
         }
