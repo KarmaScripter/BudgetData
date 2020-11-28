@@ -1,0 +1,433 @@
+﻿CREATE TABLE [Accounts]
+(
+   [AccountId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramAreaCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ActivityCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [GoalCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ObjectiveCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [NpmCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramProjectCode] NVARCHAR(255) DEFAULT ('NS')
+);
+
+CREATE TABLE [Activity]
+(
+   [ActivityId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) DEFAULT ('NS'),
+   [Name] NVARCHAR(255) DEFAULT ('NS'),
+   [Title] NVARCHAR(255) DEFAULT ('NS')
+);
+
+CREATE TABLE [Allocations]
+(
+   [PrcId] INT NOT NULL IDENTITY (1,1),
+   [BudgetLevel] NVARCHAR(255) NOT NULL DEFAULT ('7'),
+   [RPIO] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [BFY] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [FundCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [AhCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [OrgCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [RcCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [AccountCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [BocCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Amount] FLOAT DEFAULT (0.0),
+   [FundName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [BocName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Division] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [DivisionName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ActivityCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [NpmName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [NpmCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramProjectCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramProjectName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramAreaCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramAreaName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [GoalCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [GoalName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ObjectiveCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ObjectiveName] NVARCHAR(255) DEFAULT ('NS')
+);
+
+CREATE TABLE [AllowanceHolders]
+(
+   [AllowanceHolderId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [AppropriationBills]
+(
+   [ID] INT NOT NULL IDENTITY (1,1),
+   [BFY] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [PublicLaw] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [EnactedDate] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [Appropriations]
+(
+   [AppropriationId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [BudgetObjectClass]
+(
+   [BudgetObjectClassId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [ControlNumbers]
+(
+   [ControlNumberId] INT NOT NULL IDENTITY (1,1),
+   [BFY] NVARCHAR(255) NOT NULL DEFAULT (2019),
+   [RPIO] NVARCHAR(255) NOT NULL DEFAULT (06),
+   [AhCode] NVARCHAR(255) DEFAULT (06),
+   [RegionControlNumber] BIGINT,
+   [FundCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [FundControlNumber] BIGINT,
+   [RcCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [DivisionName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [DivisionControlNumber] BIGINT,
+   [DateIssued] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [Divisions]
+(
+   [DivisionId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Caption] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [Employees]
+(
+   [EmployeeId] INT NOT NULL IDENTITY (1,1),
+   [FirstName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [LastName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Section] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Email] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Office] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [PhoneNumber] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [CellNumber] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Status] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [FinanceObjectClass]
+(
+   [FinanceObjectClassId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [Goals]
+(
+   [GoalId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [HumanResourceOrganizations]
+(
+   [HumanResourceOrganizationId] BIGINT,
+   [RcCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [HumanResourceOrganizationCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [HumanResourceOrganizationName] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [InformationTechnology]
+(
+   [ID] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NA'),
+   [CostAreaCode] NVARCHAR(255) NOT NULL DEFAULT ('NA'),
+   [CostAreaName] NVARCHAR(255) NOT NULL DEFAULT ('NA'),
+   [ProjectCode] NVARCHAR(255) NOT NULL DEFAULT ('NA'),
+   [ProjectName] NVARCHAR(255) NOT NULL DEFAULT ('NA')
+);
+
+CREATE TABLE [LeaveProjections]
+(
+   [LeaveProjectionId] INT NOT NULL IDENTITY (1,1),
+   [RpioCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [EmployeeNumber] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [FirstName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [LastName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [HumanResourceOrganizationCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [HumanResourceOrganizationName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [WorkCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [YearToDateEarned] FLOAT DEFAULT ('0.0'),
+   [YearToDateUsed] FLOAT DEFAULT ('0.0'),
+   [MaxLeaveCarryover] FLOAT DEFAULT ('0.0'),
+   [MaxCarryoverExcess] FLOAT DEFAULT ('0.0'),
+   [UseOrLose] FLOAT DEFAULT ('0.0'),
+   [ProjectedPayPeriod] FLOAT DEFAULT ('0.0'),
+   [ProjectedAnnual] FLOAT DEFAULT ('0.0'),
+   [AvailableHours] FLOAT DEFAULT ('0.0')
+);
+
+CREATE TABLE [NationalPrograms]
+(
+   [NationalProgramId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [RpioCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [Objectives]
+(
+   [ObjectiveId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [Organizations]
+(
+   [OrganizationId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [Outlays]
+(
+   [OutlayId] INT NOT NULL IDENTITY (1,1),
+   [BudgetLevel] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [RpioCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [BFY] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [FundCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [AhCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [OrgCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [RcCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [AccountCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [BocCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Authority] FLOAT DEFAULT ('0.0'),
+   [Budgeted] FLOAT DEFAULT ('0.0'),
+   [Posted] FLOAT DEFAULT ('0.0'),
+   [CarryIn] FLOAT DEFAULT ('0.0'),
+   [CarryOut] FLOAT DEFAULT ('0.0'),
+   [Commitments] FLOAT DEFAULT ('0.0'),
+   [OpenCommitments] FLOAT DEFAULT ('0.0'),
+   [Obligations] FLOAT DEFAULT ('0.0'),
+   [ULO] FLOAT DEFAULT ('0.0'),
+   [Balance] FLOAT DEFAULT ('0.0'),
+   [NpmCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramProjectCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramAreaCode] NVARCHAR(255) DEFAULT ('NS')
+);
+
+CREATE TABLE [PayrollHours]
+(
+   [PayrollHoursId] INT NOT NULL IDENTITY (1,1),
+   [RpioCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [PayPeriod] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [StartDate] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [EndDate] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [EmployeeNumber] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [EmployeeFirstName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [EmployeeLastName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Date] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [HumanResourceOrganizationCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [HumanResourceOrganizationName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ReportingCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ReportingCodeName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [WorkCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Hours] FLOAT DEFAULT ('0.0')
+);
+
+CREATE TABLE [PayrollObligations]
+(
+   [PayrollObligationsId] INT NOT NULL IDENTITY (1,1),
+   [RpioCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [BFY] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [FundCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [AhCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [OrgCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [RcCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [AccountCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramProjectCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Amount] FLOAT DEFAULT ('0.0'),
+   [Hours] FLOAT DEFAULT ('0.0'),
+   [CumulativeBenefits] FLOAT DEFAULT ('0.0'),
+   [AnnualOvertimePaid] FLOAT DEFAULT ('0.0'),
+   [AnnualOvertimeHours] FLOAT DEFAULT ('0.0'),
+   [AnnualBasePaid] FLOAT DEFAULT ('0.0'),
+   [AnnualBaseHours] FLOAT DEFAULT ('0.0'),
+   [AnnualOtherHours] FLOAT DEFAULT ('0.0'),
+   [AnnualOtherPaid] FLOAT DEFAULT ('0.0'),
+   [AllocationPercentage] FLOAT DEFAULT ('0.0'),
+   [PayPeriod] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [FocCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [FocName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [WorkCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [WorkCodeName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [HumanResourceOrganizationCode] NVARCHAR(255) DEFAULT ('NS')
+);
+
+CREATE TABLE [PRC]
+(
+   [PrcId] INT NOT NULL IDENTITY (1,1),
+   [BudgetLevel] NVARCHAR(255) NOT NULL DEFAULT ('7'),
+   [RPIO] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [BFY] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [FundCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [AhCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [OrgCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [RcCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [AccountCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [BocCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Amount] FLOAT DEFAULT ('0.0'),
+   [FundName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [BocName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Division] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [DivisionName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ActivityCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [NpmName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [NpmCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramProjectCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramProjectName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramAreaCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramAreaName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [GoalCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [GoalName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ObjectiveCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ObjectiveName] NVARCHAR(255) DEFAULT ('NS')
+);
+
+CREATE TABLE [ProgramAreas]
+(
+   [ProgramAreaId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [ProgramProjects]
+(
+   [ProgramProjectId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Laws] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Narrative] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Definition] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramAreaCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramAreaName] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [Projects]
+(
+   [ProjectId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [Purchases]
+(
+   [PurchaseId] INT NOT NULL IDENTITY (1,1),
+   [BFY] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [RpioCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [FocName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [AhCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [RcCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [FundCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [BocCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [DCN] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [DocumentType] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [DocumentPrefix] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [FocCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [OriginalActionDate] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [GrantNumber] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [NpmCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ObligatingDocumentNumber] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [OrgCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [AccountCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ActivityCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ReimbursableAgreementNumber] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [SiteProjectCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [System] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [TransactionNumber] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [PurchaseRequest] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Commitments] FLOAT DEFAULT ('0.0'),
+   [OpenCommitments] FLOAT DEFAULT ('0.0'),
+   [Obligations] FLOAT DEFAULT ('0.0'),
+   [ULO] FLOAT DEFAULT ('0.0'),
+   [Deobligations] FLOAT DEFAULT ('0.0'),
+   [Expenditures] FLOAT DEFAULT ('0.0')
+);
+
+CREATE TABLE [Reimbursables]
+(
+   [ReimbursableId] INT NOT NULL IDENTITY (1,1),
+   [RpioCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [BFY] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [FundCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [AgreementNumber] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [RcCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [OrgCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [AccountCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [BocCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Authority] FLOAT DEFAULT ('0.0'),
+   [OpenCommitments] FLOAT DEFAULT ('0.0'),
+   [ULO] FLOAT DEFAULT ('0.0'),
+   [Expenditures] FLOAT DEFAULT ('0.0')
+);
+
+CREATE TABLE [ResourcePlanningOffices]
+(
+   [ResourcePlanningOfficeId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [RPIO] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [ResponsibilityCenters]
+(
+   [ResponsibilityCenterId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [Sites]
+(
+   [SiteId] INT NOT NULL IDENTITY (1,1),
+   [RpioCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [BFY] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [FundCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [AhCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [AccountCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [OrgCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [OrgName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [RcCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ActivityCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramProjectCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [BocCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [FocCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [DCN] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [EpaSiteId] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [SiteName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [SiteProjectCode] NVARCHAR(50) DEFAULT ('NS'),
+   [SiteProjectName] NVARCHAR(50) DEFAULT ('NS'),
+   [City] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [District] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [County] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [StateCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [StateName] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [StreetAddressLine1] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [StreetAddressLine2] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ZipCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [OriginalActionDate] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [LastActionDate] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Commitments] FLOAT DEFAULT ('0.0'),
+   [OpenCommitments] FLOAT DEFAULT ('0.0'),
+   [Obligations] FLOAT DEFAULT ('0.0'),
+   [ULO] FLOAT DEFAULT ('0.0'),
+   [Deobligations] FLOAT DEFAULT ('0.0'),
+   [Expenditures] FLOAT DEFAULT ('0.0')
+);

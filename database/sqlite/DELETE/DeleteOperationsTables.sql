@@ -1,0 +1,14 @@
+BEGIN TRANSACTION;
+	DELETE FROM Allocations;
+	DELETE FROM Vendors;
+	DELETE FROM PayrollHours;
+	DELETE FROM Outlays;
+	DELETE FROM Purchases;
+	DELETE FROM PayrollObligations;
+	DELETE FROM TravelObligations;
+	DELETE FROM WorkForceData;
+	DELETE FROM Transfers;
+	DELETE FROM Reimbursables;
+	DELETE FROM WorkCodes;
+	DELETE FROM LeaveProjections;
+END TRANSACTION;
