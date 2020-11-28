@@ -31,12 +31,12 @@ namespace BudgetExecution
             {
                 return Verify.Row( Record )
                     ? Record
-                    : default;
+                    : default( DataRow );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( DataRow );
             }
         }
 
@@ -56,18 +56,18 @@ namespace BudgetExecution
                 {
                     foreach( DataColumn column in columns )
                     {
-                        values.Add( column.Ordinal );
+                        values?.Add( column.Ordinal );
                     }
                 }
 
                 return values?.Any() == true
                     ? values
-                    : default;
+                    : default( IEnumerable<int> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IEnumerable<int> );
             }
         }
 
@@ -80,7 +80,8 @@ namespace BudgetExecution
         {
             try
             {
-                var columns = Record?.ToDictionary()?.Keys?.ToArray();
+                var columns = Record?.ToDictionary()
+                    ?.Keys?.ToArray();
 
                 if( columns?.Any() == true )
                 {
@@ -88,17 +89,17 @@ namespace BudgetExecution
 
                     return elements?.Any() == true
                         ? elements
-                        : default;
+                        : default( IEnumerable<Field> );
                 }
                 else
                 {
-                    return default;
+                    return default( IEnumerable<Field> );
                 }
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IEnumerable<Field> );
             }
         }
 
@@ -128,17 +129,17 @@ namespace BudgetExecution
 
                     return list?.Any() == true
                         ? list
-                        : default;
+                        : default( IEnumerable<IElement> );
                 }
                 else
                 {
-                    return default;
+                    return default( IEnumerable<IElement> );
                 }
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IEnumerable<IElement> );
             }
         }
     }

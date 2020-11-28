@@ -1,6 +1,6 @@
-﻿// <copyright file = "SqlBase.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file = "SqlBase.cs" company = "Terry D. Eppler">
+// // Copyright (c) Terry D. Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -10,6 +10,7 @@ namespace BudgetExecution
 
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Threading;
 
@@ -55,22 +56,43 @@ namespace BudgetExecution
         // *************************************************    METHODS     *****************************************************
         // **********************************************************************************************************************
 
-        /// <inheritdoc/>
         /// <summary>
-        /// Gets the connection manager.
+        /// Sets the connection builder.
         /// </summary>
-        /// <returns>
-        /// </returns>
-        public IConnectionBuilder GetConnectionBuilder()
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        private protected void SetConnectionBuilder( Source source, Provider provider )
         {
             try
             {
-                return ConnectionBuilder ?? default;
+                ConnectionBuilder = Verify.Source( source ) && Verify.Provider( provider )
+                    ? new ConnectionBuilder( source, provider )
+                    : default( ConnectionBuilder );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+            }
+        }
+
+        /// <summary>
+        /// Sets the arguments.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
+        private protected void SetArgs( IDictionary<string, object> dict )
+        {
+            if( dict?.Any() == true )
+            {
+                try
+                {
+                    Args = dict?.Any() == true
+                        ? dict
+                        : new Dictionary<string, object>();
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
             }
         }
 
@@ -82,11 +104,11 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected static SQL GetCommandType( SQL commandtype )
+        private protected void SetCommandType( SQL commandtype )
         {
             try
             {
-                return Enum.IsDefined( typeof( SQL ), commandtype )
+                CommandType = Enum.IsDefined( typeof( SQL ), commandtype )
                     && Enum.GetNames( typeof( SQL ) ).Contains( commandtype.ToString() )
                         ? commandtype
                         : SQL.SELECT;
@@ -94,54 +116,215 @@ namespace BudgetExecution
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
             }
         }
 
-        /// <inheritdoc/>
         /// <summary>
-        /// Gets the type of the command.
+        /// Sets the select statement.
         /// </summary>
-        /// <returns>
-        /// SQL
-        /// </returns>
-        public SQL GetCommandType()
+        private protected void SetSelectStatement()
         {
             try
             {
-                return CommandType != SQL.NS
-                    ? CommandType
-                    : default;
+                CommandText = Verify.Input( ConnectionBuilder?.GetConnectionString() )
+                    ? $"{SQL.SELECT} * FROM {ConnectionBuilder?.GetTableName()};"
+                    : string.Empty;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
             }
         }
 
-        /// <inheritdoc/>
         /// <summary>
-        /// Gets the arguments.
+        /// Sets the select statement.
         /// </summary>
-        /// <returns>
-        /// </returns>
-        public IDictionary<string, object> GetArgs()
+        /// <param name="dict">The dictionary.</param>
+        private protected void SetSelectStatement( IDictionary<string, object> dict )
         {
-            if( Args.Any() )
+            if( Verify.Map( dict ) )
             {
                 try
                 {
-                    return Args ?? new Dictionary<string, object>();
+                    var vals = string.Empty;
+
+                    foreach( var kvp in dict )
+                    {
+                        vals += $"{kvp.Key} = '{kvp.Value}' AND";
+                    }
+
+                    var values = vals.TrimEnd( " AND".ToCharArray() );
+                    var table = ConnectionBuilder?.GetTableName();
+                    CommandText = $"{SQL.SELECT} * FROM {table} WHERE {values};";
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
                 }
             }
+            else if( dict == null )
+            {
+                CommandText = $"{SQL.SELECT} * FROM {ConnectionBuilder?.GetTableName()};";
+            }
+        }
 
-            return default;
+        /// <summary>
+        /// Sets the update statement.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
+        private protected void SetUpdateStatement( IDictionary<string, object> dict )
+        {
+            if( Verify.Map( dict ) )
+            {
+                try
+                {
+                    var update = string.Empty;
+
+                    foreach( var kvp in dict )
+                    {
+                        update += $" {kvp.Key} = '{kvp.Value}' AND";
+                    }
+
+                    var vals = update.TrimEnd( " AND".ToCharArray() );
+                    CommandText = $"{SQL.UPDATE} {ConnectionBuilder?.GetTableName()} SET {vals};";
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the insert statement.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
+        private protected void SetInsertStatement( IDictionary<string, object> dict )
+        {
+            if( Verify.Map( dict ) )
+            {
+                try
+                {
+                    var table = ConnectionBuilder?.GetTableName();
+                    var colname = string.Empty;
+                    var vals = string.Empty;
+
+                    foreach( var kvp in dict )
+                    {
+                        colname += $"{kvp.Key}, ";
+                        vals += $"{kvp.Value}, ";
+                    }
+
+                    var values =
+                        $"({colname.TrimEnd( ", ".ToCharArray() )}) VALUES ({vals.TrimEnd( ", ".ToCharArray() )})";
+
+                    CommandText = $"{SQL.INSERT} INTO {table} {values};";
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the delete statement.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
+        private protected void SetDeleteStatement( IDictionary<string, object> dict )
+        {
+            if( Verify.Map( dict ) )
+            {
+                try
+                {
+                    var vals = string.Empty;
+
+                    foreach( var kvp in dict )
+                    {
+                        vals += $"{kvp.Key} = '{kvp.Value}' AND ";
+                    }
+
+                    var values = vals.TrimEnd( " AND".ToCharArray() );
+                    var table = ConnectionBuilder?.GetTableName();
+                    CommandText = $"{SQL.DELETE} FROM {table} WHERE {values};";
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+            else if( dict == null )
+            {
+                CommandText = $"{SQL.DELETE} * FROM {ConnectionBuilder?.GetTableName()};";
+            }
+        }
+
+        /// <summary>
+        /// Sets the command text.
+        /// </summary>
+        /// <param name="sql">The SQL.</param>
+        private protected void SetCommandText( string sql )
+        {
+            try
+            {
+                CommandText = Verify.Input( sql )
+                    ? sql
+                    : string.Empty;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the command text.
+        /// </summary>
+        /// <param name = "command" > </param>
+        /// <param name="dict">The dictionary.</param>
+        public void SetCommandText( IDictionary<string, object> dict, SQL command = SQL.SELECT )
+        {
+            if( dict == null
+                && Verify.Input( ConnectionBuilder?.GetConnectionString() ) )
+            {
+                SetSelectStatement();
+            }
+            else if( Verify.Map( dict ) )
+            {
+                try
+                {
+                    switch( command )
+                    {
+                        case SQL.SELECT:
+                        {
+                            SetSelectStatement( dict );
+                            break;
+                        }
+
+                        case SQL.UPDATE:
+                        {
+                            SetUpdateStatement( dict );
+                            break;
+                        }
+
+                        case SQL.INSERT:
+                        {
+                            SetInsertStatement( dict );
+                            break;
+                        }
+
+                        case SQL.DELETE:
+                        {
+                            SetDeleteStatement( dict );
+                            break;
+                        }
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
         }
 
         /// <summary>

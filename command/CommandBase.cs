@@ -22,6 +22,8 @@ namespace BudgetExecution
         // ****************************************************  PROPERTIES   ********************************************************
         // ***************************************************************************************************************************
 
+        private protected DbCommand Command { get; set; }
+
         /// <summary>
         /// Gets the source.
         /// </summary>
@@ -95,6 +97,20 @@ namespace BudgetExecution
             {
                 Fail( ex );
                 return default;
+            }
+        }
+
+        private protected void SetConnectionBuilder( Source source, Provider provider )
+        {
+            try
+            {
+                ConnectionBuilder = Verify.Source( source ) && Verify.Provider( provider ) 
+                    ? new ConnectionBuilder( source, provider )
+                    : default( ConnectionBuilder );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
             }
         }
 

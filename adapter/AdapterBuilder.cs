@@ -44,10 +44,10 @@ namespace BudgetExecution
         public AdapterBuilder( ICommandBuilder commandbuilder )
             : this()
         {
-            ConnectionBuilder = commandbuilder.GetConnectionBuilder();
-            Connection = new ConnectionFactory( ConnectionBuilder ).GetConnection();
-            SqlStatement = commandbuilder.GetSqlStatement();
-            SelectCommand = new CommandBuilder( ConnectionBuilder, SqlStatement ).GetCommand();
+            ConnectionBuilder = commandbuilder?.GetConnectionBuilder();
+            Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
+            SqlStatement = commandbuilder?.GetSqlStatement();
+            SelectCommand = new CommandBuilder( ConnectionBuilder, SqlStatement )?.GetCommand();
         }
 
         /// <inheritdoc/>

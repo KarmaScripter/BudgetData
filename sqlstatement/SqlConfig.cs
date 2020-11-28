@@ -1,6 +1,6 @@
-﻿// <copyright file = "SqlConfig.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file = "SqlConfig.cs" company = "Terry D. Eppler">
+// // Copyright (c) Terry D. Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -12,6 +12,7 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Configuration;
+    using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
@@ -111,6 +112,92 @@ namespace BudgetExecution
                 return Verify.Provider( Provider )
                     ? Provider
                     : default;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default;
+            }
+        }
+
+        /// <inheritdoc/>
+        /// <summary>
+        /// Gets the type of the command.
+        /// </summary>
+        /// <returns>
+        /// SQL
+        /// </returns>
+        public SQL GetCommandType()
+        {
+            try
+            {
+                return CommandType != SQL.NS
+                    ? CommandType
+                    : default;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default;
+            }
+        }
+
+        /// <inheritdoc/>
+        /// <summary>
+        /// Gets the arguments.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public IDictionary<string, object> GetArgs()
+        {
+            if( Args.Any() )
+            {
+                try
+                {
+                    return Args ?? new Dictionary<string, object>();
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return new Dictionary<string, object>();
+                }
+            }
+
+            return new Dictionary<string, object>();
+        }
+
+        /// <inheritdoc/>
+        /// <summary>
+        /// Gets the connection manager.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        public IConnectionBuilder GetConnectionBuilder()
+        {
+            try
+            {
+                return Verify.Input( ConnectionBuilder?.GetConnectionString() )
+                    ? ConnectionBuilder
+                    : default( ConnectionBuilder );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( ConnectionBuilder );
+            }
+        }
+
+        /// <summary>
+        /// Gets the command text.
+        /// </summary>
+        /// <returns></returns>
+        public string GetCommandText()
+        {
+            try
+            {
+                return Verify.Input( CommandText )
+                    ? CommandText
+                    : string.Empty;
             }
             catch( Exception ex )
             {

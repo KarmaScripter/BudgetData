@@ -308,25 +308,25 @@ namespace BudgetExecution
         public IEnumerable<int> GetPrimaryIndexes( IEnumerable<DataRow> data )
         {
             if( Verify.Input( data )
-                && data.HasPrimaryKey() )
+                && data?.HasPrimaryKey() == true )
             {
                 try
                 {
-                    var table = data.CopyToDataTable();
+                    var table = data?.CopyToDataTable();
                     var list = table?.GetPrimaryKeyValues();
 
                     return list?.Any() == true
                         ? list.ToArray()
-                        : default;
+                        : default( IEnumerable<int> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IEnumerable<int> );
                 }
             }
 
-            return default;
+            return default( IEnumerable<int> );
         }
 
         /// <summary>

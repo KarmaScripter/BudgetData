@@ -18,7 +18,7 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref = "T:BudgetExecution.ISqlStatement"/>
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    public class SqlStatement : SqlBase, ISqlStatement
+    public class SqlStatement : SqlConfig, ISqlStatement
     {
         // ***************************************************************************************************************************
         // *********************************************   CONSTRUCTORS **************************************************************
@@ -43,9 +43,9 @@ namespace BudgetExecution
         public SqlStatement( IConnectionBuilder builder, SQL commandtype = SQL.SELECT )
         {
             ConnectionBuilder = builder;
-            CommandType = GetCommandType( commandtype );
-            CommandText = GetCommandText();
+            SetCommandType( commandtype );
             Args = null;
+            SetCommandText( Args );
         }
 
         /// <summary>
@@ -81,8 +81,8 @@ namespace BudgetExecution
             SQL commandtype = SQL.SELECT )
         {
             ConnectionBuilder = builder;
-            CommandType = GetCommandType( commandtype );
-            Args = dict;
+            SetCommandType( commandtype );
+            SetArgs( dict );
             CommandText = GetCommandText();
         }
 
@@ -213,45 +213,9 @@ namespace BudgetExecution
         {
             try
             {
-                var vals = string.Empty;
-
-                foreach( var kvp in Args )
-                {
-                    vals += $"{kvp.Key} = '{kvp.Value}' AND ";
-                }
-
-                var values = vals.TrimEnd( " AND".ToCharArray() );
-                var table = ConnectionBuilder?.GetTableName();
-                CommandText = $"{SQL.DELETE} FROM {table} WHERE {values};";
-
-                return Verify.Input( CommandText )
+                return Verify.Map( Args ) && Verify.Input( CommandText )
                     ? CommandText
-                    : default;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default;
-            }
-        }
-
-        /// <summary>
-        /// Gets the command text.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public string GetCommandText()
-        {
-            try
-            {
-                return CommandType switch
-                {
-                    SQL.SELECT => GetSelectStatement(),
-                    SQL.INSERT => GetInsertStatement(),
-                    SQL.UPDATE => GetUpdateStatement(),
-                    SQL.DELETE => GetDeleteStatement(),
-                    _ => GetSelectStatement()
-                };
+                    : string.Empty;
             }
             catch( Exception ex )
             {

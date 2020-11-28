@@ -32,7 +32,7 @@ namespace BudgetExecution
         /// <param name = "command" >
         /// The command.
         /// </param>
-        public SqlFactory( IConnectionBuilder builder, SQL command )
+        public SqlFactory( IConnectionBuilder builder, SQL command = SQL.SELECT )
         {
             Source = builder.GetSource();
             Provider = builder.GetProvider();
@@ -55,44 +55,12 @@ namespace BudgetExecution
         public SqlFactory( string filepath, SQL command = SQL.SELECT )
         {
             ConnectionBuilder = new ConnectionBuilder( filepath );
+            Source = ConnectionBuilder.GetSource();
+            Provider = ConnectionBuilder.GetProvider();
             CommandType = command;
             SqlStatement = new SqlStatement( ConnectionBuilder, CommandType );
             FileName = ConnectionBuilder.GetFileName();
             FilePath = ConnectionBuilder.GetFilePath();
-        }
-
-        // ***************************************************************************************************************************
-        // ************************************************  METHODS   ***************************************************************
-        // ***************************************************************************************************************************
-
-        /// <summary>
-        /// Gets the script reader.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public string GetCommandText()
-        {
-            try
-            {
-                var script = GetScriptFiles()?.Where( s => s.Equals( FileName ) )?.Select( s => s )?.Single();
-
-                if( Verify.Input( script )
-                    && File.Exists( script ) )
-                {
-                    var scriptreader = File.ReadAllText( script );
-
-                    return Verify.Input( scriptreader )
-                        ? scriptreader
-                        : string.Empty;
-                }
-
-                return string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default;
-            }
         }
     }
 }

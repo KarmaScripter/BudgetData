@@ -40,13 +40,13 @@ namespace BudgetExecution
         /// <param name="provider">The provider.</param>
         public ConnectionBuilder( Source source, Provider provider = Provider.SQLite )
         {
-            Source = GetSource( source );
-            Provider = GetProvider( provider );
-            FilePath = GetFilePath( Provider );
-            FileName = GetFileName( FilePath );
-            FileExtension = GetFileExtension( FilePath );
+            SetSource( source );
+            SetProvider( provider );
+            SetFilePath( Provider );
+            SetFileName( FilePath );
+            SetFileExtension( FilePath );
             TableName = Source.ToString();
-            ConnectionString = GetConnectionString( Provider );
+            SetConnectionString( Provider );
         }
 
         /// <summary>
@@ -58,12 +58,12 @@ namespace BudgetExecution
         public ConnectionBuilder( string fullpath )
         {
             Source = Source.External;
-            FilePath = GetFilePath( fullpath );
-            FileName = GetFileName( FilePath );
-            FileExtension = GetFileExtension( FilePath );
-            Provider = GetProvider( FileExtension );
+            SetFilePath( fullpath );
+            SetFileName( FilePath );
+            SetFileExtension( FilePath );
+            SetProvider( FileExtension );
             TableName = FileName;
-            ConnectionString = GetConnectionString( Provider );
+            SetConnectionString( Provider );
         }
 
         /// <summary>
@@ -76,12 +76,12 @@ namespace BudgetExecution
         public ConnectionBuilder( string fullpath, Provider provider = Provider.SQLite )
         {
             Source = Source.External;
-            FilePath = GetFilePath( fullpath );
-            FileName = GetFileName( FilePath );
-            FileExtension = GetFileExtension( FilePath );
-            Provider = GetProvider( provider );
+            SetFilePath( fullpath );
+            SetFileName( FilePath );
+            SetFileExtension( FilePath );
+            SetProvider( provider );
             TableName = FileName;
-            ConnectionString = GetConnectionString( Provider );
+            SetConnectionString( Provider );
         }
 
         // **********************************************************************************************************************
