@@ -41,8 +41,7 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>DbNinja.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
@@ -120,6 +119,7 @@
   <ItemGroup>
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
+    <Content Include="DbNinja.ico" />
     <Content Include="db\accdb\R6.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -523,11 +523,11 @@
     <Compile Include="query\SQLiteQuery.cs" />
     <Compile Include="query\SqlServerQuery.cs" />
     <Compile Include="schema\DataSchema.cs" />
-    <Compile Include="sql\ISqlStatement.cs" />
-    <Compile Include="sql\SqlBase.cs" />
-    <Compile Include="sql\SqlConfig.cs" />
-    <Compile Include="sql\SqlFactory.cs" />
-    <Compile Include="sql\SqlStatement.cs" />
+    <Compile Include="sqlstatement\ISqlStatement.cs" />
+    <Compile Include="sqlstatement\SqlBase.cs" />
+    <Compile Include="sqlstatement\SqlConfig.cs" />
+    <Compile Include="sqlstatement\SqlFactory.cs" />
+    <Compile Include="sqlstatement\SqlStatement.cs" />
     <Compile Include="worker\DataWorker.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -48,11 +48,11 @@ namespace BudgetExecution
         /// </param>
         public Query( Source source, Provider provider = Provider.SQLite, SQL commandtype = SQL.SELECT )
         {
-            ConnectionBuilder = SetConnectionBuilder( source, provider );
+            SetConnectionBuilder( source, provider );
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
             SqlStatement = new SqlStatement( ConnectionBuilder, commandtype );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement ).GetAdapter();
+            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
             Args = new Dictionary<string, object>();
         }
@@ -75,11 +75,11 @@ namespace BudgetExecution
         public Query( Source source, Provider provider, IDictionary<string, object> dict,
             SQL commandtype )
         {
-            ConnectionBuilder = SetConnectionBuilder( source, provider );
+            SetConnectionBuilder( source, provider );
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandtype );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement ).GetAdapter();
+            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
             Args = new Dictionary<string, object>();
         }
@@ -99,7 +99,7 @@ namespace BudgetExecution
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
             SqlStatement = sqlstatement;
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement ).GetAdapter();
+            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
             Args = SqlStatement.GetArgs();
         }
@@ -118,13 +118,13 @@ namespace BudgetExecution
         /// </param>
         public Query( Source source, Provider provider, IDictionary<string, object> dict )
         {
-            ConnectionBuilder = SetConnectionBuilder( source, provider );
+            SetConnectionBuilder( source, provider );
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement ).GetAdapter();
+            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
-            Args = SqlStatement.GetArgs();
+            Args = SqlStatement?.GetArgs();
         }
 
         /// <summary>
@@ -138,11 +138,11 @@ namespace BudgetExecution
         /// </param>
         public Query( string fullpath, SQL commandtype = SQL.SELECT )
         {
-            ConnectionBuilder = SetConnectionBuilder( fullpath );
+            SetConnectionBuilder( fullpath );
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
             SqlStatement = new SqlStatement( ConnectionBuilder, commandtype );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement ).GetAdapter();
+            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
         }
 
@@ -160,13 +160,13 @@ namespace BudgetExecution
         /// </param>
         public Query( string fullpath, SQL commandtype, IDictionary<string, object> dict )
         {
-            ConnectionBuilder = SetConnectionBuilder( fullpath );
+            SetConnectionBuilder( fullpath );
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandtype );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
-            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement ).GetAdapter();
+            Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
-            Args = SqlStatement.GetArgs();
+            Args = SqlStatement?.GetArgs();
         }
 
         // ***************************************************************************************************************************
@@ -185,7 +185,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        public DbDataReader GetDataReader( DbCommand command,
+        public DbDataReader GetDataReader( DbCommand command, 
             CommandBehavior behavior = CommandBehavior.CloseConnection )
         {
             if( Command?.Connection != null

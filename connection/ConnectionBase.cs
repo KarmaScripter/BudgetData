@@ -28,13 +28,14 @@ namespace BudgetExecution
         // ***************************************************************************************************************************
 
         /// <summary>
-        /// The connector
+        /// The connector contains the available connection strings
+        /// defined within the App.Config file
         /// </summary>
-        private protected readonly ConnectionStringSettingsCollection Connector =
-            ConfigurationManager.ConnectionStrings;
+        private protected readonly ConnectionStringSettingsCollection Connector = ConfigurationManager.ConnectionStrings;
 
         /// <summary>
-        /// The provider path
+        /// The name value collection containing the file paths
+        /// to the applications data providers.
         /// </summary>
         private protected readonly NameValueCollection ProviderPath = ConfigurationManager.AppSettings;
 
@@ -43,7 +44,7 @@ namespace BudgetExecution
         // **************************************************************************************************************************
 
         /// <summary>
-        /// Gets the source.
+        /// Represents the source table in the database
         /// </summary>
         /// <value>
         /// The source.
@@ -51,7 +52,7 @@ namespace BudgetExecution
         private protected Source Source { get; set; }
 
         /// <summary>
-        /// Gets the provider.
+        /// Represents the data provider.
         /// </summary>
         /// <value>
         /// The provider.
@@ -59,7 +60,7 @@ namespace BudgetExecution
         private protected Provider Provider { get; set; }
 
         /// <summary>
-        /// Gets the file extension.
+        /// Represents the file extension.
         /// </summary>
         /// <value>
         /// The file extension.
@@ -67,7 +68,7 @@ namespace BudgetExecution
         private protected EXT FileExtension { get; set; }
 
         /// <summary>
-        /// Gets the file path.
+        /// Represents the path to the data file.
         /// </summary>
         /// <value>
         /// The file path.
@@ -75,7 +76,7 @@ namespace BudgetExecution
         private protected string FilePath { get; set; }
 
         /// <summary>
-        /// Gets the name of the file.
+        /// Represents the name of the selected file.
         /// </summary>
         /// <value>
         /// The name of the file.
@@ -83,7 +84,7 @@ namespace BudgetExecution
         private protected string FileName { get; set; }
 
         /// <summary>
-        /// Gets the name of the table.
+        /// The name of the data table.
         /// </summary>
         /// <value>
         /// The name of the table.

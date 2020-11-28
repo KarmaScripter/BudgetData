@@ -201,27 +201,20 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected IConnectionBuilder SetConnectionBuilder( Source source, Provider provider )
+        private protected void SetConnectionBuilder( Source source, Provider provider )
         {
             if( Enum.IsDefined( typeof( Source ), source )
                 && Enum.IsDefined( typeof( Provider ), provider ) )
             {
                 try
                 {
-                    var connectionmanager = new ConnectionBuilder( source, provider );
-
-                    return Verify.Input( connectionmanager?.GetConnectionString() )
-                        ? connectionmanager
-                        : default;
+                    ConnectionBuilder = new ConnectionBuilder( source, provider );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
                 }
             }
-
-            return default;
         }
 
         /// <summary>
@@ -232,23 +225,20 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected static IConnectionBuilder SetConnectionBuilder( string fullpath )
+        private protected void SetConnectionBuilder( string fullpath )
         {
             if( Verify.Input( fullpath )
                 && File.Exists( fullpath ) )
             {
                 try
                 {
-                    return new ConnectionBuilder( fullpath );
+                    ConnectionBuilder = new ConnectionBuilder( fullpath );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
                 }
             }
-
-            return default;
         }
 
         /// <inheritdoc/>
