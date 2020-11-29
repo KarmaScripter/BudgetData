@@ -54,7 +54,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        IEnumerable<int> GetPrimaryKeyValues();
+        IEnumerable<int> GetIndexes();
 
         /// <summary>
         /// Gets the primary key columns.

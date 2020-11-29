@@ -72,7 +72,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
             SetQuery( ConnectionBuilder, SqlStatement );
             ProgramElements = GetSeries( GetDataTable() );
-            Record = GetData()?.FirstOrDefault();
+            Record = GetRecord();
             Args = Record?.ToDictionary();
         }
 
@@ -89,7 +89,7 @@ namespace BudgetExecution
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
             SetQuery( ConnectionBuilder, SqlStatement );
             ProgramElements = GetSeries( GetDataTable() );
-            Record = GetData()?.FirstOrDefault();
+            Record = GetRecord();
             Args = Record?.ToDictionary();
         }
 
@@ -105,7 +105,7 @@ namespace BudgetExecution
             ConnectionBuilder = Query.GetConnectionBuilder();
             SqlStatement = Query.GetSqlStatement();
             ProgramElements = GetSeries( GetDataTable() );
-            Record = GetData().FirstOrDefault();
+            Record = GetRecord();
             Args = Record?.ToDictionary();
         }
 
@@ -133,12 +133,14 @@ namespace BudgetExecution
         /// <returns></returns>
         public static IEnumerable<string> GetValues( IEnumerable<DataRow> data, string column )
         {
-            if( Verify.Input( data )
+            if( Verify.Sequence( data )
                 && Verify.Input( column ) )
             {
                 try
                 {
-                    var query = data?.Select( p => p.Field<string>( column ) )?.Distinct();
+                    var query = data
+                        ?.Select( p => p.Field<string>( column ) )
+                        ?.Distinct();
 
                     return query?.Any() == true
                         ? query
@@ -163,13 +165,14 @@ namespace BudgetExecution
         /// <returns></returns>
         public static IEnumerable<string> GetValues( IEnumerable<DataRow> data, Field field, string filter )
         {
-            if( Verify.Input( data )
+            if( Verify.Sequence( data )
                 && Verify.Field( field )
                 && Verify.Input( filter ) )
             {
                 try
                 {
-                    var query = data?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
+                    var query = data
+                        ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
                         ?.Select( p => p.Field<string>( $"{field}" ) )
                         ?.Distinct();
 
@@ -237,20 +240,22 @@ namespace BudgetExecution
                 try
                 {
                     using var reader = new DataTableReader( datatable );
-                    var table = reader?.GetSchemaTable();
 
-                    return table?.Rows?.Count > 0
-                        ? table
+                    var schema = reader
+                        ?.GetSchemaTable();
+
+                    return schema?.Rows?.Count > 0
+                        ? schema
                         : default;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( DataTable );
                 }
             }
 
-            return default;
+            return default( DataTable );
         }
 
         /// <summary>
@@ -272,15 +277,15 @@ namespace BudgetExecution
                         + ";Extended Properties='Excel 12.0;HDR=YES;IMEX=1;';";
 
                     using var connection = new OleDbConnection( connectionstring );
-                    connection.Open();
+                    connection?.Open();
                     using var dataset = new DataSet();
-                    using var schematable = connection.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
+                    using var schematable = connection?.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
                     var sheetname = string.Empty;
 
                     if( schematable != null )
                     {
                         var datatable = schematable?.AsEnumerable()
-                            .Where( r => r.Field<string>( "TABLE_NAME" ).Contains( "FilterDatabase" ) )
+                            ?.Where( r => r.Field<string>( "TABLE_NAME" ).Contains( "FilterDatabase" ) )
                             ?.Select( r => r )
                             ?.CopyToDataTable();
 
@@ -327,7 +332,7 @@ namespace BudgetExecution
                         ?.Worksheets
                         ?.First();
 
-                    var table = new DataTable();
+                    var table = new DataTable( worksheet?.Name );
 
                     if( worksheet?.Cells != null )
                     {
@@ -446,13 +451,14 @@ namespace BudgetExecution
         /// <returns></returns>
         public static IEnumerable<DataRow> FilterData( IEnumerable<DataRow> data, Field field, string filter )
         {
-            if( Verify.Input( data )
+            if( Verify.Sequence( data )
                 && Verify.Input( filter )
                 && Verify.Field( field ) )
             {
                 try
                 {
-                    var query = data?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
+                    var query = data
+                        ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
                         ?.Select( p => p );
 
                     return query?.Any() == true

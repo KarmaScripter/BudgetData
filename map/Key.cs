@@ -48,9 +48,9 @@ namespace BudgetExecution
         /// </param>
         public Key( KeyValuePair<string, object> kvp )
         {
-            Name = GetName( kvp.Key );
-            PrimaryKey = GetPrimaryKey( Name );
-            Index = GetIndex( int.Parse( kvp.Value.ToString() ) );
+            SetName( kvp.Key );
+            SetPrimaryKey( Name );
+            SetIndex( int.Parse( kvp.Value.ToString() ) );
             Data = Index.ToString();
         }
 
@@ -65,9 +65,9 @@ namespace BudgetExecution
         /// </param>
         public Key( string name, int value = 0 )
         {
-            PrimaryKey = GetPrimaryKey( name );
-            Name = GetName( name );
-            Index = GetIndex( value );
+            SetPrimaryKey( name );
+            SetName( name );
+            SetIndex( value );
             Data = Index.ToString();
         }
 
@@ -82,9 +82,9 @@ namespace BudgetExecution
         /// </param>
         public Key( DataRow data, PrimaryKey field )
         {
-            PrimaryKey = GetPrimaryKey( data, field );
-            Name = GetName( data, field );
-            Index = GetIndex( data, field );
+            SetPrimaryKey( data, field );
+            SetName( data, field );
+            SetIndex( data, field );
             Data = Index.ToString();
         }
 
@@ -99,9 +99,9 @@ namespace BudgetExecution
         /// </param>
         public Key( PrimaryKey field, string value = "0" )
         {
-            PrimaryKey = GetPrimaryKey( field );
-            Name = GetName( field );
-            Index = GetIndex( int.Parse( value ) );
+            SetPrimaryKey( field );
+            SetName( field );
+            SetIndex( int.Parse( value ) );
             Data = Index.ToString();
         }
 
@@ -113,9 +113,9 @@ namespace BudgetExecution
         /// </param>
         public Key( DataRow data )
         {
-            PrimaryKey = GetPrimaryKey( data );
-            Name = GetName( data );
-            Index = GetIndex( data, PrimaryKey );
+            SetPrimaryKey( data );
+            SetName( data, PrimaryKey );
+            SetIndex( data, PrimaryKey );
             Data = Index.ToString();
         }
 
@@ -200,7 +200,7 @@ namespace BudgetExecution
         /// </c>
         /// .
         /// </returns>
-        public bool IsEqual( IKey key )
+        public bool IsMatch( IKey key )
         {
             if( key != null )
             {
@@ -237,7 +237,7 @@ namespace BudgetExecution
         /// </c>
         /// .
         /// </returns>
-        public static bool IsEqual( IKey primary, IKey secondary )
+        public static bool IsMatch( IKey primary, IKey secondary )
         {
             if( primary != null
                 && primary.GetIndex() > -1

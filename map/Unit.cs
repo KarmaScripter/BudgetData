@@ -38,9 +38,9 @@ namespace BudgetExecution
         /// <param name="kvp">The KVP.</param>
         public Unit( KeyValuePair<string, object> kvp )
         {
-            Name = GetName( kvp.Key );
-            Data = GetData( kvp.Value );
-            Value = GetValue( Data );
+            SetName( kvp.Key );
+            SetData( kvp.Value );
+            SetValue( Data );
         }
 
         // ***************************************************************************************************************************
@@ -52,7 +52,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public string GetName()
+        public virtual string GetName()
         {
             try
             {
@@ -71,7 +71,7 @@ namespace BudgetExecution
         /// Gets the value.
         /// </summary>
         /// <returns></returns>
-        public string GetValue()
+        public virtual string GetValue()
         {
             try
             {
@@ -90,11 +90,11 @@ namespace BudgetExecution
         /// Gets the data.
         /// </summary>
         /// <returns></returns>
-        public object GetData()
+        public virtual object GetData()
         {
             try
             {
-                return Verify.Input( Data?.ToString() )
+                return Verify.Ref( Data )
                     ? Data
                     : default;
             }
@@ -103,41 +103,6 @@ namespace BudgetExecution
                 Fail( ex );
                 return default;
             }
-        }
-
-        /// <summary>
-        /// Determines whether the specified primary is equal.
-        /// </summary>
-        /// <param name="primary">The primary.</param>
-        /// <param name="secondary">The secondary.</param>
-        /// <returns>
-        /// <c>
-        /// true
-        /// </c>
-        /// if the specified primary is equal; otherwise,
-        /// <c>
-        /// false
-        /// </c>
-        /// .
-        /// </returns>
-        public static bool IsEqual( IUnit primary, IUnit secondary )
-        {
-            if( Verify.Input( primary?.GetValue() )
-                && Verify.Input( secondary?.GetValue() ) )
-            {
-                try
-                {
-                    return primary?.GetName()?.Equals( secondary?.GetName() ) == true
-                        && primary?.GetValue()?.Equals( secondary?.GetValue() ) == true;
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return false;
-                }
-            }
-
-            return false;
         }
 
         /// <summary>
@@ -150,7 +115,7 @@ namespace BudgetExecution
         {
             try
             {
-                return !Verify.Input( Name ) && Verify.Input( Value )
+                return Verify.Input( Name ) && Verify.Input( Value )
                     ? Name + " = " + Value
                     : string.Empty;
             }

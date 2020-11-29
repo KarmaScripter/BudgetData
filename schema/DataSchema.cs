@@ -24,10 +24,6 @@ namespace BudgetExecution
     public class DataSchema : ISource, IDataSchema
     {
         // **************************************************************************************************************************
-        // ********************************************      FIELDS     *************************************************************
-        // **************************************************************************************************************************
-
-        // **************************************************************************************************************************
         // ********************************************   CONSTRUCTORS     **********************************************************
         // **************************************************************************************************************************
 
@@ -120,7 +116,7 @@ namespace BudgetExecution
                 {
                     foreach( DataColumn datacolumn in table?.Columns )
                     {
-                        list.Add( datacolumn.ColumnName );
+                        list.Add( datacolumn?.ColumnName );
                     }
                 }
 
@@ -146,7 +142,7 @@ namespace BudgetExecution
             {
                 var schema = Data?.CopyToDataTable()?.Columns;
                 var list = new List<string>();
-
+               
                 if( schema != null )
                 {
                     foreach( DataColumn caption in schema )
@@ -161,7 +157,7 @@ namespace BudgetExecution
                         }
                     }
                 }
-
+                
                 return list?.Any() == true
                     ? list
                     : default;
@@ -182,7 +178,10 @@ namespace BudgetExecution
         {
             try
             {
-                var schema = Data?.CopyToDataTable()?.Columns;
+                var schema = Data
+                    ?.CopyToDataTable()
+                    ?.Columns;
+
                 var list = new List<int>();
 
                 if( schema != null )
@@ -220,7 +219,7 @@ namespace BudgetExecution
                 {
                     foreach( DataColumn datacolumn in table?.Columns )
                     {
-                        list.Add( datacolumn.DataType );
+                        list.Add( datacolumn?.DataType );
                     }
                 }
 
@@ -240,7 +239,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public IEnumerable<int> GetPrimaryKeyValues()
+        public IEnumerable<int> GetIndexes()
         {
             try
             {
@@ -251,10 +250,16 @@ namespace BudgetExecution
                 {
                     foreach( DataRow datarow in table?.Rows )
                     {
-                        if( datarow.HasPrimaryKey() )
+                        if( datarow?.HasPrimaryKey() == true )
                         {
-                            var key = datarow.GetPrimaryKey().ToArray();
-                            list.Add( (int)key[ 0 ].Value );
+                            var key = datarow
+                                ?.GetPrimaryKey()
+                                ?.ToArray();
+
+                            if( key?.Any() == true )
+                            {
+                                list.Add( (int)key[ 0 ].Value );
+                            }
                         }
                     }
                 }
@@ -282,7 +287,7 @@ namespace BudgetExecution
                 var columns = Data?.CopyToDataTable()?.PrimaryKey;
 
                 return columns?.Any() == true
-                    ? columns.ToArray()
+                    ? columns?.ToArray()
                     : default;
             }
             catch( Exception ex )
@@ -321,7 +326,7 @@ namespace BudgetExecution
         {
             try
             {
-                var datareader = new DataTableReader( Data.CopyToDataTable() );
+                using var datareader = new DataTableReader( Data.CopyToDataTable() );
                 return datareader?.GetSchemaTable();
             }
             catch( Exception ex )
@@ -342,12 +347,12 @@ namespace BudgetExecution
             {
                 return Verify.Rows( Data )
                     ? Data?.CopyToDataTable()
-                    : default;
+                    : default( DataTable );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( DataTable );
             }
         }
 

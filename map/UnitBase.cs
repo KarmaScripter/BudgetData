@@ -30,7 +30,7 @@ namespace BudgetExecution
         /// <value>
         /// The name.
         /// </value>
-        protected string Name { get; set; }
+        private protected string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the value.
@@ -38,7 +38,7 @@ namespace BudgetExecution
         /// <value>
         /// The value.
         /// </value>
-        protected object Data { get; set; }
+        private protected object Data { get; set; }
 
         /// <summary>
         /// Gets or sets the value.
@@ -46,7 +46,7 @@ namespace BudgetExecution
         /// <value>
         /// The value.
         /// </value>
-        protected string Value { get; set; }
+        private protected string Value { get; set; }
 
         // **************************************************************************************************************************
         // ********************************************      METHODS    *************************************************************
@@ -57,18 +57,17 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public virtual string GetName( string name )
+        public virtual void SetName( string name )
         {
             try
             {
-                return Verify.Input( name )
+                Name = Verify.Input( name )
                     ? name
                     : string.Empty;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return string.Empty;
             }
         }
 
@@ -77,18 +76,17 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public virtual object GetData( object data )
+        public virtual void SetData( object data )
         {
             try
             {
-                return Verify.Input( data?.ToString() )
+                Data = Verify.Input( data?.ToString() )
                     ? data
                     : default;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
             }
         }
 
@@ -97,18 +95,17 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="data">The data.</param>
         /// <returns></returns>
-        public virtual string GetValue( object data )
+        public virtual void SetValue( object data )
         {
             try
             {
-                return Verify.Input( data?.ToString() )
+                Value = Verify.Input( data?.ToString() )
                     ? data?.ToString()
                     : string.Empty;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return string.Empty;
             }
         }
 
@@ -128,13 +125,14 @@ namespace BudgetExecution
         /// </c>
         /// .
         /// </returns>
-        public virtual bool IsEqual( IUnit unit )
+        public virtual bool IsMatch( IUnit unit )
         {
             if( Verify.Ref( unit ) )
             {
                 try
                 {
-                    return unit.GetName()?.Equals( Name ) == true && unit.GetValue()?.Equals( Value ) == true;
+                    return unit.GetName()?.Equals( Name ) == true 
+                        && unit.GetValue()?.Equals( Value ) == true;
                 }
                 catch( Exception ex )
                 {

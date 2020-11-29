@@ -128,7 +128,7 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        public double GetChange()
+        public double GetDelta()
         {
             try
             {
@@ -178,7 +178,7 @@ namespace BudgetExecution
 
                 if( Initial != Funding )
                 {
-                    // Unfinished
+                    //unfinished
                 }
             }
             catch( Exception ex )

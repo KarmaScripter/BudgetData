@@ -115,7 +115,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var columns = Record.Table?.GetColumnNames();
+                    var columns = Record.Table
+                        ?.GetColumnNames();
 
                     if( columns?.Contains( $"{field}" ) == true )
                     {

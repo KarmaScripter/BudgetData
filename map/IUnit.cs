@@ -42,7 +42,7 @@ namespace BudgetExecution
         /// <returns>
         ///   <c>true</c> if the specified unit is equal; otherwise, <c>false</c>.
         /// </returns>
-        bool IsEqual( IUnit unit );
+        bool IsMatch( IUnit unit );
 
         /// <summary>
         /// Converts to string.

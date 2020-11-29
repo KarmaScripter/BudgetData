@@ -63,25 +63,22 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected string SetName( string colname )
+        public override void SetName( string colname )
         {
             if( Verify.Input( colname )
                 && Enum.GetNames( typeof( Numeric ) )?.Contains( colname ) == true )
             {
                 try
                 {
-                    return Verify.Input( colname )
+                    Name = Verify.Input( colname )
                         ? colname
                         : default;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
                 }
             }
-
-            return default;
         }
 
         /// <summary>
@@ -95,9 +92,9 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected string SetName( DataRow datarow, string colname )
+        private protected void SetName( DataRow datarow, string colname )
         {
-            if( datarow != null
+            if( Verify.Row( datarow )
                 && Verify.Input( colname )
                 && Enum.GetNames( typeof( Numeric ) )?.Contains( colname ) == true )
             {
@@ -105,18 +102,15 @@ namespace BudgetExecution
                 {
                     var names = datarow?.Table?.GetColumnNames();
 
-                    return names?.Contains( colname ) == true
+                    Name = names?.Contains( colname ) == true
                         ? colname
                         : default;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
                 }
             }
-
-            return default;
         }
 
         /// <summary>
@@ -127,24 +121,21 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected string SetName( Numeric numeric )
+        private protected void SetName( Numeric numeric )
         {
             if( Verify.Numeric( numeric ) )
             {
                 try
                 {
-                    return Verify.Numeric( numeric )
+                    Name = Verify.Numeric( numeric )
                         ? numeric.ToString()
                         : default;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
                 }
             }
-
-            return default;
         }
 
         /// <summary>
@@ -158,7 +149,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected string SetName( DataRow datarow, Numeric numeric )
+        private protected void SetName( DataRow datarow, Numeric numeric )
         {
             if( datarow != null
                 && Verify.Numeric( numeric ) )
@@ -167,18 +158,15 @@ namespace BudgetExecution
                 {
                     var names = datarow?.Table?.GetColumnNames();
 
-                    return names?.Contains( numeric.ToString() ) == true
+                    Name = names?.Contains( numeric.ToString() ) == true
                         ? numeric.ToString()
                         : default;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
                 }
             }
-
-            return default;
         }
 
         /// <summary>
@@ -189,7 +177,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected Numeric GetNumeric( string name )
+        private protected void SetNumeric( string name )
         {
             if( Verify.Input( name )
                 && Enum.GetNames( typeof( Numeric ) )?.Contains( name ) == true )
@@ -198,18 +186,15 @@ namespace BudgetExecution
                 {
                     var numeric = (Numeric)Enum.Parse( typeof( Numeric ), name );
 
-                    return !Enum.IsDefined( typeof( Numeric ), numeric )
+                    Numeric = Enum.IsDefined( typeof( Numeric ), numeric )
                         ? numeric
-                        : default;
+                        : Numeric.NS;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
                 }
             }
-
-            return default;
         }
 
         /// <summary>
@@ -223,9 +208,9 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected Numeric GetNumeric( DataRow data, string name )
+        private protected void SetNumeric( DataRow data, string name )
         {
-            if( data != null
+            if( Verify.Row( data )
                 && Verify.Input( name ) )
             {
                 try
@@ -235,19 +220,16 @@ namespace BudgetExecution
 
                     if( names?.Any() == true )
                     {
-                        return names?.Contains( $"{numeric}" ) == true
+                        Numeric = names?.Contains( $"{numeric}" ) == true
                             ? numeric
-                            : default;
+                            : Numeric.NS;
                     }
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
                 }
             }
-
-            return default;
         }
 
         /// <summary>
@@ -258,18 +240,17 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected Numeric GetNumeric( Numeric numeric )
+        private protected void SetNumeric( Numeric numeric )
         {
             try
             {
-                return Verify.Numeric( numeric )
+                Numeric = Verify.Numeric( numeric )
                     ? numeric
-                    : default;
+                    : Numeric.NS;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
             }
         }
 
@@ -284,7 +265,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected Numeric GetNumeric( DataRow data, Numeric numeric )
+        private protected void SetNumeric( DataRow data, Numeric numeric )
         {
             if( data != null
                 && Verify.Numeric( numeric ) )
@@ -293,18 +274,15 @@ namespace BudgetExecution
                 {
                     var columns = data.Table.GetColumnNames();
 
-                    return columns.Contains( numeric.ToString() )
+                    Numeric = columns.Contains( numeric.ToString() )
                         ? numeric
-                        : default;
+                        : Numeric.NS;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
                 }
             }
-
-            return default;
         }
 
         /// <summary>
@@ -322,7 +300,7 @@ namespace BudgetExecution
                 if( Verify.Input( value )
                     && Enum.GetNames( typeof( Numeric ) ).Contains( value ) )
                 {
-                    Data = value;
+                    Value = value;
                 }
             }
             catch( Exception ex )
@@ -342,7 +320,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected string GetValue( DataRow data, string value )
+        private protected void SetValue( DataRow data, string value )
         {
             if( data != null
                 && Verify.Input( value )
@@ -352,18 +330,15 @@ namespace BudgetExecution
                 {
                     var columns = data.Table.GetColumnNames();
 
-                    return columns.Contains( value )
+                    Value = columns.Contains( value )
                         ? data[ value ].ToString()
-                        : default;
+                        : string.Empty;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
                 }
             }
-
-            return default;
         }
 
         /// <summary>
@@ -377,7 +352,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected string GetValue( DataRow data, Numeric numeric )
+        private protected void SetValue( DataRow data, Numeric numeric )
         {
             if( data != null
                 && Verify.Numeric( numeric ) )
@@ -386,18 +361,15 @@ namespace BudgetExecution
                 {
                     var columns = data.Table.GetColumnNames();
 
-                    return columns.Contains( numeric.ToString() )
+                    Value = columns.Contains( numeric.ToString() )
                         ? data[ $"{numeric}" ].ToString()
-                        : default;
+                        : string.Empty;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
                 }
             }
-
-            return default;
         }
 
         /// <summary>
@@ -414,7 +386,7 @@ namespace BudgetExecution
             catch( Exception ex )
             {
                 Fail( ex );
-                return 0;
+                return 0.0;
             }
         }
 
@@ -431,12 +403,12 @@ namespace BudgetExecution
 
                 return amount != default
                     ? new Amount( amount )
-                    : default;
+                    : Amount.Default;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return Amount.Default;
             }
         }
 

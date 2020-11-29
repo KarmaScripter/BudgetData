@@ -21,7 +21,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
-    public abstract class Arg
+    public abstract class Arg : UnitBase
     {
         // ***************************************************************************************************************************
         // ************************************************  PROPERTIES **************************************************************
@@ -34,14 +34,6 @@ namespace BudgetExecution
         /// The elements.
         /// </value>
         private protected IEnumerable<string> Values { get; set; }
-
-        /// <summary>
-        /// Gets or sets the data.
-        /// </summary>
-        /// <value>
-        /// The data.
-        /// </value>
-        private protected IEnumerable<object> Data { get; set; }
 
         /// <summary>
         /// Gets or sets the keys.
@@ -79,7 +71,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected IDictionary<string, object> GetInput( IDictionary<string, object> dict )
+        private protected void SetInput( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
             {
@@ -97,18 +89,15 @@ namespace BudgetExecution
                         }
                     }
 
-                    return args?.Any() == true
+                    Input = args?.Any() == true
                         ? args
                         : default;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
                 }
             }
-
-            return default;
         }
 
         /// <summary>
@@ -119,7 +108,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected IDictionary<string, object> GetOutput( IDictionary<string, object> dict )
+        private protected void SetOutput( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
             {
@@ -142,7 +131,7 @@ namespace BudgetExecution
                             }
                         }
 
-                        return args?.Any() == true
+                        Output = args?.Any() == true
                             ? args
                             : default;
                     }
@@ -150,29 +139,7 @@ namespace BudgetExecution
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
                 }
-            }
-
-            return default;
-        }
-
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<object> GetData()
-        {
-            try
-            {
-                return Input?.Values?.Any() == true
-                    ? Input.Values
-                    : default;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default;
             }
         }
 
@@ -258,17 +225,6 @@ namespace BudgetExecution
             }
 
             return default;
-        }
-
-        /// <summary>
-        /// Get Error Dialog.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
-        private protected static void Fail( Exception ex )
-        {
-            using var error = new Error( ex );
-            error?.SetText();
-            error?.ShowDialog();
         }
     }
 }

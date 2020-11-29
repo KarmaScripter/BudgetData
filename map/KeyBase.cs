@@ -54,18 +54,17 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        public override string GetName( string name )
+        public override void SetName( string name )
         {
             try
             {
-                return Verify.Input( name )
+                Name = Verify.Input( name )
                     ? name
                     : default;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
             }
         }
 
@@ -77,7 +76,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected string GetName( DataRow datarow )
+        private protected void SetName( DataRow datarow )
         {
             if( datarow != null )
             {
@@ -86,18 +85,16 @@ namespace BudgetExecution
                     var colname = datarow[ 0 ].ToString();
                     var names = datarow?.Table?.GetColumnNames();
 
-                    return Verify.Input( colname ) && names?.Contains( colname ) == true
-                        ? colname
-                        : PrimaryKey.NS.ToString();
+                    Name = Verify.Input( colname ) 
+                        && names?.Contains( colname ) == true
+                            ? colname
+                            : PrimaryKey.NS.ToString();
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return PrimaryKey.NS.ToString();
                 }
             }
-
-            return PrimaryKey.NS.ToString();
         }
 
         /// <summary>
@@ -108,24 +105,21 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected string GetName( PrimaryKey field )
+        private protected void SetName( PrimaryKey field )
         {
             if( Verify.Field( field ) )
             {
                 try
                 {
-                    return Verify.Field( field )
+                    Name = Verify.Field( field )
                         ? field.ToString()
                         : default;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
                 }
             }
-
-            return PrimaryKey.NS.ToString();
         }
 
         /// <summary>
@@ -139,7 +133,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected string GetName( DataRow datarow, PrimaryKey index )
+        private protected void SetName( DataRow datarow, PrimaryKey index )
         {
             if( Verify.Input( datarow?.ItemArray )
                 && Verify.Field( index ) )
@@ -148,18 +142,15 @@ namespace BudgetExecution
                 {
                     var names = datarow?.Table?.GetColumnNames();
 
-                    return names?.Contains( index.ToString() ) == true
+                    Name = names?.Contains( index.ToString() ) == true
                         ? index.ToString()
                         : PrimaryKey.NS.ToString();
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return PrimaryKey.NS.ToString();
                 }
             }
-
-            return PrimaryKey.NS.ToString();
         }
 
         /// <summary>
@@ -170,20 +161,19 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected PrimaryKey GetPrimaryKey( string keyname )
+        private protected void SetPrimaryKey( string keyname )
         {
             try
             {
                 var key = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ), keyname );
 
-                return !Enum.IsDefined( typeof( PrimaryKey ), key )
+                PrimaryKey = Enum.IsDefined( typeof( PrimaryKey ), key )
                     ? key
                     : PrimaryKey.NS;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return PrimaryKey.NS;
             }
         }
 
@@ -195,9 +185,9 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected PrimaryKey GetPrimaryKey( DataRow datarow )
+        private protected void SetPrimaryKey( DataRow datarow )
         {
-            if( Verify.Input( datarow[ 0 ]?.ToString() ) )
+            if( Verify.Row( datarow ) )
             {
                 try
                 {
@@ -208,23 +198,20 @@ namespace BudgetExecution
                         var field = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ), datarow[ 0 ].ToString() );
                         var names = datarow.Table?.GetColumnNames();
 
-                        return names?.Contains( field.ToString() ) == true
+                        PrimaryKey = names?.Contains( field.ToString() ) == true
                             ? field
                             : PrimaryKey.NS;
                     }
                     else
                     {
-                        return PrimaryKey.NS;
+                        PrimaryKey = PrimaryKey.NS;
                     }
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return PrimaryKey.NS;
                 }
             }
-
-            return PrimaryKey.NS;
         }
 
         /// <summary>
@@ -235,18 +222,17 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected PrimaryKey GetPrimaryKey( PrimaryKey keyname )
+        private protected void SetPrimaryKey( PrimaryKey keyname )
         {
             try
             {
-                return Verify.Field( keyname )
+                PrimaryKey = Verify.Field( keyname )
                     ? keyname
                     : PrimaryKey.NS;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return PrimaryKey.NS;
             }
         }
 
@@ -261,7 +247,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected PrimaryKey GetPrimaryKey( DataRow data, PrimaryKey keyname )
+        private protected void SetPrimaryKey( DataRow data, PrimaryKey keyname )
         {
             if( Verify.Input( data?.ItemArray )
                 && Verify.Field( keyname ) )
@@ -270,18 +256,15 @@ namespace BudgetExecution
                 {
                     var names = data?.Table?.GetColumnNames();
 
-                    return names?.Contains( keyname.ToString() ) == true
+                    PrimaryKey = names?.Contains( keyname.ToString() ) == true
                         ? keyname
                         : PrimaryKey.NS;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return PrimaryKey.NS;
                 }
             }
-
-            return PrimaryKey.NS;
         }
 
         /// <summary>
@@ -292,18 +275,17 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected int GetIndex( int value )
+        private protected void SetIndex( int value )
         {
             try
             {
-                return value > -1
+                Index = value > -1
                     ? value
                     : (int)PrimaryKey.NS;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return (int)PrimaryKey.NS;
             }
         }
 
@@ -318,7 +300,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected int GetIndex( DataRow data, PrimaryKey key )
+        private protected void SetIndex( DataRow data, PrimaryKey key )
         {
             if( Verify.Input( data?.ItemArray )
                 && Verify.PrimaryKey( key ) )
@@ -327,18 +309,15 @@ namespace BudgetExecution
                 {
                     var names = data?.Table?.GetColumnNames();
 
-                    return names?.Contains( key.ToString() ) == true
+                    Index = names?.Contains( key.ToString() ) == true
                         ? int.Parse( data[ $"{key}" ].ToString() )
                         : (int)PrimaryKey.NS;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return (int)PrimaryKey.NS;
                 }
             }
-
-            return (int)PrimaryKey.NS;
         }
     }
 }

@@ -61,9 +61,10 @@ namespace BudgetExecution
         {
             try
             {
-                var data = GetDataTable()?.AsEnumerable();
+                var data = GetDataTable()
+                    ?.AsEnumerable();
 
-                return Verify.Input( data )
+                return Verify.Rows( data )
                     ? data
                     : default;
             }

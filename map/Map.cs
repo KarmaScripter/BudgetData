@@ -39,10 +39,11 @@ namespace BudgetExecution
         /// </param>
         public Map( IDictionary<string, object> dict )
         {
-            Names = dict?.Keys;
-            Data = dict?.Values;
-            Input = GetInput( dict );
-            Output = GetOutput( Input );
+            SetInput( dict );
+            SetOutput( Input );
+            SetData( dict );
+            Names = GetNames();
+            Values = GetValues();
             Count = Output.Count;
         }
 
@@ -54,10 +55,11 @@ namespace BudgetExecution
         /// </param>
         public Map( DataRow data )
         {
-            Names = data.ToDictionary()?.Keys;
-            Data = data.ToDictionary()?.Values;
-            Input = GetInput( data?.ToDictionary() );
-            Output = GetOutput( Input );
+            SetInput( data?.ToDictionary() );
+            SetOutput( Input );
+            SetData( data );
+            Names = GetNames();
+            Values = GetValues();
             Count = Output.Count;
         }
 
@@ -127,7 +129,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Input.HasPrimaryKey();
+                return Input?.HasPrimaryKey() == true;
             }
             catch( Exception ex )
             {
@@ -189,11 +191,11 @@ namespace BudgetExecution
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IKey );
                 }
             }
 
-            return default;
+            return default( IKey );
         }
 
         /// <summary>

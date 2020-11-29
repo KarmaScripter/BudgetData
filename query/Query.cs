@@ -62,16 +62,16 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref = "Query"/> class.
         /// </summary>
         /// <param name = "source" >
-        /// The source.
+        /// The source data.
         /// </param>
         /// <param name = "provider" >
-        /// The provider.
+        /// The provider used.
         /// </param>
         /// <param name = "dict" >
-        /// The dictionary.
+        /// The dictionary of parameters.
         /// </param>
         /// <param name = "commandtype" >
-        /// The commandtype.
+        /// The type of sql command.
         /// </param>
         public Query( Source source, Provider provider, IDictionary<string, object> dict,
             SQL commandtype )
