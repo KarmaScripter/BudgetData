@@ -7,13 +7,14 @@ namespace BudgetExecution
     // **************************************************************************************************************************
     // ********************************************      ASSEMBLIES    **********************************************************
     // **************************************************************************************************************************
-
     using System;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Threading;
 
+    /// <summary>
+    /// 
+    /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     public abstract class ElementBase : Unit
     {
@@ -21,34 +22,25 @@ namespace BudgetExecution
         // ********************************************      PROPERTIES    **********************************************************
         // **************************************************************************************************************************
 
-        /// <summary>
-        /// Gets the field.
-        /// </summary>
-        /// <value>
-        /// The field.
-        /// </value>
+        /// <summary> Gets the field. </summary>
+        /// <value> The field. </value>
         private protected Field Field { get; set; }
 
         // **************************************************************************************************************************
         // ********************************************      METHODS    *************************************************************
         // **************************************************************************************************************************
 
-        /// <summary>
-        /// Sets the name.
-        /// </summary>
-        /// <param name = "colname" >
-        /// The name.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the name. </summary>
+        /// <param name = "colname" > The name. </param>
+        /// <returns> </returns>
         public override void SetName( string colname )
         {
             try
             {
-                Name = Verify.Input( colname ) 
-                    && Enum.GetNames( typeof( Field ) )?.Contains( colname ) == true 
+                Name = Verify.Input( colname )
+                    && Enum.GetNames( typeof( Field ) )?.Contains( colname ) == true
                         ? colname
-                        : default;
+                        : default( string );
             }
             catch( Exception ex )
             {
@@ -56,22 +48,16 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the name.
-        /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
-        /// <param name = "colname" >
-        /// The name.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the name. </summary>
+        /// <param name = "data" > The data. </param>
+        /// <param name = "colname" > The name. </param>
+        /// <returns> </returns>
         private protected void SetName( DataRow data, string colname )
         {
             if( Verify.Row( data )
                 && Verify.Input( colname )
-                && Enum.GetNames( typeof( Field ) )?.Contains( colname ) == true )
+                && Enum.GetNames( typeof( Field ) )
+                       ?.Contains( colname ) == true )
             {
                 try
                 {
@@ -88,14 +74,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the name.
-        /// </summary>
-        /// <param name = "field" >
-        /// The field.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the name. </summary>
+        /// <param name = "field" > The field. </param>
+        /// <returns> </returns>
         private protected void SetName( Field field )
         {
             if( Verify.Field( field ) )
@@ -113,17 +94,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the name.
-        /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
-        /// <param name = "field" >
-        /// The field.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the name. </summary>
+        /// <param name = "data" > The data. </param>
+        /// <param name = "field" > The field. </param>
+        /// <returns> </returns>
         private protected void SetName( DataRow data, Field field )
         {
             if( Verify.Row( data )
@@ -144,14 +118,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name = "fieldname" >
-        /// The name.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the field. </summary>
+        /// <param name = "fieldname" > The name. </param>
+        /// <returns> </returns>
         private protected void SetField( string fieldname )
         {
             if( Verify.Input( fieldname )
@@ -172,17 +141,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
-        /// <param name = "fieldname" >
-        /// The name.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the field. </summary>
+        /// <param name = "data" > The data. </param>
+        /// <param name = "fieldname" > The name. </param>
+        /// <returns> </returns>
         private protected void SetField( DataRow data, string fieldname )
         {
             if( Verify.Row( data )
@@ -208,14 +170,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name = "field" >
-        /// The field.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the field. </summary>
+        /// <param name = "field" > The field. </param>
+        /// <returns> </returns>
         private protected void SetField( Field field )
         {
             try
@@ -230,17 +187,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the field.
-        /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
-        /// <param name = "field" >
-        /// The field.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the field. </summary>
+        /// <param name = "data" > The data. </param>
+        /// <param name = "field" > The field. </param>
+        /// <returns> </returns>
         private protected void SetField( DataRow data, Field field )
         {
             if( Verify.Row( data )
@@ -261,14 +211,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the value.
-        /// </summary>
-        /// <param name = "value" >
-        /// The value.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the value. </summary>
+        /// <param name = "value" > The value. </param>
+        /// <returns> </returns>
         private protected void SetValue( string value )
         {
             try
@@ -288,17 +233,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the value.
-        /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
-        /// <param name = "colname" >
-        /// The value.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the value. </summary>
+        /// <param name = "data" > The data. </param>
+        /// <param name = "colname" > The value. </param>
+        /// <returns> </returns>
         private protected void SetValue( DataRow data, string colname )
         {
             if( Verify.Row( data )
@@ -320,17 +258,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the value.
-        /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
-        /// <param name = "field" >
-        /// The field.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the value. </summary>
+        /// <param name = "data" > The data. </param>
+        /// <param name = "field" > The field. </param>
+        /// <returns> </returns>
         private protected void SetValue( DataRow data, Field field )
         {
             if( Verify.Row( data )
@@ -351,11 +282,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the data.
-        /// </summary>
-        /// <param name="data">The data.</param>
-        /// <param name="field">The field.</param>
+        /// <summary> Sets the data. </summary>
+        /// <param name = "data" > The data. </param>
+        /// <param name = "field" > The field. </param>
         private protected void SetData( DataRow data, Field field )
         {
             if( Verify.Row( data )
@@ -365,7 +294,7 @@ namespace BudgetExecution
                 {
                     Data = Verify.Ref( data[ $"{field}" ] )
                         ? data[ $"{field}" ]
-                        : default;
+                        : default( object );
                 }
                 catch( Exception ex )
                 {
@@ -374,11 +303,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the data.
-        /// </summary>
-        /// <param name="data">The data.</param>
-        /// <param name="colname">The colname.</param>
+        /// <summary> Sets the data. </summary>
+        /// <param name = "data" > The data. </param>
+        /// <param name = "colname" > The colname. </param>
         private protected void SetData( DataRow data, string colname )
         {
             if( Verify.Row( data )
@@ -388,7 +315,7 @@ namespace BudgetExecution
                 {
                     Data = Verify.Ref( data[ colname ] )
                         ? data[ colname ]
-                        : default;
+                        : default( object );
                 }
                 catch( Exception ex )
                 {
@@ -397,11 +324,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the data.
-        /// </summary>
-        /// <param name="data">The data.</param>
-        /// <param name="column">The column.</param>
+        /// <summary> Sets the data. </summary>
+        /// <param name = "data" > The data. </param>
+        /// <param name = "column" > The column. </param>
         private protected void SetData( DataRow data, DataColumn column )
         {
             if( Verify.Row( data )
@@ -411,7 +336,7 @@ namespace BudgetExecution
                 {
                     Data = Verify.Ref( data[ column ] )
                         ? data[ column ]
-                        : default;
+                        : default( object );
                 }
                 catch( Exception ex )
                 {

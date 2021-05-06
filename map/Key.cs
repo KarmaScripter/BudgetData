@@ -4,18 +4,14 @@
 
 namespace BudgetExecution
 {
-    // **************************************************************************************************************************
-    // ********************************************      ASSEMBLIES    **********************************************************
-    // **************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Data;
-    using System.Threading;
 
-    /// <summary>
-    /// 
-    /// </summary>
+    // **************************************************************************************************************************
+    // ********************************************      ASSEMBLIES    **********************************************************
+    // **************************************************************************************************************************
+    /// <summary> </summary>
     /// <seealso cref = "KeyBase"/>
     /// <seealso cref = "IKey"/>
     public class Key : KeyBase, IKey
@@ -24,9 +20,7 @@ namespace BudgetExecution
         // ****************************************************    FIELDS     ********************************************************
         // ***************************************************************************************************************************
 
-        /// <summary>
-        /// The default
-        /// </summary>
+        /// <summary> The default </summary>
         public static readonly IKey Default = new Key( PrimaryKey.NS, "-1" );
 
         // **************************************************************************************************************************
@@ -34,18 +28,20 @@ namespace BudgetExecution
         // **************************************************************************************************************************
 
         /// <summary>
-        /// Initializes a new instance of the <see cref = "Element"/> class.
+        /// Initializes a new instance of the
+        /// <see cref = "Element"/>
+        /// class.
         /// </summary>
         public Key()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref = "Element"/> class.
+        /// Initializes a new instance of the
+        /// <see cref = "Element"/>
+        /// class.
         /// </summary>
-        /// <param name = "kvp" >
-        /// The KVP.
-        /// </param>
+        /// <param name = "kvp" > The KVP. </param>
         public Key( KeyValuePair<string, object> kvp )
         {
             SetName( kvp.Key );
@@ -55,14 +51,12 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref = "Element"/> class.
+        /// Initializes a new instance of the
+        /// <see cref = "Element"/>
+        /// class.
         /// </summary>
-        /// <param name = "name" >
-        /// The name.
-        /// </param>
-        /// <param name = "value" >
-        /// The value.
-        /// </param>
+        /// <param name = "name" > The name. </param>
+        /// <param name = "value" > The value. </param>
         public Key( string name, int value = 0 )
         {
             SetPrimaryKey( name );
@@ -72,14 +66,12 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref = "Element"/> class.
+        /// Initializes a new instance of the
+        /// <see cref = "Element"/>
+        /// class.
         /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
-        /// <param name = "field" >
-        /// The field.
-        /// </param>
+        /// <param name = "data" > The data. </param>
+        /// <param name = "field" > The field. </param>
         public Key( DataRow data, PrimaryKey field )
         {
             SetPrimaryKey( data, field );
@@ -89,14 +81,12 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref = "Element"/> class.
+        /// Initializes a new instance of the
+        /// <see cref = "Element"/>
+        /// class.
         /// </summary>
-        /// <param name = "field" >
-        /// The field.
-        /// </param>
-        /// <param name = "value" >
-        /// The value.
-        /// </param>
+        /// <param name = "field" > The field. </param>
+        /// <param name = "value" > The value. </param>
         public Key( PrimaryKey field, string value = "0" )
         {
             SetPrimaryKey( field );
@@ -106,11 +96,11 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref = "Element"/> class.
+        /// Initializes a new instance of the
+        /// <see cref = "Element"/>
+        /// class.
         /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
+        /// <param name = "data" > The data. </param>
         public Key( DataRow data )
         {
             SetPrimaryKey( data );
@@ -123,11 +113,8 @@ namespace BudgetExecution
         // ****************************************************     METHODS   ********************************************************
         // ***************************************************************************************************************************
 
-        /// <summary>
-        /// Gets the value.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the value. </summary>
+        /// <returns> </returns>
         public int GetIndex()
         {
             try
@@ -143,11 +130,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the field.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the field. </summary>
+        /// <returns> </returns>
         public PrimaryKey GetPrimaryKey()
         {
             try
@@ -163,11 +147,11 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Converts to string.
-        /// </summary>
+        /// <summary> Converts to string. </summary>
         /// <returns>
-        /// A <see cref = "string"/> that represents this instance.
+        /// A
+        /// <see cref = "string"/>
+        /// that represents this instance.
         /// </returns>
         public override string ToString()
         {
@@ -184,20 +168,12 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Determines whether the specified element is equal.
-        /// </summary>
-        /// <param name = "key" >
-        /// The element.
-        /// </param>
+        /// <summary> Determines whether the specified element is equal. </summary>
+        /// <param name = "key" > The element. </param>
         /// <returns>
-        /// <c>
-        /// true
-        /// </c>
+        /// <c> true </c>
         /// if the specified element is equal; otherwise,
-        /// <c>
-        /// false
-        /// </c>
+        /// <c> false </c>
         /// .
         /// </returns>
         public bool IsMatch( IKey key )
@@ -218,23 +194,13 @@ namespace BudgetExecution
             return false;
         }
 
-        /// <summary>
-        /// Determines whether the specified primary is equal.
-        /// </summary>
-        /// <param name = "primary" >
-        /// The primary.
-        /// </param>
-        /// <param name = "secondary" >
-        /// The secondary.
-        /// </param>
+        /// <summary> Determines whether the specified primary is equal. </summary>
+        /// <param name = "primary" > The primary. </param>
+        /// <param name = "secondary" > The secondary. </param>
         /// <returns>
-        /// <c>
-        /// true
-        /// </c>
+        /// <c> true </c>
         /// if the specified primary is equal; otherwise,
-        /// <c>
-        /// false
-        /// </c>
+        /// <c> false </c>
         /// .
         /// </returns>
         public static bool IsMatch( IKey primary, IKey secondary )

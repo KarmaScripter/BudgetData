@@ -7,15 +7,13 @@ namespace BudgetExecution
     // ******************************************************************************************************************************
     // ******************************************************   ASSEMBLIES   ********************************************************
     // ******************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Threading;
 
-    /// <summary>
-    /// </summary>
+    /// <summary> </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" ) ]
@@ -27,50 +25,29 @@ namespace BudgetExecution
         // ************************************************  PROPERTIES **************************************************************
         // ***************************************************************************************************************************
 
-        /// <summary>
-        /// Gets or sets the elements.
-        /// </summary>
-        /// <value>
-        /// The elements.
-        /// </value>
+        /// <summary> Gets or sets the elements. </summary>
+        /// <value> The elements. </value>
         private protected IEnumerable<string> Values { get; set; }
 
-        /// <summary>
-        /// Gets or sets the keys.
-        /// </summary>
-        /// <value>
-        /// The keys.
-        /// </value>
+        /// <summary> Gets or sets the keys. </summary>
+        /// <value> The keys. </value>
         private protected IEnumerable<string> Names { get; set; }
 
-        /// <summary>
-        /// Gets or sets the input.
-        /// </summary>
-        /// <value>
-        /// The input.
-        /// </value>
+        /// <summary> Gets or sets the input. </summary>
+        /// <value> The input. </value>
         private protected IDictionary<string, object> Input { get; set; }
 
-        /// <summary>
-        /// Gets or sets the output.
-        /// </summary>
-        /// <value>
-        /// The output.
-        /// </value>
+        /// <summary> Gets or sets the output. </summary>
+        /// <value> The output. </value>
         private protected IDictionary<string, object> Output { get; set; }
 
         // ***************************************************************************************************************************
         // ************************************************  METHODS   ***************************************************************
         // ***************************************************************************************************************************
 
-        /// <summary>
-        /// Sets the input.
-        /// </summary>
-        /// <param name = "dict" >
-        /// The dictionary.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the input. </summary>
+        /// <param name = "dict" > The dictionary. </param>
+        /// <returns> </returns>
         private protected void SetInput( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
@@ -91,7 +68,7 @@ namespace BudgetExecution
 
                     Input = args?.Any() == true
                         ? args
-                        : default;
+                        : default( Dictionary<string, object> );
                 }
                 catch( Exception ex )
                 {
@@ -100,14 +77,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the output.
-        /// </summary>
-        /// <param name = "dict" >
-        /// The dictionary.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the output. </summary>
+        /// <param name = "dict" > The dictionary. </param>
+        /// <returns> </returns>
         private protected void SetOutput( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
@@ -133,7 +105,7 @@ namespace BudgetExecution
 
                         Output = args?.Any() == true
                             ? args
-                            : default;
+                            : default( Dictionary<string, object> );
                     }
                 }
                 catch( Exception ex )
@@ -143,11 +115,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the values.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the values. </summary>
+        /// <returns> </returns>
         public IEnumerable<string> GetValues()
         {
             if( Output?.Any() == true )
@@ -174,23 +143,20 @@ namespace BudgetExecution
 
                     return values?.Any() == true
                         ? values
-                        : default;
+                        : default( IEnumerable<string> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IEnumerable<string> );
                 }
             }
 
-            return default;
+            return default( IEnumerable<string> );
         }
 
-        /// <summary>
-        /// Gets the output values.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the output values. </summary>
+        /// <returns> </returns>
         public IEnumerable<string> GetNames()
         {
             if( Output?.Any() == true )
@@ -215,16 +181,16 @@ namespace BudgetExecution
 
                     return list?.Any() == true
                         ? list
-                        : default;
+                        : default( List<string> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IEnumerable<string> );
                 }
             }
 
-            return default;
+            return default( IEnumerable<string> );
         }
     }
 }
