@@ -41,6 +41,10 @@ namespace BudgetExecution
             AcceptChangesDuringUpdate = true;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="commandbuilder"></param>
         public AdapterBuilder( ICommandBuilder commandbuilder )
             : this()
         {
@@ -65,9 +69,9 @@ namespace BudgetExecution
             : this()
         {
             ConnectionBuilder = connectionbuilder;
-            Connection = new ConnectionFactory( ConnectionBuilder ).GetConnection();
+            Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
             SqlStatement = sqlstatement;
-            SelectCommand = new CommandBuilder( ConnectionBuilder, SqlStatement ).GetCommand();
+            SelectCommand = new CommandBuilder( ConnectionBuilder, SqlStatement )?.GetCommand();
         }
 
         // **********************************************************************************************************************
