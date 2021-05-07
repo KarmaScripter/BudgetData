@@ -28,7 +28,7 @@ namespace BudgetExecution
         /// <see cref = "ConnectionBuilder"/>
         /// class.
         /// </summary>
-        public ConnectionBuilder()
+        public ConnectionBuilder( )
         {
         }
 
@@ -46,7 +46,7 @@ namespace BudgetExecution
             SetFilePath( Provider );
             SetFileName( FilePath );
             SetFileExtension( FilePath );
-            TableName = Source.ToString();
+            TableName = Source.ToString( );
             SetConnectionString( Provider );
         }
 
@@ -91,7 +91,7 @@ namespace BudgetExecution
 
         /// <summary> Gets the file path. </summary>
         /// <returns> </returns>
-        public string GetFilePath()
+        public string GetFilePath( )
         {
             try
             {
@@ -108,7 +108,7 @@ namespace BudgetExecution
 
         /// <summary> Gets the file extension. </summary>
         /// <returns> </returns>
-        public EXT GetFileExtension()
+        public EXT GetFileExtension( )
         {
             try
             {
@@ -125,7 +125,7 @@ namespace BudgetExecution
 
         /// <summary> Gets the name of the file. </summary>
         /// <returns> </returns>
-        public string GetFileName()
+        public string GetFileName( )
         {
             try
             {
@@ -143,7 +143,7 @@ namespace BudgetExecution
 
         /// <summary> Gets the provider path. </summary>
         /// <returns> </returns>
-        public string GetProviderPath()
+        public string GetProviderPath( )
         {
             try
             {
@@ -160,7 +160,7 @@ namespace BudgetExecution
 
         /// <summary> Gets the connection string. </summary>
         /// <returns> </returns>
-        public string GetConnectionString()
+        public string GetConnectionString( )
         {
             try
             {
@@ -177,7 +177,7 @@ namespace BudgetExecution
 
         /// <summary> Gets the name of the table. </summary>
         /// <returns> </returns>
-        public string GetTableName()
+        public string GetTableName( )
         {
             try
             {
@@ -194,7 +194,7 @@ namespace BudgetExecution
 
         /// <summary> Gets the provider. </summary>
         /// <returns> </returns>
-        public Provider GetProvider()
+        public Provider GetProvider( )
         {
             try
             {
@@ -211,7 +211,7 @@ namespace BudgetExecution
 
         /// <summary> Gets the source. </summary>
         /// <returns> </returns>
-        public Source GetSource()
+        public Source GetSource( )
         {
             try
             {
