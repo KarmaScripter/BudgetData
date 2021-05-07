@@ -1,6 +1,6 @@
-﻿// <copyright file = "ConnectionBuilder.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file = "ConnectionBuilder.cs" company = "Terry D. Eppler">
+// // Copyright (c) Terry D. Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -13,6 +13,7 @@ namespace BudgetExecution
     using System.IO;
     using System.Threading;
 
+    /// <summary> </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
@@ -24,7 +25,7 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="ConnectionBuilder" />
+        /// <see cref = "ConnectionBuilder"/>
         /// class.
         /// </summary>
         public ConnectionBuilder()
@@ -33,11 +34,11 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="ConnectionBuilder" />
+        /// <see cref = "ConnectionBuilder"/>
         /// class.
         /// </summary>
-        /// <param name="source">The source.</param>
-        /// <param name="provider">The provider.</param>
+        /// <param name = "source" > The source. </param>
+        /// <param name = "provider" > The provider. </param>
         public ConnectionBuilder( Source source, Provider provider = Provider.SQLite )
         {
             SetSource( source );
@@ -51,10 +52,10 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="ConnectionBuilder" />
+        /// <see cref = "ConnectionBuilder"/>
         /// class.
         /// </summary>
-        /// <param name="fullpath">The fullpath.</param>
+        /// <param name = "fullpath" > The fullpath. </param>
         public ConnectionBuilder( string fullpath )
         {
             Source = Source.External;
@@ -68,11 +69,11 @@ namespace BudgetExecution
 
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref="ConnectionBuilder" />
+        /// <see cref = "ConnectionBuilder"/>
         /// class.
         /// </summary>
-        /// <param name="fullpath">The fullpath.</param>
-        /// <param name="provider">The provider.</param>
+        /// <param name = "fullpath" > The fullpath. </param>
+        /// <param name = "provider" > The provider. </param>
         public ConnectionBuilder( string fullpath, Provider provider = Provider.SQLite )
         {
             Source = Source.External;
@@ -88,29 +89,25 @@ namespace BudgetExecution
         // *************************************************    METHODS     *****************************************************
         // **********************************************************************************************************************
 
-        /// <summary>
-        /// Gets the file path.
-        /// </summary>
-        /// <returns></returns>
+        /// <summary> Gets the file path. </summary>
+        /// <returns> </returns>
         public string GetFilePath()
         {
             try
             {
                 return Verify.Input( FilePath ) && File.Exists( FilePath )
                     ? Path.GetFullPath( FilePath )
-                    : default;
+                    : default( string );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( string );
             }
         }
 
-        /// <summary>
-        /// Gets the file extension.
-        /// </summary>
-        /// <returns></returns>
+        /// <summary> Gets the file extension. </summary>
+        /// <returns> </returns>
         public EXT GetFileExtension()
         {
             try
@@ -126,105 +123,94 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the name of the file.
-        /// </summary>
-        /// <returns></returns>
+        /// <summary> Gets the name of the file. </summary>
+        /// <returns> </returns>
         public string GetFileName()
         {
             try
             {
-                return Verify.Input( FilePath ) && File.Exists( FilePath )
-                    ? Path.GetFullPath( FilePath )
-                    : default;
+                return Verify.Input( FilePath ) 
+                    && File.Exists( FilePath )
+                        ? Path.GetFullPath( FilePath )
+                        : default( string );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( string );
             }
         }
 
-        /// <summary>
-        /// Gets the provider path.
-        /// </summary>
-        /// <returns></returns>
+        /// <summary> Gets the provider path. </summary>
+        /// <returns> </returns>
         public string GetProviderPath()
         {
             try
             {
                 return Verify.Input( FilePath )
                     ? Path.GetFullPath( FilePath )
-                    : default;
+                    : default( string );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( string );
             }
         }
 
-        /// <summary>
-        /// Gets the connection string.
-        /// </summary>
-        /// <returns></returns>
+        /// <summary> Gets the connection string. </summary>
+        /// <returns> </returns>
         public string GetConnectionString()
         {
             try
             {
                 return Verify.Input( ConnectionString )
                     ? ConnectionString
-                    : default;
+                    : default( string );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( string );
             }
         }
 
-        /// <summary>
-        /// Gets the name of the table.
-        /// </summary>
-        /// <returns></returns>
+        /// <summary> Gets the name of the table. </summary>
+        /// <returns> </returns>
         public string GetTableName()
         {
             try
             {
                 return Verify.Input( TableName )
                     ? TableName
-                    : default;
+                    : default( string );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( string );
             }
         }
 
-        /// <summary>
-        /// Gets the provider.
-        /// </summary>
-        /// <returns></returns>
+        /// <summary> Gets the provider. </summary>
+        /// <returns> </returns>
         public Provider GetProvider()
         {
             try
             {
                 return Verify.Provider( Provider )
                     ? Provider
-                    : default;
+                    : default( Provider );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( Provider );
             }
         }
 
-        /// <summary>
-        /// Gets the source.
-        /// </summary>
-        /// <returns></returns>
+        /// <summary> Gets the source. </summary>
+        /// <returns> </returns>
         public Source GetSource()
         {
             try

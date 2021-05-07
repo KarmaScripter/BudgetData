@@ -1,25 +1,21 @@
-﻿// <copyright file = "ConnectionBase.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file = "ConnectionBase.cs" company = "Terry D. Eppler">
+// // Copyright (c) Terry D. Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
     // **************************************************************************************************************************
     // ********************************************      ASSEMBLIES    **********************************************************
     // **************************************************************************************************************************
-
     using System;
     using System.Collections.Specialized;
     using System.Configuration;
-    using System.Data.Entity.Core.Metadata.Edm;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Threading;
 
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary> </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public abstract class ConnectionBase
@@ -29,86 +25,58 @@ namespace BudgetExecution
         // ***************************************************************************************************************************
 
         /// <summary>
-        /// The connector contains the available connection strings
-        /// defined within the App.Config file
+        /// The connector contains the available connection strings defined within the
+        /// App.Config file
         /// </summary>
-        private protected readonly ConnectionStringSettingsCollection Connector = ConfigurationManager.ConnectionStrings;
+        private protected readonly ConnectionStringSettingsCollection Connector =
+            ConfigurationManager.ConnectionStrings;
 
         /// <summary>
-        /// The name value collection containing the file paths
-        /// to the applications data providers.
+        /// The name value collection containing the file paths to the applications data
+        /// providers.
         /// </summary>
-        private protected readonly NameValueCollection ProviderPath = ConfigurationManager.AppSettings;
+        private protected readonly NameValueCollection ProviderPath =
+            ConfigurationManager.AppSettings;
 
         // **************************************************************************************************************************
         // ********************************************      PROPERTIES    **********************************************************
         // **************************************************************************************************************************
 
-        /// <summary>
-        /// Represents the source table in the database
-        /// </summary>
-        /// <value>
-        /// The source.
-        /// </value>
+        /// <summary> Represents the source table in the database </summary>
+        /// <value> The source. </value>
         private protected Source Source { get; set; }
 
-        /// <summary>
-        /// Represents the data provider.
-        /// </summary>
-        /// <value>
-        /// The provider.
-        /// </value>
+        /// <summary> Represents the data provider. </summary>
+        /// <value> The provider. </value>
         private protected Provider Provider { get; set; }
 
-        /// <summary>
-        /// Represents the file extension.
-        /// </summary>
-        /// <value>
-        /// The file extension.
-        /// </value>
+        /// <summary> Represents the file extension. </summary>
+        /// <value> The file extension. </value>
         private protected EXT FileExtension { get; set; }
 
-        /// <summary>
-        /// Represents the path to the data file.
-        /// </summary>
-        /// <value>
-        /// The file path.
-        /// </value>
+        /// <summary> Represents the path to the data file. </summary>
+        /// <value> The file path. </value>
         private protected string FilePath { get; set; }
 
-        /// <summary>
-        /// Represents the name of the selected file.
-        /// </summary>
-        /// <value>
-        /// The name of the file.
-        /// </value>
+        /// <summary> Represents the name of the selected file. </summary>
+        /// <value> The name of the file. </value>
         private protected string FileName { get; set; }
 
-        /// <summary>
-        /// The name of the data table.
-        /// </summary>
-        /// <value>
-        /// The name of the table.
-        /// </value>
+        /// <summary> The name of the data table. </summary>
+        /// <value> The name of the table. </value>
         private protected string TableName { get; set; }
 
-        /// <summary>
-        /// Gets the connection string.
-        /// </summary>
-        /// <value>
-        /// The connection string.
-        /// </value>
+        /// <summary> Gets the connection string. </summary>
+        /// <value> The connection string. </value>
         private protected string ConnectionString { get; set; }
 
         // **************************************************************************************************************************
         // ********************************************      METHODS    *************************************************************
         // **************************************************************************************************************************
 
-        /// <summary>
-        /// Sets the source.
-        /// </summary>
-        /// <param name="source">The source.</param>
-        /// <returns></returns>
+        /// <summary> Sets the source. </summary>
+        /// <param name = "source" > The source. </param>
+        /// <returns> </returns>
         private protected void SetSource( Source source )
         {
             try
@@ -123,11 +91,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the source.
-        /// </summary>
-        /// <param name="filename">The filename.</param>
-        /// <returns></returns>
+        /// <summary> Sets the source. </summary>
+        /// <param name = "filename" > The filename. </param>
+        /// <returns> </returns>
         private protected void SetSource( string filename )
         {
             if( Verify.Input( filename )
@@ -159,18 +125,17 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the provider.
-        /// </summary>
-        /// <param name="provider">The provider.</param>
-        /// <returns></returns>
+        /// <summary> Sets the provider. </summary>
+        /// <param name = "provider" > The provider. </param>
+        /// <returns> </returns>
         private protected void SetProvider( Provider provider )
         {
             try
             {
-                Provider = Verify.Provider( provider ) && Resource.Providers?.Contains( provider.ToString() ) == true
-                    ? (Provider)Enum.Parse( typeof( Provider ), $"{provider}" )
-                    : Provider.NS;
+                Provider = Verify.Provider( provider )
+                    && Resource.Providers?.Contains( provider.ToString() ) == true
+                        ? (Provider)Enum.Parse( typeof( Provider ), $"{provider}" )
+                        : Provider.NS;
             }
             catch( Exception ex )
             {
@@ -178,11 +143,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the provider.
-        /// </summary>
-        /// <param name="extension">The extension.</param>
-        /// <returns></returns>
+        /// <summary> Sets the provider. </summary>
+        /// <param name = "extension" > The extension. </param>
+        /// <returns> </returns>
         private protected void SetProvider( EXT extension )
         {
             if( Verify.EXT( extension ) )
@@ -209,11 +172,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the file path.
-        /// </summary>
-        /// <param name="provider">The provider.</param>
-        /// <returns></returns>
+        /// <summary> Sets the file path. </summary>
+        /// <param name = "provider" > The provider. </param>
+        /// <returns> </returns>
         private protected void SetFilePath( Provider provider )
         {
             if( Verify.Provider( provider ) )
@@ -240,18 +201,16 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the file path.
-        /// </summary>
-        /// <param name="filepath">The filepath.</param>
-        /// <returns></returns>
+        /// <summary> Sets the file path. </summary>
+        /// <param name = "filepath" > The filepath. </param>
+        /// <returns> </returns>
         private protected void SetFilePath( string filepath )
         {
             try
             {
                 FilePath = Verify.Input( filepath ) && File.Exists( filepath )
                     ? Path.GetFullPath( filepath )
-                    : default;
+                    : default( string );
             }
             catch( Exception ex )
             {
@@ -259,20 +218,16 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the file extension.
-        /// </summary>
-        /// <param name="filepath">The filepath.</param>
-        /// <returns></returns>
+        /// <summary> Sets the file extension. </summary>
+        /// <param name = "filepath" > The filepath. </param>
+        /// <returns> </returns>
         private protected void SetFileExtension( string filepath )
         {
             if( Verify.Input( filepath ) )
             {
                 try
                 {
-                    var filext = Path.GetExtension( filepath )
-                        ?.Trim( '.' )
-                        ?.ToUpper();
+                    var filext = Path.GetExtension( filepath )?.Trim( '.' )?.ToUpper();
 
                     FileExtension = Enum.IsDefined( typeof( EXT ), filext )
                         ? (EXT)Enum.Parse( typeof( EXT ), filext )
@@ -285,11 +240,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the name of the file.
-        /// </summary>
-        /// <param name="filepath">The filepath.</param>
-        /// <returns></returns>
+        /// <summary> Sets the name of the file. </summary>
+        /// <param name = "filepath" > The filepath. </param>
+        /// <returns> </returns>
         private protected void SetFileName( string filepath )
         {
             if( Verify.Input( filepath ) )
@@ -309,11 +262,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the provider path.
-        /// </summary>
-        /// <param name="filepath">The filepath.</param>
-        /// <returns></returns>
+        /// <summary> Sets the provider path. </summary>
+        /// <param name = "filepath" > The filepath. </param>
+        /// <returns> </returns>
         private protected void SetProviderPath( string filepath )
         {
             if( Verify.Input( filepath )
@@ -332,13 +283,13 @@ namespace BudgetExecution
                         EXT.SDF => ConfigurationManager.AppSettings[ "SqlCeFilePath" ],
                         EXT.MDF => ConfigurationManager.AppSettings[ "SqlServerFilePath" ],
                         EXT.XLS => ConfigurationManager.AppSettings[ "ExcelFilePath" ]
-                            .Replace( "{FilePath}", filepath ),
+                                                       .Replace( "{FilePath}", filepath ),
                         EXT.XLSX => ConfigurationManager.AppSettings[ "ExcelFilePath" ]
-                            .Replace( "{FilePath}", filepath ),
+                                                        .Replace( "{FilePath}", filepath ),
                         EXT.CSV => ConfigurationManager.AppSettings[ "CsvFilePath" ]
-                            .Replace( "{FilePath}", filepath ),
+                                                       .Replace( "{FilePath}", filepath ),
                         EXT.TXT => ConfigurationManager.AppSettings[ "CsvFilePath" ]
-                            .Replace( "{FilePath}", filepath ),
+                                                       .Replace( "{FilePath}", filepath ),
                         _ => ConfigurationManager.AppSettings[ "SQLiteFilePath" ]
                     };
                 }
@@ -349,11 +300,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the connection string.
-        /// </summary>
-        /// <param name="provider">The provider.</param>
-        /// <returns></returns>
+        /// <summary> Sets the connection string. </summary>
+        /// <param name = "provider" > The provider. </param>
+        /// <returns> </returns>
         private protected void SetConnectionString( Provider provider )
         {
             if( Verify.Provider( provider ) )
@@ -366,8 +315,9 @@ namespace BudgetExecution
                         case Provider.Excel:
                         case Provider.CSV:
                         {
-                            var connection = ConfigurationManager.ConnectionStrings[ provider.ToString() ]
-                                ?.ConnectionString;
+                            var connection = ConfigurationManager
+                                             .ConnectionStrings[ provider.ToString() ]
+                                             ?.ConnectionString;
 
                             ConnectionString = Verify.Input( connection )
                                 ? connection?.Replace( "{FilePath}", FilePath )
@@ -381,8 +331,9 @@ namespace BudgetExecution
                         case Provider.SqlCe:
                         case Provider.SqlServer:
                         {
-                            var connection = ConfigurationManager.ConnectionStrings[ provider.ToString() ]
-                                ?.ConnectionString;
+                            var connection = ConfigurationManager
+                                             .ConnectionStrings[ provider.ToString() ]
+                                             ?.ConnectionString;
 
                             ConnectionString = Verify.Input( connection )
                                 ? connection
@@ -399,10 +350,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Get Error Dialog.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
+        /// <summary> Get Error Dialog. </summary>
+        /// <param name = "ex" > The ex. </param>
         private protected static void Fail( Exception ex )
         {
             using var error = new Error( ex );

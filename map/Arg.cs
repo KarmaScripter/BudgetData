@@ -78,8 +78,11 @@ namespace BudgetExecution
         }
 
         /// <summary> Sets the output. </summary>
-        /// <param name = "dict" > The dictionary. </param>
-        /// <returns> </returns>
+        /// <param name = "dict" >
+        /// The dictionary.
+        /// </param>
+        /// <returns>
+        /// </returns>
         private protected void SetOutput( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
