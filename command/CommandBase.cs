@@ -1,6 +1,6 @@
-﻿// <copyright file = "CommandBase.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// // Copyright (c) Terry Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -14,7 +14,6 @@ namespace BudgetExecution
     using System.Data.SqlClient;
     using System.Data.SQLite;
     using System.Data.SqlServerCe;
-    using System.Threading;
 
     public abstract class CommandBase : ISource, IProvider
     {
@@ -24,52 +23,33 @@ namespace BudgetExecution
 
         private protected DbCommand Command { get; set; }
 
-        /// <summary>
-        /// Gets the source.
-        /// </summary>
-        /// <value>
-        /// The source.
-        /// </value>
+        /// <summary> Gets the source. </summary>
+        /// <value> The source. </value>
         private protected Source Source { get; set; }
 
-        /// <summary>
-        /// Gets the provider.
-        /// </summary>
-        /// <value>
-        /// The provider.
-        /// </value>
+        /// <summary> Gets the provider. </summary>
+        /// <value> The provider. </value>
         private protected Provider Provider { get; set; }
 
-        /// <summary>
-        /// Gets the connection manager.
-        /// </summary>
-        /// <value>
-        /// The connection manager.
-        /// </value>
+        /// <summary> Gets the connection manager. </summary>
+        /// <value> The connection manager. </value>
         private protected IConnectionBuilder ConnectionBuilder { get; set; }
 
-        /// <summary>
-        /// Gets the SQL statement.
-        /// </summary>
-        /// <value>
-        /// The SQL statement.
-        /// </value>
+        /// <summary> Gets the SQL statement. </summary>
+        /// <value> The SQL statement. </value>
         private protected ISqlStatement SqlStatement { get; set; }
 
         // ***************************************************************************************************************************
         // ****************************************************     METHODS   ********************************************************
         // ***************************************************************************************************************************
 
-        /// <summary>
-        /// Gets the source.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the source. </summary>
+        /// <returns> </returns>
         public Source GetSource()
         {
             try
             {
-                return Verify.Source( Source )
+                return Validate.Source( Source )
                     ? Source
                     : default;
             }
@@ -80,16 +60,13 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the provider.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the provider. </summary>
+        /// <returns> </returns>
         public Provider GetProvider()
         {
             try
             {
-                return Verify.Provider( Provider )
+                return Validate.Provider( Provider )
                     ? Provider
                     : default;
             }
@@ -104,9 +81,9 @@ namespace BudgetExecution
         {
             try
             {
-                ConnectionBuilder = Verify.Source( source ) && Verify.Provider( provider ) 
+                ConnectionBuilder = Validate.Source( source ) && Validate.Provider( provider )
                     ? new ConnectionBuilder( source, provider )
-                    : default( ConnectionBuilder );
+                    : default;
             }
             catch( Exception ex )
             {
@@ -114,11 +91,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the connection manager.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the connection manager. </summary>
+        /// <returns> </returns>
         public IConnectionBuilder GetConnectionBuilder()
         {
             try
@@ -134,11 +108,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the SQL statement.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the SQL statement. </summary>
+        /// <returns> </returns>
         public ISqlStatement GetSqlStatement()
         {
             try
@@ -154,14 +125,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the sq lite command.
-        /// </summary>
-        /// <param name = "sqlstatement" >
-        /// The sqlstatement.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the sq lite command. </summary>
+        /// <param name = "sqlstatement" > The sqlstatement. </param>
+        /// <returns> </returns>
         public DbCommand GetSQLiteCommand( ISqlStatement sqlstatement )
         {
             if( Verify.Ref( sqlstatement ) )
@@ -228,14 +194,9 @@ namespace BudgetExecution
             return default;
         }
 
-        /// <summary>
-        /// Gets the SQL ce command.
-        /// </summary>
-        /// <param name = "sqlstatement" >
-        /// The sqlstatement.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the SQL ce command. </summary>
+        /// <param name = "sqlstatement" > The sqlstatement. </param>
+        /// <returns> </returns>
         public DbCommand GetSqlCeCommand( ISqlStatement sqlstatement )
         {
             if( Verify.Ref( sqlstatement ) )
@@ -281,7 +242,7 @@ namespace BudgetExecution
 
                                 return Verify.Input( sql )
                                     ? new SqlCeCommand( sql, connection as SqlCeConnection )
-                                    : default( SqlCeCommand );
+                                    : default;
                             }
 
                             default:
@@ -305,14 +266,9 @@ namespace BudgetExecution
             return default;
         }
 
-        /// <summary>
-        /// Gets the SQL command.
-        /// </summary>
-        /// <param name = "sqlstatement" >
-        /// The sqlstatement.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the SQL command. </summary>
+        /// <param name = "sqlstatement" > The sqlstatement. </param>
+        /// <returns> </returns>
         public DbCommand GetSqlCommand( ISqlStatement sqlstatement )
         {
             if( Verify.Ref( sqlstatement ) )
@@ -379,14 +335,9 @@ namespace BudgetExecution
             return default;
         }
 
-        /// <summary>
-        /// Gets the OLE database command.
-        /// </summary>
-        /// <param name = "sqlstatement" >
-        /// The sqlstatement.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the OLE database command. </summary>
+        /// <param name = "sqlstatement" > The sqlstatement. </param>
+        /// <returns> </returns>
         public DbCommand GetOleDbCommand( ISqlStatement sqlstatement )
         {
             if( Verify.Ref( sqlstatement ) )
@@ -453,10 +404,8 @@ namespace BudgetExecution
             return default;
         }
 
-        /// <summary>
-        /// Get Error Dialog.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
+        /// <summary> Get Error Dialog. </summary>
+        /// <param name = "ex" > The ex. </param>
         private protected static void Fail( Exception ex )
         {
             using var error = new Error( ex );

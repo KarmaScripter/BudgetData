@@ -1,5 +1,5 @@
-﻿// // <copyright file = "DataConfig.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
+﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// // Copyright (c) Terry Eppler. All rights reserved.
 // // </copyright>
 
 namespace BudgetExecution
@@ -12,7 +12,6 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Data;
     using System.IO;
-    using System.Threading;
 
     public abstract class DataConfig : ISource, IProvider
     {
@@ -20,85 +19,51 @@ namespace BudgetExecution
         // *************************************************   PROPERTIES   *****************************************************
         // **********************************************************************************************************************
 
-        /// <summary>
-        /// Gets or sets the source.
-        /// </summary>
-        /// <value>
-        /// The source.
-        /// </value>
+        /// <summary> Gets or sets the source. </summary>
+        /// <value> The source. </value>
         private protected Source Source { get; set; }
 
-        /// <summary>
-        /// Gets or sets the provider.
-        /// </summary>
-        /// <value>
-        /// The provider.
-        /// </value>
+        /// <summary> Gets or sets the provider. </summary>
+        /// <value> The provider. </value>
         private protected Provider Provider { get; set; }
 
-        /// <summary>
-        /// Gets or sets the connection builder.
-        /// </summary>
-        /// <value>
-        /// The connection builder.
-        /// </value>
+        /// <summary> Gets or sets the connection builder. </summary>
+        /// <value> The connection builder. </value>
         private protected IConnectionBuilder ConnectionBuilder { get; set; }
 
-        /// <summary>
-        /// Gets or sets the arguments.
-        /// </summary>
-        /// <value>
-        /// The arguments.
-        /// </value>
+        /// <summary> Gets or sets the arguments. </summary>
+        /// <value> The arguments. </value>
         private protected IDictionary<string, object> Args { get; set; }
 
-        /// <summary>
-        /// Gets or sets the SQL statement.
-        /// </summary>
-        /// <value>
-        /// The SQL statement.
-        /// </value>
+        /// <summary> Gets or sets the SQL statement. </summary>
+        /// <value> The SQL statement. </value>
         private protected ISqlStatement SqlStatement { get; set; }
 
-        /// <summary>
-        /// Gets or sets the query.
-        /// </summary>
-        /// <value>
-        /// The query.
-        /// </value>
+        /// <summary> Gets or sets the query. </summary>
+        /// <value> The query. </value>
         private protected IQuery Query { get; set; }
 
-        /// <summary>
-        /// Gets or sets the data.
-        /// </summary>
-        /// <value>
-        /// The data.
-        /// </value>
+        /// <summary> Gets or sets the data. </summary>
+        /// <value> The data. </value>
         private protected DataRow Record { get; set; }
 
-        /// <summary>
-        /// Gets or sets the r6.
-        /// </summary>
-        /// <value>
-        /// The r6.
-        /// </value>
+        /// <summary> Gets or sets the r6. </summary>
+        /// <value> The r6. </value>
         private protected DataSet R6 { get; set; }
 
         // ***************************************************************************************************************************
         // ************************************************  METHODS   ***************************************************************
         // ***************************************************************************************************************************
 
-        /// <summary>
-        /// Sets the query.
-        /// </summary>
-        /// <param name="connectionbuilder">The connectionbuilder.</param>
+        /// <summary> Sets the query. </summary>
+        /// <param name = "connectionbuilder" > The connectionbuilder. </param>
         private protected void SetQuery( IConnectionBuilder connectionbuilder )
         {
             var source = connectionbuilder.GetSource();
             var provider = connectionbuilder.GetProvider();
 
-            if( Verify.Source( source )
-                && Verify.Provider( provider ) )
+            if( Validate.Source( source )
+                && Validate.Provider( provider ) )
             {
                 try
                 {
@@ -171,25 +136,18 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the query.
-        /// </summary>
-        /// <param name = "connectionbuilder" >
-        /// The connectionbuilder.
-        /// </param>
-        /// <param name = "sqlstatement" >
-        /// The sqlstatement.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the query. </summary>
+        /// <param name = "connectionbuilder" > The connectionbuilder. </param>
+        /// <param name = "sqlstatement" > The sqlstatement. </param>
+        /// <returns> </returns>
         private protected void SetQuery( IConnectionBuilder connectionbuilder, ISqlStatement sqlstatement )
         {
             var source = connectionbuilder.GetSource();
             var provider = connectionbuilder.GetProvider();
             var args = sqlstatement?.GetArgs();
 
-            if( Verify.Source( source )
-                && Verify.Provider( provider )
+            if( Validate.Source( source )
+                && Validate.Provider( provider )
                 && Verify.Ref( sqlstatement ) )
             {
                 try
@@ -224,10 +182,9 @@ namespace BudgetExecution
                         {
                             var filepath = connectionbuilder?.GetFilePath();
 
-                            Query = Verify.Input( filepath )
-                                && File.Exists( filepath )
-                                    ? new ExcelQuery( filepath, args )
-                                    : default;
+                            Query = Verify.Input( filepath ) && File.Exists( filepath )
+                                ? new ExcelQuery( filepath, args )
+                                : default;
 
                             break;
                         }
@@ -263,16 +220,13 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the source.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the source. </summary>
+        /// <returns> </returns>
         public Source GetSource()
         {
             try
             {
-                return Verify.Source( Source )
+                return Validate.Source( Source )
                     ? Source
                     : Source.NS;
             }
@@ -283,16 +237,13 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the provider.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the provider. </summary>
+        /// <returns> </returns>
         public Provider GetProvider()
         {
             try
             {
-                return Verify.Provider( Provider )
+                return Validate.Provider( Provider )
                     ? Provider
                     : Provider.NS;
             }
@@ -303,29 +254,25 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the record.
-        /// </summary>
-        /// <returns></returns>
+        /// <summary> Gets the record. </summary>
+        /// <returns> </returns>
         public DataRow GetRecord()
         {
             try
             {
                 return Verify.Row( Record )
                     ? Record
-                    : default( DataRow );
+                    : default;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( DataRow );
+                return default;
             }
         }
 
-        /// <summary>
-        /// Get Error Dialog.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
+        /// <summary> Get Error Dialog. </summary>
+        /// <param name = "ex" > The ex. </param>
         private protected static void Fail( Exception ex )
         {
             using var error = new Error( ex );

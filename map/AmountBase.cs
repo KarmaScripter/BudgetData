@@ -1,6 +1,6 @@
-﻿// <copyright file = "AmountBase.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// // Copyright (c) Terry Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -11,7 +11,6 @@ namespace BudgetExecution
     using System;
     using System.Data;
     using System.Linq;
-    using System.Threading;
 
     public abstract class AmountBase : Unit
     {
@@ -19,50 +18,29 @@ namespace BudgetExecution
         // ********************************************      PROPERTIES    **********************************************************
         // **************************************************************************************************************************
 
-        /// <summary>
-        /// Gets the value.
-        /// </summary>
-        /// <value>
-        /// The value.
-        /// </value>
+        /// <summary> Gets the value. </summary>
+        /// <value> The value. </value>
         private protected double Funding { get; set; }
 
-        /// <summary>
-        /// Gets the original.
-        /// </summary>
-        /// <value>
-        /// The original.
-        /// </value>
+        /// <summary> Gets the original. </summary>
+        /// <value> The original. </value>
         private protected double Initial { get; set; }
 
-        /// <summary>
-        /// Gets the delta.
-        /// </summary>
-        /// <value>
-        /// The delta.
-        /// </value>
+        /// <summary> Gets the delta. </summary>
+        /// <value> The delta. </value>
         private protected double Delta { get; set; }
 
-        /// <summary>
-        /// Gets or sets the numeric.
-        /// </summary>
-        /// <value>
-        /// The numeric.
-        /// </value>
+        /// <summary> Gets or sets the numeric. </summary>
+        /// <value> The numeric. </value>
         private protected Numeric Numeric { get; set; } = Numeric.Amount;
 
         // **************************************************************************************************************************
         // ********************************************      METHODS    *************************************************************
         // **************************************************************************************************************************
 
-        /// <summary>
-        /// Sets the name.
-        /// </summary>
-        /// <param name = "colname" >
-        /// The name.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the name. </summary>
+        /// <param name = "colname" > The name. </param>
+        /// <returns> </returns>
         public override void SetName( string colname )
         {
             if( Verify.Input( colname )
@@ -81,17 +59,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the name.
-        /// </summary>
-        /// <param name = "datarow" >
-        /// The data.
-        /// </param>
-        /// <param name = "colname" >
-        /// The name.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the name. </summary>
+        /// <param name = "datarow" > The data. </param>
+        /// <param name = "colname" > The name. </param>
+        /// <returns> </returns>
         private protected void SetName( DataRow datarow, string colname )
         {
             if( Verify.Row( datarow )
@@ -113,21 +84,16 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the name.
-        /// </summary>
-        /// <param name = "numeric" >
-        /// The numeric.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the name. </summary>
+        /// <param name = "numeric" > The numeric. </param>
+        /// <returns> </returns>
         private protected void SetName( Numeric numeric )
         {
-            if( Verify.Numeric( numeric ) )
+            if( Validate.Numeric( numeric ) )
             {
                 try
                 {
-                    Name = Verify.Numeric( numeric )
+                    Name = Validate.Numeric( numeric )
                         ? numeric.ToString()
                         : default;
                 }
@@ -138,21 +104,14 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the name.
-        /// </summary>
-        /// <param name = "datarow" >
-        /// The data.
-        /// </param>
-        /// <param name = "numeric" >
-        /// The numeric.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the name. </summary>
+        /// <param name = "datarow" > The data. </param>
+        /// <param name = "numeric" > The numeric. </param>
+        /// <returns> </returns>
         private protected void SetName( DataRow datarow, Numeric numeric )
         {
             if( datarow != null
-                && Verify.Numeric( numeric ) )
+                && Validate.Numeric( numeric ) )
             {
                 try
                 {
@@ -169,14 +128,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the numeric.
-        /// </summary>
-        /// <param name = "name" >
-        /// The name.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the numeric. </summary>
+        /// <param name = "name" > The name. </param>
+        /// <returns> </returns>
         private protected void SetNumeric( string name )
         {
             if( Verify.Input( name )
@@ -197,17 +151,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the numeric.
-        /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
-        /// <param name = "name" >
-        /// The name.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the numeric. </summary>
+        /// <param name = "data" > The data. </param>
+        /// <param name = "name" > The name. </param>
+        /// <returns> </returns>
         private protected void SetNumeric( DataRow data, string name )
         {
             if( Verify.Row( data )
@@ -232,19 +179,14 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the numeric.
-        /// </summary>
-        /// <param name = "numeric" >
-        /// The numeric.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the numeric. </summary>
+        /// <param name = "numeric" > The numeric. </param>
+        /// <returns> </returns>
         private protected void SetNumeric( Numeric numeric )
         {
             try
             {
-                Numeric = Verify.Numeric( numeric )
+                Numeric = Validate.Numeric( numeric )
                     ? numeric
                     : Numeric.NS;
             }
@@ -254,21 +196,14 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the numeric.
-        /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
-        /// <param name = "numeric" >
-        /// The numeric.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the numeric. </summary>
+        /// <param name = "data" > The data. </param>
+        /// <param name = "numeric" > The numeric. </param>
+        /// <returns> </returns>
         private protected void SetNumeric( DataRow data, Numeric numeric )
         {
             if( data != null
-                && Verify.Numeric( numeric ) )
+                && Validate.Numeric( numeric ) )
             {
                 try
                 {
@@ -285,14 +220,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the value.
-        /// </summary>
-        /// <param name = "value" >
-        /// The value.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the value. </summary>
+        /// <param name = "value" > The value. </param>
+        /// <returns> </returns>
         private protected void SetValue( string value )
         {
             try
@@ -309,17 +239,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the value.
-        /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
-        /// <param name = "value" >
-        /// The value.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the value. </summary>
+        /// <param name = "data" > The data. </param>
+        /// <param name = "value" > The value. </param>
+        /// <returns> </returns>
         private protected void SetValue( DataRow data, string value )
         {
             if( data != null
@@ -341,21 +264,14 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the value.
-        /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
-        /// <param name = "numeric" >
-        /// The numeric.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the value. </summary>
+        /// <param name = "data" > The data. </param>
+        /// <param name = "numeric" > The numeric. </param>
+        /// <returns> </returns>
         private protected void SetValue( DataRow data, Numeric numeric )
         {
             if( data != null
-                && Verify.Numeric( numeric ) )
+                && Validate.Numeric( numeric ) )
             {
                 try
                 {
@@ -372,11 +288,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the value.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the value. </summary>
+        /// <returns> </returns>
         public double GetFunding()
         {
             try
@@ -390,11 +303,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the amount.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the amount. </summary>
+        /// <returns> </returns>
         public IAmount GetAmount()
         {
             try
@@ -412,10 +322,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Get Error Dialog.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
+        /// <summary> Get Error Dialog. </summary>
+        /// <param name = "ex" > The ex. </param>
         private protected static new void Fail( Exception ex )
         {
             using var error = new Error( ex );

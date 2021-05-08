@@ -12,7 +12,6 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Data;
     using System.Data.Common;
-    using System.Threading;
 
     public interface IQuery : IDisposable, ISource, IProvider
     {

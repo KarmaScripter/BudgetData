@@ -1,5 +1,5 @@
-﻿// // <copyright file = "SqlConfig.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
+﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// // Copyright (c) Terry Eppler. All rights reserved.
 // // </copyright>
 
 namespace BudgetExecution
@@ -12,11 +12,9 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Collections.Specialized;
     using System.Configuration;
-    using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
-    using System.Threading;
 
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public abstract class SqlConfig : SqlBase, IProvider, ISource
@@ -27,69 +25,44 @@ namespace BudgetExecution
 
         private protected readonly EXT Extension = EXT.SQL;
 
-        /// <summary>
-        /// The provider path
-        /// </summary>
+        /// <summary> The provider path </summary>
         private protected readonly NameValueCollection ProviderPath = ConfigurationManager.AppSettings;
 
         // **********************************************************************************************************************
         // *************************************************   PROPERTIES   *****************************************************
         // **********************************************************************************************************************
 
-        /// <summary>
-        /// Gets the source.
-        /// </summary>
-        /// <value>
-        /// The source.
-        /// </value>
+        /// <summary> Gets the source. </summary>
+        /// <value> The source. </value>
         private protected Source Source { get; set; }
 
-        /// <summary>
-        /// Gets the provider.
-        /// </summary>
-        /// <value>
-        /// The provider.
-        /// </value>
+        /// <summary> Gets the provider. </summary>
+        /// <value> The provider. </value>
         private protected Provider Provider { get; set; }
 
-        /// <summary>
-        /// Gets the SQL statement.
-        /// </summary>
-        /// <value>
-        /// The SQL statement.
-        /// </value>
+        /// <summary> Gets the SQL statement. </summary>
+        /// <value> The SQL statement. </value>
         private protected ISqlStatement SqlStatement { get; set; }
 
-        /// <summary>
-        /// Gets the file path.
-        /// </summary>
-        /// <value>
-        /// The file path.
-        /// </value>
+        /// <summary> Gets the file path. </summary>
+        /// <value> The file path. </value>
         private protected string FilePath { get; set; }
 
-        /// <summary>
-        /// Gets the name of the file.
-        /// </summary>
-        /// <value>
-        /// The name of the file.
-        /// </value>
+        /// <summary> Gets the name of the file. </summary>
+        /// <value> The name of the file. </value>
         protected string FileName { get; set; }
 
         // ***************************************************************************************************************************
         // ************************************************  METHODS   ***************************************************************
         // ***************************************************************************************************************************
 
-        /// <summary>
-        /// Gets the source.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the source. </summary>
+        /// <returns> </returns>
         public Source GetSource()
         {
             try
             {
-                return Verify.Source( Source )
+                return Validate.Source( Source )
                     ? Source
                     : default;
             }
@@ -100,16 +73,13 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the provider.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the provider. </summary>
+        /// <returns> </returns>
         public Provider GetProvider()
         {
             try
             {
-                return Verify.Provider( Provider )
+                return Validate.Provider( Provider )
                     ? Provider
                     : default;
             }
@@ -121,12 +91,8 @@ namespace BudgetExecution
         }
 
         /// <inheritdoc/>
-        /// <summary>
-        /// Gets the type of the command.
-        /// </summary>
-        /// <returns>
-        /// SQL
-        /// </returns>
+        /// <summary> Gets the type of the command. </summary>
+        /// <returns> SQL </returns>
         public SQL GetCommandType()
         {
             try
@@ -143,11 +109,8 @@ namespace BudgetExecution
         }
 
         /// <inheritdoc/>
-        /// <summary>
-        /// Gets the arguments.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the arguments. </summary>
+        /// <returns> </returns>
         public IDictionary<string, object> GetArgs()
         {
             if( Args.Any() )
@@ -167,11 +130,8 @@ namespace BudgetExecution
         }
 
         /// <inheritdoc/>
-        /// <summary>
-        /// Gets the connection manager.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the connection manager. </summary>
+        /// <returns> </returns>
         public IConnectionBuilder GetConnectionBuilder()
         {
             try
@@ -187,10 +147,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the command text.
-        /// </summary>
-        /// <returns></returns>
+        /// <summary> Gets the command text. </summary>
+        /// <returns> </returns>
         public string GetCommandText()
         {
             try
@@ -206,13 +164,11 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the script files.
-        /// </summary>
-        /// <returns></returns>
+        /// <summary> Gets the script files. </summary>
+        /// <returns> </returns>
         public IEnumerable<string> GetScriptFiles()
         {
-            if( Verify.Provider( Provider )
+            if( Validate.Provider( Provider )
                 && Enum.IsDefined( typeof( SQL ), CommandType ) )
             {
                 try

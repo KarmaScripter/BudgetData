@@ -1,5 +1,5 @@
-﻿// // <copyright file = "SqlBase.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
+﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// // Copyright (c) Terry Eppler. All rights reserved.
 // // </copyright>
 
 namespace BudgetExecution
@@ -10,9 +10,7 @@ namespace BudgetExecution
 
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
-    using System.Threading;
 
     public abstract class SqlBase
     {
@@ -20,54 +18,36 @@ namespace BudgetExecution
         // *************************************************   PROPERTIES   *****************************************************
         // **********************************************************************************************************************
 
-        /// <summary>
-        /// Gets the connection factory.
-        /// </summary>
-        /// <value>
-        /// The connection factory.
-        /// </value>
+        /// <summary> Gets the connection factory. </summary>
+        /// <value> The connection factory. </value>
         private protected IConnectionBuilder ConnectionBuilder { get; set; }
 
-        /// <summary>
-        /// Gets the type of the command.
-        /// </summary>
-        /// <value>
-        /// The type of the command.
-        /// </value>
+        /// <summary> Gets the type of the command. </summary>
+        /// <value> The type of the command. </value>
         private protected SQL CommandType { get; set; }
 
-        /// <summary>
-        /// Gets the arguments.
-        /// </summary>
-        /// <value>
-        /// The arguments.
-        /// </value>
+        /// <summary> Gets the arguments. </summary>
+        /// <value> The arguments. </value>
         private protected IDictionary<string, object> Args { get; set; }
 
-        /// <summary>
-        /// Gets or sets the command text.
-        /// </summary>
-        /// <value>
-        /// The command text.
-        /// </value>
+        /// <summary> Gets or sets the command text. </summary>
+        /// <value> The command text. </value>
         private protected string CommandText { get; set; }
 
         // **********************************************************************************************************************
         // *************************************************    METHODS     *****************************************************
         // **********************************************************************************************************************
 
-        /// <summary>
-        /// Sets the connection builder.
-        /// </summary>
-        /// <param name="source">The source.</param>
-        /// <param name="provider">The provider.</param>
+        /// <summary> Sets the connection builder. </summary>
+        /// <param name = "source" > The source. </param>
+        /// <param name = "provider" > The provider. </param>
         private protected void SetConnectionBuilder( Source source, Provider provider )
         {
             try
             {
-                ConnectionBuilder = Verify.Source( source ) && Verify.Provider( provider )
+                ConnectionBuilder = Validate.Source( source ) && Validate.Provider( provider )
                     ? new ConnectionBuilder( source, provider )
-                    : default( ConnectionBuilder );
+                    : default;
             }
             catch( Exception ex )
             {
@@ -75,10 +55,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the arguments.
-        /// </summary>
-        /// <param name="dict">The dictionary.</param>
+        /// <summary> Sets the arguments. </summary>
+        /// <param name = "dict" > The dictionary. </param>
         private protected void SetArgs( IDictionary<string, object> dict )
         {
             if( dict?.Any() == true )
@@ -96,14 +74,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the type of the command.
-        /// </summary>
-        /// <param name = "commandtype" >
-        /// The commandtype.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the type of the command. </summary>
+        /// <param name = "commandtype" > The commandtype. </param>
+        /// <returns> </returns>
         private protected void SetCommandType( SQL commandtype )
         {
             try
@@ -119,9 +92,7 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the select statement.
-        /// </summary>
+        /// <summary> Sets the select statement. </summary>
         private protected void SetSelectStatement()
         {
             try
@@ -136,10 +107,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the select statement.
-        /// </summary>
-        /// <param name="dict">The dictionary.</param>
+        /// <summary> Sets the select statement. </summary>
+        /// <param name = "dict" > The dictionary. </param>
         private protected void SetSelectStatement( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
@@ -168,10 +137,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the update statement.
-        /// </summary>
-        /// <param name="dict">The dictionary.</param>
+        /// <summary> Sets the update statement. </summary>
+        /// <param name = "dict" > The dictionary. </param>
         private protected void SetUpdateStatement( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
@@ -195,10 +162,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the insert statement.
-        /// </summary>
-        /// <param name="dict">The dictionary.</param>
+        /// <summary> Sets the insert statement. </summary>
+        /// <param name = "dict" > The dictionary. </param>
         private protected void SetInsertStatement( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
@@ -227,10 +192,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the delete statement.
-        /// </summary>
-        /// <param name="dict">The dictionary.</param>
+        /// <summary> Sets the delete statement. </summary>
+        /// <param name = "dict" > The dictionary. </param>
         private protected void SetDeleteStatement( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
@@ -259,10 +222,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the command text.
-        /// </summary>
-        /// <param name="sql">The SQL.</param>
+        /// <summary> Sets the command text. </summary>
+        /// <param name = "sql" > The SQL. </param>
         private protected void SetCommandText( string sql )
         {
             try
@@ -277,11 +238,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Sets the command text.
-        /// </summary>
+        /// <summary> Sets the command text. </summary>
         /// <param name = "command" > </param>
-        /// <param name="dict">The dictionary.</param>
+        /// <param name = "dict" > The dictionary. </param>
         public void SetCommandText( IDictionary<string, object> dict, SQL command = SQL.SELECT )
         {
             if( dict == null
@@ -327,10 +286,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Get Error Dialog.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
+        /// <summary> Get Error Dialog. </summary>
+        /// <param name = "ex" > The ex. </param>
         private protected static void Fail( Exception ex )
         {
             using var error = new Error( ex );
@@ -338,11 +295,11 @@ namespace BudgetExecution
             error?.ShowDialog();
         }
 
-        /// <summary>
-        /// Converts to string.
-        /// </summary>
+        /// <summary> Converts to string. </summary>
         /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
+        /// A
+        /// <see cref = "System.String"/>
+        /// that represents this instance.
         /// </returns>
         public override string ToString()
         {

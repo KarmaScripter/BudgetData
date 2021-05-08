@@ -1,6 +1,6 @@
-﻿// <copyright file = "SqlStatement.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// // Copyright (c) Terry Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -11,11 +11,9 @@ namespace BudgetExecution
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Threading;
 
     /// <inheritdoc/>
-    /// <summary>
-    /// </summary>
+    /// <summary> </summary>
     /// <seealso cref = "T:BudgetExecution.ISqlStatement"/>
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     public class SqlStatement : SqlConfig, ISqlStatement
@@ -25,21 +23,21 @@ namespace BudgetExecution
         // ***************************************************************************************************************************
 
         /// <summary>
-        /// Initializes a new instance of the <see cref = "SqlStatement"/> class.
+        /// Initializes a new instance of the
+        /// <see cref = "SqlStatement"/>
+        /// class.
         /// </summary>
         public SqlStatement()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref = "SqlStatement"/> class.
+        /// Initializes a new instance of the
+        /// <see cref = "SqlStatement"/>
+        /// class.
         /// </summary>
-        /// <param name = "builder" >
-        /// The manager.
-        /// </param>
-        /// <param name = "commandtype" >
-        /// The commandtype.
-        /// </param>
+        /// <param name = "builder" > The manager. </param>
+        /// <param name = "commandtype" > The commandtype. </param>
         public SqlStatement( IConnectionBuilder builder, SQL commandtype = SQL.SELECT )
         {
             ConnectionBuilder = builder;
@@ -49,14 +47,12 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref = "SqlStatement"/> class.
+        /// Initializes a new instance of the
+        /// <see cref = "SqlStatement"/>
+        /// class.
         /// </summary>
-        /// <param name = "builder" >
-        /// The manager.
-        /// </param>
-        /// <param name = "dict" >
-        /// The dictionary.
-        /// </param>
+        /// <param name = "builder" > The manager. </param>
+        /// <param name = "dict" > The dictionary. </param>
         public SqlStatement( IConnectionBuilder builder, IDictionary<string, object> dict )
         {
             ConnectionBuilder = builder;
@@ -66,17 +62,13 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref = "SqlStatement"/> class.
+        /// Initializes a new instance of the
+        /// <see cref = "SqlStatement"/>
+        /// class.
         /// </summary>
-        /// <param name = "builder" >
-        /// The manager.
-        /// </param>
-        /// <param name = "commandtype" >
-        /// The commandtype.
-        /// </param>
-        /// <param name = "dict" >
-        /// The dictionary.
-        /// </param>
+        /// <param name = "builder" > The manager. </param>
+        /// <param name = "commandtype" > The commandtype. </param>
+        /// <param name = "dict" > The dictionary. </param>
         public SqlStatement( IConnectionBuilder builder, IDictionary<string, object> dict,
             SQL commandtype = SQL.SELECT )
         {
@@ -91,11 +83,8 @@ namespace BudgetExecution
         // **********************************************************************************************************************
 
         /// <inheritdoc/>
-        /// <summary>
-        /// Gets the select statement.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the select statement. </summary>
+        /// <returns> </returns>
         public string GetSelectStatement()
         {
             if( Args != null )
@@ -132,11 +121,8 @@ namespace BudgetExecution
         }
 
         /// <inheritdoc/>
-        /// <summary>
-        /// Gets the update statement.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the update statement. </summary>
+        /// <returns> </returns>
         public string GetUpdateStatement()
         {
             if( Args != null )
@@ -168,11 +154,8 @@ namespace BudgetExecution
         }
 
         /// <inheritdoc/>
-        /// <summary>
-        /// Gets the insert statement.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the insert statement. </summary>
+        /// <returns> </returns>
         public string GetInsertStatement()
         {
             try
@@ -204,11 +187,8 @@ namespace BudgetExecution
         }
 
         /// <inheritdoc/>
-        /// <summary>
-        /// Gets the delete statement.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the delete statement. </summary>
+        /// <returns> </returns>
         public string GetDeleteStatement()
         {
             try

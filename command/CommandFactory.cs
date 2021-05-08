@@ -1,6 +1,6 @@
-﻿// <copyright file = "CommandFactory.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// // Copyright (c) Terry Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -18,7 +18,6 @@ namespace BudgetExecution
     using System.Data.SqlServerCe;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Threading;
 
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     public class CommandFactory : CommandBase, ICommandFactory
@@ -44,12 +43,8 @@ namespace BudgetExecution
         // *************************************************   PROPERTIES   *****************************************************
         // **********************************************************************************************************************
 
-        /// <summary>
-        /// Gets the connection manager.
-        /// </summary>
-        /// <value>
-        /// The connection manager.
-        /// </value>
+        /// <summary> Gets the connection manager. </summary>
+        /// <value> The connection manager. </value>
         private IConnectionFactory ConnectionFactory { get; }
 
         // **********************************************************************************************************************
@@ -57,17 +52,10 @@ namespace BudgetExecution
         // **********************************************************************************************************************
 
         /// <inheritdoc/>
-        /// <summary>
-        /// Gets the create table command.
-        /// </summary>
-        /// <param name = "table" >
-        /// The tablename.
-        /// </param>
-        /// <param name = "columns" >
-        /// The columns.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the create table command. </summary>
+        /// <param name = "table" > The tablename. </param>
+        /// <param name = "columns" > The columns. </param>
+        /// <returns> </returns>
         public DbCommand GetCreateTableCommand( string table, IEnumerable<DataColumn> columns )
         {
             if( Verify.Input( table )
@@ -79,7 +67,7 @@ namespace BudgetExecution
                     var provider = connectionbuilder.GetProvider();
                     var sql = $"CREATE TABLE {table}";
 
-                    if( Verify.Provider( provider )
+                    if( Validate.Provider( provider )
                         && Verify.Input( sql ) )
                     {
                         switch( provider )
@@ -128,17 +116,10 @@ namespace BudgetExecution
         }
 
         /// <inheritdoc/>
-        /// <summary>
-        /// Gets the create view command.
-        /// </summary>
-        /// <param name = "view" >
-        /// The tablename.
-        /// </param>
-        /// <param name = "columns" >
-        /// The columns.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the create view command. </summary>
+        /// <param name = "view" > The tablename. </param>
+        /// <param name = "columns" > The columns. </param>
+        /// <returns> </returns>
         public DbCommand GetCreateViewCommand( string view, IEnumerable<DataColumn> columns )
         {
             var connectionbuilder = ConnectionFactory?.GetConnectionBuilder();
@@ -191,14 +172,9 @@ namespace BudgetExecution
         }
 
         /// <inheritdoc/>
-        /// <summary>
-        /// Gets the drop table command.
-        /// </summary>
-        /// <param name = "datatable" >
-        /// The datatable.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the drop table command. </summary>
+        /// <param name = "datatable" > The datatable. </param>
+        /// <returns> </returns>
         public DbCommand GetDropTableCommand( DataTable datatable )
         {
             var connectionbuilder = ConnectionFactory?.GetConnectionBuilder();
@@ -260,17 +236,10 @@ namespace BudgetExecution
         }
 
         /// <inheritdoc/>
-        /// <summary>
-        /// Gets the alter command.
-        /// </summary>
-        /// <param name = "datatable" >
-        /// The datatable.
-        /// </param>
-        /// <param name = "column" >
-        /// The column.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the alter command. </summary>
+        /// <param name = "datatable" > The datatable. </param>
+        /// <param name = "column" > The column. </param>
+        /// <returns> </returns>
         public DbCommand GetAlterCommand( DataTable datatable, DataColumn column )
         {
             var connectionbuilder = ConnectionFactory?.GetConnectionBuilder();
@@ -333,17 +302,10 @@ namespace BudgetExecution
         }
 
         /// <inheritdoc/>
-        /// <summary>
-        /// Gets the alter command.
-        /// </summary>
-        /// <param name = "datatable" >
-        /// The datatable.
-        /// </param>
-        /// <param name = "name" >
-        /// The name.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the alter command. </summary>
+        /// <param name = "datatable" > The datatable. </param>
+        /// <param name = "name" > The name. </param>
+        /// <returns> </returns>
         public DbCommand GetAlterCommand( DataTable datatable, string name )
         {
             if( datatable != null
@@ -403,11 +365,8 @@ namespace BudgetExecution
             return default;
         }
 
-        /// <summary>
-        /// Gets the select command.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the select command. </summary>
+        /// <returns> </returns>
         public DbCommand GetSelectCommand()
         {
             try
@@ -421,11 +380,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the insert command.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the insert command. </summary>
+        /// <returns> </returns>
         public DbCommand GetInsertCommand()
         {
             try
@@ -439,11 +395,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the update command.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the update command. </summary>
+        /// <returns> </returns>
         public DbCommand GetUpdateCommand()
         {
             try
@@ -457,11 +410,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the delete command.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the delete command. </summary>
+        /// <returns> </returns>
         public DbCommand GetDeleteCommand()
         {
             try

@@ -1,6 +1,6 @@
-﻿// <copyright file = "Map.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// // Copyright (c) Terry Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -13,10 +13,8 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Threading;
 
-    /// <summary>
-    /// </summary>
+    /// <summary> </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class Map : Arg, IMap
     {
@@ -25,18 +23,20 @@ namespace BudgetExecution
         // ***************************************************************************************************************************
 
         /// <summary>
-        /// Initializes a new instance of the <see cref = "Map"/> class.
+        /// Initializes a new instance of the
+        /// <see cref = "Map"/>
+        /// class.
         /// </summary>
         public Map()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref = "Map"/> class.
+        /// Initializes a new instance of the
+        /// <see cref = "Map"/>
+        /// class.
         /// </summary>
-        /// <param name = "dict" >
-        /// The dictionary.
-        /// </param>
+        /// <param name = "dict" > The dictionary. </param>
         public Map( IDictionary<string, object> dict )
         {
             SetInput( dict );
@@ -48,11 +48,11 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref = "Map"/> class.
+        /// Initializes a new instance of the
+        /// <see cref = "Map"/>
+        /// class.
         /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
+        /// <param name = "data" > The data. </param>
         public Map( DataRow data )
         {
             SetInput( data?.ToDictionary() );
@@ -67,23 +67,16 @@ namespace BudgetExecution
         // ****************************************************  PROPERTIES   ********************************************************
         // ***************************************************************************************************************************
 
-        /// <summary>
-        /// Gets the count.
-        /// </summary>
-        /// <value>
-        /// The count.
-        /// </value>
+        /// <summary> Gets the count. </summary>
+        /// <value> The count. </value>
         public int Count { get; }
 
         // ***************************************************************************************************************************
         // ************************************************  METHODS   ***************************************************************
         // ***************************************************************************************************************************
 
-        /// <summary>
-        /// Gets the input.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the input. </summary>
+        /// <returns> </returns>
         public IDictionary<string, object> GetInput()
         {
             try
@@ -99,11 +92,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the output.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the output. </summary>
+        /// <returns> </returns>
         public IDictionary<string, object> GetOutput()
         {
             try
@@ -119,11 +109,12 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Determines whether [has primary key].
-        /// </summary>
+        /// <summary> Determines whether [has primary key]. </summary>
         /// <returns>
-        ///   <c>true</c> if [has primary key]; otherwise, <c>false</c>.
+        /// <c> true </c>
+        /// if [has primary key]; otherwise,
+        /// <c> false </c>
+        /// .
         /// </returns>
         public bool HasPrimaryKey()
         {
@@ -138,11 +129,12 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Determines whether this instance has elements.
-        /// </summary>
+        /// <summary> Determines whether this instance has elements. </summary>
         /// <returns>
-        ///   <c>true</c> if this instance has elements; otherwise, <c>false</c>.
+        /// <c> true </c>
+        /// if this instance has elements; otherwise,
+        /// <c> false </c>
+        /// .
         /// </returns>
         public bool HasElements()
         {
@@ -171,11 +163,8 @@ namespace BudgetExecution
             return false;
         }
 
-        /// <summary>
-        /// Gets the primary key.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the primary key. </summary>
+        /// <returns> </returns>
         public IKey GetKey()
         {
             if( Input?.HasPrimaryKey() == true )
@@ -191,18 +180,15 @@ namespace BudgetExecution
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default( IKey );
+                    return default;
                 }
             }
 
-            return default( IKey );
+            return default;
         }
 
-        /// <summary>
-        /// Gets the output elements.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the output elements. </summary>
+        /// <returns> </returns>
         public IEnumerable<IElement> GetElements()
         {
             if( Output?.Any() == true )

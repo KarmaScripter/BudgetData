@@ -1,6 +1,6 @@
-﻿// <copyright file = "BuilderBase.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// // Copyright (c) Terry Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -12,7 +12,6 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
-    using System.Threading;
 
     public abstract class BuilderBase : DataAccess
     {
@@ -20,11 +19,8 @@ namespace BudgetExecution
         // ************************************************  METHODS   ***************************************************************
         // ***************************************************************************************************************************
 
-        /// <summary>
-        /// Gets the column ordinals.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the column ordinals. </summary>
+        /// <returns> </returns>
         public IEnumerable<int> GetColumnOrdinals()
         {
             try
@@ -47,21 +43,17 @@ namespace BudgetExecution
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IEnumerable<int> );
+                return default;
             }
         }
 
-        /// <summary>
-        /// Gets the data elements.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the data elements. </summary>
+        /// <returns> </returns>
         public IEnumerable<Field> GetFields()
         {
             try
             {
-                var columns = Record?.ToDictionary()
-                    ?.Keys?.ToArray();
+                var columns = Record?.ToDictionary()?.Keys?.ToArray();
 
                 if( columns?.Any() == true )
                 {
@@ -69,25 +61,22 @@ namespace BudgetExecution
 
                     return elements?.Any() == true
                         ? elements
-                        : default( IEnumerable<Field> );
+                        : default;
                 }
                 else
                 {
-                    return default( IEnumerable<Field> );
+                    return default;
                 }
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IEnumerable<Field> );
+                return default;
             }
         }
 
-        /// <summary>
-        /// Gets the data elements.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the data elements. </summary>
+        /// <returns> </returns>
         public IEnumerable<IElement> GetElements()
         {
             try
@@ -113,13 +102,13 @@ namespace BudgetExecution
                 }
                 else
                 {
-                    return default( IEnumerable<IElement> );
+                    return default;
                 }
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( IEnumerable<IElement> );
+                return default;
             }
         }
     }

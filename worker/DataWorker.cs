@@ -9,7 +9,6 @@ namespace BudgetExecution
     // **************************************************************************************************************************
     using System;
     using System.ComponentModel;
-    using System.Threading;
     using System.Windows.Forms;
 
     public class DataWorker : BackgroundWorker

@@ -1,6 +1,6 @@
-﻿// <copyright file = "AdapterBuilder.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// // Copyright (c) Terry Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -12,11 +12,9 @@ namespace BudgetExecution
     using System.Data;
     using System.Data.Common;
     using System.Diagnostics.CodeAnalysis;
-    using System.Threading;
 
     /// <inheritdoc/>
-    /// <summary>
-    /// </summary>
+    /// <summary> </summary>
     /// <seealso cref = "T:System.Data.Common.DataAdapter"/>
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
@@ -29,7 +27,8 @@ namespace BudgetExecution
         /// <inheritdoc/>
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref = "T:BudgetExecution.AdapterBuilder"/> class.
+        /// <see cref = "T:BudgetExecution.AdapterBuilder"/>
+        /// class.
         /// </summary>
         public AdapterBuilder()
         {
@@ -41,10 +40,8 @@ namespace BudgetExecution
             AcceptChangesDuringUpdate = true;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="commandbuilder"></param>
+        /// <summary> </summary>
+        /// <param name = "commandbuilder" > </param>
         public AdapterBuilder( ICommandBuilder commandbuilder )
             : this()
         {
@@ -57,14 +54,11 @@ namespace BudgetExecution
         /// <inheritdoc/>
         /// <summary>
         /// Initializes a new instance of the
-        /// <see cref = "T:BudgetExecution.AdapterBuilder"/> class.
+        /// <see cref = "T:BudgetExecution.AdapterBuilder"/>
+        /// class.
         /// </summary>
-        /// <param name = "connectionbuilder" >
-        /// The connectionmanager.
-        /// </param>
-        /// <param name = "sqlstatement" >
-        /// The sqlstatement.
-        /// </param>
+        /// <param name = "connectionbuilder" > The connectionmanager. </param>
+        /// <param name = "sqlstatement" > The sqlstatement. </param>
         public AdapterBuilder( IConnectionBuilder connectionbuilder, ISqlStatement sqlstatement )
             : this()
         {
@@ -78,39 +72,24 @@ namespace BudgetExecution
         // *************************************************   PROPERTIES   *****************************************************
         // **********************************************************************************************************************
 
-        /// <summary>
-        /// Gets the connection.
-        /// </summary>
-        /// <value>
-        /// The connection.
-        /// </value>
+        /// <summary> Gets the connection. </summary>
+        /// <value> The connection. </value>
         private DbConnection Connection { get; }
 
-        /// <summary>
-        /// Gets the SQL statement.
-        /// </summary>
-        /// <value>
-        /// The SQL statement.
-        /// </value>
+        /// <summary> Gets the SQL statement. </summary>
+        /// <value> The SQL statement. </value>
         private ISqlStatement SqlStatement { get; }
 
-        /// <summary>
-        /// Gets the connection manager.
-        /// </summary>
-        /// <value>
-        /// The connection manager.
-        /// </value>
+        /// <summary> Gets the connection manager. </summary>
+        /// <value> The connection manager. </value>
         private IConnectionBuilder ConnectionBuilder { get; }
 
         // **********************************************************************************************************************
         // *************************************************    METHODS     *****************************************************
         // **********************************************************************************************************************
 
-        /// <summary>
-        /// Gets the connection.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the connection. </summary>
+        /// <returns> </returns>
         public DbConnection GetConnection()
         {
             try
@@ -126,11 +105,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the connection builder.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the connection builder. </summary>
+        /// <returns> </returns>
         public IConnectionBuilder GetConnectionBuilder()
         {
             try
@@ -146,10 +122,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Get Error Dialog.
-        /// </summary>
-        /// <param name="ex">The ex.</param>
+        /// <summary> Get Error Dialog. </summary>
+        /// <param name = "ex" > The ex. </param>
         private protected static void Fail( Exception ex )
         {
             using var error = new Error( ex );

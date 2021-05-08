@@ -16,7 +16,6 @@ namespace BudgetExecution
     using System.Data.SQLite;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Threading;
     using System.Windows.Forms;
 
     /// <summary>

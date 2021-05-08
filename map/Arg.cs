@@ -1,6 +1,6 @@
-﻿// <copyright file = "Arg.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// // Copyright (c) Terry Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -11,7 +11,6 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Threading;
 
     /// <summary> </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
@@ -68,7 +67,7 @@ namespace BudgetExecution
 
                     Input = args?.Any() == true
                         ? args
-                        : default( Dictionary<string, object> );
+                        : default;
                 }
                 catch( Exception ex )
                 {
@@ -78,11 +77,8 @@ namespace BudgetExecution
         }
 
         /// <summary> Sets the output. </summary>
-        /// <param name = "dict" >
-        /// The dictionary.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <param name = "dict" > The dictionary. </param>
+        /// <returns> </returns>
         private protected void SetOutput( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
@@ -108,7 +104,7 @@ namespace BudgetExecution
 
                         Output = args?.Any() == true
                             ? args
-                            : default( Dictionary<string, object> );
+                            : default;
                     }
                 }
                 catch( Exception ex )
@@ -146,16 +142,16 @@ namespace BudgetExecution
 
                     return values?.Any() == true
                         ? values
-                        : default( IEnumerable<string> );
+                        : default;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default( IEnumerable<string> );
+                    return default;
                 }
             }
 
-            return default( IEnumerable<string> );
+            return default;
         }
 
         /// <summary> Gets the output values. </summary>
@@ -184,16 +180,16 @@ namespace BudgetExecution
 
                     return list?.Any() == true
                         ? list
-                        : default( List<string> );
+                        : default;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default( IEnumerable<string> );
+                    return default;
                 }
             }
 
-            return default( IEnumerable<string> );
+            return default;
         }
     }
 }

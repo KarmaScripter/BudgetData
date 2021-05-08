@@ -1,6 +1,6 @@
-﻿// <copyright file = "DataBuilder.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// // Copyright (c) Terry Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -13,7 +13,6 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Threading;
 
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class DataBuilder : Builder
@@ -22,75 +21,45 @@ namespace BudgetExecution
         // ********************************************   CONSTRUCTORS     **********************************************************
         // **************************************************************************************************************************
 
-        /// <summary>
-        /// Initializes a new instance of the class.
-        /// </summary>
+        /// <summary> Initializes a new instance of the class. </summary>
         public DataBuilder()
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the class.
-        /// </summary>
-        /// <param name = "source" >
-        /// The source.
-        /// </param>
-        /// <param name = "provider" >
-        /// The provider.
-        /// </param>
+        /// <summary> Initializes a new instance of the class. </summary>
+        /// <param name = "source" > The source. </param>
+        /// <param name = "provider" > The provider. </param>
         public DataBuilder( Source source, Provider provider = Provider.SQLite )
             : base( source, provider )
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the class.
-        /// </summary>
-        /// <param name = "source" >
-        /// The source.
-        /// </param>
-        /// <param name = "provider" >
-        /// The provider.
-        /// </param>
-        /// <param name = "args" >
-        /// The arguments.
-        /// </param>
+        /// <summary> Initializes a new instance of the class. </summary>
+        /// <param name = "source" > The source. </param>
+        /// <param name = "provider" > The provider. </param>
+        /// <param name = "args" > The arguments. </param>
         public DataBuilder( Source source, Provider provider, IDictionary<string, object> args )
             : base( source, provider, args )
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the class.
-        /// </summary>
-        /// <param name = "source" >
-        /// The source.
-        /// </param>
-        /// <param name = "dict" >
-        /// The dictionary.
-        /// </param>
+        /// <summary> Initializes a new instance of the class. </summary>
+        /// <param name = "source" > The source. </param>
+        /// <param name = "dict" > The dictionary. </param>
         public DataBuilder( Source source, IDictionary<string, object> dict )
             : base( source, dict )
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the class.
-        /// </summary>
-        /// <param name = "query" >
-        /// The query.
-        /// </param>
+        /// <summary> Initializes a new instance of the class. </summary>
+        /// <param name = "query" > The query. </param>
         public DataBuilder( IQuery query )
             : base( query )
         {
         }
 
-        /// <summary>
-        /// Initializes a new instance of the class.
-        /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
+        /// <summary> Initializes a new instance of the class. </summary>
+        /// <param name = "data" > The data. </param>
         public DataBuilder( DataRow data )
         {
             Record = data;
@@ -100,23 +69,17 @@ namespace BudgetExecution
         // ********************************************      METHODS    *************************************************************
         // **************************************************************************************************************************
 
-        /// <summary>
-        /// Sets the date.
-        /// </summary>
-        /// <param name = "field" >
-        /// The field.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Sets the date. </summary>
+        /// <param name = "field" > The field. </param>
+        /// <returns> </returns>
         public DateTime GetDate( Field field )
         {
             if( Verify.Row( Record )
-                && Verify.Field( field ) )
+                && Validate.Field( field ) )
             {
                 try
                 {
-                    var columns = Record.Table
-                        ?.GetColumnNames();
+                    var columns = Record.Table?.GetColumnNames();
 
                     if( columns?.Contains( $"{field}" ) == true )
                     {
@@ -143,19 +106,13 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <param name = "field" >
-        /// The field.
-        /// </param>
-        /// <param name = "filter" >
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the data. </summary>
+        /// <param name = "field" > The field. </param>
+        /// <param name = "filter" > </param>
+        /// <returns> </returns>
         public IEnumerable<DataRow> FilterData( Field field, string filter )
         {
-            if( Verify.Field( field )
+            if( Validate.Field( field )
                 && Verify.Input( filter ) )
             {
                 try

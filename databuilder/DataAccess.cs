@@ -1,6 +1,6 @@
-﻿// <copyright file = "DataAccess.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// // Copyright (c) Terry Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -13,15 +13,12 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-    using System.Threading;
 
     // ***************************************************************************************************************************
     // *********************************************   CONSTRUCTORS **************************************************************
     // ***************************************************************************************************************************
 
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <summary> </summary>
     /// <seealso cref = "IDataAccess"/>
     [ SuppressMessage( "ReSharper", "ImplicitlyCapturedClosure" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
@@ -34,11 +31,8 @@ namespace BudgetExecution
         // ************************************************  METHODS   ***************************************************************
         // ***************************************************************************************************************************
 
-        /// <summary>
-        /// Gets the query.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the query. </summary>
+        /// <returns> </returns>
         public IQuery GetQuery()
         {
             try
@@ -52,17 +46,13 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the data. </summary>
+        /// <returns> </returns>
         public IEnumerable<DataRow> GetData()
         {
             try
             {
-                var data = GetDataTable()
-                    ?.AsEnumerable();
+                var data = GetDataTable()?.AsEnumerable();
 
                 return Verify.Rows( data )
                     ? data
@@ -75,14 +65,11 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the data table.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the data table. </summary>
+        /// <returns> </returns>
         public DataTable GetDataTable()
         {
-            if( Verify.Source( Source ) )
+            if( Validate.Source( Source ) )
             {
                 try
                 {
@@ -112,11 +99,8 @@ namespace BudgetExecution
             return default;
         }
 
-        /// <summary>
-        /// Gets the data set.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the data set. </summary>
+        /// <returns> </returns>
         public DataSet GetDataSet()
         {
             if( Enum.IsDefined( typeof( Source ), Source ) )
@@ -149,12 +133,8 @@ namespace BudgetExecution
             return default;
         }
 
-        /// <summary>
-        /// Sets the column captions.
-        /// </summary>
-        /// <param name = "datatable" >
-        /// The datatable.
-        /// </param>
+        /// <summary> Sets the column captions. </summary>
+        /// <param name = "datatable" > The datatable. </param>
         public void SetColumnCaptions( DataTable datatable )
         {
             if( Verify.Table( datatable ) )
@@ -183,11 +163,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the column schema.
-        /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the column schema. </summary>
+        /// <returns> </returns>
         public DataColumnCollection GetColumnSchema()
         {
             try
@@ -218,14 +195,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary>
-        /// Gets the primary keys.
-        /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the primary keys. </summary>
+        /// <param name = "data" > The data. </param>
+        /// <returns> </returns>
         public IEnumerable<int> GetPrimaryIndexes( IEnumerable<DataRow> data )
         {
             if( Verify.Input( data )
@@ -243,21 +215,16 @@ namespace BudgetExecution
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default( IEnumerable<int> );
+                    return default;
                 }
             }
 
-            return default( IEnumerable<int> );
+            return default;
         }
 
-        /// <summary>
-        /// Gets the column ordinals.
-        /// </summary>
-        /// <param name = "data" >
-        /// The data.
-        /// </param>
-        /// <returns>
-        /// </returns>
+        /// <summary> Gets the column ordinals. </summary>
+        /// <param name = "data" > The data. </param>
+        /// <returns> </returns>
         public IEnumerable<int> GetColumnOrdinals( IEnumerable<DataColumn> data )
         {
             if( Verify.Sequence( data ) )

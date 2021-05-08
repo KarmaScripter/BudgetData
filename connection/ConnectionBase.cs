@@ -1,5 +1,5 @@
-﻿// // <copyright file = "ConnectionBase.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
+﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// // Copyright (c) Terry Eppler. All rights reserved.
 // // </copyright>
 
 namespace BudgetExecution
@@ -13,7 +13,6 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
-    using System.Threading;
 
     /// <summary> </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
@@ -35,8 +34,7 @@ namespace BudgetExecution
         /// The name value collection containing the file paths to the applications data
         /// providers.
         /// </summary>
-        private protected readonly NameValueCollection ProviderPath =
-            ConfigurationManager.AppSettings;
+        private protected readonly NameValueCollection ProviderPath = ConfigurationManager.AppSettings;
 
         // **************************************************************************************************************************
         // ********************************************      PROPERTIES    **********************************************************
@@ -283,13 +281,13 @@ namespace BudgetExecution
                         EXT.SDF => ConfigurationManager.AppSettings[ "SqlCeFilePath" ],
                         EXT.MDF => ConfigurationManager.AppSettings[ "SqlServerFilePath" ],
                         EXT.XLS => ConfigurationManager.AppSettings[ "ExcelFilePath" ]
-                                                       .Replace( "{FilePath}", filepath ),
+                            .Replace( "{FilePath}", filepath ),
                         EXT.XLSX => ConfigurationManager.AppSettings[ "ExcelFilePath" ]
-                                                        .Replace( "{FilePath}", filepath ),
+                            .Replace( "{FilePath}", filepath ),
                         EXT.CSV => ConfigurationManager.AppSettings[ "CsvFilePath" ]
-                                                       .Replace( "{FilePath}", filepath ),
+                            .Replace( "{FilePath}", filepath ),
                         EXT.TXT => ConfigurationManager.AppSettings[ "CsvFilePath" ]
-                                                       .Replace( "{FilePath}", filepath ),
+                            .Replace( "{FilePath}", filepath ),
                         _ => ConfigurationManager.AppSettings[ "SQLiteFilePath" ]
                     };
                 }
@@ -315,9 +313,8 @@ namespace BudgetExecution
                         case Provider.Excel:
                         case Provider.CSV:
                         {
-                            var connection = ConfigurationManager
-                                             .ConnectionStrings[ provider.ToString() ]
-                                             ?.ConnectionString;
+                            var connection = ConfigurationManager.ConnectionStrings[ provider.ToString() ]
+                                ?.ConnectionString;
 
                             ConnectionString = Verify.Input( connection )
                                 ? connection?.Replace( "{FilePath}", FilePath )
@@ -331,9 +328,8 @@ namespace BudgetExecution
                         case Provider.SqlCe:
                         case Provider.SqlServer:
                         {
-                            var connection = ConfigurationManager
-                                             .ConnectionStrings[ provider.ToString() ]
-                                             ?.ConnectionString;
+                            var connection = ConfigurationManager.ConnectionStrings[ provider.ToString() ]
+                                ?.ConnectionString;
 
                             ConnectionString = Verify.Input( connection )
                                 ? connection

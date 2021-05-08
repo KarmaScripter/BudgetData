@@ -12,7 +12,6 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Data;
     using System.Data.OleDb;
-    using System.Threading;
     using System.Windows.Forms;
 
     /// <inheritdoc/>

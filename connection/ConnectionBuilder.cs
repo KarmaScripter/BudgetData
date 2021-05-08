@@ -1,5 +1,5 @@
-﻿// // <copyright file = "ConnectionBuilder.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
+﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// // Copyright (c) Terry Eppler. All rights reserved.
 // // </copyright>
 
 namespace BudgetExecution
@@ -11,7 +11,6 @@ namespace BudgetExecution
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.Threading;
 
     /// <summary> </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
@@ -28,7 +27,7 @@ namespace BudgetExecution
         /// <see cref = "ConnectionBuilder"/>
         /// class.
         /// </summary>
-        public ConnectionBuilder( )
+        public ConnectionBuilder()
         {
         }
 
@@ -46,7 +45,7 @@ namespace BudgetExecution
             SetFilePath( Provider );
             SetFileName( FilePath );
             SetFileExtension( FilePath );
-            TableName = Source.ToString( );
+            TableName = Source.ToString();
             SetConnectionString( Provider );
         }
 
@@ -91,28 +90,28 @@ namespace BudgetExecution
 
         /// <summary> Gets the file path. </summary>
         /// <returns> </returns>
-        public string GetFilePath( )
+        public string GetFilePath()
         {
             try
             {
                 return Verify.Input( FilePath ) && File.Exists( FilePath )
                     ? Path.GetFullPath( FilePath )
-                    : default( string );
+                    : default;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( string );
+                return default;
             }
         }
 
         /// <summary> Gets the file extension. </summary>
         /// <returns> </returns>
-        public EXT GetFileExtension( )
+        public EXT GetFileExtension()
         {
             try
             {
-                return Verify.EXT( FileExtension )
+                return Validate.EXT( FileExtension )
                     ? FileExtension
                     : EXT.NS;
             }
@@ -125,97 +124,96 @@ namespace BudgetExecution
 
         /// <summary> Gets the name of the file. </summary>
         /// <returns> </returns>
-        public string GetFileName( )
+        public string GetFileName()
         {
             try
             {
-                return Verify.Input( FilePath ) 
-                    && File.Exists( FilePath )
-                        ? Path.GetFullPath( FilePath )
-                        : default( string );
+                return Verify.Input( FilePath ) && File.Exists( FilePath )
+                    ? Path.GetFullPath( FilePath )
+                    : default;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( string );
+                return default;
             }
         }
 
         /// <summary> Gets the provider path. </summary>
         /// <returns> </returns>
-        public string GetProviderPath( )
+        public string GetProviderPath()
         {
             try
             {
                 return Verify.Input( FilePath )
                     ? Path.GetFullPath( FilePath )
-                    : default( string );
+                    : default;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( string );
+                return default;
             }
         }
 
         /// <summary> Gets the connection string. </summary>
         /// <returns> </returns>
-        public string GetConnectionString( )
+        public string GetConnectionString()
         {
             try
             {
                 return Verify.Input( ConnectionString )
                     ? ConnectionString
-                    : default( string );
+                    : default;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( string );
+                return default;
             }
         }
 
         /// <summary> Gets the name of the table. </summary>
         /// <returns> </returns>
-        public string GetTableName( )
+        public string GetTableName()
         {
             try
             {
                 return Verify.Input( TableName )
                     ? TableName
-                    : default( string );
+                    : default;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( string );
+                return default;
             }
         }
 
         /// <summary> Gets the provider. </summary>
         /// <returns> </returns>
-        public Provider GetProvider( )
+        public Provider GetProvider()
         {
             try
             {
-                return Verify.Provider( Provider )
+                return Validate.Provider( Provider )
                     ? Provider
-                    : default( Provider );
+                    : default;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default( Provider );
+                return default;
             }
         }
 
         /// <summary> Gets the source. </summary>
         /// <returns> </returns>
-        public Source GetSource( )
+        public Source GetSource()
         {
             try
             {
-                return Verify.Source( Source )
+                return Validate.Source( Source )
                     ? Source
                     : Source.NS;
             }

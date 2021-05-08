@@ -9,12 +9,13 @@
     <OutputType>Library</OutputType>
     <RootNamespace>BudgetExecution</RootNamespace>
     <AssemblyName>BudgetData</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,6 +48,7 @@
   <ItemGroup>
     <None Include=".editorconfig" />
     <None Include="App.config" />
+    <None Include="BudgetExecution.DotSettings" />
     <None Include="database\sqlce\UPDATE\R6.db" />
     <None Include="database\sqlite\R6.db" />
     <None Include="database\sqlite\UPDATE\R6.db" />
