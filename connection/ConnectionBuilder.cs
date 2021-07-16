@@ -1,5 +1,5 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
+﻿// // <copyright file = "ConnectionBuilder.cs" company = "Terry D. Eppler">
+// // Copyright (c) Terry D. Eppler. All rights reserved.
 // // </copyright>
 
 namespace BudgetExecution
@@ -11,11 +11,13 @@ namespace BudgetExecution
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
+    using System.Threading;
 
     /// <summary> </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
+    [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     public class ConnectionBuilder : ConnectionBase, ISource, IProvider, IConnectionBuilder
     {
         // ***************************************************************************************************************************
@@ -54,11 +56,11 @@ namespace BudgetExecution
         /// <see cref = "ConnectionBuilder"/>
         /// class.
         /// </summary>
-        /// <param name = "fullpath" > The fullpath. </param>
-        public ConnectionBuilder( string fullpath )
+        /// <param name = "fullPath" > The fullPath. </param>
+        public ConnectionBuilder( string fullPath )
         {
             Source = Source.External;
-            SetFilePath( fullpath );
+            SetFilePath( fullPath );
             SetFileName( FilePath );
             SetFileExtension( FilePath );
             SetProvider( FileExtension );
@@ -71,12 +73,12 @@ namespace BudgetExecution
         /// <see cref = "ConnectionBuilder"/>
         /// class.
         /// </summary>
-        /// <param name = "fullpath" > The fullpath. </param>
+        /// <param name = "fullPath" > The fullPath. </param>
         /// <param name = "provider" > The provider. </param>
-        public ConnectionBuilder( string fullpath, Provider provider = Provider.SQLite )
+        public ConnectionBuilder( string fullPath, Provider provider = Provider.SQLite )
         {
             Source = Source.External;
-            SetFilePath( fullpath );
+            SetFilePath( fullPath );
             SetFileName( FilePath );
             SetFileExtension( FilePath );
             SetProvider( provider );
@@ -96,12 +98,12 @@ namespace BudgetExecution
             {
                 return Verify.Input( FilePath ) && File.Exists( FilePath )
                     ? Path.GetFullPath( FilePath )
-                    : default;
+                    : default( string );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( string );
             }
         }
 
@@ -111,13 +113,13 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.EXT( FileExtension )
+                return Verify.EXT( FileExtension )
                     ? FileExtension
                     : EXT.NS;
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                ConnectionBuilder.Fail( ex );
                 return EXT.NS;
             }
         }
@@ -130,12 +132,12 @@ namespace BudgetExecution
             {
                 return Verify.Input( FilePath ) && File.Exists( FilePath )
                     ? Path.GetFullPath( FilePath )
-                    : default;
+                    : default( string );
             }
             catch( Exception ex )
             {
-                Fail( ex );
-                return default;
+                ConnectionBuilder.Fail( ex );
+                return default( string );
             }
         }
 
@@ -147,12 +149,12 @@ namespace BudgetExecution
             {
                 return Verify.Input( FilePath )
                     ? Path.GetFullPath( FilePath )
-                    : default;
+                    : default( string );
             }
             catch( Exception ex )
             {
-                Fail( ex );
-                return default;
+                ConnectionBuilder.Fail( ex );
+                return default( string );
             }
         }
 
@@ -164,12 +166,12 @@ namespace BudgetExecution
             {
                 return Verify.Input( ConnectionString )
                     ? ConnectionString
-                    : default;
+                    : default( string );
             }
             catch( Exception ex )
             {
-                Fail( ex );
-                return default;
+                ConnectionBuilder.Fail( ex );
+                return default( string );
             }
         }
 
@@ -181,12 +183,12 @@ namespace BudgetExecution
             {
                 return Verify.Input( TableName )
                     ? TableName
-                    : default;
+                    : default( string );
             }
             catch( Exception ex )
             {
-                Fail( ex );
-                return default;
+                ConnectionBuilder.Fail( ex );
+                return default( string );
             }
         }
 
@@ -196,14 +198,14 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Provider( Provider )
+                return Verify.Provider( Provider )
                     ? Provider
-                    : default;
+                    : default( Provider );
             }
             catch( Exception ex )
             {
-                Fail( ex );
-                return default;
+                ConnectionBuilder.Fail( ex );
+                return default( Provider );
             }
         }
 
@@ -213,13 +215,13 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Source( Source )
+                return Verify.Source( Source )
                     ? Source
                     : Source.NS;
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                ConnectionBuilder.Fail( ex );
                 return Source.NS;
             }
         }

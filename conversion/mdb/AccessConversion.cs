@@ -1,4 +1,4 @@
-﻿// // <copyright file = "sqliteClass.cs" company = "Terry D. Eppler">
+﻿// // <copyright file = "AccessConversion.cs" company = "Terry D. Eppler">
 // // Copyright (c) Terry D. Eppler. All rights reserved.
 // // </copyright>
 
@@ -29,7 +29,7 @@ namespace BudgetExecution
         /// <summary>
         /// The connection
         /// </summary>
-        private readonly SQLiteConnection Connection;
+        private readonly SQLiteConnection _connection;
 
         // ***************************************************************************************************************************
         // ****************************************************  CONSTRUCTORS ********************************************************
@@ -41,8 +41,8 @@ namespace BudgetExecution
         public AccessConversion()
         {
             SQLiteConnection.CreateFile( "MyDatabase.sqlite" );
-            Connection = new SQLiteConnection( "Data Source=MyDatabase.sqlite;Version=3;" );
-            Connection.Open();
+            _connection = new SQLiteConnection( "Data Source=MyDatabase.sqlite;Version=3;" );
+            _connection.Open();
         }
 
         // ***************************************************************************************************************************
@@ -57,7 +57,7 @@ namespace BudgetExecution
         public int CreateTable( string name )
         {
             var sql = "CREATE TABLE " + name + " (word varchar(200), image text)";
-            var cmd = new SQLiteCommand( sql, Connection );
+            var cmd = new SQLiteCommand( sql, _connection );
             return cmd.ExecuteNonQuery();
         }
 
@@ -68,12 +68,10 @@ namespace BudgetExecution
         /// <param name="image">The image.</param>
         /// <param name="table">The table.</param>
         /// <returns></returns>
-        public int InsertRow( string word,
-            string image,
-            string table )
+        public int InsertRow( string word, string image, string table )
         {
             var sql = "INSERT INTO " + table + " (word,image) VALUES ( @word, @image )";
-            var cmd = new SQLiteCommand( sql, Connection );
+            var cmd = new SQLiteCommand( sql, _connection );
             cmd.Parameters.AddWithValue( "@word", word );
             cmd.Parameters.AddWithValue( "@image", image );
             return cmd.ExecuteNonQuery();

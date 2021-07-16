@@ -1,6 +1,6 @@
-// <copyright file = "IndexSchema.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+// // <copyright file = "IndexSchema.cs" company = "Terry D. Eppler">
+// // Copyright (c) Terry D. Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
@@ -9,17 +9,17 @@ namespace BudgetExecution
 
     public class IndexSchema
     {
-        public List<IndexColumn> Columns;
+        public List<IndexColumn> columns;
 
-        public string IndexName;
+        public string indexName;
 
-        public bool IsUnique;
+        public bool isUnique;
     }
 
     public class IndexColumn
     {
-        public string ColumnName;
+        public string columnName;
 
-        public bool IsAscending;
+        public bool isAscending;
     }
 }

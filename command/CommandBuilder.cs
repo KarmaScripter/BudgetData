@@ -1,5 +1,5 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
+﻿// // <copyright file = "CommandBuilder.cs" company = "Terry D. Eppler">
+// // Copyright (c) Terry D. Eppler. All rights reserved.
 // // </copyright>
 
 namespace BudgetExecution
@@ -111,7 +111,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    CommandBuilder.Fail( ex );
                     return default;
                 }
             }
@@ -131,7 +131,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                CommandBuilder.Fail( ex );
                 return default;
             }
         }

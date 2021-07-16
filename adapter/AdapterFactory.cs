@@ -26,7 +26,7 @@ namespace BudgetExecution
         // *********************************************      FIELDS    **************************************************************
         // ***************************************************************************************************************************
 
-        private readonly AdapterBuilder AdapterBuilder;
+        private readonly AdapterBuilder _adapterBuilder;
 
         // ***************************************************************************************************************************
         // *********************************************   CONSTRUCTORS **************************************************************
@@ -39,8 +39,8 @@ namespace BudgetExecution
         /// </summary>
         public AdapterFactory( AdapterBuilder adapterbuilder )
         {
-            AdapterBuilder = adapterbuilder;
-            ConnectionBuilder = AdapterBuilder.GetConnectionBuilder();
+            _adapterBuilder = adapterbuilder;
+            ConnectionBuilder = _adapterBuilder.GetConnectionBuilder();
             Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
             SqlStatement = new SqlStatement( ConnectionBuilder );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
@@ -57,7 +57,7 @@ namespace BudgetExecution
         {
             ConnectionBuilder = connectionbuilder;
             SqlStatement = sqlstatement;
-            AdapterBuilder = new AdapterBuilder( ConnectionBuilder, SqlStatement );
+            _adapterBuilder = new AdapterBuilder( ConnectionBuilder, SqlStatement );
             Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
         }
@@ -74,7 +74,7 @@ namespace BudgetExecution
             ConnectionBuilder = connectionbuilder;
             CommandBuilder = commandbuilder;
             SqlStatement = CommandBuilder.GetSqlStatement();
-            AdapterBuilder = new AdapterBuilder( ConnectionBuilder, SqlStatement );
+            _adapterBuilder = new AdapterBuilder( ConnectionBuilder, SqlStatement );
             Connection = new ConnectionFactory( ConnectionBuilder ).GetConnection();
         }
 
@@ -259,7 +259,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    AdapterBuilder?.Dispose();
+                    _adapterBuilder?.Dispose();
                     Connection?.Dispose();
                 }
                 catch( Exception ex )

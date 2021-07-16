@@ -23,10 +23,10 @@ namespace BudgetExecution
         // *********************************************      FIELDS    **************************************************************
         // ***************************************************************************************************************************
 
-        private protected readonly EXT Extension = EXT.SQL;
+        private protected readonly EXT extension = EXT.SQL;
 
         /// <summary> The provider path </summary>
-        private protected readonly NameValueCollection ProviderPath = ConfigurationManager.AppSettings;
+        private protected readonly NameValueCollection providerPath = ConfigurationManager.AppSettings;
 
         // **********************************************************************************************************************
         // *************************************************   PROPERTIES   *****************************************************
@@ -173,7 +173,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var directory = ProviderPath[ $"{Provider}" ] + $@"\{CommandType}";
+                    var directory = providerPath[ $"{Provider}" ] + $@"\{CommandType}";
 
                     if( Verify.Input( directory )
                         && Directory.Exists( directory ) )

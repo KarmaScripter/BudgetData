@@ -35,7 +35,7 @@ namespace BudgetExecution
             CommandType = command;
             ConnectionBuilder = builder;
             SqlStatement = new SqlStatement( ConnectionBuilder, CommandType );
-            FilePath = Path.GetFullPath( ProviderPath[ Provider.ToString() ] );
+            FilePath = Path.GetFullPath( providerPath[ Provider.ToString() ] );
             FileName = Path.GetFileNameWithoutExtension( FilePath );
         }
 

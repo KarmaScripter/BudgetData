@@ -32,7 +32,7 @@ namespace BudgetExecution
         // ****************************************************     FIELDS    ********************************************************
         // ***************************************************************************************************************************
 
-        private readonly IConnectionBuilder ConnectionBuilder;
+        private readonly IConnectionBuilder _connectionBuilder;
 
         // ***************************************************************************************************************************
         // ******************************************************  CONSTRUCTORS  *****************************************************
@@ -53,8 +53,8 @@ namespace BudgetExecution
         /// </param>
         public ConnectionFactory( IConnectionBuilder builder )
         {
-            ConnectionBuilder = GetConnectionBuilder( builder );
-            Connection = SetConnection( ConnectionBuilder );
+            _connectionBuilder = GetConnectionBuilder( builder );
+            Connection = SetConnection( _connectionBuilder );
         }
 
         /// <summary>
@@ -68,8 +68,8 @@ namespace BudgetExecution
         /// </param>
         public ConnectionFactory( IConnectionBuilder builder, ISqlStatement sqlstatement )
         {
-            ConnectionBuilder = GetConnectionBuilder( builder );
-            Connection = SetConnection( ConnectionBuilder );
+            _connectionBuilder = GetConnectionBuilder( builder );
+            Connection = SetConnection( _connectionBuilder );
         }
 
         // ***************************************************************************************************************************
@@ -121,8 +121,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Ref( ConnectionBuilder )
-                    ? ConnectionBuilder
+                return Verify.Ref( _connectionBuilder )
+                    ? _connectionBuilder
                     : default;
             }
             catch( Exception ex )
@@ -239,7 +239,7 @@ namespace BudgetExecution
         {
             try
             {
-                var connectionstring = ConnectionBuilder?.GetConnectionString();
+                var connectionstring = _connectionBuilder?.GetConnectionString();
 
                 return Verify.Input( connectionstring )
                     ? connectionstring
@@ -261,7 +261,7 @@ namespace BudgetExecution
         {
             try
             {
-                var provider = ConnectionBuilder.GetProvider();
+                var provider = _connectionBuilder.GetProvider();
 
                 return Verify.Provider( provider )
                     ? provider
@@ -283,7 +283,7 @@ namespace BudgetExecution
         {
             try
             {
-                var source = ConnectionBuilder.GetSource();
+                var source = _connectionBuilder.GetSource();
 
                 return Verify.Source( source )
                     ? source

@@ -17,6 +17,7 @@ namespace BudgetExecution
     /// <summary> </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     public abstract class ConnectionBase
     {
         // ***************************************************************************************************************************
@@ -27,14 +28,14 @@ namespace BudgetExecution
         /// The connector contains the available connection strings defined within the
         /// App.Config file
         /// </summary>
-        private protected readonly ConnectionStringSettingsCollection Connector =
+        private readonly ConnectionStringSettingsCollection _connector =
             ConfigurationManager.ConnectionStrings;
 
         /// <summary>
         /// The name value collection containing the file paths to the applications data
         /// providers.
         /// </summary>
-        private protected readonly NameValueCollection ProviderPath = ConfigurationManager.AppSettings;
+        private protected readonly NameValueCollection _providerPath = ConfigurationManager.AppSettings;
 
         // **************************************************************************************************************************
         // ********************************************      PROPERTIES    **********************************************************
@@ -68,6 +69,14 @@ namespace BudgetExecution
         /// <value> The connection string. </value>
         private protected string ConnectionString { get; set; }
 
+        private protected ConnectionStringSettingsCollection Connector
+        {
+            get
+            {
+                return _connector;
+            }
+        }
+
         // **************************************************************************************************************************
         // ********************************************      METHODS    *************************************************************
         // **************************************************************************************************************************
@@ -96,7 +105,8 @@ namespace BudgetExecution
         {
             if( Verify.Input( filename )
                 && File.Exists( filename )
-                && Resource.Sources?.Contains( filename ) == true )
+                && Resource.Sources
+                    ?.Contains( filename ) == true )
             {
                 try
                 {
@@ -108,9 +118,13 @@ namespace BudgetExecution
                 }
             }
 
-            if( Verify.Input( filename )
-                && File.Exists( filename )
-                && !Resource.Sources?.Contains( filename ) == true )
+            if( !Verify.Input( filename )
+                || !File.Exists( filename )
+                || !Resource.Sources?.Contains( filename ) != true )
+            {
+                return;
+            }
+
             {
                 try
                 {
@@ -118,7 +132,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    ConnectionBase.Fail( ex );
                 }
             }
         }
@@ -181,15 +195,15 @@ namespace BudgetExecution
                 {
                     FilePath = provider switch
                     {
-                        Provider.OleDb => ProviderPath[ "OleDb" ],
-                        Provider.Access => ProviderPath[ "Access" ],
-                        Provider.SQLite => ProviderPath[ "SQLite" ],
-                        Provider.SqlCe => ProviderPath[ "SqlCe" ],
-                        Provider.SqlServer => ProviderPath[ "SqlServer" ],
-                        Provider.CSV => ProviderPath[ "CSV" ],
-                        Provider.Excel => ProviderPath[ "Excel" ],
-                        Provider.NS => ProviderPath[ "Excel" ],
-                        _ => ProviderPath[ "SQLite" ]
+                        Provider.OleDb => _providerPath[ "OleDb" ],
+                        Provider.Access => _providerPath[ "Access" ],
+                        Provider.SQLite => _providerPath[ "SQLite" ],
+                        Provider.SqlCe => _providerPath[ "SqlCe" ],
+                        Provider.SqlServer => _providerPath[ "SqlServer" ],
+                        Provider.CSV => _providerPath[ "CSV" ],
+                        Provider.Excel => _providerPath[ "Excel" ],
+                        Provider.NS => _providerPath[ "Excel" ],
+                        _ => _providerPath[ "SQLite" ]
                     };
                 }
                 catch( Exception ex )

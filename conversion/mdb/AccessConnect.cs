@@ -25,7 +25,7 @@ namespace BudgetExecution
         /// <summary>
         /// The connection
         /// </summary>
-        private readonly OleDbConnection Connection;
+        private readonly OleDbConnection _connection;
 
         // ***************************************************************************************************************************
         // ****************************************************  CONSTRUCTORS ********************************************************
@@ -41,8 +41,8 @@ namespace BudgetExecution
                 + path
                 + ";Jet OLEDB:Database Password=h@#%^ein;";
 
-            Connection = new OleDbConnection( connectionstring );
-            Connection.Open();
+            _connection = new OleDbConnection( connectionstring );
+            _connection.Open();
         }
 
         // ***************************************************************************************************************************
@@ -60,7 +60,7 @@ namespace BudgetExecution
             restrictions[ 3 ] = "Table";
 
             //getting names of tables
-            var table = Connection.GetSchema( "Tables", restrictions );
+            var table = _connection.GetSchema( "Tables", restrictions );
 
             for( var i = 0; i < table.Rows.Count; i++ )
             {
@@ -78,7 +78,7 @@ namespace BudgetExecution
         public DataTable GetTable( string name )
         {
             var table = new DataTable();
-            var adapter = new OleDbDataAdapter( "SELECT * FROM " + name, Connection );
+            var adapter = new OleDbDataAdapter( "SELECT * FROM " + name, _connection );
             adapter.Fill( table );
             return table;
         }
@@ -91,7 +91,7 @@ namespace BudgetExecution
         public List<string> GetColumnNames( string tablename )
         {
             var names = new List<string>();
-            using var command = new OleDbCommand( "select * from " + tablename, Connection );
+            using var command = new OleDbCommand( "select * from " + tablename, _connection );
             using var reader = command.ExecuteReader( CommandBehavior.SchemaOnly );
             var table = reader.GetSchemaTable();
             var column = table?.Columns[ "ColumnName" ];

@@ -1,37 +1,25 @@
-﻿// <copyright file = "TriggerSchema.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file = "TriggerSchema.cs" company = "Terry D. Eppler">
+// // Copyright (c) Terry D. Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
     using System;
 
-    public enum TriggerEvent
-    {
-        Delete,
+    public enum TriggerEvent { Delete, Update, Insert }
 
-        Update,
-
-        Insert
-    }
-
-    public enum TriggerType
-    {
-        After,
-
-        Before
-    }
+    public enum TriggerType { After, Before }
 
     public class TriggerSchema
     {
-        public string Body;
+        public string body;
 
-        public TriggerEvent Event;
+        public TriggerEvent @event;
 
-        public string Name;
+        public string name;
 
-        public string Table;
+        public string table;
 
-        public TriggerType Type;
+        public TriggerType type;
     }
 }
