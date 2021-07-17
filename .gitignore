@@ -118,7 +118,7 @@ $tf/
 _ReSharper*/
 *.[Rr]e[Ss]harper
 *.DotSettings.user
-*.DotSettings
+# *.DotSettings
 
 # JustCode is a .NET coding add-in
 .JustCode
@@ -257,14 +257,14 @@ ServiceFabricBackup/
 *.db
 
 # Budget Execution Files
-*.exe
+# *.exe
 [Ee]tc/
 [Dd]b/
 [Dd]atabases/
 
 # Settings and Condfiguration files
-*.DotSettings
-*.editorconfig
+# *.DotSettings
+# *.editorconfig
 
 # Business Intelligence projects
 *.rdl.data
