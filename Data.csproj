@@ -49,7 +49,6 @@
   <ItemGroup>
     <None Include=".editorconfig" />
     <None Include="App.config" />
-    <None Include="BudgetExecution.DotSettings" />
     <None Include="database\sqlce\UPDATE\R6.db" />
     <None Include="database\sqlite\R6.db" />
     <None Include="database\sqlite\UPDATE\R6.db" />
