@@ -1,56 +1,53 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
-    // **************************************************************************************************************************
-    // ********************************************      ASSEMBLIES    **********************************************************
-    // **************************************************************************************************************************
-
     using System;
     using System.Data;
     using System.Linq;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="BudgetExecution.Unit" />
     public abstract class AmountBase : Unit
     {
-        // **************************************************************************************************************************
-        // ********************************************      PROPERTIES    **********************************************************
-        // **************************************************************************************************************************
+        /// <summary>
+        /// The funding
+        /// </summary>
+        private protected double _funding;
 
-        /// <summary> Gets the value. </summary>
-        /// <value> The value. </value>
-        private protected double Funding { get; set; }
+        /// <summary>
+        /// The initial
+        /// </summary>
+        private protected double _initial;
 
-        /// <summary> Gets the original. </summary>
-        /// <value> The original. </value>
-        private protected double Initial { get; set; }
+        /// <summary>
+        /// The delta
+        /// </summary>
+        private protected double _delta;
 
-        /// <summary> Gets the delta. </summary>
-        /// <value> The delta. </value>
-        private protected double Delta { get; set; }
+        /// <summary>
+        /// The numeric
+        /// </summary>
+        private protected Numeric _numeric = Numeric.Amount;
 
-        /// <summary> Gets or sets the numeric. </summary>
-        /// <value> The numeric. </value>
-        private protected Numeric Numeric { get; set; } = Numeric.Amount;
-
-        // **************************************************************************************************************************
-        // ********************************************      METHODS    *************************************************************
-        // **************************************************************************************************************************
-
-        /// <summary> Sets the name. </summary>
-        /// <param name = "colname" > The name. </param>
-        /// <returns> </returns>
-        public override void SetName( string colname )
+        /// <summary>
+        /// Gets the columnName.
+        /// </summary>
+        /// <param name="columnName"></param>
+        public override void SetName( string columnName )
         {
-            if( Verify.Input( colname )
-                && Enum.GetNames( typeof( Numeric ) )?.Contains( colname ) == true )
+            if( Verify.Input( columnName )
+                && Enum.GetNames( typeof( Numeric ) )?.Contains( columnName ) == true )
             {
                 try
                 {
-                    Name = Verify.Input( colname )
-                        ? colname
-                        : default;
+                    _name = Verify.Input( columnName )
+                        ? columnName
+                        : default( string );
                 }
                 catch( Exception ex )
                 {
@@ -59,23 +56,24 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the name. </summary>
-        /// <param name = "datarow" > The data. </param>
-        /// <param name = "colname" > The name. </param>
-        /// <returns> </returns>
-        private protected void SetName( DataRow datarow, string colname )
+        /// <summary>
+        /// Sets the name.
+        /// </summary>
+        /// <param name="dataRow">The data row.</param>
+        /// <param name="columnName">Name of the column.</param>
+        private protected void SetName( DataRow dataRow, string columnName )
         {
-            if( Verify.Row( datarow )
-                && Verify.Input( colname )
-                && Enum.GetNames( typeof( Numeric ) )?.Contains( colname ) == true )
+            if( Verify.Row( dataRow )
+                && Verify.Input( columnName )
+                && Enum.GetNames( typeof( Numeric ) )?.Contains( columnName ) == true )
             {
                 try
                 {
-                    var names = datarow?.Table?.GetColumnNames();
+                    var _names = dataRow?.Table?.GetColumnNames();
 
-                    Name = names?.Contains( colname ) == true
-                        ? colname
-                        : default;
+                    _name = _names?.Contains( columnName ) == true
+                        ? columnName
+                        : default( string );
                 }
                 catch( Exception ex )
                 {
@@ -84,18 +82,19 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the name. </summary>
-        /// <param name = "numeric" > The numeric. </param>
-        /// <returns> </returns>
+        /// <summary>
+        /// Sets the name.
+        /// </summary>
+        /// <param name="numeric">The numeric.</param>
         private protected void SetName( Numeric numeric )
         {
             if( Validate.Numeric( numeric ) )
             {
                 try
                 {
-                    Name = Validate.Numeric( numeric )
+                    _name = Validate.Numeric( numeric )
                         ? numeric.ToString()
-                        : default;
+                        : default( string );
                 }
                 catch( Exception ex )
                 {
@@ -104,22 +103,23 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the name. </summary>
-        /// <param name = "datarow" > The data. </param>
-        /// <param name = "numeric" > The numeric. </param>
-        /// <returns> </returns>
-        private protected void SetName( DataRow datarow, Numeric numeric )
+        /// <summary>
+        /// Sets the name.
+        /// </summary>
+        /// <param name="dataRow">The data row.</param>
+        /// <param name="numeric">The numeric.</param>
+        private protected void SetName( DataRow dataRow, Numeric numeric )
         {
-            if( datarow != null
+            if( dataRow != null
                 && Validate.Numeric( numeric ) )
             {
                 try
                 {
-                    var names = datarow?.Table?.GetColumnNames();
+                    var _columnNames = dataRow?.Table?.GetColumnNames();
 
-                    Name = names?.Contains( numeric.ToString() ) == true
+                    _name = _columnNames?.Contains( numeric.ToString() ) == true
                         ? numeric.ToString()
-                        : default;
+                        : default( string );
                 }
                 catch( Exception ex )
                 {
@@ -128,20 +128,21 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the numeric. </summary>
-        /// <param name = "name" > The name. </param>
-        /// <returns> </returns>
-        private protected void SetNumeric( string name )
+        /// <summary>
+        /// Sets the numeric.
+        /// </summary>
+        /// <param name="columnName">Name of the column.</param>
+        private protected void SetNumeric( string columnName )
         {
-            if( Verify.Input( name )
-                && Enum.GetNames( typeof( Numeric ) )?.Contains( name ) == true )
+            if( Verify.Input( columnName )
+                && Enum.GetNames( typeof( Numeric ) )?.Contains( columnName ) == true )
             {
                 try
                 {
-                    var numeric = (Numeric)Enum.Parse( typeof( Numeric ), name );
+                    var _columnValue = (Numeric)Enum.Parse( typeof( Numeric ), columnName );
 
-                    Numeric = Enum.IsDefined( typeof( Numeric ), numeric )
-                        ? numeric
+                    _numeric = Enum.IsDefined( typeof( Numeric ), _columnValue )
+                        ? _columnValue
                         : Numeric.NS;
                 }
                 catch( Exception ex )
@@ -151,23 +152,73 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the numeric. </summary>
-        /// <param name = "data" > The data. </param>
-        /// <param name = "name" > The name. </param>
-        /// <returns> </returns>
-        private protected void SetNumeric( DataRow data, string name )
+        /// <summary>
+        /// Sets the numeric.
+        /// </summary>
+        /// <param name="dataRow">The data row.</param>
+        /// <param name="columnName">Name of the column.</param>
+        private protected void SetNumeric( DataRow dataRow, string columnName )
         {
-            if( Verify.Row( data )
-                && Verify.Input( name ) )
+            if( Verify.Row( dataRow )
+                && Verify.Input( columnName ) )
             {
                 try
                 {
-                    var numeric = (Numeric)Enum.Parse( typeof( Numeric ), name );
-                    var names = data?.Table?.GetColumnNames();
+                    var _columnValue = (Numeric)Enum.Parse( typeof( Numeric ), columnName );
 
-                    if( names?.Any() == true )
+                    var _names = dataRow?.Table
+                        ?.GetColumnNames();
+
+                    if( _names?.Any() == true )
                     {
-                        Numeric = names?.Contains( $"{numeric}" ) == true
+                        _numeric = _names?.Contains( $"{_columnValue}" ) == true
+                            ? _columnValue
+                            : Numeric.NS;
+                    }
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the numeric.
+        /// </summary>
+        /// <param name="numeric">The numeric.</param>
+        private protected void SetNumeric( Numeric numeric )
+        {
+            try
+            {
+                _numeric = Validate.Numeric( numeric )
+                    ? numeric
+                    : Numeric.NS;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+            }
+        }
+
+        /// <summary>
+        /// Sets the numeric.
+        /// </summary>
+        /// <param name="dataRow">The data row.</param>
+        /// <param name="numeric">The numeric.</param>
+        private protected void SetNumeric( DataRow dataRow, Numeric numeric )
+        {
+            if( dataRow != null
+                && Validate.Numeric( numeric ) )
+            {
+                try
+                {
+                    var _names = dataRow.Table
+                        ?.GetColumnNames();
+
+                    if( _names?.Any() == true )
+                    {
+                        _numeric = _names.Contains( numeric.ToString() )
                             ? numeric
                             : Numeric.NS;
                     }
@@ -179,50 +230,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the numeric. </summary>
-        /// <param name = "numeric" > The numeric. </param>
-        /// <returns> </returns>
-        private protected void SetNumeric( Numeric numeric )
-        {
-            try
-            {
-                Numeric = Validate.Numeric( numeric )
-                    ? numeric
-                    : Numeric.NS;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary> Sets the numeric. </summary>
-        /// <param name = "data" > The data. </param>
-        /// <param name = "numeric" > The numeric. </param>
-        /// <returns> </returns>
-        private protected void SetNumeric( DataRow data, Numeric numeric )
-        {
-            if( data != null
-                && Validate.Numeric( numeric ) )
-            {
-                try
-                {
-                    var columns = data.Table.GetColumnNames();
-
-                    Numeric = columns.Contains( numeric.ToString() )
-                        ? numeric
-                        : Numeric.NS;
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
-        /// <summary> Sets the value. </summary>
-        /// <param name = "value" > The value. </param>
-        /// <returns> </returns>
+        /// <summary>
+        /// Sets the value.
+        /// </summary>
+        /// <param name="value">The value.</param>
         private protected void SetValue( string value )
         {
             try
@@ -230,7 +241,7 @@ namespace BudgetExecution
                 if( Verify.Input( value )
                     && Enum.GetNames( typeof( Numeric ) ).Contains( value ) )
                 {
-                    Value = value;
+                    _value = value;
                 }
             }
             catch( Exception ex )
@@ -239,22 +250,24 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the value. </summary>
-        /// <param name = "data" > The data. </param>
-        /// <param name = "value" > The value. </param>
-        /// <returns> </returns>
-        private protected void SetValue( DataRow data, string value )
+        /// <summary>
+        /// Sets the value.
+        /// </summary>
+        /// <param name="dataRow">The data row.</param>
+        /// <param name="columnName">Name of the column.</param>
+        private protected void SetValue( DataRow dataRow, string columnName )
         {
-            if( data != null
-                && Verify.Input( value )
-                && Enum.GetNames( typeof( Numeric ) ).Contains( value ) )
+            if( dataRow != null
+                && Verify.Input( columnName )
+                && Enum.GetNames( typeof( Numeric ) ).Contains( columnName ) )
             {
                 try
                 {
-                    var columns = data.Table.GetColumnNames();
+                    var _names = dataRow.Table
+                        ?.GetColumnNames();
 
-                    Value = columns.Contains( value )
-                        ? data[ value ].ToString()
+                    _value = _names.Contains( columnName )
+                        ? dataRow[ columnName ].ToString()
                         : string.Empty;
                 }
                 catch( Exception ex )
@@ -264,22 +277,27 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the value. </summary>
-        /// <param name = "data" > The data. </param>
-        /// <param name = "numeric" > The numeric. </param>
-        /// <returns> </returns>
-        private protected void SetValue( DataRow data, Numeric numeric )
+        /// <summary>
+        /// Sets the value.
+        /// </summary>
+        /// <param name="dataRow">The data row.</param>
+        /// <param name="numeric">The numeric.</param>
+        private protected void SetValue( DataRow dataRow, Numeric numeric )
         {
-            if( data != null
+            if( dataRow != null
                 && Validate.Numeric( numeric ) )
             {
                 try
                 {
-                    var columns = data.Table.GetColumnNames();
+                    var _names = dataRow.Table
+                        ?.GetColumnNames();
 
-                    Value = columns.Contains( numeric.ToString() )
-                        ? data[ $"{numeric}" ].ToString()
-                        : string.Empty;
+                    if( _names?.Any() == true )
+                    {
+                        _value = _names.Contains( numeric.ToString() )
+                            ? dataRow[ $"{numeric}" ].ToString()
+                            : string.Empty;
+                    }
                 }
                 catch( Exception ex )
                 {
@@ -288,13 +306,15 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Gets the value. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the funding.
+        /// </summary>
+        /// <returns></returns>
         public double GetFunding()
         {
             try
             {
-                return Funding;
+                return _funding;
             }
             catch( Exception ex )
             {
@@ -303,16 +323,18 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Gets the amount. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the amount.
+        /// </summary>
+        /// <returns></returns>
         public IAmount GetAmount()
         {
             try
             {
-                var amount = GetFunding();
+                var _amount = GetFunding();
 
-                return amount != default
-                    ? new Amount( amount )
+                return _amount != default( double )
+                    ? new Amount( _amount )
                     : Amount.Default;
             }
             catch( Exception ex )
@@ -322,13 +344,15 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Get Error Dialog. </summary>
-        /// <param name = "ex" > The ex. </param>
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
         private protected static new void Fail( Exception ex )
         {
-            using var error = new Error( ex );
-            error.SetText();
-            error.ShowDialog();
+            using var _error = new Error( ex );
+            _error.SetText();
+            _error.ShowDialog();
         }
     }
 }

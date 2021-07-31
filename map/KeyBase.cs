@@ -1,13 +1,9 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
-    // **************************************************************************************************************************
-    // ********************************************      ASSEMBLIES    **********************************************************
-    // **************************************************************************************************************************
-
     using System;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
@@ -19,32 +15,24 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     public abstract class KeyBase : Unit
     {
-        // **************************************************************************************************************************
-        // ********************************************      PROPERTIES    **********************************************************
-        // **************************************************************************************************************************
-
         /// <summary> Gets or sets the field. </summary>
         /// <value> The field. </value>
-        private protected PrimaryKey PrimaryKey { get; set; }
+        private protected PrimaryKey _primaryKey;
 
         /// <summary> Gets or sets the value. </summary>
         /// <value> The value. </value>
-        private protected int Index { get; set; }
+        private protected int _index;
 
-        // **************************************************************************************************************************
-        // ********************************************      METHODS    *************************************************************
-        // **************************************************************************************************************************
-
-        /// <summary> Sets the name. </summary>
-        /// <param name = "name" > The name. </param>
+        /// <summary> Sets the columnName. </summary>
+        /// <param columnName = "columnName" > The columnName. </param>
         /// <returns> </returns>
-        public override void SetName( string name )
+        public override void SetName( string columnName )
         {
             try
             {
-                Name = Verify.Input( name )
-                    ? name
-                    : default;
+                _name = Verify.Input( columnName )
+                    ? columnName
+                    : default( string );
             }
             catch( Exception ex )
             {
@@ -52,8 +40,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the name. </summary>
-        /// <param name = "datarow" > The data. </param>
+        /// <summary> Sets the columnName. </summary>
+        /// <param columnName = "datarow" > The data. </param>
         /// <returns> </returns>
         private protected void SetName( DataRow datarow )
         {
@@ -61,11 +49,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var colname = datarow[ 0 ].ToString();
-                    var names = datarow?.Table?.GetColumnNames();
+                    var _column = datarow[ 0 ].ToString();
+                    var _names = datarow?.Table?.GetColumnNames();
 
-                    Name = Verify.Input( colname ) && names?.Contains( colname ) == true
-                        ? colname
+                    _name = Verify.Input( _column ) && _names?.Contains( _column ) == true
+                        ? _column
                         : PrimaryKey.NS.ToString();
                 }
                 catch( Exception ex )
@@ -75,8 +63,8 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the name. </summary>
-        /// <param name = "field" > The field. </param>
+        /// <summary> Sets the columnName. </summary>
+        /// <param columnName = "field" > The field. </param>
         /// <returns> </returns>
         private protected void SetName( PrimaryKey field )
         {
@@ -84,9 +72,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Name = Validate.Field( field )
+                    _name = Validate.Field( field )
                         ? field.ToString()
-                        : default;
+                        : default( string );
                 }
                 catch( Exception ex )
                 {
@@ -95,9 +83,9 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the name. </summary>
-        /// <param name = "datarow" > The data. </param>
-        /// <param name = "index" > The field. </param>
+        /// <summary> Sets the columnName. </summary>
+        /// <param columnName = "datarow" > The data. </param>
+        /// <param columnName = "index" > The field. </param>
         /// <returns> </returns>
         private protected void SetName( DataRow datarow, PrimaryKey index )
         {
@@ -106,9 +94,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var names = datarow?.Table?.GetColumnNames();
+                    var _names = datarow?.Table?.GetColumnNames();
 
-                    Name = names?.Contains( index.ToString() ) == true
+                    _name = _names?.Contains( index.ToString() ) == true
                         ? index.ToString()
                         : PrimaryKey.NS.ToString();
                 }
@@ -120,16 +108,16 @@ namespace BudgetExecution
         }
 
         /// <summary> Sets the field. </summary>
-        /// <param name = "keyname" > The name. </param>
+        /// <param columnName = "keyName" > The columnName. </param>
         /// <returns> </returns>
-        private protected void SetPrimaryKey( string keyname )
+        private protected void SetPrimaryKey( string keyName )
         {
             try
             {
-                var key = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ), keyname );
+                var _primaryKey = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ), keyName );
 
-                PrimaryKey = Enum.IsDefined( typeof( PrimaryKey ), key )
-                    ? key
+                this._primaryKey = Enum.IsDefined( typeof( PrimaryKey ), _primaryKey )
+                    ? _primaryKey
                     : PrimaryKey.NS;
             }
             catch( Exception ex )
@@ -139,28 +127,28 @@ namespace BudgetExecution
         }
 
         /// <summary> Sets the field. </summary>
-        /// <param name = "datarow" > The data. </param>
+        /// <param columnName = "dataRow" > The data. </param>
         /// <returns> </returns>
-        private protected void SetPrimaryKey( DataRow datarow )
+        private protected void SetPrimaryKey( DataRow dataRow )
         {
-            if( Verify.Row( datarow ) )
+            if( Verify.Row( dataRow ) )
             {
                 try
                 {
-                    var columns = Enum.GetNames( typeof( PrimaryKey ) );
+                    var _columns = Enum.GetNames( typeof( PrimaryKey ) );
 
-                    if( columns?.Contains( datarow[ 0 ]?.ToString() ) == true )
+                    if( _columns?.Contains( dataRow[ 0 ]?.ToString() ) == true )
                     {
-                        var field = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ), datarow[ 0 ].ToString() );
-                        var names = datarow.Table?.GetColumnNames();
+                        var _field = (PrimaryKey)Enum.Parse( typeof( PrimaryKey ), dataRow[ 0 ].ToString() );
+                        var _names = dataRow.Table?.GetColumnNames();
 
-                        PrimaryKey = names?.Contains( field.ToString() ) == true
-                            ? field
+                        _primaryKey = _names?.Contains( _field.ToString() ) == true
+                            ? _field
                             : PrimaryKey.NS;
                     }
                     else
                     {
-                        PrimaryKey = PrimaryKey.NS;
+                        _primaryKey = PrimaryKey.NS;
                     }
                 }
                 catch( Exception ex )
@@ -171,13 +159,13 @@ namespace BudgetExecution
         }
 
         /// <summary> Sets the field. </summary>
-        /// <param name = "keyname" > The field. </param>
+        /// <param columnName = "keyname" > The field. </param>
         /// <returns> </returns>
         private protected void SetPrimaryKey( PrimaryKey keyname )
         {
             try
             {
-                PrimaryKey = Validate.Field( keyname )
+                _primaryKey = Validate.Field( keyname )
                     ? keyname
                     : PrimaryKey.NS;
             }
@@ -188,8 +176,8 @@ namespace BudgetExecution
         }
 
         /// <summary> Sets the field. </summary>
-        /// <param name = "data" > The data. </param>
-        /// <param name = "keyname" > The field. </param>
+        /// <param columnName = "data" > The data. </param>
+        /// <param columnName = "keyname" > The field. </param>
         /// <returns> </returns>
         private protected void SetPrimaryKey( DataRow data, PrimaryKey keyname )
         {
@@ -198,9 +186,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var names = data?.Table?.GetColumnNames();
+                    var _names = data?.Table?.GetColumnNames();
 
-                    PrimaryKey = names?.Contains( keyname.ToString() ) == true
+                    _primaryKey = _names?.Contains( keyname.ToString() ) == true
                         ? keyname
                         : PrimaryKey.NS;
                 }
@@ -212,13 +200,13 @@ namespace BudgetExecution
         }
 
         /// <summary> Sets the value. </summary>
-        /// <param name = "value" > The value. </param>
+        /// <param columnName = "value" > The value. </param>
         /// <returns> </returns>
         private protected void SetIndex( int value )
         {
             try
             {
-                Index = value > -1
+                _index = value > -1
                     ? value
                     : (int)PrimaryKey.NS;
             }
@@ -229,8 +217,8 @@ namespace BudgetExecution
         }
 
         /// <summary> Sets the value. </summary>
-        /// <param name = "data" > The data. </param>
-        /// <param name = "key" > The field. </param>
+        /// <param columnName = "data" > The data. </param>
+        /// <param columnName = "key" > The field. </param>
         /// <returns> </returns>
         private protected void SetIndex( DataRow data, PrimaryKey key )
         {
@@ -239,9 +227,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var names = data?.Table?.GetColumnNames();
+                    var _names = data?.Table?.GetColumnNames();
 
-                    Index = names?.Contains( key.ToString() ) == true
+                    _index = _names?.Contains( key.ToString() ) == true
                         ? int.Parse( data[ $"{key}" ].ToString() )
                         : (int)PrimaryKey.NS;
                 }

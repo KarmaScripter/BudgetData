@@ -1,6 +1,6 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -42,7 +42,7 @@ namespace BudgetExecution
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IQuery );
             }
         }
 
@@ -56,12 +56,12 @@ namespace BudgetExecution
 
                 return Verify.Rows( data )
                     ? data
-                    : default;
+                    : default( EnumerableRowCollection<DataRow> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IEnumerable<DataRow> );
             }
         }
 
@@ -87,16 +87,16 @@ namespace BudgetExecution
 
                     return datatable?.Rows?.Count > 0
                         ? datatable
-                        : default;
+                        : default( DataTable );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( DataTable );
                 }
             }
 
-            return default;
+            return default( DataTable );
         }
 
         /// <summary> Gets the data set. </summary>
@@ -121,16 +121,16 @@ namespace BudgetExecution
 
                     return datatable?.Rows?.Count > 0
                         ? R6
-                        : default;
+                        : default( DataSet );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( DataSet );
                 }
             }
 
-            return default;
+            return default( DataSet );
         }
 
         /// <summary> Sets the column captions. </summary>
@@ -186,12 +186,12 @@ namespace BudgetExecution
 
                 return table.Columns.Count > 0
                     ? table.Columns
-                    : default;
+                    : default( DataColumnCollection );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( DataColumnCollection );
             }
         }
 
@@ -215,11 +215,11 @@ namespace BudgetExecution
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IEnumerable<int> );
                 }
             }
 
-            return default;
+            return default( IEnumerable<int> );
         }
 
         /// <summary> Gets the column ordinals. </summary>
@@ -244,16 +244,16 @@ namespace BudgetExecution
 
                     return values?.Any() == true
                         ? values.ToArray()
-                        : default;
+                        : default( int[ ] );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IEnumerable<int> );
                 }
             }
 
-            return default;
+            return default( IEnumerable<int> );
         }
     }
 }

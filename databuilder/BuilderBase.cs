@@ -1,114 +1,116 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
-    // ********************************************************************************************************************************
-    // *********************************************************  ASSEMBLIES   ********************************************************
-    // ********************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Linq;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="BudgetExecution.DataAccess" />
     public abstract class BuilderBase : DataAccess
     {
-        // ***************************************************************************************************************************
-        // ************************************************  METHODS   ***************************************************************
-        // ***************************************************************************************************************************
-
-        /// <summary> Gets the column ordinals. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the column ordinals.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<int> GetColumnOrdinals()
         {
             try
             {
-                var columns = GetDataTable()?.Columns;
-                var values = new List<int>();
+                var _columns = GetDataTable()?.Columns;
+                var _values = new List<int>();
 
-                if( columns?.Count > 0 )
+                if( _columns?.Count > 0 )
                 {
-                    foreach( DataColumn column in columns )
+                    foreach( DataColumn column in _columns )
                     {
-                        values?.Add( column.Ordinal );
+                        _values?.Add( column.Ordinal );
                     }
                 }
 
-                return values?.Any() == true
-                    ? values
+                return _values?.Any() == true
+                    ? _values
                     : default( IEnumerable<int> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IEnumerable<int> );
             }
         }
 
-        /// <summary> Gets the data elements. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the fields.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Field> GetFields()
         {
             try
             {
-                var columns = Record?.ToDictionary()?.Keys?.ToArray();
+                var _columns = Record?.ToDictionary()?.Keys?.ToArray();
 
-                if( columns?.Any() == true )
+                if( _columns?.Any() == true )
                 {
-                    var elements = columns?.Select( e => e.ToEnum<Field>() );
+                    var _fields = _columns?.Select( e => e.ToEnum<Field>() );
 
-                    return elements?.Any() == true
-                        ? elements
-                        : default;
+                    return _fields?.Any() == true
+                        ? _fields
+                        : default( IEnumerable<Field> );
                 }
                 else
                 {
-                    return default;
+                    return default( IEnumerable<Field> );
                 }
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IEnumerable<Field> );
             }
         }
 
-        /// <summary> Gets the data elements. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the elements.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<IElement> GetElements()
         {
             try
             {
-                var list = new List<IElement>();
-                var columns = Record?.Table?.Columns;
-                var fields = Enum.GetNames( typeof( Field ) );
+                var _elements = new List<IElement>();
+                var _columns = Record?.Table?.Columns;
+                var _fields = Enum.GetNames( typeof( Field ) );
 
-                if( columns?.Count > 0 )
+                if( _columns?.Count > 0 )
                 {
-                    foreach( DataColumn column in columns )
+                    foreach( DataColumn column in _columns )
                     {
                         if( column?.DataType == typeof( string )
-                            && fields?.Contains( column?.ColumnName ) == true )
+                            && _fields?.Contains( column?.ColumnName ) == true )
                         {
-                            list?.Add( new Element( Record, column?.ColumnName ) );
+                            _elements?.Add( new Element( Record, column?.ColumnName ) );
                         }
                     }
 
-                    return list?.Any() == true
-                        ? list
+                    return _elements?.Any() == true
+                        ? _elements
                         : default( IEnumerable<IElement> );
                 }
                 else
                 {
-                    return default;
+                    return default( IEnumerable<IElement> );
                 }
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IEnumerable<IElement> );
             }
         }
     }

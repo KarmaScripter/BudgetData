@@ -1,61 +1,55 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿//  <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+//  Copyright (c) Terry Eppler. All rights reserved.
+//  </copyright>
 
 namespace BudgetExecution
 {
-    // **************************************************************************************************************************
-    // ********************************************      ASSEMBLIES    **********************************************************
-    // **************************************************************************************************************************
     using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
 
-    /// <summary> </summary>
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="BudgetExecution.ElementBase" />
+    /// <seealso cref="BudgetExecution.IElement" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class Element : ElementBase, IElement
     {
-        // **************************************************************************************************************************
-        // ********************************************      FIELDS     *************************************************************
-        // **************************************************************************************************************************
-
-        /// <summary> The default </summary>
-        public static readonly IElement Default = new Element( Field.NS );
-
-        // **************************************************************************************************************************
-        // ********************************************   CONSTRUCTORS     **********************************************************
-        // **************************************************************************************************************************
+        /// <summary>
+        /// The initial
+        /// </summary>
+        private protected string _initial;
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "Element"/>
-        /// class.
+        /// The default
+        /// </summary>
+        public static readonly IElement Default = new Element( Field.NS );
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
         public Element()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "Element"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
-        /// <param name = "kvp" > The KVP. </param>
+        /// <param name="kvp">The KVP.</param>
         public Element( KeyValuePair<string, object> kvp )
         {
             SetName( kvp.Key );
-            SetField( Name );
+            SetField( _name );
             SetValue( kvp.Value?.ToString() );
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "Element"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
-        /// <param name = "name" > The name. </param>
-        /// <param name = "value" > The value. </param>
+        /// <param name="name">The name.</param>
+        /// <param name="value">The value.</param>
         public Element( string name, string value = "" )
         {
             SetField( name );
@@ -65,85 +59,67 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "Element"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
-        /// <param name = "data" > The data. </param>
-        /// <param name = "field" > The field. </param>
-        public Element( DataRow data, Field field )
+        /// <param name="dataRow">The data row.</param>
+        /// <param name="field">The field.</param>
+        public Element( DataRow dataRow, Field field )
         {
-            SetField( data, field );
-            SetName( data, field );
-            SetValue( data, field );
-            SetData( data, field );
+            SetField( dataRow, field );
+            SetName( dataRow, field );
+            SetValue( dataRow, field );
+            SetData( dataRow, field );
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "Element"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
-        /// <param name = "field" > The field. </param>
-        /// <param name = "value" > The value. </param>
+        /// <param name="field">The field.</param>
+        /// <param name="value">The value.</param>
         public Element( Field field, string value = "" )
         {
             SetField( field );
-            SetName( Field );
+            SetName( _field );
             SetValue( value );
             SetData( value );
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "Element"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
-        /// <param name = "data" > The data. </param>
-        /// <param name = "value" > The value. </param>
-        public Element( DataRow data, string value )
+        /// <param name="dataRow">The data row.</param>
+        /// <param name="value">The value.</param>
+        public Element( DataRow dataRow, string value )
         {
-            SetField( data, value );
-            SetName( data, value );
-            SetValue( data, value );
-            SetData( data, value );
+            SetField( dataRow, value );
+            SetName( dataRow, value );
+            SetValue( dataRow, value );
+            SetData( dataRow, value );
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "Element"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
-        /// <param name = "data" > The data. </param>
-        /// <param name = "column" > The column. </param>
-        public Element( DataRow data, DataColumn column )
+        /// <param name="dataRow">The data row.</param>
+        /// <param name="dataColumn">The data column.</param>
+        public Element( DataRow dataRow, DataColumn dataColumn )
         {
-            SetField( column.ColumnName );
-            SetName( column.ColumnName );
-            SetValue( data, data[ column ].ToString() );
-            SetData( data, column );
+            SetField( dataColumn.ColumnName );
+            SetName( dataColumn.ColumnName );
+            SetValue( dataRow, dataRow[ dataColumn ].ToString() );
+            SetData( dataRow, dataColumn );
         }
 
-        // ***************************************************************************************************************************
-        // ****************************************************  PROPERTIES   ********************************************************
-        // ***************************************************************************************************************************
-
-        /// <summary> Gets the value. </summary>
-        /// <value> The value. </value>
-        private protected string Initial { get; set; }
-
-        // **************************************************************************************************************************
-        // ********************************************      METHODS    *************************************************************
-        // **************************************************************************************************************************
-
-        /// <summary> Gets the field. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the field.
+        /// </summary>
+        /// <returns></returns>
         public Field GetField()
         {
             try
             {
-                return Enum.IsDefined( typeof( Field ), Field )
-                    ? Field
+                return Enum.IsDefined( typeof( Field ), _field )
+                    ? _field
                     : Field.NS;
             }
             catch( Exception ex )
@@ -153,18 +129,18 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Converts to string. </summary>
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
         /// <returns>
-        /// A
-        /// <see cref = "string"/>
-        /// that represents this instance.
+        /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
         public override string ToString()
         {
             try
             {
-                return Verify.Input( Name ) && Verify.Input( Value )
-                    ? $"{Name} = {Value}"
+                return Verify.Input( _name ) && Verify.Input( _value )
+                    ? $"{_name} = {_value}"
                     : string.Empty;
             }
             catch( Exception ex )
@@ -174,13 +150,12 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Determines whether the specified element is equal. </summary>
-        /// <param name = "element" > </param>
+        /// <summary>
+        /// Determines whether the specified element is match.
+        /// </summary>
+        /// <param name="element">The element.</param>
         /// <returns>
-        /// <c> true </c>
-        /// if the specified element is equal; otherwise,
-        /// <c> false </c>
-        /// .
+        ///   <c>true</c> if the specified element is match; otherwise, <c>false</c>.
         /// </returns>
         public bool IsMatch( IElement element )
         {
@@ -188,8 +163,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    if( element.GetValue()?.Equals( Value ) == true
-                        && element.GetName()?.Equals( Name ) == true )
+                    if( element.GetValue()?.Equals( _value )  == true
+                        && element.GetName()?.Equals( _name ) == true )
                     {
                         return true;
                     }
@@ -204,14 +179,13 @@ namespace BudgetExecution
             return false;
         }
 
-        /// <summary> Determines whether the specified primary is equal. </summary>
-        /// <param name = "primary" > The primary. </param>
-        /// <param name = "secondary" > The secondary. </param>
+        /// <summary>
+        /// Determines whether the specified primary is match.
+        /// </summary>
+        /// <param name="primary">The primary.</param>
+        /// <param name="secondary">The secondary.</param>
         /// <returns>
-        /// <c> true </c>
-        /// if the specified primary is equal; otherwise,
-        /// <c> false </c>
-        /// .
+        ///   <c>true</c> if the specified primary is match; otherwise, <c>false</c>.
         /// </returns>
         public static bool IsMatch( IElement primary, IElement secondary )
         {

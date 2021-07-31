@@ -1,6 +1,6 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -67,7 +67,7 @@ namespace BudgetExecution
 
                     Input = args?.Any() == true
                         ? args
-                        : default;
+                        : default( Dictionary<string, object> );
                 }
                 catch( Exception ex )
                 {
@@ -104,7 +104,7 @@ namespace BudgetExecution
 
                         Output = args?.Any() == true
                             ? args
-                            : default;
+                            : default( Dictionary<string, object> );
                     }
                 }
                 catch( Exception ex )
@@ -142,16 +142,16 @@ namespace BudgetExecution
 
                     return values?.Any() == true
                         ? values
-                        : default;
+                        : default( IEnumerable<string> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IEnumerable<string> );
                 }
             }
 
-            return default;
+            return default( IEnumerable<string> );
         }
 
         /// <summary> Gets the output values. </summary>
@@ -180,16 +180,16 @@ namespace BudgetExecution
 
                     return list?.Any() == true
                         ? list
-                        : default;
+                        : default( List<string> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IEnumerable<string> );
                 }
             }
 
-            return default;
+            return default( IEnumerable<string> );
         }
     }
 }

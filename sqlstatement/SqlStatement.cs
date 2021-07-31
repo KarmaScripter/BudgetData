@@ -1,58 +1,46 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
-    // ******************************************************************************************************************************
-    // ******************************************************   ASSEMBLIES   ********************************************************
-    // ******************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    /// <inheritdoc/>
-    /// <summary> </summary>
-    /// <seealso cref = "T:BudgetExecution.ISqlStatement"/>
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="BudgetExecution.SqlConfig" />
+    /// <seealso cref="BudgetExecution.ISqlStatement" />
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     public class SqlStatement : SqlConfig, ISqlStatement
     {
-        // ***************************************************************************************************************************
-        // *********************************************   CONSTRUCTORS **************************************************************
-        // ***************************************************************************************************************************
-
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "SqlStatement"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
         /// </summary>
         public SqlStatement()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "SqlStatement"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
         /// </summary>
-        /// <param name = "builder" > The manager. </param>
-        /// <param name = "commandtype" > The commandtype. </param>
-        public SqlStatement( IConnectionBuilder builder, SQL commandtype = SQL.SELECT )
+        /// <param name="builder">The builder.</param>
+        /// <param name="command">The command.</param>
+        public SqlStatement( IConnectionBuilder builder, SQL command = SQL.SELECT )
         {
             ConnectionBuilder = builder;
-            SetCommandType( commandtype );
+            SetCommandType( command );
             Args = null;
             SetCommandText( Args );
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "SqlStatement"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
         /// </summary>
-        /// <param name = "builder" > The manager. </param>
-        /// <param name = "dict" > The dictionary. </param>
+        /// <param name="builder">The builder.</param>
+        /// <param name="dict">The dictionary.</param>
         public SqlStatement( IConnectionBuilder builder, IDictionary<string, object> dict )
         {
             ConnectionBuilder = builder;
@@ -62,54 +50,49 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "SqlStatement"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="SqlStatement"/> class.
         /// </summary>
-        /// <param name = "builder" > The manager. </param>
-        /// <param name = "commandtype" > The commandtype. </param>
-        /// <param name = "dict" > The dictionary. </param>
+        /// <param name="builder">The builder.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="commandType">Type of the command.</param>
         public SqlStatement( IConnectionBuilder builder, IDictionary<string, object> dict,
-            SQL commandtype = SQL.SELECT )
+            SQL commandType = SQL.SELECT )
         {
             ConnectionBuilder = builder;
-            SetCommandType( commandtype );
+            SetCommandType( commandType );
             SetArgs( dict );
             CommandText = GetCommandText();
         }
 
-        // **********************************************************************************************************************
-        // *************************************************    METHODS     *****************************************************
-        // **********************************************************************************************************************
-
-        /// <inheritdoc/>
-        /// <summary> Gets the select statement. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the select statement.
+        /// </summary>
+        /// <returns></returns>
         public string GetSelectStatement()
         {
             if( Args != null )
             {
                 try
                 {
-                    var vals = string.Empty;
+                    var _values = string.Empty;
 
                     foreach( var kvp in Args )
                     {
-                        vals += $"{kvp.Key} = '{kvp.Value}' AND ";
+                        _values += $"{kvp.Key} = '{kvp.Value}' AND ";
                     }
 
-                    var values = vals.TrimEnd( " AND".ToCharArray() );
-                    var table = ConnectionBuilder?.GetTableName();
-                    CommandText = $"{SQL.SELECT} * FROM {table} WHERE {values};";
+                    _values = _values.TrimEnd( " AND".ToCharArray() );
+                    var _table = ConnectionBuilder?.GetTableName();
+                    CommandText = $"{SQL.SELECT} * FROM {_table} WHERE {_values};";
 
                     return Verify.Input( CommandText )
                         ? CommandText
-                        : default;
+                        : default( string );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( string );
                 }
             }
             else if( Args == null )
@@ -117,78 +100,81 @@ namespace BudgetExecution
                 return $"{SQL.SELECT} * FROM {ConnectionBuilder?.GetTableName()};";
             }
 
-            return default;
+            return default( string );
         }
 
-        /// <inheritdoc/>
-        /// <summary> Gets the update statement. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the update statement.
+        /// </summary>
+        /// <returns></returns>
         public string GetUpdateStatement()
         {
             if( Args != null )
             {
                 try
                 {
-                    var update = string.Empty;
+                    var _update = string.Empty;
 
                     foreach( var kvp in Args )
                     {
-                        update += $" {kvp.Key} = '{kvp.Value}' AND";
+                        _update += $" {kvp.Key} = '{kvp.Value}' AND";
                     }
 
-                    var vals = update.TrimEnd( " AND".ToCharArray() );
-                    CommandText = $"{SQL.UPDATE} {ConnectionBuilder?.GetTableName()} SET {vals};";
+                    var _values = _update.TrimEnd( " AND".ToCharArray() );
+                    CommandText = $"{SQL.UPDATE} {ConnectionBuilder?.GetTableName()} SET {_values};";
 
                     return Verify.Input( CommandText )
                         ? CommandText
-                        : default;
+                        : default( string );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( string );
                 }
             }
 
-            return default;
+            return default( string );
         }
 
-        /// <inheritdoc/>
-        /// <summary> Gets the insert statement. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the insert statement.
+        /// </summary>
+        /// <returns></returns>
         public string GetInsertStatement()
         {
             try
             {
-                var table = ConnectionBuilder?.GetTableName();
-                var colname = string.Empty;
-                var vals = string.Empty;
+                var _table = ConnectionBuilder?.GetTableName();
+                var _columnName = string.Empty;
+                var _values = string.Empty;
 
                 foreach( var kvp in Args )
                 {
-                    colname += $"{kvp.Key}, ";
-                    vals += $"{kvp.Value}, ";
+                    _columnName += $"{kvp.Key}, ";
+                    _values += $"{kvp.Value}, ";
                 }
 
                 var values =
-                    $"({colname.TrimEnd( ", ".ToCharArray() )}) VALUES ({vals.TrimEnd( ", ".ToCharArray() )})";
+                    $"({_columnName.TrimEnd( ", ".ToCharArray() )}) VALUES ({_values.TrimEnd( ", ".ToCharArray() )})";
 
-                CommandText = $"{SQL.INSERT} INTO {table} {values};";
+                CommandText = $"{SQL.INSERT} INTO {_table} {values};";
 
                 return Verify.Input( CommandText )
                     ? CommandText
-                    : default;
+                    : default( string );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( string );
             }
         }
 
-        /// <inheritdoc/>
-        /// <summary> Gets the delete statement. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the delete statement.
+        /// </summary>
+        /// <returns></returns>
         public string GetDeleteStatement()
         {
             try
@@ -200,7 +186,7 @@ namespace BudgetExecution
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( string );
             }
         }
     }

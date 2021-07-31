@@ -1,6 +1,6 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -87,22 +87,22 @@ namespace BudgetExecution
 
                         return Verify.DateTime( date )
                             ? date
-                            : default;
+                            : default( DateTime );
                     }
                     else
                     {
-                        return default;
+                        return default( DateTime );
                     }
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( DateTime );
                 }
             }
             else
             {
-                return default;
+                return default( DateTime );
             }
         }
 
@@ -123,16 +123,16 @@ namespace BudgetExecution
 
                     return query?.Any() == true
                         ? query.ToArray()
-                        : default;
+                        : default( DataRow[ ] );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IEnumerable<DataRow> );
                 }
             }
 
-            return default;
+            return default( IEnumerable<DataRow> );
         }
     }
 }

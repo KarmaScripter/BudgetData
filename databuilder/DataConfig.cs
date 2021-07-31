@@ -1,6 +1,6 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -100,7 +100,7 @@ namespace BudgetExecution
                             Query = Verify.Input( connectionbuilder?.GetFilePath() )
                                 && File.Exists( connectionbuilder?.GetFilePath() )
                                     ? new ExcelQuery( filepath )
-                                    : default;
+                                    : default( ExcelQuery );
 
                             break;
                         }
@@ -184,7 +184,7 @@ namespace BudgetExecution
 
                             Query = Verify.Input( filepath ) && File.Exists( filepath )
                                 ? new ExcelQuery( filepath, args )
-                                : default;
+                                : default( ExcelQuery );
 
                             break;
                         }
@@ -262,12 +262,12 @@ namespace BudgetExecution
             {
                 return Verify.Row( Record )
                     ? Record
-                    : default;
+                    : default( DataRow );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( DataRow );
             }
         }
 

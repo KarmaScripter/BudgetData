@@ -1,6 +1,6 @@
-﻿// // <copyright file = "TriggerBuilder.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file = "TriggerBuilder.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -17,9 +17,9 @@ namespace BudgetExecution
 
             foreach( var fks in dt.ForeignKeys )
             {
-                result.Add( TriggerBuilder.GenerateInsertTrigger( fks ) );
-                result.Add( TriggerBuilder.GenerateUpdateTrigger( fks ) );
-                result.Add( TriggerBuilder.GenerateDeleteTrigger( fks ) );
+                result.Add( GenerateInsertTrigger( fks ) );
+                result.Add( GenerateUpdateTrigger( fks ) );
+                result.Add( GenerateDeleteTrigger( fks ) );
             }
 
             return result;
@@ -42,7 +42,7 @@ namespace BudgetExecution
         {
             var trigger = new TriggerSchema
             {
-                name = TriggerBuilder.MakeTriggerName( fks, "fki" ), type = TriggerType.Before,
+                name = MakeTriggerName( fks, "fki" ), type = TriggerType.Before,
                 @event = TriggerEvent.Insert, table = fks.tableName
             };
 
@@ -77,7 +77,7 @@ namespace BudgetExecution
         {
             var trigger = new TriggerSchema
             {
-                name = TriggerBuilder.MakeTriggerName( fks, "fku" ), type = TriggerType.Before,
+                name = MakeTriggerName( fks, "fku" ), type = TriggerType.Before,
                 @event = TriggerEvent.Update, table = fks.tableName
             };
 
@@ -113,7 +113,7 @@ namespace BudgetExecution
         {
             var trigger = new TriggerSchema
             {
-                name = TriggerBuilder.MakeTriggerName( fks, "fkd" ), type = TriggerType.Before,
+                name = MakeTriggerName( fks, "fkd" ), type = TriggerType.Before,
                 @event = TriggerEvent.Delete, table = fks.foreignTableName
             };
 

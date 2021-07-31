@@ -122,7 +122,7 @@ namespace BudgetExecution
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( string );
             }
         }
 
@@ -161,17 +161,17 @@ namespace BudgetExecution
 
                         return datatable.Columns.Count > 0
                             ? datatable
-                            : default;
+                            : default( DataTable );
                     }
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( DataTable );
                 }
             }
 
-            return default;
+            return default( DataTable );
         }
 
         /// <summary>
@@ -208,17 +208,17 @@ namespace BudgetExecution
 
                         return datatable.Columns.Count > 0
                             ? datatable
-                            : default;
+                            : default( DataTable );
                     }
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( DataTable );
                 }
             }
 
-            return default;
+            return default( DataTable );
         }
 
         /// <summary>

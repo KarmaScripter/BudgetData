@@ -1,28 +1,32 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
     using System;
 
-    // ***************************************************************************************************************************
-    // ****************************************************     METHODS   ********************************************************
-    // ***************************************************************************************************************************
-
-    /// <summary> </summary>
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IKey
     {
-        /// <summary> Gets the name. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        /// <returns></returns>
         string GetName();
 
-        /// <summary> Gets the value. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the index.
+        /// </summary>
+        /// <returns></returns>
         int GetIndex();
 
-        /// <summary> Gets the field. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the primary key.
+        /// </summary>
+        /// <returns></returns>
         PrimaryKey GetPrimaryKey();
     }
 }

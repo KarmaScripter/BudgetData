@@ -1,6 +1,6 @@
-﻿// // <copyright file = "CommandBuilder.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file = "CommandBuilder.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -105,18 +105,18 @@ namespace BudgetExecution
 
                         default:
                         {
-                            return default;
+                            return default( DbCommand );
                         }
                     }
                 }
                 catch( Exception ex )
                 {
-                    CommandBuilder.Fail( ex );
-                    return default;
+                    Fail( ex );
+                    return default( DbCommand );
                 }
             }
 
-            return default;
+            return default( DbCommand );
         }
 
         /// <summary> Gets the command. </summary>
@@ -127,12 +127,12 @@ namespace BudgetExecution
             {
                 return Verify.Ref( Command )
                     ? Command
-                    : default;
+                    : default( DbCommand );
             }
             catch( Exception ex )
             {
-                CommandBuilder.Fail( ex );
-                return default;
+                Fail( ex );
+                return default( DbCommand );
             }
         }
     }

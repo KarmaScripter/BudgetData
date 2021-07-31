@@ -102,12 +102,12 @@ namespace BudgetExecution
             {
                 return Verify.Ref( builder )
                     ? builder
-                    : default;
+                    : default( IConnectionBuilder );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IConnectionBuilder );
             }
         }
 
@@ -123,12 +123,12 @@ namespace BudgetExecution
             {
                 return Verify.Ref( _connectionBuilder )
                     ? _connectionBuilder
-                    : default;
+                    : default( IConnectionBuilder );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IConnectionBuilder );
             }
         }
 
@@ -201,11 +201,11 @@ namespace BudgetExecution
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( DbConnection );
                 }
             }
 
-            return default;
+            return default( DbConnection );
         }
 
         /// <inheritdoc/>
@@ -220,12 +220,12 @@ namespace BudgetExecution
             {
                 return Verify.Ref( Connection )
                     ? Connection
-                    : default;
+                    : default( DbConnection );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( DbConnection );
             }
         }
 

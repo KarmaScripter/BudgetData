@@ -1,6 +1,6 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -48,12 +48,12 @@ namespace BudgetExecution
         /// <param name = "value" > The value. </param>
         public Amount( Numeric numeric = Numeric.Amount, double value = 0.0 )
         {
-            Data = value;
-            Funding = value;
-            Numeric = numeric;
-            Name = Numeric.ToString();
-            Initial = Funding;
-            Delta = Initial - Funding;
+            _data = value;
+            _funding = value;
+            _numeric = numeric;
+            _name = _numeric.ToString();
+            _initial = _funding;
+            _delta = _initial - _funding;
         }
 
         /// <summary>
@@ -65,12 +65,12 @@ namespace BudgetExecution
         /// <param name = "numeric" > The numeric. </param>
         public Amount( double value = 0, Numeric numeric = Numeric.Amount )
         {
-            Data = value;
-            Funding = value;
-            Numeric = numeric;
-            Name = Numeric.ToString();
-            Initial = Funding;
-            Delta = Initial - Funding;
+            _data = value;
+            _funding = value;
+            _numeric = numeric;
+            _name = _numeric.ToString();
+            _initial = _funding;
+            _delta = _initial - _funding;
         }
 
         /// <summary>
@@ -82,12 +82,12 @@ namespace BudgetExecution
         /// <param name = "numeric" > The numeric. </param>
         public Amount( DataRow data, Numeric numeric = Numeric.Amount )
         {
-            Funding = double.Parse( data[ $"{numeric}" ].ToString() );
-            Data = Funding.ToString();
-            Numeric = numeric;
-            Name = Numeric.ToString();
-            Initial = Funding;
-            Delta = Initial - Funding;
+            _funding = double.Parse( data[ $"{numeric}" ].ToString() );
+            _data = _funding.ToString();
+            _numeric = numeric;
+            _name = _numeric.ToString();
+            _initial = _funding;
+            _delta = _initial - _funding;
         }
 
         // **************************************************************************************************************************
@@ -100,8 +100,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Initial > 0
-                    ? Initial
+                return _initial > 0
+                    ? _initial
                     : Default.GetFunding();
             }
             catch( Exception ex )
@@ -117,8 +117,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Delta != 0
-                    ? Delta
+                return _delta != 0
+                    ? _delta
                     : Default.GetFunding();
             }
             catch( Exception ex )
@@ -134,14 +134,14 @@ namespace BudgetExecution
         {
             try
             {
-                return Enum.IsDefined( typeof( Numeric ), Numeric )
-                    ? Numeric
+                return Enum.IsDefined( typeof( Numeric ), _numeric )
+                    ? _numeric
                     : Numeric.NS;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( Numeric );
             }
         }
 
@@ -151,10 +151,10 @@ namespace BudgetExecution
         {
             try
             {
-                Delta = amount;
-                Funding += Delta;
+                _delta = amount;
+                _funding += _delta;
 
-                if( Initial != Funding )
+                if( _initial != _funding )
                 {
                     //unfinished
                 }
@@ -171,14 +171,14 @@ namespace BudgetExecution
         {
             try
             {
-                Delta = amount;
+                _delta = amount;
 
-                if( Funding > amount )
+                if( _funding > amount )
                 {
-                    Funding -= amount;
+                    _funding -= amount;
                 }
 
-                if( Initial != Funding )
+                if( _initial != _funding )
                 {
                     // Unfinished
                 }
@@ -199,8 +199,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( Data?.ToString() )
-                    ? Data?.ToString()
+                return Verify.Input( _data?.ToString() )
+                    ? _data?.ToString()
                     : string.Empty;
             }
             catch( Exception ex )
@@ -225,8 +225,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    if( amount?.GetFunding() == Funding
-                        && amount?.GetName()?.Equals( Name ) == true )
+                    if( amount?.GetFunding() == _funding
+                        && amount?.GetName()?.Equals( _name ) == true )
                     {
                         return true;
                     }

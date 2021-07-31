@@ -1,6 +1,6 @@
-﻿// // <copyright file = "CommandFactory.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file = "CommandFactory.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -76,21 +76,21 @@ namespace BudgetExecution
                             {
                                 return Verify.Input( sql )
                                     ? new SQLiteCommand( sql )
-                                    : default;
+                                    : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
                                 return Verify.Input( sql )
                                     ? new SqlCeCommand( sql )
-                                    : default;
+                                    : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
                                 return Verify.Input( sql )
                                     ? new SqlCommand( sql )
-                                    : default;
+                                    : default( SqlCommand );
                             }
 
                             case Provider.Excel:
@@ -100,19 +100,19 @@ namespace BudgetExecution
                             {
                                 return Verify.Input( sql )
                                     ? new OleDbCommand( sql )
-                                    : default;
+                                    : default( OleDbCommand );
                             }
                         }
                     }
                 }
                 catch( Exception ex )
                 {
-                    CommandFactory.Fail( ex );
-                    return default;
+                    Fail( ex );
+                    return default( DbCommand );
                 }
             }
 
-            return default;
+            return default( DbCommand );
         }
 
         /// <inheritdoc/>
@@ -140,14 +140,14 @@ namespace BudgetExecution
                         {
                             return Verify.Input( sql )
                                 ? new SQLiteCommand( sql )
-                                : default;
+                                : default( SQLiteCommand );
                         }
 
                         case Provider.SqlServer:
                         {
                             return Verify.Input( sql )
                                 ? new SqlCommand( sql )
-                                : default;
+                                : default( SqlCommand );
                         }
 
                         case Provider.Excel:
@@ -157,18 +157,18 @@ namespace BudgetExecution
                         {
                             return Verify.Input( sql )
                                 ? new OleDbCommand( sql )
-                                : default;
+                                : default( OleDbCommand );
                         }
                     }
                 }
                 catch( Exception ex )
                 {
-                    CommandFactory.Fail( ex );
-                    return default;
+                    Fail( ex );
+                    return default( DbCommand );
                 }
             }
 
-            return default;
+            return default( DbCommand );
         }
 
         /// <inheritdoc/>
@@ -196,21 +196,21 @@ namespace BudgetExecution
                             {
                                 return Verify.Input( sql )
                                     ? new SQLiteCommand( sql )
-                                    : default;
+                                    : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
                                 return Verify.Input( sql )
                                     ? new SqlCeCommand( sql )
-                                    : default;
+                                    : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
                                 return Verify.Input( sql )
                                     ? new SqlCommand( sql )
-                                    : default;
+                                    : default( SqlCommand );
                             }
 
                             case Provider.Excel:
@@ -220,19 +220,19 @@ namespace BudgetExecution
                             {
                                 return Verify.Input( sql )
                                     ? new OleDbCommand( sql )
-                                    : default;
+                                    : default( OleDbCommand );
                             }
                         }
                     }
                 }
                 catch( Exception ex )
                 {
-                    CommandFactory.Fail( ex );
-                    return default;
+                    Fail( ex );
+                    return default( DbCommand );
                 }
             }
 
-            return default;
+            return default( DbCommand );
         }
 
         /// <inheritdoc/>
@@ -262,21 +262,21 @@ namespace BudgetExecution
                             {
                                 return Verify.Input( sql )
                                     ? new SQLiteCommand( sql )
-                                    : default;
+                                    : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
                                 return Verify.Input( sql )
                                     ? new SqlCeCommand( sql )
-                                    : default;
+                                    : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
                                 return Verify.Input( sql )
                                     ? new SqlCommand( sql )
-                                    : default;
+                                    : default( SqlCommand );
                             }
 
                             case Provider.Excel:
@@ -286,19 +286,19 @@ namespace BudgetExecution
                             {
                                 return Verify.Input( sql )
                                     ? new OleDbCommand( sql )
-                                    : default;
+                                    : default( OleDbCommand );
                             }
                         }
                     }
                 }
                 catch( Exception ex )
                 {
-                    CommandFactory.Fail( ex );
-                    return default;
+                    Fail( ex );
+                    return default( DbCommand );
                 }
             }
 
-            return default;
+            return default( DbCommand );
         }
 
         /// <inheritdoc/>
@@ -326,21 +326,21 @@ namespace BudgetExecution
                             {
                                 return Verify.Input( sql )
                                     ? new SQLiteCommand( sql )
-                                    : default;
+                                    : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
                                 return Verify.Input( sql )
                                     ? new SqlCeCommand( sql )
-                                    : default;
+                                    : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
                                 return Verify.Input( sql )
                                     ? new SqlCommand( sql )
-                                    : default;
+                                    : default( SqlCommand );
                             }
 
                             case Provider.Excel:
@@ -350,19 +350,19 @@ namespace BudgetExecution
                             {
                                 return Verify.Input( sql )
                                     ? new OleDbCommand( sql )
-                                    : default;
+                                    : default( OleDbCommand );
                             }
                         }
                     }
                 }
                 catch( Exception ex )
                 {
-                    CommandFactory.Fail( ex );
-                    return default;
+                    Fail( ex );
+                    return default( DbCommand );
                 }
             }
 
-            return default;
+            return default( DbCommand );
         }
 
         /// <summary> Gets the select command. </summary>
@@ -375,8 +375,8 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                CommandFactory.Fail( ex );
-                return default;
+                Fail( ex );
+                return default( DbCommand );
             }
         }
 
@@ -390,8 +390,8 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                CommandFactory.Fail( ex );
-                return default;
+                Fail( ex );
+                return default( DbCommand );
             }
         }
 
@@ -405,8 +405,8 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                CommandFactory.Fail( ex );
-                return default;
+                Fail( ex );
+                return default( DbCommand );
             }
         }
 
@@ -420,8 +420,8 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                CommandFactory.Fail( ex );
-                return default;
+                Fail( ex );
+                return default( DbCommand );
             }
         }
     }

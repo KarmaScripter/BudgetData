@@ -1,42 +1,30 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
-
-namespace BudgetExecution
+﻿namespace BudgetExecution
 {
-    // ******************************************************************************************************************************
-    // ******************************************************   ASSEMBLIES   ********************************************************
-    // ******************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
-    /// <summary> </summary>
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="BudgetExecution.Arg" />
+    /// <seealso cref="BudgetExecution.IMap" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class Map : Arg, IMap
     {
-        // ***************************************************************************************************************************
-        // *********************************************   CONSTRUCTORS **************************************************************
-        // ***************************************************************************************************************************
-
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "Map"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="Map"/> class.
         /// </summary>
         public Map()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "Map"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="Map"/> class.
         /// </summary>
-        /// <param name = "dict" > The dictionary. </param>
+        /// <param name="dict">The dictionary.</param>
         public Map( IDictionary<string, object> dict )
         {
             SetInput( dict );
@@ -48,11 +36,9 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "Map"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="Map"/> class.
         /// </summary>
-        /// <param name = "data" > The data. </param>
+        /// <param name="data">The data.</param>
         public Map( DataRow data )
         {
             SetInput( data?.ToDictionary() );
@@ -63,58 +49,57 @@ namespace BudgetExecution
             Count = Output.Count;
         }
 
-        // ***************************************************************************************************************************
-        // ****************************************************  PROPERTIES   ********************************************************
-        // ***************************************************************************************************************************
-
-        /// <summary> Gets the count. </summary>
-        /// <value> The count. </value>
+        /// <summary>
+        /// Gets the count.
+        /// </summary>
+        /// <value>
+        /// The count.
+        /// </value>
         public int Count { get; }
 
-        // ***************************************************************************************************************************
-        // ************************************************  METHODS   ***************************************************************
-        // ***************************************************************************************************************************
-
-        /// <summary> Gets the input. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the input.
+        /// </summary>
+        /// <returns></returns>
         public IDictionary<string, object> GetInput()
         {
             try
             {
                 return Input?.Any() == true
                     ? Input
-                    : default;
+                    : default( IDictionary<string, object> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IDictionary<string, object> );
             }
         }
 
-        /// <summary> Gets the output. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the output.
+        /// </summary>
+        /// <returns></returns>
         public IDictionary<string, object> GetOutput()
         {
             try
             {
                 return Output?.Any() == true
                     ? Output
-                    : default;
+                    : default( IDictionary<string, object> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IDictionary<string, object> );
             }
         }
 
-        /// <summary> Determines whether [has primary key]. </summary>
+        /// <summary>
+        /// Determines whether [has primary key].
+        /// </summary>
         /// <returns>
-        /// <c> true </c>
-        /// if [has primary key]; otherwise,
-        /// <c> false </c>
-        /// .
+        ///   <c>true</c> if [has primary key]; otherwise, <c>false</c>.
         /// </returns>
         public bool HasPrimaryKey()
         {
@@ -129,12 +114,11 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Determines whether this instance has elements. </summary>
+        /// <summary>
+        /// Determines whether this instance has elements.
+        /// </summary>
         /// <returns>
-        /// <c> true </c>
-        /// if this instance has elements; otherwise,
-        /// <c> false </c>
-        /// .
+        ///   <c>true</c> if this instance has elements; otherwise, <c>false</c>.
         /// </returns>
         public bool HasElements()
         {
@@ -142,12 +126,12 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var fields = Enum.GetNames( typeof( Field ) );
+                    var _fields = Enum.GetNames( typeof( Field ) );
 
                     foreach( var kvp in Input )
                     {
                         if( Verify.Input( kvp.Key )
-                            && fields?.Contains( kvp.Key ) == true )
+                            && _fields?.Contains( kvp.Key ) == true )
                         {
                             return true;
                         }
@@ -156,69 +140,73 @@ namespace BudgetExecution
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( bool );
                 }
             }
 
             return false;
         }
 
-        /// <summary> Gets the primary key. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the key.
+        /// </summary>
+        /// <returns></returns>
         public IKey GetKey()
         {
             if( Input?.HasPrimaryKey() == true )
             {
                 try
                 {
-                    var data = Input.GetPrimaryKey();
+                    var _data = Input.GetPrimaryKey();
 
-                    return Verify.Input( data.Key )
-                        ? new Key( data )
+                    return Verify.Input( _data.Key )
+                        ? new Key( _data )
                         : default( IKey );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IKey );
                 }
             }
 
-            return default;
+            return default( IKey );
         }
 
-        /// <summary> Gets the output elements. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the elements.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<IElement> GetElements()
         {
             if( Output?.Any() == true )
             {
                 try
                 {
-                    var output = new List<IElement>();
-                    var fields = Enum.GetNames( typeof( Field ) );
+                    var _output = new List<IElement>();
+                    var _fields = Enum.GetNames( typeof( Field ) );
 
                     foreach( var kvp in Output )
                     {
                         if( Verify.Input( kvp.Key )
-                            && fields?.Contains( kvp.Key ) == true )
+                            && _fields?.Contains( kvp.Key ) == true )
                         {
-                            output.Add( new Element( kvp ) );
+                            _output.Add( new Element( kvp ) );
                         }
                     }
 
-                    return output?.Any() == true
-                        ? output
-                        : default;
+                    return _output?.Any() == true
+                        ? _output
+                        : default( List<IElement> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IEnumerable<IElement> );
                 }
             }
 
-            return default;
+            return default( IEnumerable<IElement> );
         }
     }
 }

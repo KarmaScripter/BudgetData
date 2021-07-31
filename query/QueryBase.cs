@@ -118,12 +118,12 @@ namespace BudgetExecution
         {
             try
             {
-                return ConnectionBuilder?.GetSource() ?? default;
+                return ConnectionBuilder?.GetSource() ?? default( Source );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( Source );
             }
         }
 
@@ -141,7 +141,7 @@ namespace BudgetExecution
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( Provider );
             }
         }
 
@@ -159,12 +159,12 @@ namespace BudgetExecution
             {
                 return dict?.Any() == true
                     ? dict
-                    : default;
+                    : default( IDictionary<string, object> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IDictionary<string, object> );
             }
         }
 
@@ -180,12 +180,12 @@ namespace BudgetExecution
             {
                 return Verify.Map( Args )
                     ? Args
-                    : default;
+                    : default( IDictionary<string, object> );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IDictionary<string, object> );
             }
         }
 
@@ -250,12 +250,12 @@ namespace BudgetExecution
         {
             try
             {
-                return ConnectionBuilder ?? default;
+                return ConnectionBuilder ?? default( IConnectionBuilder );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IConnectionBuilder );
             }
         }
 
@@ -268,12 +268,12 @@ namespace BudgetExecution
         {
             try
             {
-                return CommandBuilder ?? default;
+                return CommandBuilder ?? default( ICommandBuilder );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( ICommandBuilder );
             }
         }
 
@@ -287,12 +287,12 @@ namespace BudgetExecution
         {
             try
             {
-                return SqlStatement ?? default;
+                return SqlStatement ?? default( ISqlStatement );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( ISqlStatement );
             }
         }
 
@@ -306,12 +306,12 @@ namespace BudgetExecution
         {
             try
             {
-                return ConnectionFactory?.GetConnection() ?? default;
+                return ConnectionFactory?.GetConnection() ?? default( DbConnection );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( DbConnection );
             }
         }
 
@@ -336,7 +336,7 @@ namespace BudgetExecution
                         SQL.INSERT => commandfactory?.GetSelectCommand(),
                         SQL.UPDATE => commandfactory?.GetSelectCommand(),
                         SQL.DELETE => commandfactory?.GetDeleteCommand(),
-                        _ => default
+                        _ => default( DbCommand )
                     };
                 }
                 catch( Exception ex )
@@ -345,7 +345,7 @@ namespace BudgetExecution
                 }
             }
 
-            return default;
+            return default( DbCommand );
         }
 
         /// <inheritdoc/>
@@ -358,12 +358,12 @@ namespace BudgetExecution
         {
             try
             {
-                return Adapter ?? default;
+                return Adapter ?? default( DbDataAdapter );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( DbDataAdapter );
             }
         }
 

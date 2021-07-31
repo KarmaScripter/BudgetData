@@ -1,6 +1,6 @@
-﻿// // <copyright file = "ConnectionBuilder.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file = "ConnectionBuilder.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -113,13 +113,13 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.EXT( FileExtension )
+                return Validate.EXT( FileExtension )
                     ? FileExtension
                     : EXT.NS;
             }
             catch( Exception ex )
             {
-                ConnectionBuilder.Fail( ex );
+                Fail( ex );
                 return EXT.NS;
             }
         }
@@ -136,7 +136,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                ConnectionBuilder.Fail( ex );
+                Fail( ex );
                 return default( string );
             }
         }
@@ -153,7 +153,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                ConnectionBuilder.Fail( ex );
+                Fail( ex );
                 return default( string );
             }
         }
@@ -170,7 +170,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                ConnectionBuilder.Fail( ex );
+                Fail( ex );
                 return default( string );
             }
         }
@@ -187,7 +187,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                ConnectionBuilder.Fail( ex );
+                Fail( ex );
                 return default( string );
             }
         }
@@ -198,13 +198,13 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Provider( Provider )
+                return Validate.Provider( Provider )
                     ? Provider
                     : default( Provider );
             }
             catch( Exception ex )
             {
-                ConnectionBuilder.Fail( ex );
+                Fail( ex );
                 return default( Provider );
             }
         }
@@ -215,13 +215,13 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Source( Source )
+                return Validate.Source( Source )
                     ? Source
                     : Source.NS;
             }
             catch( Exception ex )
             {
-                ConnectionBuilder.Fail( ex );
+                Fail( ex );
                 return Source.NS;
             }
         }

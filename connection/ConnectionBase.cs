@@ -1,6 +1,6 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -88,7 +88,7 @@ namespace BudgetExecution
         {
             try
             {
-                Source = Verify.Source( source )
+                Source = Validate.Source( source )
                     ? source
                     : Source.NS;
             }
@@ -132,7 +132,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    ConnectionBase.Fail( ex );
+                    Fail( ex );
                 }
             }
         }
@@ -144,7 +144,7 @@ namespace BudgetExecution
         {
             try
             {
-                Provider = Verify.Provider( provider )
+                Provider = Validate.Provider( provider )
                     && Resource.Providers?.Contains( provider.ToString() ) == true
                         ? (Provider)Enum.Parse( typeof( Provider ), $"{provider}" )
                         : Provider.NS;
@@ -160,7 +160,7 @@ namespace BudgetExecution
         /// <returns> </returns>
         private protected void SetProvider( EXT extension )
         {
-            if( Verify.EXT( extension ) )
+            if( Validate.EXT( extension ) )
             {
                 try
                 {
@@ -189,7 +189,7 @@ namespace BudgetExecution
         /// <returns> </returns>
         private protected void SetFilePath( Provider provider )
         {
-            if( Verify.Provider( provider ) )
+            if( Validate.Provider( provider ) )
             {
                 try
                 {
@@ -317,7 +317,7 @@ namespace BudgetExecution
         /// <returns> </returns>
         private protected void SetConnectionString( Provider provider )
         {
-            if( Verify.Provider( provider ) )
+            if( Validate.Provider( provider ) )
             {
                 try
                 {

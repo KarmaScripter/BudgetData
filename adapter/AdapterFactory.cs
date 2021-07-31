@@ -1,6 +1,6 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -119,17 +119,17 @@ namespace BudgetExecution
                         {
                             case Provider.SQLite:
                             {
-                                return GetSQLiteAdapter() ?? default;
+                                return GetSQLiteAdapter() ?? default( SQLiteDataAdapter );
                             }
 
                             case Provider.SqlCe:
                             {
-                                return GetSqlCeAdapter() ?? default;
+                                return GetSqlCeAdapter() ?? default( SqlCeDataAdapter );
                             }
 
                             case Provider.SqlServer:
                             {
-                                return GetSqlAdapter() ?? default;
+                                return GetSqlAdapter() ?? default( SqlDataAdapter );
                             }
 
                             case Provider.CSV:
@@ -137,7 +137,7 @@ namespace BudgetExecution
                             case Provider.Access:
                             case Provider.Excel:
                             {
-                                return GetOleDbDataAdapter() ?? default;
+                                return GetOleDbDataAdapter() ?? default( OleDbDataAdapter );
                             }
                         }
                     }
@@ -148,7 +148,7 @@ namespace BudgetExecution
                 }
             }
 
-            return default;
+            return default( DbDataAdapter );
         }
 
         /// <summary> Gets the OLE database data adapter. </summary>
@@ -163,16 +163,16 @@ namespace BudgetExecution
 
                     return Verify.Input( connection )
                         ? new OleDbDataAdapter( SqlStatement.GetSelectStatement(), connection )
-                        : default;
+                        : default( OleDbDataAdapter );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( OleDbDataAdapter );
                 }
             }
 
-            return default;
+            return default( OleDbDataAdapter );
         }
 
         /// <summary> Gets the SQL server adapter. </summary>
@@ -187,16 +187,16 @@ namespace BudgetExecution
 
                     return Verify.Input( connection )
                         ? new SqlDataAdapter( SqlStatement.GetSelectStatement(), connection )
-                        : default;
+                        : default( SqlDataAdapter );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( SqlDataAdapter );
                 }
             }
 
-            return default;
+            return default( SqlDataAdapter );
         }
 
         /// <summary> Gets the SQL ce adapter. </summary>
@@ -216,11 +216,11 @@ namespace BudgetExecution
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( SqlCeDataAdapter );
                 }
             }
 
-            return default;
+            return default( SqlCeDataAdapter );
         }
 
         /// <summary> Gets the sq lite adapter. </summary>
@@ -239,11 +239,11 @@ namespace BudgetExecution
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( SQLiteDataAdapter );
                 }
             }
 
-            return default;
+            return default( SQLiteDataAdapter );
         }
 
         /// <summary> Releases unmanaged and - optionally - managed resources. </summary>

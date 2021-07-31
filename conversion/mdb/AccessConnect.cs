@@ -1,40 +1,19 @@
-﻿// // <copyright file = "AccessConnect.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
-    // ********************************************************************************************************************************
-    // *********************************************************  ASSEMBLIES   ********************************************************
-    // ********************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Data.OleDb;
     using System.Data;
+    using System.Linq;
 
-    /// <summary>
-    /// 
-    /// </summary>
     public class AccessConnect
     {
-        // ***************************************************************************************************************************
-        // ****************************************************    FIELDS     ********************************************************
-        // ***************************************************************************************************************************
-
-        /// <summary>
-        /// The connection
-        /// </summary>
         private readonly OleDbConnection _connection;
 
-        // ***************************************************************************************************************************
-        // ****************************************************  CONSTRUCTORS ********************************************************
-        // ***************************************************************************************************************************
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AccessConnect"/> class.
-        /// </summary>
-        /// <param name="path">The path.</param>
         public AccessConnect( string path )
         {
             var connectionstring = "provider=microsoft.jet.oledb.4.0;data source="
@@ -42,72 +21,65 @@ namespace BudgetExecution
                 + ";Jet OLEDB:Database Password=h@#%^ein;";
 
             _connection = new OleDbConnection( connectionstring );
-            _connection.Open();
+            _connection?.Open();
         }
 
-        // ***************************************************************************************************************************
-        // ****************************************************     METHODS   ********************************************************
-        // ***************************************************************************************************************************
-
-        /// <summary>
-        /// Gets the table names.
-        /// </summary>
-        /// <returns></returns>
         public IEnumerable<string> GetTableNames()
         {
-            var names = new List<string>();
-            var restrictions = new string[ 4 ];
-            restrictions[ 3 ] = "Table";
+            var _names = new List<string>();
+            var _restrictions = new string[ 4 ];
+            _restrictions[ 3 ] = "Table";
+            var _schema = _connection.GetSchema( "Tables", _restrictions );
 
-            //getting names of tables
-            var table = _connection.GetSchema( "Tables", restrictions );
-
-            for( var i = 0; i < table.Rows.Count; i++ )
+            for( var i = 0; i < _schema.Rows.Count; i++ )
             {
-                names.Add( table.Rows[ i ][ 2 ].ToString() );
+                _names.Add( _schema.Rows[ i ][ 2 ].ToString() );
             }
 
-            return names;
+            return _names;
         }
 
-        /// <summary>
-        /// Gets the table.
-        /// </summary>
-        /// <param name="name">The name.</param>
-        /// <returns></returns>
         public DataTable GetTable( string name )
         {
-            var table = new DataTable();
-            var adapter = new OleDbDataAdapter( "SELECT * FROM " + name, _connection );
-            adapter.Fill( table );
-            return table;
+            try
+            {
+                var _table = new DataTable();
+                var _adapter = new OleDbDataAdapter( "SELECT * FROM " + name, _connection );
+                _adapter.Fill( _table );
+
+                return _table.Rows.Count > 0
+                    ? _table
+                    : default( DataTable );
+            }
+            catch( Exception ex )
+            {
+                Console.WriteLine( ex );
+                throw;
+            }
         }
 
-        /// <summary>
-        /// Gets the column names.
-        /// </summary>
-        /// <param name="tablename">The tablename.</param>
-        /// <returns></returns>
         public List<string> GetColumnNames( string tablename )
         {
-            var names = new List<string>();
-            using var command = new OleDbCommand( "select * from " + tablename, _connection );
-            using var reader = command.ExecuteReader( CommandBehavior.SchemaOnly );
-            var table = reader.GetSchemaTable();
-            var column = table?.Columns[ "ColumnName" ];
+            var _names = new List<string>();
+            using var _command = new OleDbCommand( "select * from " + tablename, _connection );
+            using var _dataReader = _command.ExecuteReader( CommandBehavior.SchemaOnly );
+            var _dataTable = _dataReader.GetSchemaTable();
+            var _dataColumn = _dataTable?.Columns[ "ColumnName" ];
 
-            if( table?.Rows != null )
+            if( _dataTable?.Rows != null )
             {
-                foreach( DataRow row in table?.Rows )
+                foreach( DataRow row in _dataTable?.Rows )
                 {
-                    if( column != null )
+                    if( _dataColumn != null )
                     {
-                        names.Add( row[ column ].ToString() );
+                        _names.Add( row[ _dataColumn ].ToString() );
                     }
                 }
             }
 
-            return names;
+            return _names?.Any() == true
+                ? _names
+                : default( List<string> );
         }
     }
 }

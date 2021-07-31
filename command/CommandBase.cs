@@ -1,6 +1,6 @@
-﻿// // <copyright file = "CommandBase.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file = "CommandBase.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -51,12 +51,12 @@ namespace BudgetExecution
             {
                 return Validate.Source( Source )
                     ? Source
-                    : default;
+                    : default( Source );
             }
             catch( Exception ex )
             {
-                CommandBase.Fail( ex );
-                return default;
+                Fail( ex );
+                return default( Source );
             }
         }
 
@@ -68,12 +68,12 @@ namespace BudgetExecution
             {
                 return Validate.Provider( Provider )
                     ? Provider
-                    : default;
+                    : default( Provider );
             }
             catch( Exception ex )
             {
-                CommandBase.Fail( ex );
-                return default;
+                Fail( ex );
+                return default( Provider );
             }
         }
 
@@ -83,11 +83,11 @@ namespace BudgetExecution
             {
                 ConnectionBuilder = Validate.Source( source ) && Validate.Provider( provider )
                     ? new ConnectionBuilder( source, provider )
-                    : default;
+                    : default( ConnectionBuilder );
             }
             catch( Exception ex )
             {
-                CommandBase.Fail( ex );
+                Fail( ex );
             }
         }
 
@@ -99,12 +99,12 @@ namespace BudgetExecution
             {
                 return Verify.Ref( ConnectionBuilder )
                     ? ConnectionBuilder
-                    : default;
+                    : default( IConnectionBuilder );
             }
             catch( Exception ex )
             {
-                CommandBase.Fail( ex );
-                return default;
+                Fail( ex );
+                return default( IConnectionBuilder );
             }
         }
 
@@ -116,12 +116,12 @@ namespace BudgetExecution
             {
                 return Verify.Ref( SqlStatement )
                     ? SqlStatement
-                    : default;
+                    : default( ISqlStatement );
             }
             catch( Exception ex )
             {
-                CommandBase.Fail( ex );
-                return default;
+                Fail( ex );
+                return default( ISqlStatement );
             }
         }
 
@@ -144,7 +144,7 @@ namespace BudgetExecution
 
                             return Verify.Input( sql )
                                 ? new SQLiteCommand( sql, connection as SQLiteConnection )
-                                : default;
+                                : default( SQLiteCommand );
                         }
 
                         case SQL.INSERT:
@@ -153,7 +153,7 @@ namespace BudgetExecution
 
                             return Verify.Input( sql )
                                 ? new SQLiteCommand( sql, connection as SQLiteConnection )
-                                : default;
+                                : default( SQLiteCommand );
                         }
 
                         case SQL.UPDATE:
@@ -162,7 +162,7 @@ namespace BudgetExecution
 
                             return Verify.Input( sql )
                                 ? new SQLiteCommand( sql, connection as SQLiteConnection )
-                                : default;
+                                : default( SQLiteCommand );
                         }
 
                         case SQL.DELETE:
@@ -171,7 +171,7 @@ namespace BudgetExecution
 
                             return Verify.Input( sql )
                                 ? new SQLiteCommand( sql, connection as SQLiteConnection )
-                                : default;
+                                : default( SQLiteCommand );
                         }
 
                         default:
@@ -180,18 +180,18 @@ namespace BudgetExecution
 
                             return Verify.Input( sql )
                                 ? new SQLiteCommand( sql, connection as SQLiteConnection )
-                                : default;
+                                : default( SQLiteCommand );
                         }
                     }
                 }
                 catch( Exception ex )
                 {
-                    CommandBase.Fail( ex );
-                    return default;
+                    Fail( ex );
+                    return default( DbCommand );
                 }
             }
 
-            return default;
+            return default( DbCommand );
         }
 
         /// <summary> Gets the SQL ce command. </summary>
@@ -215,7 +215,7 @@ namespace BudgetExecution
 
                                 return Verify.Input( sql )
                                     ? new SqlCeCommand( sql, connection as SqlCeConnection )
-                                    : default;
+                                    : default( SqlCeCommand );
                             }
 
                             case SQL.INSERT:
@@ -224,7 +224,7 @@ namespace BudgetExecution
 
                                 return Verify.Input( sql )
                                     ? new SqlCeCommand( sql, connection as SqlCeConnection )
-                                    : default;
+                                    : default( SqlCeCommand );
                             }
 
                             case SQL.UPDATE:
@@ -233,7 +233,7 @@ namespace BudgetExecution
 
                                 return Verify.Input( sql )
                                     ? new SqlCeCommand( sql, connection as SqlCeConnection )
-                                    : default;
+                                    : default( SqlCeCommand );
                             }
 
                             case SQL.DELETE:
@@ -242,7 +242,7 @@ namespace BudgetExecution
 
                                 return Verify.Input( sql )
                                     ? new SqlCeCommand( sql, connection as SqlCeConnection )
-                                    : default;
+                                    : default( SqlCeCommand );
                             }
 
                             default:
@@ -258,12 +258,12 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    CommandBase.Fail( ex );
-                    return default;
+                    Fail( ex );
+                    return default( DbCommand );
                 }
             }
 
-            return default;
+            return default( DbCommand );
         }
 
         /// <summary> Gets the SQL command. </summary>
@@ -327,12 +327,12 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    CommandBase.Fail( ex );
-                    return default;
+                    Fail( ex );
+                    return default( DbCommand );
                 }
             }
 
-            return default;
+            return default( DbCommand );
         }
 
         /// <summary> Gets the OLE database command. </summary>
@@ -396,12 +396,12 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    CommandBase.Fail( ex );
-                    return default;
+                    Fail( ex );
+                    return default( DbCommand );
                 }
             }
 
-            return default;
+            return default( DbCommand );
         }
 
         /// <summary> Get Error Dialog. </summary>

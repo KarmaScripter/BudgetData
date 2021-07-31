@@ -211,11 +211,11 @@ namespace BudgetExecution
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( ExcelPackage );
                 }
             }
 
-            return default;
+            return default( ExcelPackage );
         }
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace BudgetExecution
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( string );
             }
         }
 
@@ -294,11 +294,11 @@ namespace BudgetExecution
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( DataTable );
                 }
             }
 
-            return default;
+            return default( DataTable );
         }
 
         /// <summary>
@@ -350,11 +350,11 @@ namespace BudgetExecution
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( DataTable );
                 }
             }
 
-            return default;
+            return default( DataTable );
         }
 
         /// <summary>
@@ -402,7 +402,7 @@ namespace BudgetExecution
         /// Checks if sheet name exists.
         /// </summary>
         /// <dict name = "sheetname" >
-        /// Name of the sheet.
+        /// _name of the sheet.
         /// </dict>
         /// <dict name = "datatable" >
         /// The dt datatable.

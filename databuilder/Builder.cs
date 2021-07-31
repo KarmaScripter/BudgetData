@@ -1,13 +1,9 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
-    // ******************************************************************************************************************************
-    // ******************************************************   ASSEMBLIES   ********************************************************
-    // ******************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Data;
@@ -17,36 +13,35 @@ namespace BudgetExecution
     using System.IO;
     using OfficeOpenXml;
 
-    /// <summary> </summary>
-    /// <seealso cref = "BuilderBase"/>
-    /// <seealso cref = "System.IDisposable"/>
-    /// <seealso cref = "IBuilder"/>
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="BudgetExecution.BuilderBase" />
+    /// <seealso cref="BudgetExecution.IBuilder" />
     [ SuppressMessage( "ReSharper", "ImplicitlyCapturedClosure" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     public class Builder : BuilderBase, IBuilder
     {
-        // ***************************************************************************************************************************
-        // *********************************************   CONSTRUCTORS **************************************************************
-        // ***************************************************************************************************************************
+        /// <summary>
+        /// The program elements
+        /// </summary>
+        private protected readonly IDictionary<string, IEnumerable<string>> _programElements;
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "Builder"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="Builder"/> class.
         /// </summary>
         public Builder()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "Builder"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="Builder"/> class.
         /// </summary>
-        /// <param name = "source" > The source. </param>
-        /// <param name = "provider" > The provider. </param>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
         public Builder( Source source, Provider provider = Provider.SQLite )
         {
             Source = source;
@@ -54,19 +49,17 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = new SqlStatement( ConnectionBuilder, SQL.SELECT );
             SetQuery( ConnectionBuilder, SqlStatement );
-            ProgramElements = GetSeries( GetDataTable() );
+            _programElements = GetSeries( GetDataTable() );
             Record = GetData()?.FirstOrDefault();
             Args = Record?.ToDictionary();
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "Builder"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="Builder"/> class.
         /// </summary>
-        /// <param name = "source" > The source. </param>
-        /// <param name = "provider" > The provider. </param>
-        /// <param name = "dict" > The dictionary. </param>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="dict">The dictionary.</param>
         public Builder( Source source, Provider provider, IDictionary<string, object> dict )
         {
             Source = source;
@@ -74,18 +67,16 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
             SetQuery( ConnectionBuilder, SqlStatement );
-            ProgramElements = GetSeries( GetDataTable() );
+            _programElements = GetSeries( GetDataTable() );
             Record = GetRecord();
             Args = Record?.ToDictionary();
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "Builder"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="Builder"/> class.
         /// </summary>
-        /// <param name = "source" > The source. </param>
-        /// <param name = "dict" > The dictionary. </param>
+        /// <param name="source">The source.</param>
+        /// <param name="dict">The dictionary.</param>
         public Builder( Source source, IDictionary<string, object> dict )
         {
             Source = source;
@@ -93,17 +84,15 @@ namespace BudgetExecution
             ConnectionBuilder = new ConnectionBuilder( Source, Provider );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
             SetQuery( ConnectionBuilder, SqlStatement );
-            ProgramElements = GetSeries( GetDataTable() );
+            _programElements = GetSeries( GetDataTable() );
             Record = GetRecord();
             Args = Record?.ToDictionary();
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "Builder"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="Builder"/> class.
         /// </summary>
-        /// <param name = "query" > The query. </param>
+        /// <param name="query">The query.</param>
         public Builder( IQuery query )
         {
             Query = query;
@@ -111,27 +100,17 @@ namespace BudgetExecution
             Provider = ConnectionBuilder.GetProvider();
             ConnectionBuilder = Query.GetConnectionBuilder();
             SqlStatement = Query.GetSqlStatement();
-            ProgramElements = GetSeries( GetDataTable() );
+            _programElements = GetSeries( GetDataTable() );
             Record = GetRecord();
             Args = Record?.ToDictionary();
         }
 
-        // **********************************************************************************************************************
-        // *************************************************   PROPERTIES   *****************************************************
-        // **********************************************************************************************************************
-
-        /// <summary> Gets the program elements. </summary>
-        /// <value> The program elements. </value>
-        public IDictionary<string, IEnumerable<string>> ProgramElements { get; }
-
-        // ***************************************************************************************************************************
-        // ************************************************  METHODS   ***************************************************************
-        // ***************************************************************************************************************************
-
-        /// <summary> Gets the unique field values. </summary>
-        /// <param name = "data" > The data. </param>
-        /// <param name = "column" > The column. </param>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the values.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param name="column">The column.</param>
+        /// <returns></returns>
         public static IEnumerable<string> GetValues( IEnumerable<DataRow> data, string column )
         {
             if( Verify.Sequence( data )
@@ -139,28 +118,31 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var query = data?.Select( p => p.Field<string>( column ) )?.Distinct();
+                    var _query = data?.Select( p => p.Field<string>( column ) )?.Distinct();
 
-                    return query?.Any() == true
-                        ? query
-                        : default;
+                    return _query?.Any() == true
+                        ? _query
+                        : default( IEnumerable<string> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IEnumerable<string> );
                 }
             }
 
-            return default;
+            return default( IEnumerable<string> );
         }
 
-        /// <summary> Gets the unique field values. </summary>
-        /// <param name = "data" > The table. </param>
-        /// <param name = "field" > The column. </param>
-        /// <param name = "filter" > The filter. </param>
-        /// <returns> </returns>
-        public static IEnumerable<string> GetValues( IEnumerable<DataRow> data, Field field, string filter )
+        /// <summary>
+        /// Gets the values.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param name="field">The field.</param>
+        /// <param name="filter">The filter.</param>
+        /// <returns></returns>
+        public static IEnumerable<string> GetValues( IEnumerable<DataRow> data, Field field,
+            string filter )
         {
             if( Verify.Sequence( data )
                 && Validate.Field( field )
@@ -168,201 +150,176 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var query = data?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
-                        ?.Select( p => p.Field<string>( $"{field}" ) )
-                        ?.Distinct();
+                    var _query = data?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
+                        ?.Select( p => p.Field<string>( $"{field}" ) )?.Distinct();
 
-                    return query?.Any() == true
-                        ? query
-                        : default;
+                    return _query?.Any() == true
+                        ? _query
+                        : default( IEnumerable<string> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IEnumerable<string> );
                 }
             }
 
-            return default;
+            return default( IEnumerable<string> );
         }
 
-        /// <summary> Gets the program elements. </summary>
-        /// <param name = "data" > The data. </param>
-        /// <returns> </returns>
-        private static IDictionary<string, IEnumerable<string>> GetSeries( DataTable data )
+        /// <summary>
+        /// Gets the schema table.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <returns></returns>
+        public static DataTable GetSchemaTable( DataTable dataTable )
         {
-            if( Verify.Table( data ) )
+            if( Verify.Table( dataTable ) )
             {
                 try
                 {
-                    var dict = new Dictionary<string, IEnumerable<string>>();
-                    var columns = data.Columns;
+                    using var _reader = new DataTableReader( dataTable );
+                    var _schema = _reader?.GetSchemaTable();
 
-                    for( var i = 0; i < columns?.Count; i++ )
-                    {
-                        if( Verify.Input( columns[ i ]?.ColumnName )
-                            && columns[ i ]?.DataType == typeof( string ) )
-                        {
-                            dict?.Add( columns[ i ]?.ColumnName,
-                                GetValues( data?.AsEnumerable(), columns[ i ]?.ColumnName ) );
-                        }
-                    }
-
-                    return dict?.Any() == true
-                        ? dict
-                        : default;
+                    return _schema?.Rows?.Count > 0
+                        ? _schema
+                        : default( DataTable );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( DataTable );
                 }
             }
 
-            return default;
+            return default( DataTable );
         }
 
-        /// <summary> Gets the schema table. </summary>
-        /// <param name = "datatable" > The datatable. </param>
-        /// <returns> </returns>
-        public static DataTable GetSchemaTable( DataTable datatable )
+        /// <summary>
+        /// Creates the table from excel.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <returns></returns>
+        public static DataTable CreateTableFromExcel( string filePath )
         {
-            if( Verify.Table( datatable ) )
+            if( Verify.Input( filePath )
+                && File.Exists( filePath ) )
             {
                 try
                 {
-                    using var reader = new DataTableReader( datatable );
-                    var schema = reader?.GetSchemaTable();
+                    var _sheets = 0;
 
-                    return schema?.Rows?.Count > 0
-                        ? schema
-                        : default;
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return default;
-                }
-            }
-
-            return default;
-        }
-
-        /// <summary> Creates the table from excel. </summary>
-        /// <param name = "filepath" > The filepath. </param>
-        /// <returns> </returns>
-        public static DataTable CreateTableFromExcel( string filepath )
-        {
-            if( Verify.Input( filepath )
-                && File.Exists( filepath ) )
-            {
-                try
-                {
-                    var sheets = 0;
-
-                    var connectionstring = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="
-                        + filepath
+                    var _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="
+                        + filePath
                         + ";Extended Properties='Excel 12.0;HDR=YES;IMEX=1;';";
 
-                    using var connection = new OleDbConnection( connectionstring );
-                    connection?.Open();
-                    using var dataset = new DataSet();
-                    using var schematable = connection?.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
-                    var sheetname = string.Empty;
+                    using var _connection = new OleDbConnection( _connectionString );
+                    _connection?.Open();
+                    using var _dataSet = new DataSet();
 
-                    if( schematable != null )
+                    using var _schemaTable =
+                        _connection?.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
+
+                    var _sheetName = string.Empty;
+
+                    if( _schemaTable != null )
                     {
-                        var datatable = schematable?.AsEnumerable()
-                            ?.Where( r => r.Field<string>( "TABLE_NAME" ).Contains( "FilterDatabase" ) )
-                            ?.Select( r => r )
-                            ?.CopyToDataTable();
+                        var _dataTable = _schemaTable?.AsEnumerable()
+                            ?.Where( r =>
+                                r.Field<string>( "TABLE_NAME" ).Contains( "FilterDatabase" ) )
+                            ?.Select( r => r )?.CopyToDataTable();
 
-                        sheetname = datatable.Rows[ 0 ][ "TABLE_NAME" ].ToString();
+                        _sheetName = _dataTable.Rows[ 0 ][ "TABLE_NAME" ].ToString();
                     }
 
-                    using var command = new OleDbCommand();
-                    command.Connection = connection;
-                    command.CommandText = "SELECT * FROM [" + sheetname + "]";
-                    using var adapter = new OleDbDataAdapter( command );
-                    adapter.Fill( dataset, "excelData" );
-                    using var table = dataset.Tables[ "ExcelData" ];
-                    connection.Close();
+                    using var _command = new OleDbCommand();
+                    _command.Connection = _connection;
+                    _command.CommandText = "SELECT * FROM [" + _sheetName + "]";
+                    using var _dataAdapter = new OleDbDataAdapter( _command );
+                    _dataAdapter.Fill( _dataSet, "excelData" );
+                    using var table = _dataSet.Tables[ "ExcelData" ];
+                    _connection.Close();
                     return table;
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( DataTable );
                 }
             }
 
-            return default;
+            return default( DataTable );
         }
 
-        /// <summary> Loads from excel. </summary>
-        /// <param name = "filepath" > The path. </param>
-        /// <param name = "header" >
-        /// if set to
-        /// <c> true </c>
-        /// [header].
-        /// </param>
-        /// <returns> </returns>
-        public static DataTable CreateTableFromExcel( string filepath, bool header = true )
+        /// <summary>
+        /// Creates the table from excel.
+        /// </summary>
+        /// <param name="filePath">The file path.</param>
+        /// <param name="header">if set to <c>true</c> [header].</param>
+        /// <returns></returns>
+        public static DataTable CreateTableFromExcel( string filePath, bool header = true )
         {
-            if( Verify.Input( filepath )
-                && File.Exists( filepath ) )
+            if( Verify.Input( filePath )
+                && File.Exists( filePath ) )
             {
                 try
                 {
-                    using var excel = new ExcelPackage();
-                    using var stream = File.OpenRead( filepath );
-                    excel.Load( stream );
-                    var worksheet = excel?.Workbook?.Worksheets?.First();
-                    var table = new DataTable( worksheet?.Name );
+                    using var _excelPackage = new ExcelPackage();
+                    using var _fileStream = File.OpenRead( filePath );
+                    _excelPackage.Load( _fileStream );
+                    var _excelWorksheet = _excelPackage?.Workbook?.Worksheets?.First();
+                    var _dataTable = new DataTable( _excelWorksheet?.Name );
 
-                    if( worksheet?.Cells != null )
+                    if( _excelWorksheet?.Cells != null )
                     {
-                        foreach( var firstrowcell in worksheet?.Cells[ 1, 1, 1,
-                            worksheet.Dimension.End.Column ] )
+                        foreach( var firstrowcell in _excelWorksheet?.Cells[ 1, 1, 1,
+                            _excelWorksheet.Dimension.End.Column ] )
                         {
-                            table.Columns.Add( header
+                            _dataTable.Columns.Add( header
                                 ? firstrowcell.Text
                                 : $"Column {firstrowcell.Start.Column}" );
                         }
 
-                        var startrow = header
+                        var _startRow = header
                             ? 2
                             : 1;
 
-                        for( var rownum = startrow; rownum <= worksheet.Dimension.End.Row; rownum++ )
+                        for( var _row = _startRow; _row <= _excelWorksheet.Dimension.End.Row;
+                            _row++ )
                         {
-                            var range = worksheet.Cells[ rownum, 1, rownum, worksheet.Dimension.End.Column ];
-                            var row = table.Rows.Add();
+                            var _excelRange = _excelWorksheet.Cells[ _row, 1, _row,
+                                _excelWorksheet.Dimension.End.Column ];
 
-                            foreach( var cell in range )
+                            var _dataRow = _dataTable.Rows.Add();
+
+                            foreach( var cell in _excelRange )
                             {
-                                row[ cell.Start.Column - 1 ] = cell.Text;
+                                _dataRow[ cell.Start.Column - 1 ] = cell.Text;
                             }
                         }
                     }
 
-                    return table;
+                    return _dataTable?.Rows.Count > 0
+                        ? _dataTable
+                        : default( DataTable );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( DataTable );
                 }
             }
 
-            return default;
+            return default( DataTable );
         }
 
-        /// <summary> Gets the program elements. </summary>
-        /// <param name = "data" > The data. </param>
-        /// <param name = "field" > The field. </param>
-        /// <param name = "filter" > The filter. </param>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the series.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param name="field">The field.</param>
+        /// <param name="filter">The filter.</param>
+        /// <returns></returns>
         public static IDictionary<string, IEnumerable<string>> GetSeries( IEnumerable<DataRow> data,
             Field field, string filter )
         {
@@ -372,64 +329,69 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var datatable = data.CopyToDataTable();
-                    var columns = datatable?.Columns;
-                    var dict = new Dictionary<string, IEnumerable<string>>();
-                    var values = GetValues( data, field, filter );
+                    var _dataTable = data.CopyToDataTable();
+                    var _columns = _dataTable?.Columns;
+                    var _dict = new Dictionary<string, IEnumerable<string>>();
+                    var _values = GetValues( data, field, filter );
 
-                    if( values?.Any() == true )
+                    if( _values?.Any() == true )
                     {
-                        for( var i = 0; i < columns?.Count; i++ )
+                        for( var i = 0; i < _columns?.Count; i++ )
                         {
-                            var name = columns[ i ].ColumnName;
+                            var _columnName = _columns[ i ].ColumnName;
 
-                            if( Verify.Input( name )
-                                && columns[ i ]?.DataType == typeof( string ) )
+                            if( Verify.Input( _columnName )
+                                && _columns[ i ]?.DataType == typeof( string ) )
                             {
-                                dict.Add( columns[ i ].ColumnName, values );
+                                _dict.Add( _columns[ i ].ColumnName, _values );
                             }
                         }
 
-                        return dict?.Any() == true
-                            ? dict
-                            : default;
+                        return _dict?.Any() == true
+                            ? _dict
+                            : default( Dictionary<string, IEnumerable<string>> );
                     }
 
-                    return default;
+                    return default( IDictionary<string, IEnumerable<string>> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IDictionary<string, IEnumerable<string>> );
                 }
             }
 
-            return default;
+            return default( IDictionary<string, IEnumerable<string>> );
         }
 
-        /// <summary> Gets the data builder. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the builder.
+        /// </summary>
+        /// <returns></returns>
         public IBuilder GetBuilder()
         {
             try
             {
                 return Query != null
                     ? MemberwiseClone() as Builder
-                    : default;
+                    : default( Builder );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( IBuilder );
             }
         }
 
-        /// <summary> Filters the specified data. </summary>
-        /// <param name = "data" > The data. </param>
-        /// <param name = "field" > The column. </param>
-        /// <param name = "filter" > The filter. </param>
-        /// <returns> </returns>
-        public static IEnumerable<DataRow> FilterData( IEnumerable<DataRow> data, Field field, string filter )
+        /// <summary>
+        /// Filters the data.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <param name="field">The field.</param>
+        /// <param name="filter">The filter.</param>
+        /// <returns></returns>
+        public static IEnumerable<DataRow> FilterData( IEnumerable<DataRow> data, Field field,
+            string filter )
         {
             if( Verify.Sequence( data )
                 && Verify.Input( filter )
@@ -437,21 +399,60 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var query = data?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
+                    var _query = data?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
                         ?.Select( p => p );
 
-                    return query?.Any() == true
-                        ? query.ToArray()
-                        : default;
+                    return _query?.Any() == true
+                        ? _query.ToArray()
+                        : default( DataRow[ ] );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IEnumerable<DataRow> );
                 }
             }
 
-            return default;
+            return default( IEnumerable<DataRow> );
+        }
+
+        /// <summary>
+        /// Gets the series.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <returns></returns>
+        private static IDictionary<string, IEnumerable<string>> GetSeries( DataTable data )
+        {
+            if( Verify.Table( data ) )
+            {
+                try
+                {
+                    var _dict = new Dictionary<string, IEnumerable<string>>();
+                    var _columns = data.Columns;
+
+                    for( var i = 0; i < _columns?.Count; i++ )
+                    {
+                        if( Verify.Input( _columns[ i ]?.ColumnName )
+                            && _columns[ i ]?.DataType == typeof( string ) )
+                        {
+                            _dict?.Add( _columns[ i ]?.ColumnName,
+                                GetValues( data?.AsEnumerable(),
+                                    _columns[ i ]?.ColumnName ) );
+                        }
+                    }
+
+                    return _dict?.Any() == true
+                        ? _dict
+                        : default( Dictionary<string, IEnumerable<string>> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IDictionary<string, IEnumerable<string>> );
+                }
+            }
+
+            return default( IDictionary<string, IEnumerable<string>> );
         }
     }
 }

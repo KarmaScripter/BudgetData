@@ -1,13 +1,9 @@
-﻿// // <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
-    // ********************************************************************************************************************************
-    // *********************************************************  ASSEMBLIES   ********************************************************
-    // ********************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Collections.Specialized;
@@ -16,101 +12,111 @@ namespace BudgetExecution
     using System.IO;
     using System.Linq;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="BudgetExecution.SqlBase" />
+    /// <seealso cref="BudgetExecution.IProvider" />
+    /// <seealso cref="BudgetExecution.ISource" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public abstract class SqlConfig : SqlBase, IProvider, ISource
     {
-        // ***************************************************************************************************************************
-        // *********************************************      FIELDS    **************************************************************
-        // ***************************************************************************************************************************
+        /// <summary>
+        /// The extension
+        /// </summary>
+        private protected readonly EXT _extension = EXT.SQL;
 
-        private protected readonly EXT extension = EXT.SQL;
+        /// <summary>
+        /// The provider path
+        /// </summary>
+        private protected readonly NameValueCollection _providerPath = ConfigurationManager.AppSettings;
 
-        /// <summary> The provider path </summary>
-        private protected readonly NameValueCollection providerPath = ConfigurationManager.AppSettings;
+        /// <summary>
+        /// The source
+        /// </summary>
+        private protected Source _source;
 
-        // **********************************************************************************************************************
-        // *************************************************   PROPERTIES   *****************************************************
-        // **********************************************************************************************************************
+        /// <summary>
+        /// The provider
+        /// </summary>
+        private protected Provider _provider;
 
-        /// <summary> Gets the source. </summary>
-        /// <value> The source. </value>
-        private protected Source Source { get; set; }
+        /// <summary>
+        /// The SQL statement
+        /// </summary>
+        private protected ISqlStatement _sqlStatement;
 
-        /// <summary> Gets the provider. </summary>
-        /// <value> The provider. </value>
-        private protected Provider Provider { get; set; }
+        /// <summary>
+        /// The file path
+        /// </summary>
+        private protected string _filePath;
 
-        /// <summary> Gets the SQL statement. </summary>
-        /// <value> The SQL statement. </value>
-        private protected ISqlStatement SqlStatement { get; set; }
+        /// <summary>
+        /// The file name
+        /// </summary>
+        protected string _fileName;
 
-        /// <summary> Gets the file path. </summary>
-        /// <value> The file path. </value>
-        private protected string FilePath { get; set; }
-
-        /// <summary> Gets the name of the file. </summary>
-        /// <value> The name of the file. </value>
-        protected string FileName { get; set; }
-
-        // ***************************************************************************************************************************
-        // ************************************************  METHODS   ***************************************************************
-        // ***************************************************************************************************************************
-
-        /// <summary> Gets the source. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the source.
+        /// </summary>
+        /// <returns></returns>
         public Source GetSource()
         {
             try
             {
-                return Validate.Source( Source )
-                    ? Source
-                    : default;
+                return Validate.Source( _source )
+                    ? _source
+                    : default( Source );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( Source );
             }
         }
 
-        /// <summary> Gets the provider. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the provider.
+        /// </summary>
+        /// <returns></returns>
         public Provider GetProvider()
         {
             try
             {
-                return Validate.Provider( Provider )
-                    ? Provider
-                    : default;
+                return Validate.Provider( _provider )
+                    ? _provider
+                    : default( Provider );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( Provider );
             }
         }
 
-        /// <inheritdoc/>
-        /// <summary> Gets the type of the command. </summary>
-        /// <returns> SQL </returns>
+        /// <summary>
+        /// Gets the type of the command.
+        /// </summary>
+        /// <returns></returns>
         public SQL GetCommandType()
         {
             try
             {
                 return CommandType != SQL.NS
                     ? CommandType
-                    : default;
+                    : default( SQL );
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( SQL );
             }
         }
 
-        /// <inheritdoc/>
-        /// <summary> Gets the arguments. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the arguments.
+        /// </summary>
+        /// <returns></returns>
         public IDictionary<string, object> GetArgs()
         {
             if( Args.Any() )
@@ -129,9 +135,10 @@ namespace BudgetExecution
             return new Dictionary<string, object>();
         }
 
-        /// <inheritdoc/>
-        /// <summary> Gets the connection manager. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the connection builder.
+        /// </summary>
+        /// <returns></returns>
         public IConnectionBuilder GetConnectionBuilder()
         {
             try
@@ -147,8 +154,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Gets the command text. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the command text.
+        /// </summary>
+        /// <returns></returns>
         public string GetCommandText()
         {
             try
@@ -160,20 +169,22 @@ namespace BudgetExecution
             catch( Exception ex )
             {
                 Fail( ex );
-                return default;
+                return default( string );
             }
         }
 
-        /// <summary> Gets the script files. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the script files.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<string> GetScriptFiles()
         {
-            if( Validate.Provider( Provider )
+            if( Validate.Provider( _provider )
                 && Enum.IsDefined( typeof( SQL ), CommandType ) )
             {
                 try
                 {
-                    var directory = providerPath[ $"{Provider}" ] + $@"\{CommandType}";
+                    var directory = _providerPath[ $"{_provider}" ] + $@"\{CommandType}";
 
                     if( Verify.Input( directory )
                         && Directory.Exists( directory ) )
@@ -182,19 +193,19 @@ namespace BudgetExecution
 
                         return scriptfiles?.Any() == true
                             ? scriptfiles
-                            : default;
+                            : default( string[ ] );
                     }
 
-                    return default;
+                    return default( IEnumerable<string> );
                 }
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    return default;
+                    return default( IEnumerable<string> );
                 }
             }
 
-            return default;
+            return default( IEnumerable<string> );
         }
     }
 }
