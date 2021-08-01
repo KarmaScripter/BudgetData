@@ -4,61 +4,77 @@
 
 namespace BudgetExecution
 {
-    // ********************************************************************************************************************************
-    // *********************************************************  ASSEMBLIES   ********************************************************
-    // ********************************************************************************************************************************
     using System;
     using System.Data.Common;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public interface ICommandBuilder
     {
-        // ***************************************************************************************************************************
-        // ****************************************************    MEMBERS    ********************************************************
-        // ***************************************************************************************************************************
+        /// <summary>
+        /// Sets the command.
+        /// </summary>
+        /// <param name="sqlStatement">The SQL statement.</param>
+        /// <returns></returns>
+        DbCommand SetCommand( ISqlStatement sqlStatement );
 
-        /// <summary> Sets the command. </summary>
-        /// <param name = "sqlstatement" > The sqlstatement. </param>
-        /// <returns> </returns>
-        DbCommand SetCommand( ISqlStatement sqlstatement );
-
-        /// <summary> Gets the command. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the command.
+        /// </summary>
+        /// <returns></returns>
         DbCommand GetCommand();
 
-        /// <summary> Gets the source. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the source.
+        /// </summary>
+        /// <returns></returns>
         Source GetSource();
 
-        /// <summary> Gets the provider. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the provider.
+        /// </summary>
+        /// <returns></returns>
         Provider GetProvider();
 
-        /// <summary> Gets the connection manager. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the connection builder.
+        /// </summary>
+        /// <returns></returns>
         IConnectionBuilder GetConnectionBuilder();
 
-        /// <summary> Gets the SQL statement. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the SQL statement.
+        /// </summary>
+        /// <returns></returns>
         ISqlStatement GetSqlStatement();
 
-        /// <summary> Gets the sq lite command. </summary>
-        /// <param name = "sqlstatement" > The sqlstatement. </param>
-        /// <returns> </returns>
-        DbCommand GetSQLiteCommand( ISqlStatement sqlstatement );
+        /// <summary>
+        /// Gets the sq lite command.
+        /// </summary>
+        /// <param name="sqlStatement">The SQL statement.</param>
+        /// <returns></returns>
+        DbCommand GetSQLiteCommand( ISqlStatement sqlStatement );
 
-        /// <summary> Gets the SQL ce command. </summary>
-        /// <param name = "sqlstatement" > The sqlstatement. </param>
-        /// <returns> </returns>
-        DbCommand GetSqlCeCommand( ISqlStatement sqlstatement );
+        /// <summary>
+        /// Gets the SQL ce command.
+        /// </summary>
+        /// <param name="sqlStatement">The SQL statement.</param>
+        /// <returns></returns>
+        DbCommand GetSqlCeCommand( ISqlStatement sqlStatement );
 
-        /// <summary> Gets the SQL command. </summary>
-        /// <param name = "sqlstatement" > The sqlstatement. </param>
-        /// <returns> </returns>
-        DbCommand GetSqlCommand( ISqlStatement sqlstatement );
+        /// <summary>
+        /// Gets the SQL command.
+        /// </summary>
+        /// <param name="sqlStatement">The SQL statement.</param>
+        /// <returns></returns>
+        DbCommand GetSqlCommand( ISqlStatement sqlStatement );
 
-        /// <summary> Gets the OLE database command. </summary>
-        /// <param name = "sqlstatement" > The sqlstatement. </param>
-        /// <returns> </returns>
-        DbCommand GetOleDbCommand( ISqlStatement sqlstatement );
+        /// <summary>
+        /// Gets the OLE database command.
+        /// </summary>
+        /// <param name="sqlStatement">The SQL statement.</param>
+        /// <returns></returns>
+        DbCommand GetOleDbCommand( ISqlStatement sqlStatement );
     }
 }

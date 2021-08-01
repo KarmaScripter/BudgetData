@@ -1,13 +1,9 @@
-﻿// <copyright file = "CommandFactory.cs" company = "Terry D. Eppler">
-// Copyright (c) Terry D. Eppler. All rights reserved.
+﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
 // </copyright>
 
 namespace BudgetExecution
 {
-    // ******************************************************************************************************************************
-    // ******************************************************   ASSEMBLIES   ********************************************************
-    // ******************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Data;
@@ -19,77 +15,75 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="BudgetExecution.CommandBase" />
+    /// <seealso cref="BudgetExecution.ICommandFactory" />
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     public class CommandFactory : CommandBase, ICommandFactory
     {
-        // ***************************************************************************************************************************
-        // *********************************************      FIELDS    **************************************************************
-        // ***************************************************************************************************************************
-
+        /// <summary>
+        /// The command builder
+        /// </summary>
         private readonly ICommandBuilder _commandBuilder;
 
-        // ***************************************************************************************************************************
-        // *********************************************   CONSTRUCTORS **************************************************************
-        // ***************************************************************************************************************************
+        /// <summary>
+        /// The connection factory
+        /// </summary>
+        private readonly IConnectionFactory _connectionFactory;
 
-        public CommandFactory( ICommandBuilder commandbuilder )
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandFactory"/> class.
+        /// </summary>
+        /// <param name="commandBuilder">The command builder.</param>
+        public CommandFactory( ICommandBuilder commandBuilder )
         {
-            _commandBuilder = commandbuilder;
-            SqlStatement = _commandBuilder?.GetSqlStatement();
-            ConnectionFactory = new ConnectionFactory( SqlStatement?.GetConnectionBuilder() );
+            _commandBuilder = commandBuilder;
+            _sqlStatement = _commandBuilder?.GetSqlStatement();
+            _connectionFactory = new ConnectionFactory( _sqlStatement?.GetConnectionBuilder() );
         }
 
-        // **********************************************************************************************************************
-        // *************************************************   PROPERTIES   *****************************************************
-        // **********************************************************************************************************************
-
-        /// <summary> Gets the connection manager. </summary>
-        /// <value> The connection manager. </value>
-        private IConnectionFactory ConnectionFactory { get; }
-
-        // **********************************************************************************************************************
-        // *************************************************    METHODS     *****************************************************
-        // **********************************************************************************************************************
-
-        /// <inheritdoc/>
-        /// <summary> Gets the create table command. </summary>
-        /// <param name = "table" > The tablename. </param>
-        /// <param name = "columns" > The columns. </param>
-        /// <returns> </returns>
-        public DbCommand GetCreateTableCommand( string table, IEnumerable<DataColumn> columns )
+        /// <summary>
+        /// Gets the create table command.
+        /// </summary>
+        /// <param name="tableName">Name of the table.</param>
+        /// <param name="dataColumns">The data columns.</param>
+        /// <returns></returns>
+        public DbCommand GetCreateTableCommand( string tableName, IEnumerable<DataColumn> dataColumns )
         {
-            if( Verify.Input( table )
-                && Verify.Sequence( columns ) )
+            if( Verify.Input( tableName )
+                && Verify.Sequence( dataColumns ) )
             {
                 try
                 {
-                    var connectionbuilder = GetConnectionBuilder();
-                    var provider = connectionbuilder.GetProvider();
-                    var sql = $"CREATE TABLE {table}";
+                    _connectionBuilder = GetConnectionBuilder();
+                    _provider = _connectionBuilder.GetProvider();
+                    var _sql = $"CREATE TABLE {tableName}";
 
-                    if( Validate.Provider( provider )
-                        && Verify.Input( sql ) )
+                    if( Validate.Provider( _provider )
+                        && Verify.Input( _sql ) )
                     {
-                        switch( provider )
+                        switch( _provider )
                         {
                             case Provider.SQLite:
                             {
-                                return Verify.Input( sql )
-                                    ? new SQLiteCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
-                                return Verify.Input( sql )
-                                    ? new SqlCeCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
-                                return Verify.Input( sql )
-                                    ? new SqlCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
 
@@ -98,8 +92,8 @@ namespace BudgetExecution
                             case Provider.Access:
                             case Provider.OleDb:
                             {
-                                return Verify.Input( sql )
-                                    ? new OleDbCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new OleDbCommand( _sql )
                                     : default( OleDbCommand );
                             }
                         }
@@ -115,38 +109,37 @@ namespace BudgetExecution
             return default( DbCommand );
         }
 
-        /// <inheritdoc/>
-        /// <summary> Gets the create view command. </summary>
-        /// <param name = "view" > The tablename. </param>
-        /// <param name = "columns" > The columns. </param>
-        /// <returns> </returns>
-        public DbCommand GetCreateViewCommand( string view, IEnumerable<DataColumn> columns )
+        /// <summary>
+        /// Gets the create view command.
+        /// </summary>
+        /// <param name="viewName">Name of the view.</param>
+        /// <param name="dataColumns">The data columns.</param>
+        /// <returns></returns>
+        public DbCommand GetCreateViewCommand( string viewName, IEnumerable<DataColumn> dataColumns )
         {
-            var connectionbuilder = ConnectionFactory?.GetConnectionBuilder();
-
-            if( Verify.Input( view )
-                && columns?.Any() == true
-                && connectionbuilder != null
-                && connectionbuilder.GetProvider() != Provider.SqlCe )
+            if( Verify.Input( viewName )
+                && dataColumns?.Any()               == true
+                && _connectionBuilder               != null
+                && _connectionBuilder.GetProvider() != Provider.SqlCe )
             {
                 try
                 {
-                    var provider = connectionbuilder.GetProvider();
-                    var sql = $"CREATE VIEW {view};";
+                    _provider = _connectionBuilder.GetProvider();
+                    var _sql = $"CREATE VIEW {viewName};";
 
-                    switch( provider )
+                    switch( _provider )
                     {
                         case Provider.SQLite:
                         {
-                            return Verify.Input( sql )
-                                ? new SQLiteCommand( sql )
+                            return Verify.Input( _sql )
+                                ? new SQLiteCommand( _sql )
                                 : default( SQLiteCommand );
                         }
 
                         case Provider.SqlServer:
                         {
-                            return Verify.Input( sql )
-                                ? new SqlCommand( sql )
+                            return Verify.Input( _sql )
+                                ? new SqlCommand( _sql )
                                 : default( SqlCommand );
                         }
 
@@ -155,8 +148,8 @@ namespace BudgetExecution
                         case Provider.Access:
                         case Provider.OleDb:
                         {
-                            return Verify.Input( sql )
-                                ? new OleDbCommand( sql )
+                            return Verify.Input( _sql )
+                                ? new OleDbCommand( _sql )
                                 : default( OleDbCommand );
                         }
                     }
@@ -171,45 +164,44 @@ namespace BudgetExecution
             return default( DbCommand );
         }
 
-        /// <inheritdoc/>
-        /// <summary> Gets the drop table command. </summary>
-        /// <param name = "datatable" > The datatable. </param>
-        /// <returns> </returns>
-        public DbCommand GetDropTableCommand( DataTable datatable )
+        /// <summary>
+        /// Gets the drop table command.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <returns></returns>
+        public DbCommand GetDropTableCommand( DataTable dataTable )
         {
-            var connectionbuilder = ConnectionFactory?.GetConnectionBuilder();
-
-            if( datatable != null
-                && connectionbuilder != null )
+            if( dataTable             != null
+                && _connectionBuilder != null )
             {
                 try
                 {
-                    var sql = $"DROP {datatable.TableName};";
-                    var provider = connectionbuilder.GetProvider();
+                    var _sql = $"DROP {dataTable.TableName};";
+                    _provider = _connectionBuilder.GetProvider();
 
-                    if( Verify.Input( sql )
-                        && Enum.IsDefined( typeof( Provider ), provider ) )
+                    if( Verify.Input( _sql )
+                        && Enum.IsDefined( typeof( Provider ), _provider ) )
                     {
-                        switch( provider )
+                        switch( _provider )
                         {
                             case Provider.SQLite:
                             {
-                                return Verify.Input( sql )
-                                    ? new SQLiteCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
-                                return Verify.Input( sql )
-                                    ? new SqlCeCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
-                                return Verify.Input( sql )
-                                    ? new SqlCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
 
@@ -218,8 +210,8 @@ namespace BudgetExecution
                             case Provider.Access:
                             case Provider.OleDb:
                             {
-                                return Verify.Input( sql )
-                                    ? new OleDbCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new OleDbCommand( _sql )
                                     : default( OleDbCommand );
                             }
                         }
@@ -235,47 +227,48 @@ namespace BudgetExecution
             return default( DbCommand );
         }
 
-        /// <inheritdoc/>
-        /// <summary> Gets the alter command. </summary>
-        /// <param name = "datatable" > The datatable. </param>
-        /// <param name = "column" > The column. </param>
-        /// <returns> </returns>
-        public DbCommand GetAlterCommand( DataTable datatable, DataColumn column )
+        /// <summary>
+        /// Gets the alter command.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <param name="dataColumn">The data column.</param>
+        /// <returns></returns>
+        public DbCommand GetAlterCommand( DataTable dataTable, DataColumn dataColumn )
         {
-            var connectionbuilder = ConnectionFactory?.GetConnectionBuilder();
-
-            if( datatable != null
-                && column != null
-                && connectionbuilder != null )
+            if( dataTable             != null
+                && dataColumn         != null
+                && _connectionBuilder != null )
             {
                 try
                 {
-                    var provider = connectionbuilder?.GetProvider();
-                    var sql = $"ALTER TABLE {datatable.TableName} ADD COLUMN {column.ColumnName};";
+                    _provider = _connectionBuilder.GetProvider();
 
-                    if( Verify.Input( sql )
-                        && Enum.IsDefined( typeof( Provider ), provider ) )
+                    var _sql =
+                        $"ALTER TABLE {dataTable.TableName} ADD COLUMN {dataColumn.ColumnName};";
+
+                    if( Verify.Input( _sql )
+                        && Enum.IsDefined( typeof( Provider ), _provider ) )
                     {
-                        switch( provider )
+                        switch( _provider )
                         {
                             case Provider.SQLite:
                             {
-                                return Verify.Input( sql )
-                                    ? new SQLiteCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
-                                return Verify.Input( sql )
-                                    ? new SqlCeCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
-                                return Verify.Input( sql )
-                                    ? new SqlCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
 
@@ -284,8 +277,8 @@ namespace BudgetExecution
                             case Provider.Access:
                             case Provider.OleDb:
                             {
-                                return Verify.Input( sql )
-                                    ? new OleDbCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new OleDbCommand( _sql )
                                     : default( OleDbCommand );
                             }
                         }
@@ -301,45 +294,46 @@ namespace BudgetExecution
             return default( DbCommand );
         }
 
-        /// <inheritdoc/>
-        /// <summary> Gets the alter command. </summary>
-        /// <param name = "datatable" > The datatable. </param>
-        /// <param name = "name" > The name. </param>
-        /// <returns> </returns>
-        public DbCommand GetAlterCommand( DataTable datatable, string name )
+        /// <summary>
+        /// Gets the alter command.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
+        public DbCommand GetAlterCommand( DataTable dataTable, string name )
         {
-            if( datatable != null
+            if( dataTable != null
                 && Verify.Input( name )
                 && _commandBuilder != null )
             {
                 try
                 {
-                    var provider = _commandBuilder?.GetProvider();
-                    var sql = $"ALTER TABLE {datatable.TableName} RENAME {name};";
+                    _provider = _commandBuilder.GetProvider();
+                    var _sql = $"ALTER TABLE {dataTable.TableName} RENAME {name};";
 
-                    if( Enum.IsDefined( typeof( Provider ), provider )
-                        && Verify.Input( sql ) )
+                    if( Enum.IsDefined( typeof( Provider ), _provider )
+                        && Verify.Input( _sql ) )
                     {
-                        switch( provider )
+                        switch( _provider )
                         {
                             case Provider.SQLite:
                             {
-                                return Verify.Input( sql )
-                                    ? new SQLiteCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
-                                return Verify.Input( sql )
-                                    ? new SqlCeCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
-                                return Verify.Input( sql )
-                                    ? new SqlCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
 
@@ -348,8 +342,8 @@ namespace BudgetExecution
                             case Provider.Access:
                             case Provider.OleDb:
                             {
-                                return Verify.Input( sql )
-                                    ? new OleDbCommand( sql )
+                                return Verify.Input( _sql )
+                                    ? new OleDbCommand( _sql )
                                     : default( OleDbCommand );
                             }
                         }
@@ -365,8 +359,10 @@ namespace BudgetExecution
             return default( DbCommand );
         }
 
-        /// <summary> Gets the select command. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the select command.
+        /// </summary>
+        /// <returns></returns>
         public DbCommand GetSelectCommand()
         {
             try
@@ -380,8 +376,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Gets the insert command. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the insert command.
+        /// </summary>
+        /// <returns></returns>
         public DbCommand GetInsertCommand()
         {
             try
@@ -395,8 +393,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Gets the update command. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the update command.
+        /// </summary>
+        /// <returns></returns>
         public DbCommand GetUpdateCommand()
         {
             try
@@ -410,8 +410,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Gets the delete command. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the delete command.
+        /// </summary>
+        /// <returns></returns>
         public DbCommand GetDeleteCommand()
         {
             try

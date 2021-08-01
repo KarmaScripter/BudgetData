@@ -4,19 +4,11 @@
 
 namespace BudgetExecution
 {
-    // ******************************************************************************************************************************
-    // ******************************************************   ASSEMBLIES   ********************************************************
-    // ******************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
-
-    // ***************************************************************************************************************************
-    // *********************************************   CONSTRUCTORS **************************************************************
-    // ***************************************************************************************************************************
 
     /// <summary> </summary>
     /// <seealso cref = "IDataAccess"/>
@@ -25,19 +17,15 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
-    public abstract class DataAccess : DataConfig
+    public abstract class DataAccess : DataConfig, ISource, IProvider
     {
-        // ***************************************************************************************************************************
-        // ************************************************  METHODS   ***************************************************************
-        // ***************************************************************************************************************************
-
         /// <summary> Gets the query. </summary>
         /// <returns> </returns>
         public IQuery GetQuery()
         {
             try
             {
-                return Query ?? new Query( ConnectionBuilder, SqlStatement );
+                return _query ?? new Query( _connectionBuilder, _sqlStatement );
             }
             catch( Exception ex )
             {
@@ -46,47 +34,53 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Gets the data. </summary>
+        /// <summary> Gets the dataRows. </summary>
         /// <returns> </returns>
         public IEnumerable<DataRow> GetData()
         {
-            try
-            {
-                var data = GetDataTable()?.AsEnumerable();
-
-                return Verify.Rows( data )
-                    ? data
-                    : default( EnumerableRowCollection<DataRow> );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IEnumerable<DataRow> );
-            }
-        }
-
-        /// <summary> Gets the data table. </summary>
-        /// <returns> </returns>
-        public DataTable GetDataTable()
-        {
-            if( Validate.Source( Source ) )
+            if( Verify.Table( _dataTable ) )
             {
                 try
                 {
-                    R6 = new DataSet( $"{Source}" )
+                    var _data = _dataTable
+                        ?.AsEnumerable();
+
+                    return Verify.Rows( _data )
+                        ? _data
+                        : default( EnumerableRowCollection<DataRow> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<DataRow> );
+                }
+            }
+
+            return default( IEnumerable<DataRow> );
+        }
+
+        /// <summary> Gets the dataRows table. </summary>
+        /// <returns> </returns>
+        public DataTable GetDataTable()
+        {
+            if( Verify.Table(  _dataTable  ) )
+            {
+                try
+                {
+                    _dataSet = new DataSet( $"{_source}" )
                     {
-                        DataSetName = $"{Source}"
+                        DataSetName = $"{_source}"
                     };
 
-                    var datatable = new DataTable( $"{Source}" );
-                    datatable.TableName = $"{Source}";
-                    R6.Tables.Add( datatable );
-                    var adapter = Query?.GetAdapter();
-                    adapter?.Fill( R6, datatable.TableName );
-                    SetColumnCaptions( datatable );
+                    _dataTable = new DataTable( $"{_source}" );
+                    _dataTable.TableName = $"{_source}";
+                    _dataSet.Tables.Add( _dataTable );
+                    var adapter = _query?.GetAdapter();
+                    adapter?.Fill( _dataSet, _dataTable.TableName );
+                    SetColumnCaptions( _dataTable );
 
-                    return datatable?.Rows?.Count > 0
-                        ? datatable
+                    return _dataTable?.Rows?.Count > 0
+                        ? _dataTable
                         : default( DataTable );
                 }
                 catch( Exception ex )
@@ -99,28 +93,28 @@ namespace BudgetExecution
             return default( DataTable );
         }
 
-        /// <summary> Gets the data set. </summary>
+        /// <summary> Gets the dataRows set. </summary>
         /// <returns> </returns>
         public DataSet GetDataSet()
         {
-            if( Enum.IsDefined( typeof( Source ), Source ) )
+            if( Enum.IsDefined( typeof( Source ), _source ) )
             {
                 try
                 {
-                    R6 = new DataSet( "R6" )
+                    _dataSet = new DataSet( "DataSet" )
                     {
-                        DataSetName = "R6"
+                        DataSetName = "DataSet"
                     };
 
-                    var datatable = new DataTable( $"{Source}" );
-                    datatable.TableName = $"{Source}";
-                    R6.Tables.Add( datatable );
-                    var adapter = Query?.GetAdapter();
-                    adapter?.Fill( R6, datatable?.TableName );
-                    SetColumnCaptions( datatable );
+                    var _table = new DataTable( $"{_source}" );
+                    _table.TableName = $"{_source}";
+                    _dataSet.Tables.Add( _table );
+                    using var _adapter = _query?.GetAdapter();
+                    _adapter?.Fill( _dataSet, _table?.TableName );
+                    SetColumnCaptions( _table );
 
-                    return datatable?.Rows?.Count > 0
-                        ? R6
+                    return _table?.Rows?.Count > 0
+                        ? _dataSet
                         : default( DataSet );
                 }
                 catch( Exception ex )
@@ -133,20 +127,76 @@ namespace BudgetExecution
             return default( DataSet );
         }
 
-        /// <summary> Sets the column captions. </summary>
-        /// <param name = "datatable" > The datatable. </param>
-        public void SetColumnCaptions( DataTable datatable )
+        /// <summary>
+        /// Gets the source.
+        /// </summary>
+        /// <returns></returns>
+        public Source GetSource()
         {
-            if( Verify.Table( datatable ) )
+            try
+            {
+                return Validate.Source( _source )
+                    ? _source
+                    : Source.NS;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return Source.NS;
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
+        public Provider GetProvider()
+        {
+            try
+            {
+                return Validate.Provider( _provider )
+                    ? _provider
+                    : Provider.NS;
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return Provider.NS;
+            }
+        }
+
+        /// <summary>
+        /// Gets the record.
+        /// </summary>
+        /// <returns></returns>
+        public DataRow GetRecord()
+        {
+            try
+            {
+                return Verify.Row( _record )
+                    ? _record
+                    : default( DataRow );
+            }
+            catch( Exception ex )
+            {
+                Fail( ex );
+                return default( DataRow );
+            }
+        }
+
+        /// <summary> Sets the column captions. </summary>
+        /// <param name = "dataTable" > The dataTable. </param>
+        public void SetColumnCaptions( DataTable dataTable )
+        {
+            if( Verify.Table( dataTable ) )
             {
                 try
                 {
-                    foreach( DataColumn column in datatable.Columns )
+                    foreach( DataColumn column in dataTable.Columns )
                     {
                         if( column?.ColumnName?.Length < 5 )
                         {
-                            var caption = column.ColumnName.ToUpper();
-                            column.Caption = caption;
+                            var _caption = column.ColumnName.ToUpper();
+                            column.Caption = _caption;
                             continue;
                         }
 
@@ -172,16 +222,16 @@ namespace BudgetExecution
                 var table = GetDataTable();
                 SetColumnCaptions( table );
 
-                R6 = new DataSet( $"{Source}" )
+                _dataSet = new DataSet( $"{_source}" )
                 {
-                    DataSetName = $"{Source}"
+                    DataSetName = $"{_source}"
                 };
 
-                var datatable = new DataTable( $"{Source}" );
-                datatable.TableName = $"{Source}";
-                R6.Tables.Add( datatable );
-                using var adapter = Query?.GetAdapter();
-                adapter?.Fill( R6, datatable.TableName );
+                var datatable = new DataTable( $"{_source}" );
+                datatable.TableName = $"{_source}";
+                _dataSet.Tables.Add( datatable );
+                using var adapter = _query?.GetAdapter();
+                adapter?.Fill( _dataSet, datatable.TableName );
                 SetColumnCaptions( datatable );
 
                 return table.Columns.Count > 0
@@ -196,16 +246,16 @@ namespace BudgetExecution
         }
 
         /// <summary> Gets the primary keys. </summary>
-        /// <param name = "data" > The data. </param>
+        /// <param name = "dataRows" > The dataRows. </param>
         /// <returns> </returns>
-        public IEnumerable<int> GetPrimaryIndexes( IEnumerable<DataRow> data )
+        public IEnumerable<int> GetPrimaryIndexes( IEnumerable<DataRow> dataRows )
         {
-            if( Verify.Input( data )
-                && data?.HasPrimaryKey() == true )
+            if( Verify.Input( dataRows )
+                && dataRows?.HasPrimaryKey() == true )
             {
                 try
                 {
-                    var table = data?.CopyToDataTable();
+                    var table = dataRows?.CopyToDataTable();
                     var list = table?.GetPrimaryKeyValues();
 
                     return list?.Any() == true
@@ -223,15 +273,15 @@ namespace BudgetExecution
         }
 
         /// <summary> Gets the column ordinals. </summary>
-        /// <param name = "data" > The data. </param>
+        /// <param name = "dataColumns" > The dataRows. </param>
         /// <returns> </returns>
-        public IEnumerable<int> GetColumnOrdinals( IEnumerable<DataColumn> data )
+        public IEnumerable<int> GetColumnOrdinals( IEnumerable<DataColumn> dataColumns )
         {
-            if( Verify.Sequence( data ) )
+            if( Verify.Sequence( dataColumns ) )
             {
                 try
                 {
-                    var list = data.ToList();
+                    var list = dataColumns.ToList();
                     var values = new List<int>();
 
                     if( list?.Any() == true )

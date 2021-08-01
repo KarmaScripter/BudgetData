@@ -4,48 +4,48 @@
 
 namespace BudgetExecution
 {
-    // ********************************************************************************************************************************
-    // *********************************************************  ASSEMBLIES   ********************************************************
-    // ********************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     public abstract class SqlBase
     {
-        // **********************************************************************************************************************
-        // *************************************************   PROPERTIES   *****************************************************
-        // **********************************************************************************************************************
+        /// <summary>
+        /// The connection builder
+        /// </summary>
+        private protected IConnectionBuilder _connectionBuilder;
 
-        /// <summary> Gets the connection factory. </summary>
-        /// <value> The connection factory. </value>
-        private protected IConnectionBuilder ConnectionBuilder { get; set; }
+        /// <summary>
+        /// The command type
+        /// </summary>
+        private protected SQL _commandType;
 
-        /// <summary> Gets the type of the command. </summary>
-        /// <value> The type of the command. </value>
-        private protected SQL CommandType { get; set; }
+        /// <summary>
+        /// The arguments
+        /// </summary>
+        private protected IDictionary<string, object> _args;
 
-        /// <summary> Gets the arguments. </summary>
-        /// <value> The arguments. </value>
-        private protected IDictionary<string, object> Args { get; set; }
+        /// <summary>
+        /// The command text
+        /// </summary>
+        private protected string _commandText;
 
-        /// <summary> Gets or sets the command text. </summary>
-        /// <value> The command text. </value>
-        private protected string CommandText { get; set; }
-
-        // **********************************************************************************************************************
-        // *************************************************    METHODS     *****************************************************
-        // **********************************************************************************************************************
-
-        /// <summary> Sets the connection builder. </summary>
-        /// <param name = "source" > The source. </param>
-        /// <param name = "provider" > The provider. </param>
+        /// <summary>
+        /// Sets the connection builder.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
         private protected void SetConnectionBuilder( Source source, Provider provider )
         {
             try
             {
-                ConnectionBuilder = Validate.Source( source ) && Validate.Provider( provider )
+                _connectionBuilder = Validate.Source( source ) && Validate.Provider( provider )
                     ? new ConnectionBuilder( source, provider )
                     : default( ConnectionBuilder );
             }
@@ -55,15 +55,17 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the arguments. </summary>
-        /// <param name = "dict" > The dictionary. </param>
+        /// <summary>
+        /// Sets the arguments.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
         private protected void SetArgs( IDictionary<string, object> dict )
         {
             if( dict?.Any() == true )
             {
                 try
                 {
-                    Args = dict?.Any() == true
+                    _args = dict?.Any() == true
                         ? dict
                         : new Dictionary<string, object>();
                 }
@@ -74,16 +76,17 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the type of the command. </summary>
-        /// <param name = "commandtype" > The commandtype. </param>
-        /// <returns> </returns>
-        private protected void SetCommandType( SQL commandtype )
+        /// <summary>
+        /// Sets the type of the command.
+        /// </summary>
+        /// <param name="commandType">Type of the command.</param>
+        private protected void SetCommandType( SQL commandType )
         {
             try
             {
-                CommandType = Enum.IsDefined( typeof( SQL ), commandtype )
-                    && Enum.GetNames( typeof( SQL ) ).Contains( commandtype.ToString() )
-                        ? commandtype
+                _commandType = Enum.IsDefined( typeof( SQL ), commandType )
+                    && Enum.GetNames( typeof( SQL ) ).Contains( commandType.ToString() )
+                        ? commandType
                         : SQL.SELECT;
             }
             catch( Exception ex )
@@ -92,13 +95,15 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the select statement. </summary>
+        /// <summary>
+        /// Sets the select statement.
+        /// </summary>
         private protected void SetSelectStatement()
         {
             try
             {
-                CommandText = Verify.Input( ConnectionBuilder?.GetConnectionString() )
-                    ? $"{SQL.SELECT} * FROM {ConnectionBuilder?.GetTableName()};"
+                _commandText = Verify.Input( _connectionBuilder?.GetConnectionString() )
+                    ? $"{SQL.SELECT} * FROM {_connectionBuilder?.GetTableName()};"
                     : string.Empty;
             }
             catch( Exception ex )
@@ -107,8 +112,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the select statement. </summary>
-        /// <param name = "dict" > The dictionary. </param>
+        /// <summary>
+        /// Sets the select statement.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
         private protected void SetSelectStatement( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
@@ -123,8 +130,8 @@ namespace BudgetExecution
                     }
 
                     var values = vals.TrimEnd( " AND".ToCharArray() );
-                    var table = ConnectionBuilder?.GetTableName();
-                    CommandText = $"{SQL.SELECT} * FROM {table} WHERE {values};";
+                    var table = _connectionBuilder?.GetTableName();
+                    _commandText = $"{SQL.SELECT} * FROM {table} WHERE {values};";
                 }
                 catch( Exception ex )
                 {
@@ -133,12 +140,14 @@ namespace BudgetExecution
             }
             else if( dict == null )
             {
-                CommandText = $"{SQL.SELECT} * FROM {ConnectionBuilder?.GetTableName()};";
+                _commandText = $"{SQL.SELECT} * FROM {_connectionBuilder?.GetTableName()};";
             }
         }
 
-        /// <summary> Sets the update statement. </summary>
-        /// <param name = "dict" > The dictionary. </param>
+        /// <summary>
+        /// Sets the update statement.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
         private protected void SetUpdateStatement( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
@@ -153,7 +162,7 @@ namespace BudgetExecution
                     }
 
                     var vals = update.TrimEnd( " AND".ToCharArray() );
-                    CommandText = $"{SQL.UPDATE} {ConnectionBuilder?.GetTableName()} SET {vals};";
+                    _commandText = $"{SQL.UPDATE} {_connectionBuilder?.GetTableName()} SET {vals};";
                 }
                 catch( Exception ex )
                 {
@@ -162,28 +171,30 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the insert statement. </summary>
-        /// <param name = "dict" > The dictionary. </param>
+        /// <summary>
+        /// Sets the insert statement.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
         private protected void SetInsertStatement( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
             {
                 try
                 {
-                    var table = ConnectionBuilder?.GetTableName();
-                    var colname = string.Empty;
-                    var vals = string.Empty;
+                    var _table = _connectionBuilder?.GetTableName();
+                    var _column = string.Empty;
+                    var _values = string.Empty;
 
                     foreach( var kvp in dict )
                     {
-                        colname += $"{kvp.Key}, ";
-                        vals += $"{kvp.Value}, ";
+                        _column += $"{kvp.Key}, ";
+                        _values += $"{kvp.Value}, ";
                     }
 
                     var values =
-                        $"({colname.TrimEnd( ", ".ToCharArray() )}) VALUES ({vals.TrimEnd( ", ".ToCharArray() )})";
+                        $"({_column.TrimEnd( ", ".ToCharArray() )}) VALUES ({_values.TrimEnd( ", ".ToCharArray() )})";
 
-                    CommandText = $"{SQL.INSERT} INTO {table} {values};";
+                    _commandText = $"{SQL.INSERT} INTO {_table} {values};";
                 }
                 catch( Exception ex )
                 {
@@ -192,24 +203,26 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the delete statement. </summary>
-        /// <param name = "dict" > The dictionary. </param>
+        /// <summary>
+        /// Sets the delete statement.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
         private protected void SetDeleteStatement( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
             {
                 try
                 {
-                    var vals = string.Empty;
+                    var _columns = string.Empty;
 
                     foreach( var kvp in dict )
                     {
-                        vals += $"{kvp.Key} = '{kvp.Value}' AND ";
+                        _columns += $"{kvp.Key} = '{kvp.Value}' AND ";
                     }
 
-                    var values = vals.TrimEnd( " AND".ToCharArray() );
-                    var table = ConnectionBuilder?.GetTableName();
-                    CommandText = $"{SQL.DELETE} FROM {table} WHERE {values};";
+                    var _values = _columns.TrimEnd( " AND".ToCharArray() );
+                    var _table = _connectionBuilder?.GetTableName();
+                    _commandText = $"{SQL.DELETE} FROM {_table} WHERE {_values};";
                 }
                 catch( Exception ex )
                 {
@@ -218,17 +231,19 @@ namespace BudgetExecution
             }
             else if( dict == null )
             {
-                CommandText = $"{SQL.DELETE} * FROM {ConnectionBuilder?.GetTableName()};";
+                _commandText = $"{SQL.DELETE} * FROM {_connectionBuilder?.GetTableName()};";
             }
         }
 
-        /// <summary> Sets the command text. </summary>
-        /// <param name = "sql" > The SQL. </param>
+        /// <summary>
+        /// Sets the command text.
+        /// </summary>
+        /// <param name="sql">The SQL.</param>
         private protected void SetCommandText( string sql )
         {
             try
             {
-                CommandText = Verify.Input( sql )
+                _commandText = Verify.Input( sql )
                     ? sql
                     : string.Empty;
             }
@@ -238,13 +253,15 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the command text. </summary>
-        /// <param name = "command" > </param>
-        /// <param name = "dict" > The dictionary. </param>
-        public void SetCommandText( IDictionary<string, object> dict, SQL command = SQL.SELECT )
+        /// <summary>
+        /// Sets the command text.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="commandType">Type of the command.</param>
+        public void SetCommandText( IDictionary<string, object> dict, SQL commandType = SQL.SELECT )
         {
             if( dict == null
-                && Verify.Input( ConnectionBuilder?.GetConnectionString() ) )
+                && Verify.Input( _connectionBuilder?.GetConnectionString() ) )
             {
                 SetSelectStatement();
             }
@@ -252,7 +269,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    switch( command )
+                    switch( commandType )
                     {
                         case SQL.SELECT:
                         {
@@ -286,27 +303,29 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Get Error Dialog. </summary>
-        /// <param name = "ex" > The ex. </param>
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
         private protected static void Fail( Exception ex )
         {
-            using var error = new Error( ex );
-            error?.SetText();
-            error?.ShowDialog();
+            using var _error = new Error( ex );
+            _error?.SetText();
+            _error?.ShowDialog();
         }
 
-        /// <summary> Converts to string. </summary>
+        /// <summary>
+        /// Converts to string.
+        /// </summary>
         /// <returns>
-        /// A
-        /// <see cref = "System.String"/>
-        /// that represents this instance.
+        /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
         public override string ToString()
         {
             try
             {
-                return Verify.Input( CommandText )
-                    ? CommandText
+                return Verify.Input( _commandText )
+                    ? _commandText
                     : string.Empty;
             }
             catch( Exception ex )

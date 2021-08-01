@@ -53,11 +53,15 @@ namespace BudgetExecution
         {
             try
             {
-                var _columns = Record?.ToDictionary()?.Keys?.ToArray();
+                var _columns = _record
+                    ?.ToDictionary()
+                    ?.Keys
+                    ?.ToArray();
 
                 if( _columns?.Any() == true )
                 {
-                    var _fields = _columns?.Select( e => e.ToEnum<Field>() );
+                    var _fields = _columns
+                        ?.Select( e => e.ToEnum<Field>() );
 
                     return _fields?.Any() == true
                         ? _fields
@@ -84,7 +88,7 @@ namespace BudgetExecution
             try
             {
                 var _elements = new List<IElement>();
-                var _columns = Record?.Table?.Columns;
+                var _columns = _record?.Table?.Columns;
                 var _fields = Enum.GetNames( typeof( Field ) );
 
                 if( _columns?.Count > 0 )
@@ -94,7 +98,7 @@ namespace BudgetExecution
                         if( column?.DataType == typeof( string )
                             && _fields?.Contains( column?.ColumnName ) == true )
                         {
-                            _elements?.Add( new Element( Record, column?.ColumnName ) );
+                            _elements?.Add( new Element( _record, column?.ColumnName ) );
                         }
                     }
 

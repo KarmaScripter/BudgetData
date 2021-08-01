@@ -26,42 +26,42 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlStatement"/> class.
         /// </summary>
-        /// <param name="builder">The builder.</param>
-        /// <param name="command">The command.</param>
-        public SqlStatement( IConnectionBuilder builder, SQL command = SQL.SELECT )
+        /// <param name="connectionBuilder">The connectionBuilder.</param>
+        /// <param name="commandType">The commandType.</param>
+        public SqlStatement( IConnectionBuilder connectionBuilder, SQL commandType = SQL.SELECT )
         {
-            ConnectionBuilder = builder;
-            SetCommandType( command );
-            Args = null;
-            SetCommandText( Args );
+            _connectionBuilder = connectionBuilder;
+            SetCommandType( commandType );
+            _args = null;
+            SetCommandText( _args );
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlStatement"/> class.
         /// </summary>
-        /// <param name="builder">The builder.</param>
+        /// <param name="connectionBuilder">The connectionBuilder.</param>
         /// <param name="dict">The dictionary.</param>
-        public SqlStatement( IConnectionBuilder builder, IDictionary<string, object> dict )
+        public SqlStatement( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict )
         {
-            ConnectionBuilder = builder;
-            CommandType = SQL.SELECT;
-            Args = dict;
-            CommandText = GetCommandText();
+            _connectionBuilder = connectionBuilder;
+            _commandType = SQL.SELECT;
+            _args = dict;
+            _commandText = GetCommandText();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlStatement"/> class.
         /// </summary>
-        /// <param name="builder">The builder.</param>
+        /// <param name="connectionBuilder">The connectionBuilder.</param>
         /// <param name="dict">The dictionary.</param>
-        /// <param name="commandType">Type of the command.</param>
-        public SqlStatement( IConnectionBuilder builder, IDictionary<string, object> dict,
+        /// <param name="commandType">Type of the commandType.</param>
+        public SqlStatement( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict,
             SQL commandType = SQL.SELECT )
         {
-            ConnectionBuilder = builder;
+            _connectionBuilder = connectionBuilder;
             SetCommandType( commandType );
             SetArgs( dict );
-            CommandText = GetCommandText();
+            _commandText = GetCommandText();
         }
 
         /// <summary>
@@ -70,23 +70,23 @@ namespace BudgetExecution
         /// <returns></returns>
         public string GetSelectStatement()
         {
-            if( Args != null )
+            if( _args != null )
             {
                 try
                 {
                     var _values = string.Empty;
 
-                    foreach( var kvp in Args )
+                    foreach( var kvp in _args )
                     {
                         _values += $"{kvp.Key} = '{kvp.Value}' AND ";
                     }
 
                     _values = _values.TrimEnd( " AND".ToCharArray() );
-                    var _table = ConnectionBuilder?.GetTableName();
-                    CommandText = $"{SQL.SELECT} * FROM {_table} WHERE {_values};";
+                    var _table = _connectionBuilder?.GetTableName();
+                    _commandText = $"{SQL.SELECT} * FROM {_table} WHERE {_values};";
 
-                    return Verify.Input( CommandText )
-                        ? CommandText
+                    return Verify.Input( _commandText )
+                        ? _commandText
                         : default( string );
                 }
                 catch( Exception ex )
@@ -95,9 +95,9 @@ namespace BudgetExecution
                     return default( string );
                 }
             }
-            else if( Args == null )
+            else if( _args == null )
             {
-                return $"{SQL.SELECT} * FROM {ConnectionBuilder?.GetTableName()};";
+                return $"{SQL.SELECT} * FROM {_connectionBuilder?.GetTableName()};";
             }
 
             return default( string );
@@ -109,22 +109,22 @@ namespace BudgetExecution
         /// <returns></returns>
         public string GetUpdateStatement()
         {
-            if( Args != null )
+            if( _args != null )
             {
                 try
                 {
                     var _update = string.Empty;
 
-                    foreach( var kvp in Args )
+                    foreach( var kvp in _args )
                     {
                         _update += $" {kvp.Key} = '{kvp.Value}' AND";
                     }
 
                     var _values = _update.TrimEnd( " AND".ToCharArray() );
-                    CommandText = $"{SQL.UPDATE} {ConnectionBuilder?.GetTableName()} SET {_values};";
+                    _commandText = $"{SQL.UPDATE} {_connectionBuilder?.GetTableName()} SET {_values};";
 
-                    return Verify.Input( CommandText )
-                        ? CommandText
+                    return Verify.Input( _commandText )
+                        ? _commandText
                         : default( string );
                 }
                 catch( Exception ex )
@@ -145,11 +145,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _table = ConnectionBuilder?.GetTableName();
+                var _table = _connectionBuilder?.GetTableName();
                 var _columnName = string.Empty;
                 var _values = string.Empty;
 
-                foreach( var kvp in Args )
+                foreach( var kvp in _args )
                 {
                     _columnName += $"{kvp.Key}, ";
                     _values += $"{kvp.Value}, ";
@@ -158,10 +158,10 @@ namespace BudgetExecution
                 var values =
                     $"({_columnName.TrimEnd( ", ".ToCharArray() )}) VALUES ({_values.TrimEnd( ", ".ToCharArray() )})";
 
-                CommandText = $"{SQL.INSERT} INTO {_table} {values};";
+                _commandText = $"{SQL.INSERT} INTO {_table} {values};";
 
-                return Verify.Input( CommandText )
-                    ? CommandText
+                return Verify.Input( _commandText )
+                    ? _commandText
                     : default( string );
             }
             catch( Exception ex )
@@ -179,8 +179,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Map( Args ) && Verify.Input( CommandText )
-                    ? CommandText
+                return Verify.Map( _args ) && Verify.Input( _commandText )
+                    ? _commandText
                     : string.Empty;
             }
             catch( Exception ex )

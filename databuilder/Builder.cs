@@ -44,14 +44,14 @@ namespace BudgetExecution
         /// <param name="provider">The provider.</param>
         public Builder( Source source, Provider provider = Provider.SQLite )
         {
-            Source = source;
-            Provider = provider;
-            ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( ConnectionBuilder, SQL.SELECT );
-            SetQuery( ConnectionBuilder, SqlStatement );
+            _source = source;
+            _provider = provider;
+            _connectionBuilder = new ConnectionBuilder( source, provider );
+            _sqlStatement = new SqlStatement( _connectionBuilder, SQL.SELECT );
+            SetQuery( _connectionBuilder, _sqlStatement );
             _programElements = GetSeries( GetDataTable() );
-            Record = GetData()?.FirstOrDefault();
-            Args = Record?.ToDictionary();
+            _record = GetData()?.FirstOrDefault();
+            _args = _record?.ToDictionary();
         }
 
         /// <summary>
@@ -62,14 +62,14 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         public Builder( Source source, Provider provider, IDictionary<string, object> dict )
         {
-            Source = source;
-            Provider = provider;
-            ConnectionBuilder = new ConnectionBuilder( source, provider );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
-            SetQuery( ConnectionBuilder, SqlStatement );
+            _source = source;
+            _provider = provider;
+            _connectionBuilder = new ConnectionBuilder( source, provider );
+            _sqlStatement = new SqlStatement( _connectionBuilder, dict, SQL.SELECT );
+            SetQuery( _connectionBuilder, _sqlStatement );
             _programElements = GetSeries( GetDataTable() );
-            Record = GetRecord();
-            Args = Record?.ToDictionary();
+            _record = GetRecord();
+            _args = _record?.ToDictionary();
         }
 
         /// <summary>
@@ -79,14 +79,14 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         public Builder( Source source, IDictionary<string, object> dict )
         {
-            Source = source;
-            Provider = Provider.SQLite;
-            ConnectionBuilder = new ConnectionBuilder( Source, Provider );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
-            SetQuery( ConnectionBuilder, SqlStatement );
+            _source = source;
+            _provider = Provider.SQLite;
+            _connectionBuilder = new ConnectionBuilder( _source, _provider );
+            _sqlStatement = new SqlStatement( _connectionBuilder, dict, SQL.SELECT );
+            SetQuery( _connectionBuilder, _sqlStatement );
             _programElements = GetSeries( GetDataTable() );
-            Record = GetRecord();
-            Args = Record?.ToDictionary();
+            _record = GetRecord();
+            _args = _record?.ToDictionary();
         }
 
         /// <summary>
@@ -95,30 +95,32 @@ namespace BudgetExecution
         /// <param name="query">The query.</param>
         public Builder( IQuery query )
         {
-            Query = query;
-            Source = ConnectionBuilder.GetSource();
-            Provider = ConnectionBuilder.GetProvider();
-            ConnectionBuilder = Query.GetConnectionBuilder();
-            SqlStatement = Query.GetSqlStatement();
+            _query = query;
+            _source = _connectionBuilder.GetSource();
+            _provider = _connectionBuilder.GetProvider();
+            _connectionBuilder = _query.GetConnectionBuilder();
+            _sqlStatement = _query.GetSqlStatement();
             _programElements = GetSeries( GetDataTable() );
-            Record = GetRecord();
-            Args = Record?.ToDictionary();
+            _record = GetRecord();
+            _args = _record?.ToDictionary();
         }
 
         /// <summary>
         /// Gets the values.
         /// </summary>
-        /// <param name="data">The data.</param>
+        /// <param name="dataRows">The dataRows.</param>
         /// <param name="column">The column.</param>
         /// <returns></returns>
-        public static IEnumerable<string> GetValues( IEnumerable<DataRow> data, string column )
+        public static IEnumerable<string> GetValues( IEnumerable<DataRow> dataRows, string column )
         {
-            if( Verify.Sequence( data )
+            if( Verify.Sequence( dataRows )
                 && Verify.Input( column ) )
             {
                 try
                 {
-                    var _query = data?.Select( p => p.Field<string>( column ) )?.Distinct();
+                    var _query = dataRows
+                        ?.Select( p => p.Field<string>( column ) )
+                        ?.Distinct();
 
                     return _query?.Any() == true
                         ? _query
@@ -137,21 +139,22 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the values.
         /// </summary>
-        /// <param name="data">The data.</param>
+        /// <param name="dataRows">The dataRows.</param>
         /// <param name="field">The field.</param>
         /// <param name="filter">The filter.</param>
         /// <returns></returns>
-        public static IEnumerable<string> GetValues( IEnumerable<DataRow> data, Field field,
-            string filter )
+        public static IEnumerable<string> GetValues( IEnumerable<DataRow> dataRows, Field field, string filter )
         {
-            if( Verify.Sequence( data )
+            if( Verify.Sequence( dataRows )
                 && Validate.Field( field )
                 && Verify.Input( filter ) )
             {
                 try
                 {
-                    var _query = data?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
-                        ?.Select( p => p.Field<string>( $"{field}" ) )?.Distinct();
+                    var _query = dataRows
+                        ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
+                        ?.Select( p => p.Field<string>( $"{field}" ) )
+                        ?.Distinct();
 
                     return _query?.Any() == true
                         ? _query
@@ -170,7 +173,7 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the schema table.
         /// </summary>
-        /// <param name="dataTable">The data table.</param>
+        /// <param name="dataTable">The dataRows table.</param>
         /// <returns></returns>
         public static DataTable GetSchemaTable( DataTable dataTable )
         {
@@ -216,15 +219,12 @@ namespace BudgetExecution
                     using var _connection = new OleDbConnection( _connectionString );
                     _connection?.Open();
                     using var _dataSet = new DataSet();
-
-                    using var _schemaTable =
-                        _connection?.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
-
+                    using var _schema = _connection?.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
                     var _sheetName = string.Empty;
-
-                    if( _schemaTable != null )
+                    
+                    if( _schema != null )
                     {
-                        var _dataTable = _schemaTable?.AsEnumerable()
+                        var _dataTable = _schema?.AsEnumerable()
                             ?.Where( r =>
                                 r.Field<string>( "TABLE_NAME" ).Contains( "FilterDatabase" ) )
                             ?.Select( r => r )?.CopyToDataTable();
@@ -237,9 +237,9 @@ namespace BudgetExecution
                     _command.CommandText = "SELECT * FROM [" + _sheetName + "]";
                     using var _dataAdapter = new OleDbDataAdapter( _command );
                     _dataAdapter.Fill( _dataSet, "excelData" );
-                    using var table = _dataSet.Tables[ "ExcelData" ];
+                    using var _table = _dataSet.Tables[ "ExcelData" ];
                     _connection.Close();
-                    return table;
+                    return _table;
                 }
                 catch( Exception ex )
                 {
@@ -264,43 +264,39 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using var _excelPackage = new ExcelPackage();
-                    using var _fileStream = File.OpenRead( filePath );
-                    _excelPackage.Load( _fileStream );
-                    var _excelWorksheet = _excelPackage?.Workbook?.Worksheets?.First();
-                    var _dataTable = new DataTable( _excelWorksheet?.Name );
+                    using var _package = new ExcelPackage();
+                    using var _stream = File.OpenRead( filePath );
+                    _package.Load( _stream );
+                    var _worksheet = _package?.Workbook?.Worksheets?.First();
+                    var _table = new DataTable( _worksheet?.Name );
 
-                    if( _excelWorksheet?.Cells != null )
+                    if( _worksheet?.Cells != null )
                     {
-                        foreach( var firstrowcell in _excelWorksheet?.Cells[ 1, 1, 1,
-                            _excelWorksheet.Dimension.End.Column ] )
+                        foreach( var firstrowcell in _worksheet?.Cells[ 1, 1, 1, _worksheet.Dimension.End.Column ] )
                         {
-                            _dataTable.Columns.Add( header
+                            _table?.Columns?.Add( header
                                 ? firstrowcell.Text
                                 : $"Column {firstrowcell.Start.Column}" );
                         }
 
-                        var _startRow = header
+                        var _start = header
                             ? 2
                             : 1;
 
-                        for( var _row = _startRow; _row <= _excelWorksheet.Dimension.End.Row;
-                            _row++ )
+                        for( var _row = _start; _row <= _worksheet.Dimension.End.Row; _row++ )
                         {
-                            var _excelRange = _excelWorksheet.Cells[ _row, 1, _row,
-                                _excelWorksheet.Dimension.End.Column ];
-
-                            var _dataRow = _dataTable.Rows.Add();
+                            var _excelRange = _worksheet.Cells[ _row, 1, _row, _worksheet.Dimension.End.Column ];
+                            var _dataRow = _table.Rows?.Add();
 
                             foreach( var cell in _excelRange )
                             {
-                                _dataRow[ cell.Start.Column - 1 ] = cell.Text;
+                                _dataRow[ cell.Start.Column - 1 ] = cell?.Text;
                             }
                         }
                     }
 
-                    return _dataTable?.Rows.Count > 0
-                        ? _dataTable
+                    return _table?.Rows?.Count > 0
+                        ? _table
                         : default( DataTable );
                 }
                 catch( Exception ex )
@@ -316,23 +312,22 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the series.
         /// </summary>
-        /// <param name="data">The data.</param>
+        /// <param name="dataRows">The dataRows.</param>
         /// <param name="field">The field.</param>
         /// <param name="filter">The filter.</param>
         /// <returns></returns>
-        public static IDictionary<string, IEnumerable<string>> GetSeries( IEnumerable<DataRow> data,
-            Field field, string filter )
+        public static IDictionary<string, IEnumerable<string>> GetSeries( IEnumerable<DataRow> dataRows, Field field, string filter )
         {
-            if( Verify.Input( data )
+            if( Verify.Input( dataRows )
                 && Validate.Field( field )
                 && Verify.Input( filter ) )
             {
                 try
                 {
-                    var _dataTable = data.CopyToDataTable();
+                    var _dataTable = dataRows.CopyToDataTable();
                     var _columns = _dataTable?.Columns;
                     var _dict = new Dictionary<string, IEnumerable<string>>();
-                    var _values = GetValues( data, field, filter );
+                    var _values = GetValues( dataRows, field, filter );
 
                     if( _values?.Any() == true )
                     {
@@ -372,7 +367,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Query != null
+                return _query != null
                     ? MemberwiseClone() as Builder
                     : default( Builder );
             }
@@ -384,22 +379,22 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Filters the data.
+        /// Filters the dataRows.
         /// </summary>
-        /// <param name="data">The data.</param>
+        /// <param name="dataRows">The dataRows.</param>
         /// <param name="field">The field.</param>
         /// <param name="filter">The filter.</param>
         /// <returns></returns>
-        public static IEnumerable<DataRow> FilterData( IEnumerable<DataRow> data, Field field,
-            string filter )
+        public static IEnumerable<DataRow> FilterData( IEnumerable<DataRow> dataRows, Field field, string filter )
         {
-            if( Verify.Sequence( data )
+            if( Verify.Sequence( dataRows )
                 && Verify.Input( filter )
                 && Validate.Field( field ) )
             {
                 try
                 {
-                    var _query = data?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
+                    var _query = dataRows
+                        ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
                         ?.Select( p => p );
 
                     return _query?.Any() == true
@@ -419,16 +414,16 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the series.
         /// </summary>
-        /// <param name="data">The data.</param>
+        /// <param name="dataTable">The dataRows.</param>
         /// <returns></returns>
-        private static IDictionary<string, IEnumerable<string>> GetSeries( DataTable data )
+        private static IDictionary<string, IEnumerable<string>> GetSeries( DataTable dataTable )
         {
-            if( Verify.Table( data ) )
+            if( Verify.Table( dataTable ) )
             {
                 try
                 {
                     var _dict = new Dictionary<string, IEnumerable<string>>();
-                    var _columns = data.Columns;
+                    var _columns = dataTable.Columns;
 
                     for( var i = 0; i < _columns?.Count; i++ )
                     {
@@ -436,7 +431,7 @@ namespace BudgetExecution
                             && _columns[ i ]?.DataType == typeof( string ) )
                         {
                             _dict?.Add( _columns[ i ]?.ColumnName,
-                                GetValues( data?.AsEnumerable(),
+                                GetValues( dataTable?.AsEnumerable(),
                                     _columns[ i ]?.ColumnName ) );
                         }
                     }

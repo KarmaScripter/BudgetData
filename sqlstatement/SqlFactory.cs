@@ -4,10 +4,6 @@
 
 namespace BudgetExecution
 {
-    // ******************************************************************************************************************************
-    // ******************************************************   ASSEMBLIES   ********************************************************
-    // ******************************************************************************************************************************
-
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
@@ -28,9 +24,9 @@ namespace BudgetExecution
         {
             _source = builder.GetSource();
             _provider = builder.GetProvider();
-            CommandType = command;
-            ConnectionBuilder = builder;
-            _sqlStatement = new SqlStatement( ConnectionBuilder, CommandType );
+            _commandType = command;
+            _connectionBuilder = builder;
+            _sqlStatement = new SqlStatement( _connectionBuilder, _commandType );
             _filePath = Path.GetFullPath( _providerPath[ _provider.ToString() ] );
             _fileName = Path.GetFileNameWithoutExtension( _filePath );
         }
@@ -44,13 +40,13 @@ namespace BudgetExecution
         /// <param name = "command" > The command. </param>
         public SqlFactory( string filepath, SQL command = SQL.SELECT )
         {
-            ConnectionBuilder = new ConnectionBuilder( filepath );
-            _source = ConnectionBuilder.GetSource();
-            _provider = ConnectionBuilder.GetProvider();
-            CommandType = command;
-            _sqlStatement = new SqlStatement( ConnectionBuilder, CommandType );
-            _fileName = ConnectionBuilder.GetFileName();
-            _filePath = ConnectionBuilder.GetFilePath();
+            _connectionBuilder = new ConnectionBuilder( filepath );
+            _source = _connectionBuilder.GetSource();
+            _provider = _connectionBuilder.GetProvider();
+            _commandType = command;
+            _sqlStatement = new SqlStatement( _connectionBuilder, _commandType );
+            _fileName = _connectionBuilder.GetFileName();
+            _filePath = _connectionBuilder.GetFilePath();
         }
     }
 }

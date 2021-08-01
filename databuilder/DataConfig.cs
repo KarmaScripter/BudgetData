@@ -4,102 +4,143 @@
 
 namespace BudgetExecution
 {
-    // ********************************************************************************************************************************
-    // *********************************************************  ASSEMBLIES   ********************************************************
-    // ********************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Data;
     using System.IO;
 
-    public abstract class DataConfig : ISource, IProvider
+    /// <summary>
+    /// 
+    /// </summary>
+    public abstract class DataConfig  
     {
-        // **********************************************************************************************************************
-        // *************************************************   PROPERTIES   *****************************************************
-        // **********************************************************************************************************************
+        /// <summary>
+        /// The source
+        /// </summary>
+        private protected Source _source;
 
-        /// <summary> Gets or sets the source. </summary>
-        /// <value> The source. </value>
-        private protected Source Source { get; set; }
+        /// <summary>
+        /// The provider
+        /// </summary>
+        private protected Provider _provider;
 
-        /// <summary> Gets or sets the provider. </summary>
-        /// <value> The provider. </value>
-        private protected Provider Provider { get; set; }
+        /// <summary>
+        /// The connection builder
+        /// </summary>
+        private protected IConnectionBuilder _connectionBuilder;
 
-        /// <summary> Gets or sets the connection builder. </summary>
-        /// <value> The connection builder. </value>
-        private protected IConnectionBuilder ConnectionBuilder { get; set; }
+        /// <summary>
+        /// The arguments
+        /// </summary>
+        private protected IDictionary<string, object> _args;
 
-        /// <summary> Gets or sets the arguments. </summary>
-        /// <value> The arguments. </value>
-        private protected IDictionary<string, object> Args { get; set; }
+        /// <summary>
+        /// The SQL statement
+        /// </summary>
+        private protected ISqlStatement _sqlStatement;
 
-        /// <summary> Gets or sets the SQL statement. </summary>
-        /// <value> The SQL statement. </value>
-        private protected ISqlStatement SqlStatement { get; set; }
+        /// <summary>
+        /// The query
+        /// </summary>
+        private protected IQuery _query;
 
-        /// <summary> Gets or sets the query. </summary>
-        /// <value> The query. </value>
-        private protected IQuery Query { get; set; }
+        /// <summary>
+        /// The record
+        /// </summary>
+        private protected DataRow _record;
 
-        /// <summary> Gets or sets the data. </summary>
-        /// <value> The data. </value>
-        private protected DataRow Record { get; set; }
+        /// <summary>
+        /// The data table
+        /// </summary>
+        private protected DataTable _dataTable;
 
-        /// <summary> Gets or sets the r6. </summary>
-        /// <value> The r6. </value>
-        private protected DataSet R6 { get; set; }
+        /// <summary>
+        /// The data set
+        /// </summary>
+        private protected DataSet _dataSet;
 
-        // ***************************************************************************************************************************
-        // ************************************************  METHODS   ***************************************************************
-        // ***************************************************************************************************************************
-
-        /// <summary> Sets the query. </summary>
-        /// <param name = "connectionbuilder" > The connectionbuilder. </param>
-        private protected void SetQuery( IConnectionBuilder connectionbuilder )
+        /// <summary>
+        /// Sets the source.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        private protected void SetSource( Source source )
         {
-            var source = connectionbuilder.GetSource();
-            var provider = connectionbuilder.GetProvider();
-
-            if( Validate.Source( source )
-                && Validate.Provider( provider ) )
+            if( Validate.Source( source ) )
             {
                 try
                 {
-                    switch( provider )
+                    _source = source;
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the provider.
+        /// </summary>
+        /// <param name="provider">The provider.</param>
+        private protected void SetProvider( Provider provider )
+        {
+            if( Validate.Provider( provider ) )
+            {
+                try
+                {
+                    _provider = provider;
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sets the query.
+        /// </summary>
+        /// <param name="connectionBuilder">The connection builder.</param>
+        private protected void SetQuery( IConnectionBuilder connectionBuilder )
+        {
+            if( Validate.Source( _source )
+                && Validate.Provider( _provider ) )
+            {
+                try
+                {
+                    switch( _provider )
                     {
                         case Provider.SQLite:
                         {
-                            Query = new SQLiteQuery( source );
+                            _query = new SQLiteQuery( _source );
                             break;
                         }
 
                         case Provider.SqlServer:
                         {
-                            Query = new SqlServerQuery( source );
+                            _query = new SqlServerQuery( _source );
                             break;
                         }
 
                         case Provider.SqlCe:
                         {
-                            Query = new SqlCeQuery( source );
+                            _query = new SqlCeQuery( _source );
                             break;
                         }
 
                         case Provider.Access:
                         {
-                            Query = new AccessQuery( source );
+                            _query = new AccessQuery( _source );
                             break;
                         }
 
                         case Provider.OleDb:
                         {
-                            var filepath = connectionbuilder?.GetFilePath();
+                            var _filePath = connectionBuilder?.GetFilePath();
 
-                            Query = Verify.Input( connectionbuilder?.GetFilePath() )
-                                && File.Exists( connectionbuilder?.GetFilePath() )
-                                    ? new ExcelQuery( filepath )
+                            _query = Verify.Input( _filePath )
+                                && File.Exists( _filePath )
+                                    ? new ExcelQuery( _filePath )
                                     : default( ExcelQuery );
 
                             break;
@@ -107,15 +148,15 @@ namespace BudgetExecution
 
                         case Provider.Excel:
                         {
-                            var filepath = connectionbuilder?.GetFilePath();
-                            Query = new ExcelQuery( filepath );
+                            var _filePath = connectionBuilder?.GetFilePath();
+                            _query = new ExcelQuery( _filePath );
                             break;
                         }
 
                         case Provider.CSV:
                         {
-                            var filepath = connectionbuilder.GetFilePath();
-                            Query = new CsvQuery( filepath );
+                            var _filePath = connectionBuilder.GetFilePath();
+                            _query = new CsvQuery( _filePath );
                             break;
                         }
 
@@ -124,7 +165,7 @@ namespace BudgetExecution
 
                         default:
                         {
-                            Query = new SQLiteQuery( source );
+                            _query = new SQLiteQuery( _source );
                             break;
                         }
                     }
@@ -136,54 +177,51 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Gets the query. </summary>
-        /// <param name = "connectionbuilder" > The connectionbuilder. </param>
-        /// <param name = "sqlstatement" > The sqlstatement. </param>
-        /// <returns> </returns>
-        private protected void SetQuery( IConnectionBuilder connectionbuilder, ISqlStatement sqlstatement )
+        /// <summary>
+        /// Sets the query.
+        /// </summary>
+        /// <param name="connectionBuilder">The connection builder.</param>
+        /// <param name="sqlStatement">The SQL statement.</param>
+        private protected void SetQuery( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
         {
-            var source = connectionbuilder.GetSource();
-            var provider = connectionbuilder.GetProvider();
-            var args = sqlstatement?.GetArgs();
-
-            if( Validate.Source( source )
-                && Validate.Provider( provider )
-                && Verify.Ref( sqlstatement ) )
+            if( Validate.Source( _source )
+                && Validate.Provider( _provider )
+                && Verify.Ref( sqlStatement ) )
             {
                 try
                 {
-                    switch( provider )
+                    switch( _provider )
                     {
                         case Provider.SQLite:
                         {
-                            Query = new SQLiteQuery( source, args );
+                            _query = new SQLiteQuery( _source, _args );
                             break;
                         }
 
                         case Provider.SqlServer:
                         {
-                            Query = new SqlServerQuery( source, args );
+                            _query = new SqlServerQuery( _source, _args );
                             break;
                         }
 
                         case Provider.SqlCe:
                         {
-                            Query = new SqlCeQuery( source, args );
+                            _query = new SqlCeQuery( _source, _args );
                             break;
                         }
 
                         case Provider.Access:
                         {
-                            Query = new AccessQuery( source, args );
+                            _query = new AccessQuery( _source, _args );
                             break;
                         }
 
                         case Provider.OleDb:
                         {
-                            var filepath = connectionbuilder?.GetFilePath();
+                            var filepath = connectionBuilder?.GetFilePath();
 
-                            Query = Verify.Input( filepath ) && File.Exists( filepath )
-                                ? new ExcelQuery( filepath, args )
+                            _query = Verify.Input( filepath ) && File.Exists( filepath )
+                                ? new ExcelQuery( filepath, _args )
                                 : default( ExcelQuery );
 
                             break;
@@ -191,15 +229,15 @@ namespace BudgetExecution
 
                         case Provider.Excel:
                         {
-                            var filepath = connectionbuilder?.GetFilePath();
-                            Query = new ExcelQuery( filepath, args );
+                            var filepath = connectionBuilder?.GetFilePath();
+                            _query = new ExcelQuery( filepath, _args );
                             break;
                         }
 
                         case Provider.CSV:
                         {
-                            var filepath = connectionbuilder.GetFilePath();
-                            Query = new CsvQuery( filepath, args );
+                            var filepath = connectionBuilder.GetFilePath();
+                            _query = new CsvQuery( filepath, _args );
                             break;
                         }
 
@@ -208,7 +246,7 @@ namespace BudgetExecution
 
                         default:
                         {
-                            Query = new SQLiteQuery( source, args );
+                            _query = new SQLiteQuery( _source, _args );
                             break;
                         }
                     }
@@ -220,64 +258,44 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Gets the source. </summary>
-        /// <returns> </returns>
-        public Source GetSource()
+        /// <summary>
+        /// Sets the data.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        private protected void SetData( string name )
         {
-            try
+            if( Verify.Input( name ) 
+                && Validate.Source(  _source ) )
             {
-                return Validate.Source( Source )
-                    ? Source
-                    : Source.NS;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return Source.NS;
+                try
+                {
+                    _dataSet = new DataSet( $"{name}" )
+                    {
+                        DataSetName = $"{name}"
+                    };
+
+                    _dataTable = new DataTable( $"{_source}" );
+                    _dataTable.TableName = $"{_source}";
+                    _dataSet.Tables.Add( _dataTable );
+                    var _adapter = _query?.GetAdapter();
+                    _adapter?.Fill( _dataSet, _dataTable.TableName );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );;
+                }
             }
         }
 
-        /// <summary> Gets the provider. </summary>
-        /// <returns> </returns>
-        public Provider GetProvider()
-        {
-            try
-            {
-                return Validate.Provider( Provider )
-                    ? Provider
-                    : Provider.NS;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return Provider.NS;
-            }
-        }
-
-        /// <summary> Gets the record. </summary>
-        /// <returns> </returns>
-        public DataRow GetRecord()
-        {
-            try
-            {
-                return Verify.Row( Record )
-                    ? Record
-                    : default( DataRow );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( DataRow );
-            }
-        }
-
-        /// <summary> Get Error Dialog. </summary>
-        /// <param name = "ex" > The ex. </param>
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
         private protected static void Fail( Exception ex )
         {
-            using var error = new Error( ex );
-            error?.SetText();
-            error?.ShowDialog();
+            using var _error = new Error( ex );
+            _error?.SetText();
+            _error?.ShowDialog();
         }
     }
 }

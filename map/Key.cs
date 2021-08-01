@@ -1,6 +1,6 @@
-﻿// // <copyright file=" <File _name> .cs" company="Terry D. Eppler">
-// // Copyright (c) Terry Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
+// Copyright (c) Terry Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
@@ -55,13 +55,13 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="Key"/> class.
         /// </summary>
-        /// <param name="data">The data.</param>
+        /// <param name="dataRow">The data row.</param>
         /// <param name="field">The field.</param>
-        public Key( DataRow data, PrimaryKey field )
+        public Key( DataRow dataRow, PrimaryKey field )
         {
-            SetPrimaryKey( data, field );
-            SetName( data, field );
-            SetIndex( data, field );
+            SetPrimaryKey( dataRow, field );
+            SetName( dataRow, field );
+            SetIndex( dataRow, field );
             _data = _index.ToString();
         }
 
@@ -81,12 +81,12 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="Key"/> class.
         /// </summary>
-        /// <param name="data">The data.</param>
-        public Key( DataRow data )
+        /// <param name="dataRow">The data row.</param>
+        public Key( DataRow dataRow )
         {
-            SetPrimaryKey( data );
-            SetName( data, _primaryKey );
-            SetIndex( data, _primaryKey );
+            SetPrimaryKey( dataRow );
+            SetName( dataRow, _primaryKey );
+            SetIndex( dataRow, _primaryKey );
             _data = _index.ToString();
         }
 
@@ -139,7 +139,7 @@ namespace BudgetExecution
             try
             {
                 return !Validate.PrimaryKey( _primaryKey ) 
-                    && _index > -1
+                    && _index > -1 
                     && Verify.Input( _name )
                         ? _name + " = " + _index
                         : string.Empty;

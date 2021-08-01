@@ -4,94 +4,81 @@
 
 namespace BudgetExecution
 {
-    // ******************************************************************************************************************************
-    // ******************************************************   ASSEMBLIES   ********************************************************
-    // ******************************************************************************************************************************
-
     using System;
     using System.Data.Common;
     using System.Diagnostics.CodeAnalysis;
 
-    /// <inheritdoc/>
-    /// <summary> </summary>
-    /// <seealso cref = "T:BudgetExecution.ICommandBuilder"/>
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="BudgetExecution.CommandBase" />
+    /// <seealso cref="BudgetExecution.ICommandBuilder" />
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class CommandBuilder : CommandBase, ICommandBuilder
     {
-        // ***************************************************************************************************************************
-        // *********************************************   CONSTRUCTORS **************************************************************
-        // ***************************************************************************************************************************
-
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "CommandBuilder"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="CommandBuilder"/> class.
         /// </summary>
         public CommandBuilder()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "CommandBuilder"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="CommandBuilder"/> class.
         /// </summary>
-        /// <param name = "sql" > The SQL. </param>
-        public CommandBuilder( ISqlStatement sql )
+        /// <param name="sqlStatement">The SQL statement.</param>
+        public CommandBuilder( ISqlStatement sqlStatement )
         {
-            SqlStatement = sql;
-            ConnectionBuilder = SqlStatement.GetConnectionBuilder();
-            Command = SetCommand( SqlStatement );
+            _sqlStatement = sqlStatement;
+            _connectionBuilder = _sqlStatement.GetConnectionBuilder();
+            _command = SetCommand( _sqlStatement );
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "CommandBuilder"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="CommandBuilder"/> class.
         /// </summary>
-        /// <param name = "connectionbuilder" > The connectionmanager. </param>
-        /// <param name = "sql" > The SQL. </param>
-        public CommandBuilder( IConnectionBuilder connectionbuilder, ISqlStatement sql )
+        /// <param name="connectionBuilder">The connection builder.</param>
+        /// <param name="sqlStatement">The SQL statement.</param>
+        public CommandBuilder( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
         {
-            SqlStatement = sql;
-            ConnectionBuilder = connectionbuilder;
-            Command = SetCommand( SqlStatement );
+            _sqlStatement = sqlStatement;
+            _connectionBuilder = connectionBuilder;
+            _command = SetCommand( _sqlStatement );
         }
 
-        // **********************************************************************************************************************
-        // *************************************************    METHODS     *****************************************************
-        // **********************************************************************************************************************
-
-        /// <summary> Sets the command. </summary>
-        /// <param name = "sqlstatement" > The sqlstatement. </param>
-        /// <returns> </returns>
-        public DbCommand SetCommand( ISqlStatement sqlstatement )
+        /// <summary>
+        /// Sets the command.
+        /// </summary>
+        /// <param name="sqlStatement">The SQL statement.</param>
+        /// <returns></returns>
+        public DbCommand SetCommand( ISqlStatement sqlStatement )
         {
-            if( Verify.Ref( sqlstatement ) )
+            if( Verify.Ref( sqlStatement ) 
+                && Enum.IsDefined(  typeof( Provider ), _connectionBuilder.GetProvider() ) )
             {
                 try
                 {
-                    var provider = ConnectionBuilder?.GetProvider();
+                    _provider = _connectionBuilder.GetProvider();
 
-                    switch( provider )
+                    switch( _provider )
                     {
                         case Provider.SQLite:
                         {
-                            Command = GetSQLiteCommand( sqlstatement );
-                            return Command;
+                            _command = GetSQLiteCommand( sqlStatement );
+                            return _command;
                         }
 
                         case Provider.SqlCe:
                         {
-                            Command = GetSQLiteCommand( sqlstatement );
-                            return Command;
+                            _command = GetSQLiteCommand( sqlStatement );
+                            return _command;
                         }
 
                         case Provider.SqlServer:
                         {
-                            Command = GetSQLiteCommand( sqlstatement );
-                            return Command;
+                            _command = GetSQLiteCommand( sqlStatement );
+                            return _command;
                         }
 
                         case Provider.Excel:
@@ -99,8 +86,8 @@ namespace BudgetExecution
                         case Provider.Access:
                         case Provider.OleDb:
                         {
-                            Command = GetSQLiteCommand( sqlstatement );
-                            return Command;
+                            _command = GetSQLiteCommand( sqlStatement );
+                            return _command;
                         }
 
                         default:
@@ -119,14 +106,16 @@ namespace BudgetExecution
             return default( DbCommand );
         }
 
-        /// <summary> Gets the command. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the command.
+        /// </summary>
+        /// <returns></returns>
         public DbCommand GetCommand()
         {
             try
             {
-                return Verify.Ref( Command )
-                    ? Command
+                return Verify.Ref( _command )
+                    ? _command
                     : default( DbCommand );
             }
             catch( Exception ex )

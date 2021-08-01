@@ -6,12 +6,15 @@ namespace BudgetExecution
 {
     using System;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IProvider
     {
-        // ************************************************
-        // ****************   METHODS   *******************
-        // ************************************************
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         Provider GetProvider();
     }
 }

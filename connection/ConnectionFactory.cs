@@ -4,10 +4,6 @@
 
 namespace BudgetExecution
 {
-    // ******************************************************************************************************************************
-    // ******************************************************   ASSEMBLIES   ********************************************************
-    // ******************************************************************************************************************************
-
     using System;
     using System.Configuration;
     using System.Data.Common;
@@ -28,15 +24,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
     public class ConnectionFactory : ISource, IConnectionFactory
     {
-        // ***************************************************************************************************************************
-        // ****************************************************     FIELDS    ********************************************************
-        // ***************************************************************************************************************************
-
         private readonly IConnectionBuilder _connectionBuilder;
-
-        // ***************************************************************************************************************************
-        // ******************************************************  CONSTRUCTORS  *****************************************************
-        // ***************************************************************************************************************************
 
         /// <summary>
         /// Initializes a new instance of the <see cref = "ConnectionFactory"/> class.
@@ -61,7 +49,7 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref = "ConnectionFactory"/> class.
         /// </summary>
         /// <param name = "builder" >
-        /// The builder.
+        /// The connectionBuilder.
         /// </param>
         /// <param name = "sqlstatement" >
         /// The sqlstatement.
@@ -72,22 +60,14 @@ namespace BudgetExecution
             Connection = SetConnection( _connectionBuilder );
         }
 
-        // ***************************************************************************************************************************
-        // ******************************************************   PROPERTIES   *****************************************************
-        // ***************************************************************************************************************************
-
         /// <summary>
         /// Gets the connection.
         /// </summary>
         /// <value>
         /// The connection.
         /// </value>
-        private DbConnection Connection { get; }
-
-        // ***************************************************************************************************************************
-        // *******************************************************      METHODS        ***********************************************
-        // ***************************************************************************************************************************
-
+        private DbConnection Connection;
+        
         /// <summary>
         /// Sets the connection manager.
         /// </summary>
@@ -137,48 +117,45 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        private DbConnection SetConnection( IConnectionBuilder builder )
+        private DbConnection SetConnection( IConnectionBuilder connectionBuilder )
         {
-            if( Verify.Ref( builder ) )
+            if( Verify.Ref( connectionBuilder ) )
             {
                 try
                 {
-                    var provider = builder.GetProvider();
+                    var _provider = connectionBuilder.GetProvider();
 
-                    if( Verify.Provider( provider ) )
+                    if( Verify.Provider( _provider ) )
                     {
-                        switch( provider )
+                        switch( _provider )
                         {
                             case Provider.SQLite:
                             {
-                                var connectionstring = ConfigurationManager
-                                    .ConnectionStrings[ $"{Provider.SQLite}" ]
-                                    ?.ConnectionString;
+                                var _connectionString = 
+                                    ConfigurationManager.ConnectionStrings[ $"{Provider.SQLite}" ]?.ConnectionString;
 
-                                return Verify.Input( connectionstring )
-                                    ? new SQLiteConnection( connectionstring )
+                                return Verify.Input( _connectionString )
+                                    ? new SQLiteConnection( _connectionString )
                                     : default( DbConnection );
                             }
 
                             case Provider.SqlCe:
                             {
-                                var connectionstring = ConfigurationManager
-                                    .ConnectionStrings[ $"{Provider.SqlCe}" ]
-                                    .ConnectionString;
+                                var _connectionString = 
+                                    ConfigurationManager.ConnectionStrings[ $"{Provider.SqlCe}" ]?.ConnectionString;
 
-                                return Verify.Input( connectionstring )
-                                    ? new SqlCeConnection( connectionstring )
+                                return Verify.Input( _connectionString )
+                                    ? new SqlCeConnection( _connectionString )
                                     : default( DbConnection );
                             }
 
                             case Provider.SqlServer:
                             {
-                                var connectionstring = ConfigurationManager
-                                    .ConnectionStrings[ $"{Provider.SqlServer}" ]
-                                    .ConnectionString;
+                                var _connectionString = 
+                                    ConfigurationManager.ConnectionStrings[ $"{Provider.SqlServer}" ]?.ConnectionString;
 
-                                return Verify.Input( connectionstring )
-                                    ? new SqlConnection( connectionstring )
+                                return Verify.Input( _connectionString )
+                                    ? new SqlConnection( _connectionString )
                                     : default( DbConnection );
                             }
 
@@ -187,12 +164,11 @@ namespace BudgetExecution
                             case Provider.Access:
                             case Provider.OleDb:
                             {
-                                var connectionstring = ConfigurationManager
-                                    .ConnectionStrings[ $"{Provider.OleDb}" ]
-                                    .ConnectionString;
+                                var _connectionString = 
+                                    ConfigurationManager.ConnectionStrings[ $"{Provider.OleDb}" ]?.ConnectionString;
 
-                                return Verify.Input( connectionstring )
-                                    ? new OleDbConnection( connectionstring )
+                                return Verify.Input( _connectionString )
+                                    ? new OleDbConnection( _connectionString )
                                     : default( DbConnection );
                             }
                         }

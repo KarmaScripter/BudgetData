@@ -139,9 +139,10 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _name ) && Verify.Input( _value )
-                    ? $"{_name} = {_value}"
-                    : string.Empty;
+                return Verify.Input( _name ) 
+                    && Verify.Input( _value )
+                        ? $"{_name} = {_value}"
+                        : string.Empty;
             }
             catch( Exception ex )
             {

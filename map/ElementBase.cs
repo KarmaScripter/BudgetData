@@ -24,7 +24,7 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the columnName.
         /// </summary>
-        /// <param columnName="columnName">The columnName.</param>
+        /// <param name = "columnName" > </param>
         public override void SetName( string columnName )
         {
             try
@@ -43,8 +43,8 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the columnName.
         /// </summary>
-        /// <param columnName="dataRow">The dataRow.</param>
-        /// <param columnName="columnName">The columnName.</param>
+        /// <param name = "dataRow" > </param>
+        /// <param name = "columnName" > </param>
         private protected void SetName( DataRow dataRow, string columnName )
         {
             if( Verify.Row( dataRow )
@@ -53,10 +53,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _columnNames = dataRow.Table
+                    var _names = dataRow.Table
                         ?.GetColumnNames();
 
-                    _name = _columnNames?.Contains( columnName ) == true
+                    _name = _names?.Contains( columnName ) == true
                         ? columnName
                         : Field.NS.ToString();
                 }
@@ -70,7 +70,7 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the columnName.
         /// </summary>
-        /// <param columnName="field">The field.</param>
+        /// <param name = "field" > </param>
         private protected void SetName( Field field )
         {
             if( Validate.Field( field ) )
@@ -91,8 +91,8 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the columnName.
         /// </summary>
-        /// <param columnName="dataRow">The dataRow.</param>
-        /// <param columnName="field">The field.</param>
+        /// <param name = "dataRow" > </param>
+        /// <param name = "field" > </param>
         private protected void SetName( DataRow dataRow, Field field )
         {
             if( Verify.Row( dataRow )
@@ -100,7 +100,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _columnNames = dataRow.Table?.GetColumnNames();
+                    var _columnNames = dataRow.Table
+                        ?.GetColumnNames();
 
                     _name = _columnNames?.Contains( field.ToString() ) == true
                         ? field.ToString()
@@ -116,7 +117,7 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the field.
         /// </summary>
-        /// <param columnName="fieldName">Name of the field.</param>
+        /// <param name = "fieldName" > </param>
         private protected void SetField( string fieldName )
         {
             if( Verify.Input( fieldName )
@@ -124,9 +125,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    _field = (Field)Enum.Parse( typeof( Field ), fieldName );
+                    var _input = (Field)Enum.Parse( typeof( Field ), fieldName );
 
-                    _field = !Enum.IsDefined( typeof( Field ), _field )
+                    _field = !Enum.IsDefined( typeof( Field ), _input )
                         ? _field
                         : Field.NS;
                 }
@@ -140,8 +141,8 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the field.
         /// </summary>
-        /// <param columnName="dataRow">The dataRow.</param>
-        /// <param columnName="fieldName">The fieldName.</param>
+        /// <param name = "dataRow" > </param>
+        /// <param name = "fieldName" > </param>
         private protected void SetField( DataRow dataRow, string fieldName )
         {
             if( Verify.Row( dataRow )
@@ -149,14 +150,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    _field = (Field)Enum.Parse( typeof( Field ), fieldName );
-                    var _columnNames = dataRow.Table?.GetColumnNames();
+                    var _input = (Field)Enum.Parse( typeof( Field ), fieldName );
+                    var _names = dataRow.Table?.GetColumnNames();
 
-                    if( _columnNames?.Any() == true
-                        && _columnNames.Contains( $"{_field}" ) )
+                    if( _names?.Any() == true
+                        && _names?.Contains( $"{_input}" ) == true )
                     {
-                        _field = Enum.GetNames( typeof( Field ) )?.Contains( $"{_field}" ) == true
-                            ? _field
+                        _field = Enum.GetNames( typeof( Field ) )?.Contains( $"{_input}" ) == true
+                            ? _input
                             : Field.NS;
                     }
                 }
@@ -170,7 +171,7 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the field.
         /// </summary>
-        /// <param columnName="field">The field.</param>
+        /// <param name = "field" > </param>
         private protected void SetField( Field field )
         {
             try
@@ -188,8 +189,8 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the field.
         /// </summary>
-        /// <param columnName="dataRow">The dataRow.</param>
-        /// <param columnName="field">The field.</param>
+        /// <param name = "dataRow" > </param>
+        /// <param name = "field" > </param>
         private protected void SetField( DataRow dataRow, Field field )
         {
             if( Verify.Row( dataRow )
@@ -197,9 +198,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _columnNames = dataRow.Table?.GetColumnNames();
+                    var _names = dataRow.Table
+                        ?.GetColumnNames();
 
-                    _field = _columnNames?.Contains( field.ToString() ) == true
+                    _field = _names?.Contains( field.ToString() ) == true
                         ? field
                         : Field.NS;
                 }
@@ -213,7 +215,7 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the value.
         /// </summary>
-        /// <param columnName="value">The value.</param>
+        /// <param name = "value" > </param>
         private protected void SetValue( string value )
         {
             try
@@ -236,20 +238,21 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the value.
         /// </summary>
-        /// <param columnName="data">The dataRow.</param>
-        /// <param columnName="colname">The columnName.</param>
-        private protected void SetValue( DataRow data, string colname )
+        /// <param name = "dataRow" > </param>
+        /// <param name = "columnName" > </param>
+        private protected void SetValue( DataRow dataRow, string columnName )
         {
-            if( Verify.Row( data )
-                && Verify.Input( colname )
-                && Enum.GetNames( typeof( Field ) ).Contains( colname ) )
+            if( Verify.Row( dataRow )
+                && Verify.Input( columnName )
+                && Enum.GetNames( typeof( Field ) ).Contains( columnName ) )
             {
                 try
                 {
-                    var _columnNames = data.Table?.GetColumnNames();
+                    var _names = dataRow.Table
+                        ?.GetColumnNames();
 
-                    _value = _columnNames?.Contains( colname ) == true
-                        ? data[ colname ]?.ToString()
+                    _value = _names?.Contains( columnName ) == true
+                        ? dataRow[ columnName ]?.ToString()
                         : Field.NS.ToString();
                 }
                 catch( Exception ex )
@@ -262,19 +265,20 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the value.
         /// </summary>
-        /// <param columnName="data">The dataRow.</param>
-        /// <param columnName="field">The field.</param>
-        private protected void SetValue( DataRow data, Field field )
+        /// <param name = "dataRow" > </param>
+        /// <param name = "field" > </param>
+        private protected void SetValue( DataRow dataRow, Field field )
         {
-            if( Verify.Row( data )
+            if( Verify.Row( dataRow )
                 && Validate.Field( field ) )
             {
                 try
                 {
-                    var _columnNames = data.Table?.GetColumnNames();
+                    var _names = dataRow.Table
+                        ?.GetColumnNames();
 
-                    _value = _columnNames?.Contains( field.ToString() ) == true
-                        ? data[ $"{field}" ]?.ToString()
+                    _value = _names?.Contains( field.ToString() ) == true
+                        ? dataRow[ $"{field}" ]?.ToString()
                         : Field.NS.ToString();
                 }
                 catch( Exception ex )
@@ -287,17 +291,17 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the dataRow.
         /// </summary>
-        /// <param columnName="data">The dataRow.</param>
-        /// <param columnName="field">The field.</param>
-        private protected void SetData( DataRow data, Field field )
+        /// <param name = "dataRow" > </param>
+        /// <param name = "field" > </param>
+        private protected void SetData( DataRow dataRow, Field field )
         {
-            if( Verify.Row( data )
+            if( Verify.Row( dataRow )
                 && Validate.Field( field ) )
             {
                 try
                 {
-                    _data = Verify.Ref( data[ $"{field}" ] )
-                        ? data[ $"{field}" ]
+                    _data = Verify.Ref( dataRow[ $"{field}" ] )
+                        ? dataRow[ $"{field}" ]
                         : default( object );
                 }
                 catch( Exception ex )
@@ -310,17 +314,17 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the dataRow.
         /// </summary>
-        /// <param columnName="data">The dataRow.</param>
-        /// <param columnName="colname">The columnName.</param>
-        private protected void SetData( DataRow data, string colname )
+        /// <param name = "dataRow" > </param>
+        /// <param name = "columnName" > </param>
+        private protected void SetData( DataRow dataRow, string columnName )
         {
-            if( Verify.Row( data )
-                && Verify.Input( colname ) )
+            if( Verify.Row( dataRow )
+                && Verify.Input( columnName ) )
             {
                 try
                 {
-                    _data = Verify.Ref( data[ colname ] )
-                        ? data[ colname ]
+                    _data = Verify.Ref( dataRow[ columnName ] )
+                        ? dataRow[ columnName ]
                         : default( object );
                 }
                 catch( Exception ex )
@@ -333,17 +337,17 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the dataRow.
         /// </summary>
-        /// <param columnName="data">The dataRow.</param>
-        /// <param columnName="column">The column.</param>
-        private protected void SetData( DataRow data, DataColumn column )
+        /// <param name = "dataRow" > </param>
+        /// <param name = "dataColumn" > </param>
+        private protected void SetData( DataRow dataRow, DataColumn dataColumn )
         {
-            if( Verify.Row( data )
-                && Verify.Input( column ) )
+            if( Verify.Row( dataRow )
+                && Verify.Input( dataColumn ) )
             {
                 try
                 {
-                    _data = Verify.Ref( data[ column ] )
-                        ? data[ column ]
+                    _data = Verify.Ref( dataRow[ dataColumn ] )
+                        ? dataRow[ dataColumn ]
                         : default( object );
                 }
                 catch( Exception ex )

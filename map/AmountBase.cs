@@ -69,7 +69,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _names = dataRow?.Table?.GetColumnNames();
+                    var _names = dataRow?.Table
+                        ?.GetColumnNames();
 
                     _name = _names?.Contains( columnName ) == true
                         ? columnName
@@ -115,7 +116,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _columnNames = dataRow?.Table?.GetColumnNames();
+                    var _columnNames = dataRow?.Table
+                        ?.GetColumnNames();
 
                     _name = _columnNames?.Contains( numeric.ToString() ) == true
                         ? numeric.ToString()
