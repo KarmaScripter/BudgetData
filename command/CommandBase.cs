@@ -58,7 +58,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                CommandBase.Fail( ex );
+                Fail( ex );
                 return default( Provider );
             }
         }
@@ -77,7 +77,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                CommandBase.Fail( ex );
+                Fail( ex );
                 return default( Source );
             }
         }
@@ -96,7 +96,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                CommandBase.Fail( ex );
+                Fail( ex );
                 return default( IConnectionBuilder );
             }
         }
@@ -115,7 +115,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                CommandBase.Fail( ex );
+                Fail( ex );
                 return default( ISqlStatement );
             }
         }
@@ -183,7 +183,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    CommandBase.Fail( ex );
+                    Fail( ex );
                     return default( DbCommand );
                 }
             }
@@ -257,7 +257,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    CommandBase.Fail( ex );
+                    Fail( ex );
                     return default( DbCommand );
                 }
             }
@@ -328,7 +328,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    CommandBase.Fail( ex );
+                    Fail( ex );
                     return default( DbCommand );
                 }
             }
@@ -399,7 +399,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    CommandBase.Fail( ex );
+                    Fail( ex );
                     return default( DbCommand );
                 }
             }
@@ -422,7 +422,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                CommandBase.Fail( ex );
+                Fail( ex );
             }
         }
 
