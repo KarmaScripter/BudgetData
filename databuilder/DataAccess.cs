@@ -75,8 +75,8 @@ namespace BudgetExecution
                     _dataTable = new DataTable( $"{_source}" );
                     _dataTable.TableName = $"{_source}";
                     _dataSet.Tables.Add( _dataTable );
-                    var adapter = _query?.GetAdapter();
-                    adapter?.Fill( _dataSet, _dataTable.TableName );
+                    var _adapter = _query?.GetAdapter();
+                    _adapter?.Fill( _dataSet, _dataTable.TableName );
                     SetColumnCaptions( _dataTable );
 
                     return _dataTable?.Rows?.Count > 0
@@ -219,23 +219,23 @@ namespace BudgetExecution
         {
             try
             {
-                var table = GetDataTable();
-                SetColumnCaptions( table );
+                var _table = GetDataTable();
+                SetColumnCaptions( _table );
 
                 _dataSet = new DataSet( $"{_source}" )
                 {
                     DataSetName = $"{_source}"
                 };
 
-                var datatable = new DataTable( $"{_source}" );
-                datatable.TableName = $"{_source}";
-                _dataSet.Tables.Add( datatable );
-                using var adapter = _query?.GetAdapter();
-                adapter?.Fill( _dataSet, datatable.TableName );
-                SetColumnCaptions( datatable );
+                var _datatable = new DataTable( $"{_source}" );
+                _datatable.TableName = $"{_source}";
+                _dataSet.Tables.Add( _datatable );
+                using var _adapter = _query?.GetAdapter();
+                _adapter?.Fill( _dataSet, _datatable.TableName );
+                SetColumnCaptions( _datatable );
 
-                return table.Columns.Count > 0
-                    ? table.Columns
+                return _table.Columns.Count > 0
+                    ? _table.Columns
                     : default( DataColumnCollection );
             }
             catch( Exception ex )
@@ -255,11 +255,11 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var table = dataRows?.CopyToDataTable();
-                    var list = table?.GetPrimaryKeyValues();
+                    var _table = dataRows?.CopyToDataTable();
+                    var _values = _table?.GetPrimaryKeyValues();
 
-                    return list?.Any() == true
-                        ? list.ToArray()
+                    return _values?.Any() == true
+                        ? _values.ToArray()
                         : default( IEnumerable<int> );
                 }
                 catch( Exception ex )
@@ -281,19 +281,19 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var list = dataColumns.ToList();
-                    var values = new List<int>();
+                    var _list = dataColumns.ToList();
+                    var _values = new List<int>();
 
-                    if( list?.Any() == true )
+                    if( _list?.Any() == true )
                     {
-                        foreach( var column in list )
+                        foreach( var column in _list )
                         {
-                            values.Add( column.Ordinal );
+                            _values.Add( column.Ordinal );
                         }
                     }
 
-                    return values?.Any() == true
-                        ? values.ToArray()
+                    return _values?.Any() == true
+                        ? _values.ToArray()
                         : default( int[ ] );
                 }
                 catch( Exception ex )
