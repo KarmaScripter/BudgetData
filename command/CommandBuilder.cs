@@ -54,8 +54,8 @@ namespace BudgetExecution
         /// <returns></returns>
         public DbCommand SetCommand( ISqlStatement sqlStatement )
         {
-            if( Verify.Ref( sqlStatement ) 
-                && Enum.IsDefined(  typeof( Provider ), _connectionBuilder.GetProvider() ) )
+            if( Verify.Ref( sqlStatement )
+                && Enum.IsDefined( typeof( Provider ), _connectionBuilder.GetProvider() ) )
             {
                 try
                 {

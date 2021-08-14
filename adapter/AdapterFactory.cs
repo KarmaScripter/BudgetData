@@ -16,35 +16,35 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="System.IDisposable" />
-    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     public class AdapterFactory : IDisposable
     {
         /// <summary>
         /// The data connection
         /// </summary>
-        private readonly DbConnection _dataConnection;
+        private protected readonly DbConnection _dataConnection;
 
         /// <summary>
         /// The SQL statement
         /// </summary>
-        private readonly ISqlStatement _sqlStatement;
+        private protected readonly ISqlStatement _sqlStatement;
 
         /// <summary>
         /// The command builder
         /// </summary>
-        private readonly ICommandBuilder _commandBuilder;
+        private protected readonly ICommandBuilder _commandBuilder;
 
         /// <summary>
         /// The connection builder
         /// </summary>
-        private readonly IConnectionBuilder _connectionBuilder;
+        private protected readonly IConnectionBuilder _connectionBuilder;
 
         /// <summary>
         /// The adapter builder
         /// </summary>
-        private readonly AdapterBuilder _adapterBuilder;
+        private protected readonly AdapterBuilder _adapterBuilder;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterFactory"/> class.
@@ -226,10 +226,10 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var adapter = new SQLiteDataAdapter( _sqlStatement.GetSelectStatement(),
+                    var _adapter = new SQLiteDataAdapter( _sqlStatement.GetSelectStatement(),
                         _dataConnection as SQLiteConnection );
 
-                    return adapter ?? default( SQLiteDataAdapter );
+                    return _adapter ?? default( SQLiteDataAdapter );
                 }
                 catch( Exception ex )
                 {
@@ -283,9 +283,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private protected static void Fail( Exception ex )
         {
-            using var error = new Error( ex );
-            error.SetText();
-            error.ShowDialog();
+            using var _error = new Error( ex );
+            _error.SetText();
+            _error.ShowDialog();
         }
     }
 }

@@ -5,7 +5,7 @@
 namespace BudgetExecution
 {
     using System;
-    
+
     /// <summary>
     /// </summary>
     public interface IConnectionBuilder

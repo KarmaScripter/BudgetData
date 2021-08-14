@@ -118,8 +118,8 @@ namespace BudgetExecution
         public DbCommand GetCreateViewCommand( string viewName, IEnumerable<DataColumn> dataColumns )
         {
             if( Verify.Input( viewName )
-                && dataColumns?.Any()               == true
-                && _connectionBuilder               != null
+                && dataColumns?.Any() == true
+                && _connectionBuilder != null
                 && _connectionBuilder.GetProvider() != Provider.SqlCe )
             {
                 try
@@ -171,7 +171,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public DbCommand GetDropTableCommand( DataTable dataTable )
         {
-            if( dataTable             != null
+            if( dataTable != null
                 && _connectionBuilder != null )
             {
                 try
@@ -235,8 +235,8 @@ namespace BudgetExecution
         /// <returns></returns>
         public DbCommand GetAlterCommand( DataTable dataTable, DataColumn dataColumn )
         {
-            if( dataTable             != null
-                && dataColumn         != null
+            if( dataTable != null
+                && dataColumn != null
                 && _connectionBuilder != null )
             {
                 try

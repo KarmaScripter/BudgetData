@@ -71,7 +71,7 @@ namespace BudgetExecution
         /// <value>
         /// The command.
         /// </value>
-        [ SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" ) ]
+        [SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" )]
         private protected DbCommand Command { get; set; }
 
         /// <summary>

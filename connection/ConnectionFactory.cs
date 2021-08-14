@@ -19,9 +19,9 @@ namespace BudgetExecution
     /// <seealso cref = "T:BudgetExecution.ISource"/>
     /// <seealso cref = "T:BudgetExecution.IProvider"/>
     /// <seealso/>
-    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Local" ) ]
-    [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Local" )]
+    [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
     public class ConnectionFactory : ISource, IConnectionFactory
     {
         private readonly IConnectionBuilder _connectionBuilder;
@@ -67,7 +67,7 @@ namespace BudgetExecution
         /// The connection.
         /// </value>
         private DbConnection Connection;
-        
+
         /// <summary>
         /// Sets the connection manager.
         /// </summary>
@@ -131,7 +131,7 @@ namespace BudgetExecution
                         {
                             case Provider.SQLite:
                             {
-                                var _connectionString = 
+                                var _connectionString =
                                     ConfigurationManager.ConnectionStrings[ $"{Provider.SQLite}" ]?.ConnectionString;
 
                                 return Verify.Input( _connectionString )
@@ -141,7 +141,7 @@ namespace BudgetExecution
 
                             case Provider.SqlCe:
                             {
-                                var _connectionString = 
+                                var _connectionString =
                                     ConfigurationManager.ConnectionStrings[ $"{Provider.SqlCe}" ]?.ConnectionString;
 
                                 return Verify.Input( _connectionString )
@@ -151,7 +151,7 @@ namespace BudgetExecution
 
                             case Provider.SqlServer:
                             {
-                                var _connectionString = 
+                                var _connectionString =
                                     ConfigurationManager.ConnectionStrings[ $"{Provider.SqlServer}" ]?.ConnectionString;
 
                                 return Verify.Input( _connectionString )
@@ -164,7 +164,7 @@ namespace BudgetExecution
                             case Provider.Access:
                             case Provider.OleDb:
                             {
-                                var _connectionString = 
+                                var _connectionString =
                                     ConfigurationManager.ConnectionStrings[ $"{Provider.OleDb}" ]?.ConnectionString;
 
                                 return Verify.Input( _connectionString )

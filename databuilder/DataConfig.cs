@@ -12,7 +12,7 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    public abstract class DataConfig  
+    public abstract class DataConfig
     {
         /// <summary>
         /// The source
@@ -264,8 +264,8 @@ namespace BudgetExecution
         /// <param name="name">The name.</param>
         private protected void SetData( string name )
         {
-            if( Verify.Input( name ) 
-                && Validate.Source(  _source ) )
+            if( Verify.Input( name )
+                && Validate.Source( _source ) )
             {
                 try
                 {
@@ -282,7 +282,8 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );;
+                    Fail( ex );
+                    ;
                 }
             }
         }

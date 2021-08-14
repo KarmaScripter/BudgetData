@@ -10,7 +10,7 @@ namespace BudgetExecution
     /// <summary>
     /// Contains the schema of a single DB column.
     /// </summary>
-    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
     public class ColumnSchema
     {
         public string columnName;

@@ -221,13 +221,14 @@ namespace BudgetExecution
                     using var _dataSet = new DataSet();
                     using var _schema = _connection?.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
                     var _sheetName = string.Empty;
-                    
+
                     if( _schema != null )
                     {
                         var _dataTable = _schema?.AsEnumerable()
                             ?.Where( r =>
                                 r.Field<string>( "TABLE_NAME" ).Contains( "FilterDatabase" ) )
-                            ?.Select( r => r )?.CopyToDataTable();
+                            ?.Select( r => r )
+                            ?.CopyToDataTable();
 
                         _sheetName = _dataTable.Rows[ 0 ][ "TABLE_NAME" ].ToString();
                     }

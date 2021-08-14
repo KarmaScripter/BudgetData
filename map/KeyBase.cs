@@ -12,7 +12,7 @@ namespace BudgetExecution
     /// <summary> </summary>
     /// <seealso cref = "UnitBase"/>
     /// <seealso cref = "IUnit"/>
-    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" )]
     public abstract class KeyBase : Unit
     {
         /// <summary> Gets or sets the field. </summary>

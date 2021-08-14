@@ -8,7 +8,7 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
 
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     public static class TriggerBuilder
     {
         public static IList<TriggerSchema> GetForeignKeyTriggers( TableSchema dt )

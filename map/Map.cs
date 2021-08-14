@@ -11,7 +11,7 @@
     /// </summary>
     /// <seealso cref="BudgetExecution.Arg" />
     /// <seealso cref="BudgetExecution.IMap" />
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     public class Map : Arg, IMap
     {
         /// <summary>

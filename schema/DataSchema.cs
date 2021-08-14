@@ -19,7 +19,7 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref = "ISource"/>
     /// <seealso cref = "IDataSchema"/>
-    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
+    [SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" )]
     public class DataSchema : ISource, IDataSchema
     {
         // **************************************************************************************************************************
@@ -92,7 +92,7 @@ namespace BudgetExecution
         /// </c>
         /// .
         /// </value>
-        [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+        [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
         public bool IsSource { get; }
 
         // **************************************************************************************************************************
@@ -141,7 +141,7 @@ namespace BudgetExecution
             {
                 var schema = Data?.CopyToDataTable()?.Columns;
                 var list = new List<string>();
-               
+
                 if( schema != null )
                 {
                     foreach( DataColumn caption in schema )
@@ -156,7 +156,7 @@ namespace BudgetExecution
                         }
                     }
                 }
-                
+
                 return list?.Any() == true
                     ? list
                     : default( List<string> );
