@@ -1,0 +1,28 @@
+﻿CREATE TABLE [PayrollObligations]
+(
+   [PayrollObligationsId] INT NOT NULL IDENTITY (1,1),
+   [RpioCode] NVARCHAR(255) DEFAULT ('NS'),
+   [BFY] NVARCHAR(255) DEFAULT ('NS'),
+   [FundCode] NVARCHAR(255) DEFAULT ('NS'),
+   [AhCode] NVARCHAR(255) DEFAULT ('NS'),
+   [OrgCode] NVARCHAR(255) DEFAULT ('NS'),
+   [RcCode] NVARCHAR(255) DEFAULT ('NS'),
+   [AccountCode] NVARCHAR(255) DEFAULT ('NS'),
+   [ProgramProjectCode] NVARCHAR(255) DEFAULT ('NS'),
+   [Amount] FLOAT DEFAULT ('0.0'),
+   [Hours] FLOAT DEFAULT ('0.0'),
+   [CumulativeBenefits] FLOAT DEFAULT ('0.0'),
+   [AnnualOvertimePaid] FLOAT DEFAULT ('0.0'),
+   [AnnualOvertimeHours] FLOAT DEFAULT ('0.0'),
+   [AnnualBasePaid] FLOAT DEFAULT ('0.0'),
+   [AnnualBaseHours] FLOAT DEFAULT ('0.0'),
+   [AnnualOtherHours] FLOAT DEFAULT ('0.0'),
+   [AnnualOtherPaid] FLOAT DEFAULT ('0.0'),
+   [AllocationPercentage] FLOAT DEFAULT ('0.0'),
+   [PayPeriod] NVARCHAR(255) DEFAULT ('NS'),
+   [FocCode] NVARCHAR(255) DEFAULT ('NS'),
+   [FocName] NVARCHAR(255) DEFAULT ('NS'),
+   [WorkCode] NVARCHAR(255) DEFAULT ('NS'),
+   [WorkCodeName] NVARCHAR(255) DEFAULT ('NS'),
+   [HumanResourceOrganizationCode] NVARCHAR(255) DEFAULT ('NS')
+);

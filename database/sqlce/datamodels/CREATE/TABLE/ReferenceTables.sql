@@ -1,0 +1,7 @@
+CREATE TABLE ReferenceTables
+(
+	ReferenceTableId INTEGER NOT NULL UNIQUE IDENTITY(1,1),
+	TableName NVARCHAR(255) NULL,
+	Type NVARCHAR(255) NULL
+);
+

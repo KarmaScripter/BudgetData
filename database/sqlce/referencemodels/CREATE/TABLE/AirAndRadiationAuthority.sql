@@ -1,0 +1,32 @@
+CREATE TABLE AirAndRadiationAuthority
+(
+	AirAndRadiationAuthorityId INTEGER NOT NULL UNIQUE,
+	PrcId INTEGER NOT NULL UNIQUE,
+	DivisionAuthorityId INTER NOT NULL UNIQUE
+	BudgetLevel TEXT NULL,
+	RPIO TEXT NULL,
+	BFY TEXT NULL,
+	FundCode TEXT NULL,
+	AhCode TEXT NULL,
+	OrgCode TEXT NULL,
+	AccountCode TEXT NULL,
+	RcCode TEXT NULL,
+	BocCode TEXT NULL,
+	Amount float NULL,
+	FundName TEXT NULL,
+	BocName TEXT NULL,
+	Division TEXT NULL,
+	DivisionName TEXT NULL,
+	ActivityCode TEXT NULL,
+	NpmName TEXT NULL,
+	NpmCode TEXT NULL,
+	ProgramProjectCode TEXT NULL,
+	ProgramProjectName TEXT NULL,
+	ProgramAreaCode TEXT NULL,
+	ProgramAreaName TEXT NULL,
+	GoalCode TEXT NULL,
+	GoalName TEXT NULL,
+	ObjectiveCode TEXT NULL,
+	ObjectiveName TEXT NULL,
+	ChangeDate DATETIME
+);

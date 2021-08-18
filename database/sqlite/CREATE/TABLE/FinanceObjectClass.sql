@@ -1,6 +1,0 @@
-CREATE TABLE IF NOT EXISTS "FinanceObjectClass"
-(
-  FocId INT,
-  Code TEXT NOT NULL DEFAULT NS,
-  Name TEXT NOT NULL DEFAULT NS
-);

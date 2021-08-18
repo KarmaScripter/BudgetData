@@ -1,0 +1,31 @@
+
+CREATE TABLE PayrollAccruals
+(
+	PayrollAccrualId INT NOT NULL IDENTITY (1,1),
+    RPIO NVARCHAR(255) NULL,
+    AhCode NVARCHAR(255) NULL,
+    BFY NVARCHAR(255) NULL,
+	RcCode NVARCHAR(255) NULL,
+	DivisionName NVARCHAR(255) NULL,
+	EpaNumber NVARCHAR(255) NULL,
+	LastName NVARCHAR(255) NULL,
+	FirstName NVARCHAR(255) NULL,
+    FundCode NVARCHAR(255) NULL,
+    FundName NVARCHAR(255) NULL,
+    OrgCode NVARCHAR(255) NULL,
+    AccountCode NVARCHAR(255) NULL,
+    ProgramProjectCode NVARCHAR(255) NULL,
+    ProgramProjectName NVARCHAR(255) NULL,
+    ProgramAreaCode NVARCHAR(255) NULL,
+    ProgramAreaName NVARCHAR(255) NULL,
+    WorkCode NVARCHAR(255) NULL,
+    HrOrgCode NVARCHAR(255) NULL,
+    PayPeriod NVARCHAR(255) NULL,
+    StartDate DATETIME NULL,
+    EndDate DATETIME NULL,
+    Amount FLOAT NULL,
+	Hours FLOAT NULL,
+	Benfits FLOAT NULL,
+    OvertimePaid FLOAT NULL,
+    OvertimeHours FLOAT NULL
+);

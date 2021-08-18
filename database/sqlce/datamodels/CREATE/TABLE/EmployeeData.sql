@@ -1,0 +1,33 @@
+CREATE TABLE EmployeeData
+(
+	EmployeeDataId INTEGER NOT NULL UNIQUE IDENTITY(1,1),
+	RpioCode NVARCHAR(255) NULL,
+	RpioName NVARCHAR(255) NULL,
+	ActionDate DATETIME NULL,
+	HiringAuthority NVARCHAR(255) NULL,
+	SupervisorId NVARCHAR(255) NULL,
+	JobTitle NVARCHAR(255) NULL,
+	HrOrgCode NVARCHAR(255) NULL,
+	HrOrgName NVARCHAR(255) NULL,
+	EmployeeId NVARCHAR(255) NULL,
+	FirstName NVARCHAR(255) NULL,
+	LastName NVARCHAR(255) NULL,
+	RetirementPlan NVARCHAR(255) NULL,
+	ScheduledRetirementDate DATETIME NULL,
+	HireDate DATETIME NULL,
+	Grade NVARCHAR(255) NULL,
+	Step NVARCHAR(255) NULL,
+	GradeEntry DATETIME NULL,
+	LastIncrease DATETIME NULL,
+	StepEntry DATETIME NULL,
+	WigiDueDate DATETIME NULL,
+	EmployeeStatus NVARCHAR(255) NULL,
+	HoursEarnedYearToDate FLOAT NULL,
+	CarryoverHours FLOAT NULL,
+	HoursAdjustedYearToDate FLOAT NULL,
+	HoursBalance FLOAT NULL,
+	ProjectedAnnualHours FLOAT NULL,
+	ProjectedNextPeriodHours FLOAT NULL,
+	HoursTakenYearToDate FLOAT NULL
+);
+

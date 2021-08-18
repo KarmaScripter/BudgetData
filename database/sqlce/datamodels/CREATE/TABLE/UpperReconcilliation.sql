@@ -1,0 +1,23 @@
+CREATE TABLE UpperReconcilliation 
+(
+	ReconcilliationId INT NOT NULL IDENTITY (1,1),
+	ExtId INTEGER NOT NULL,
+	PrcId INTEGER NOT NULL UNIQUE,
+	BFY NVARCHAR(255),
+	BudgetLevel NVARCHAR(255),
+	AhCode NVARCHAR(255),
+	FundName NVARCHAR(255),
+	FundCode NVARCHAR(255),
+	OrgCode NVARCHAR(255),
+	AccountCode NVARCHAR(255),
+	BocCode NVARCHAR(255),
+	RcCode NVARCHAR(255),
+	BocName NVARCHAR(255),
+	DivisionName NVARCHAR(255),
+	ProgramProjectCode NVARCHAR(255),
+	ProgramProjectName NVARCHAR(255),
+	System NUMERIC,
+	Budget NUMERIC,
+	Delta NUMERIC,
+	NET NVARCHAR(255)
+)

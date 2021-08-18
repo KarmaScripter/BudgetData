@@ -1,0 +1,281 @@
+﻿CREATE TABLE [Accounts]
+(
+   [AccountId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramAreaCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ActivityCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [GoalCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ObjectiveCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [NpmCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramProjectCode] NVARCHAR(255) DEFAULT ('NS')
+);
+
+CREATE TABLE [Activity]
+(
+   [ActivityId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) DEFAULT ('NS'),
+   [Name] NVARCHAR(255) DEFAULT ('NS'),
+   [Title] NVARCHAR(255) DEFAULT ('NS')
+);
+
+CREATE TABLE [AllowanceHolders]
+(
+   [AllowanceHolderId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [AppropriationBills]
+(
+   [ID] INT NOT NULL IDENTITY (1,1),
+   [BFY] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [PublicLaw] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [EnactedDate] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [Appropriations]
+(
+   [AppropriationId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [BudgetObjectClass]
+(
+   [BudgetObjectClassId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [CPIC]
+(
+   [ID] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL,
+   [CostAreaCode] NVARCHAR(255),
+   [CostAreaName] NVARCHAR(255),
+   [ProjectCode] NVARCHAR(255),
+   [ProjectName] NVARCHAR(255)
+);
+
+CREATE TABLE [Divisions]
+(
+   [DivisionId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Caption] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [Documents]
+(
+   [DocumentId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255),
+   [Category] NVARCHAR(255),
+   [Name] NVARCHAR(255),
+   [System] NVARCHAR(255)
+);
+
+CREATE TABLE [FinanceObjectClass]
+(
+   [FinanceObjectClassId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [FiscalYears]
+(
+   [FiscalYearId] INT NOT NULL IDENTITY (1,1),
+   [BFY] NVARCHAR(255) NOT NULL,
+   [EFY] NVARCHAR(255),
+   [FirstYear] NVARCHAR(255),
+   [LastYear] NVARCHAR(255),
+   [ExpiringYear] NVARCHAR(255),
+   [StartDate] DATETIME,
+   [EndDate] DATETIME,
+   [Availability] NVARCHAR(255),
+   [Columbus] DATETIME,
+   [Thanksgiving] DATETIME,
+   [Christmas] DATETIME,
+   [NewYears] DATETIME,
+   [MartinLutherKing] DATETIME,
+   [Presidents] DATETIME,
+   [Memorial] DATETIME,
+   [Veterans] DATETIME,
+   [Labor] DATETIME,
+   [WorkDays] FLOAT,
+   [WeekDays] FLOAT,
+   [WeekEnds] FLOAT
+);
+
+CREATE TABLE [Funds]
+(
+   [FundsId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL,
+   [Name] NVARCHAR(255),
+   [TreasurySymbol] NVARCHAR(255),
+   [Title] NVARCHAR(255)
+);
+
+CREATE TABLE [Goals]
+(
+   [GoalId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [GsPayScale]
+(
+   [ID] INT NOT NULL IDENTITY (1,1),
+   [LOCNAME] NVARCHAR(255),
+   [GRADE] FLOAT,
+   [ANNUAL1] FLOAT,
+   [HOURLY1] NVARCHAR(255),
+   [OVERTIME1] NVARCHAR(255),
+   [ANNUAL2] FLOAT,
+   [HOURLY2] NVARCHAR(255),
+   [OVERTIME2] NVARCHAR(255),
+   [ANNUAL3] FLOAT,
+   [HOURLY3] NVARCHAR(255),
+   [OVERTIME3] NVARCHAR(255),
+   [ANNUAL4] FLOAT,
+   [HOURLY4] NVARCHAR(255),
+   [OVERTIME4] NVARCHAR(255),
+   [ANNUAL5] FLOAT,
+   [HOURLY5] NVARCHAR(255),
+   [OVERTIME5] NVARCHAR(255),
+   [ANNUAL6] FLOAT,
+   [HOURLY6] NVARCHAR(255),
+   [OVERTIME6] NVARCHAR(255),
+   [ANNUAL7] FLOAT,
+   [HOURLY7] NVARCHAR(255),
+   [OVERTIME7] NVARCHAR(255),
+   [ANNUAL8] FLOAT,
+   [HOURLY8] NVARCHAR(255),
+   [OVERTIME8] NVARCHAR(255),
+   [ANNUAL9] FLOAT,
+   [HOURLY9] NVARCHAR(255),
+   [OVERTIME9] NVARCHAR(255),
+   [ANNUAL10] FLOAT,
+   [HOURLY10] NVARCHAR(255),
+   [OVERTIME10] NVARCHAR(255)
+);
+
+CREATE TABLE [Holidays]
+(
+   [HolidayId] INT NOT NULL IDENTITY (1,1),
+   [ColumbusDay] DATETIME,
+   [ThanksgivingDay] DATETIME,
+   [ChristmasDay] DATETIME,
+   [NewYearsDay] DATETIME,
+   [MartinLutherKingDay] DATETIME,
+   [PresidentsDay] DATETIME,
+   [MemorialDay] DATETIME,
+   [VeteransDay] DATETIME,
+   [LaborDay] DATETIME
+);
+
+CREATE TABLE [Messages]
+(
+   [MessageId] INT NOT NULL IDENTITY (1,1),
+   [Message] NVARCHAR(255),
+   [Type] NVARCHAR(255),
+   [Form] NVARCHAR(255)
+);
+
+CREATE TABLE [NationalPrograms]
+(
+   [NationalProgramId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [RpioCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [Objectives]
+(
+   [ObjectiveId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [Organizations]
+(
+   [OrganizationId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [ProgramAreas]
+(
+   [ProgramAreaId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [ProgramDescriptions]
+(
+   [ProgramProjectId] INT NOT NULL,
+   [ProgramProjectCode] NVARCHAR(255) NOT NULL,
+   [ProgramProjectName] NVARCHAR(255),
+   [ProgramProjectTitle] NVARCHAR(255),
+   [Laws] NVARCHAR(255),
+   [Narrative] NVARCHAR(255),
+   [Definition] NVARCHAR(255),
+   [ProgramAreaCode] NVARCHAR(255),
+   [ProgramAreaName] NVARCHAR(255)
+);
+
+CREATE TABLE [ProgramProjects]
+(
+   [ProgramProjectId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Laws] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Narrative] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Definition] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramAreaCode] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [ProgramAreaName] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [Projects]
+(
+   [ProjectId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [ResourcePlanningOffices]
+(
+   [ResourcePlanningOfficeId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [RPIO] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE TABLE [ResponsibilityCenters]
+(
+   [ResponsibilityCenterId] INT NOT NULL IDENTITY (1,1),
+   [Code] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Name] NVARCHAR(255) NOT NULL DEFAULT ('NS'),
+   [Title] NVARCHAR(255) NOT NULL DEFAULT ('NS')
+);
+
+CREATE UNIQUE INDEX [UQ__Documents__0000000000000752] ON [Documents] ([DocumentId] ASC);
+
+CREATE UNIQUE INDEX [UQ__FiscalYears__000000000000081C] ON [FiscalYears] ([FiscalYearId] ASC);
+
+CREATE UNIQUE INDEX [UQ__Funds__0000000000000876] ON [Funds] ([FundsId] ASC);
+
+CREATE UNIQUE INDEX [UQ__GsPayScale__00000000000008BF] ON [GsPayScale] ([ID] ASC);
+
+CREATE UNIQUE INDEX [UQ__Holidays__00000000000008D9] ON [Holidays] ([HolidayId] ASC);
+
+CREATE UNIQUE INDEX [UQ__Messages__0000000000000900] ON [Messages] ([MessageId] ASC);
+

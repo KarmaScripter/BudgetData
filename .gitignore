@@ -247,14 +247,14 @@ ServiceFabricBackup/
 *.mdf
 *.ldf
 *.ndf
-*.sdf
+#*.sdf
 
 # MS Access Database files
-*.accdb
-*.mdb
+#*.accdb
+#*.mdb
 
 # SQLite Database files
-*.db
+#*.db
 
 # Budget Execution Files
 # *.exe
@@ -263,7 +263,7 @@ ServiceFabricBackup/
 [Dd]atabases/
 
 # Settings and Condfiguration files
-# *.DotSettings
+*.DotSettings
 # *.editorconfig
 
 # Business Intelligence projects
