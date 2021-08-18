@@ -1,2 +1,2 @@
 # BudgetData
-The data models used in Budget Execution.
+The data models used in the Budget Execution tool.
