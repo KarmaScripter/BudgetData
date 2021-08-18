@@ -1,6 +1,6 @@
-﻿CREATE TABLE IF NOT EXISTS HumanResourceOrganizations
+﻿CREATE TABLE HumanResourceOrganizations
 (
-   HumanResourceOrganizationId INTEGER,
+   HumanResourceOrganizationId INTEGER NOT NULL UNIQUE CONSTRAINT PrimaryKeyHumanResourceOrganizations PRIMARY KEY,
    RcCode NVARCHAR(255),
    DivisionName NVARCHAR(255),
    HrOrgCode NVARCHAR(255),

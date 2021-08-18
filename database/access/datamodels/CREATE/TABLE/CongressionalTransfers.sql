@@ -1,6 +1,6 @@
 CREATE TABLE CongressionalTransfers
 (
-	CongressionalTransferId INTEGER NOT NULL UNIQUE CONSTRAINT PK_CongressionalTransfers PRIMARY KEY,
+	CongressionalTransferId INTEGER NOT NULL UNIQUE CONSTRAINT PrimaryKeyCongressionalTransfers PRIMARY KEY,
 	ReprogrammingNumber TEXT(255) NULL,
 	ProcessedDate DATETIME NULL,
 	RPIO TEXT(255) NULL,
@@ -15,8 +15,8 @@ CREATE TABLE CongressionalTransfers
 	FundName TEXT(255) NULL,
 	ProgramProjectCode TEXT(255) NULL,
 	ProgramProjectName TEXT(255) NULL,
+	ProgramAreaCode TEXT(255) NULL,
+	ProgramAreaName TEXT(255) NULL,
 	BocName TEXT(255) NULL,
-	SPIO TEXT(255) NULL,
-	CONSTRAINT FK_CongressionalTransfers
-	FOREIGN KEY (TransferId) REFERENCES Transfers
+	SPIO TEXT(255) NULL
 );
