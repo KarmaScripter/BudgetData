@@ -94,7 +94,7 @@ ipch/
 *.ncb
 *.opendb
 *.opensdf
-*.sdf
+#*.sdf
 *.cachefile
 *.VC.db
 *.VC.VC.opendb
@@ -264,7 +264,7 @@ ServiceFabricBackup/
 
 # Settings and Condfiguration files
 *.DotSettings
-# *.editorconfig
+#*.editorconfig
 
 # Business Intelligence projects
 *.rdl.data
@@ -347,4 +347,3 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
-*.db
