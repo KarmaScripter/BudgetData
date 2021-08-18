@@ -13,7 +13,7 @@ namespace BudgetExecution
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
 
-    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
     public interface IDataSchema
     {
         // ***************************************************************************************************************************

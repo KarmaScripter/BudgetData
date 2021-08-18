@@ -24,7 +24,7 @@ namespace BudgetExecution
     /// <summary>
     /// </summary>
     /// <seealso cref = "Query"/>
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     public class CsvQuery : Query
     {
         // **************************************************************************************************************************

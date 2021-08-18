@@ -10,9 +10,9 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
-    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" )]
+    [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
+    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
     public abstract class UnitBase
     {
         /// <summary>
@@ -97,7 +97,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    return unit.GetName()?.Equals( _name )   == true
+                    return unit.GetName()?.Equals( _name ) == true
                         && unit.GetValue()?.Equals( _value ) == true;
                 }
                 catch( Exception ex )

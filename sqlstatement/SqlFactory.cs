@@ -10,7 +10,7 @@ namespace BudgetExecution
 
     /// <summary> </summary>
     /// <seealso cref = "SqlStatement"/>
-    [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
+    [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
     public class SqlFactory : SqlConfig
     {
         /// <summary>

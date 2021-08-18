@@ -13,7 +13,7 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="BudgetExecution.SqlConfig" />
     /// <seealso cref="BudgetExecution.ISqlStatement" />
-    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
     public class SqlStatement : SqlConfig, ISqlStatement
     {
         /// <summary>

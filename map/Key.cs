@@ -138,8 +138,8 @@ namespace BudgetExecution
         {
             try
             {
-                return !Validate.PrimaryKey( _primaryKey ) 
-                    && _index > -1 
+                return !Validate.PrimaryKey( _primaryKey )
+                    && _index > -1
                     && Verify.Input( _name )
                         ? _name + " = " + _index
                         : string.Empty;
@@ -164,7 +164,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    return key?.GetIndex() == _index 
+                    return key?.GetIndex() == _index
                         && key?.GetName()?.Equals( _name ) == true;
                 }
                 catch( Exception ex )
@@ -187,7 +187,7 @@ namespace BudgetExecution
         /// </returns>
         public static bool IsMatch( IKey primary, IKey secondary )
         {
-            if( primary?.GetIndex()      > -1
+            if( primary?.GetIndex() > -1
                 && secondary?.GetIndex() > -1 )
             {
                 try

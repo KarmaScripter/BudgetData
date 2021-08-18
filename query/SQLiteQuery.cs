@@ -21,10 +21,10 @@ namespace BudgetExecution
     /// <summary>
     /// </summary>
     /// <seealso cref = "Query"/>
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    [ SuppressMessage( "ReSharper", "ConvertToConstant.Local" ) ]
-    [ SuppressMessage( "ReSharper", "BadListLineBreaks" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [SuppressMessage( "ReSharper", "ConvertToConstant.Local" )]
+    [SuppressMessage( "ReSharper", "BadListLineBreaks" )]
     public class SQLiteQuery : Query
     {
         // **********************************************************************************************************************

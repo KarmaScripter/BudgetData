@@ -28,9 +28,9 @@ namespace BudgetExecution
     /// <remarks>
     /// The class knows how to convert table and index structures only.
     /// </remarks>
-    [ SuppressMessage( "ReSharper", "FunctionComplexityOverflow" ) ]
-    [ SuppressMessage( "ReSharper", "ConvertSwitchStatementToSwitchExpression" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Local" ) ]
+    [SuppressMessage( "ReSharper", "FunctionComplexityOverflow" )]
+    [SuppressMessage( "ReSharper", "ConvertSwitchStatementToSwitchExpression" )]
+    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Local" )]
     public class SqlServerConverter
     {
         // *************************************************************************************************************************
@@ -1256,7 +1256,7 @@ namespace BudgetExecution
         /// <param name="tablename">The tablename.</param>
         /// <param name="tschma">The tschma.</param>
         /// <returns></returns>
-        [ SuppressMessage( "ReSharper", "BadParensLineBreaks" ) ]
+        [SuppressMessage( "ReSharper", "BadParensLineBreaks" )]
         private TableSchema CreateTableSchema( SqlConnection conn, string tablename, string tschma )
         {
             var res = new TableSchema
@@ -1593,7 +1593,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="conn">The connection.</param>
         /// <param name="ts">The ts.</param>
-        [ SuppressMessage( "ReSharper", "BadParensLineBreaks" ) ]
+        [SuppressMessage( "ReSharper", "BadParensLineBreaks" )]
         private void CreateForeignKeySchema( SqlConnection conn, TableSchema ts )
         {
             ts.ForeignKeys = new List<ForeignKeySchema>();

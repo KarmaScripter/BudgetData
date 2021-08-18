@@ -17,10 +17,10 @@ namespace BudgetExecution
     /// <summary>
     /// </summary>
     /// <seealso cref = "IDisposable"/>
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" )]
+    [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
     public class Query : QueryBase, IQuery
     {
         // ***************************************************************************************************************************
@@ -185,7 +185,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        public DbDataReader GetDataReader( DbCommand command, 
+        public DbDataReader GetDataReader( DbCommand command,
             CommandBehavior behavior = CommandBehavior.CloseConnection )
         {
             if( Command?.Connection != null
@@ -233,7 +233,7 @@ namespace BudgetExecution
         /// </c>
         /// to release only unmanaged resources.
         /// </param>
-        [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
+        [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
         protected virtual void Dispose( bool disposing )
         {
             if( ConnectionFactory?.GetConnection() != null )

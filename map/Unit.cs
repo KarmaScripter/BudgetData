@@ -13,8 +13,8 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="BudgetExecution.UnitBase" />
     /// <seealso cref="BudgetExecution.IUnit" />
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
     public class Unit : UnitBase, IUnit
     {
         /// <summary>
@@ -102,7 +102,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _name ) 
+                return Verify.Input( _name )
                     && Verify.Input( _value )
                         ? _name + " = " + _value
                         : string.Empty;

@@ -16,7 +16,6 @@ namespace BudgetExecution
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     public abstract class ConnectionBase
     {
         /// <summary>
@@ -68,7 +67,8 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the source.
         /// </summary>
-        /// <param name="source">The source.</param>
+        /// <param name="source">
+        /// The source.</param>
         private protected void SetSource( Source source )
         {
             try

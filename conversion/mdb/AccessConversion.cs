@@ -19,7 +19,7 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    [ SuppressMessage( "ReSharper", "UnusedMethodReturnValue.Global" ) ]
+    [SuppressMessage( "ReSharper", "UnusedMethodReturnValue.Global" )]
     public class AccessConversion
     {
         // ***************************************************************************************************************************

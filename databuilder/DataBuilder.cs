@@ -14,7 +14,7 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="BudgetExecution.Builder" />
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     public class DataBuilder : Builder
     {
         /// <summary>

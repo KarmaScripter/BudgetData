@@ -14,7 +14,7 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="BudgetExecution.ElementBase" />
     /// <seealso cref="BudgetExecution.IElement" />
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     public class Element : ElementBase, IElement
     {
         /// <summary>
@@ -139,7 +139,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _name ) 
+                return Verify.Input( _name )
                     && Verify.Input( _value )
                         ? $"{_name} = {_value}"
                         : string.Empty;
@@ -164,7 +164,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    if( element.GetValue()?.Equals( _value )  == true
+                    if( element.GetValue()?.Equals( _value ) == true
                         && element.GetName()?.Equals( _name ) == true )
                     {
                         return true;

@@ -13,10 +13,10 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="BudgetExecution.AmountBase" />
     /// <seealso cref="BudgetExecution.IAmount" />
-    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" ) ]
-    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
-    [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
+    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     public class Amount : AmountBase, IAmount
     {
         /// <summary>
@@ -211,12 +211,12 @@ namespace BudgetExecution
         /// </returns>
         public bool IsEqual( IAmount amount )
         {
-            if( amount                 != null
+            if( amount != null
                 && amount.GetFunding() != Default.GetFunding() )
             {
                 try
                 {
-                    if( amount?.GetFunding()                  == _funding
+                    if( amount?.GetFunding() == _funding
                         && amount?.GetName()?.Equals( _name ) == true )
                     {
                         return true;
@@ -242,15 +242,15 @@ namespace BudgetExecution
         /// </returns>
         public static bool IsEqual( IAmount first, IAmount second )
         {
-            if( first     != null
-                && first  != Default
-                && first  != null
+            if( first != null
+                && first != Default
+                && first != null
                 && second != Default )
             {
                 try
                 {
                     if( first?.GetFunding().Equals( second?.GetFunding() ) == true
-                        && first?.GetName()?.Equals( second?.GetName() )   == true )
+                        && first?.GetName()?.Equals( second?.GetName() ) == true )
                     {
                         return true;
                     }

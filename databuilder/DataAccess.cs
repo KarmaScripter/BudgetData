@@ -12,11 +12,11 @@ namespace BudgetExecution
 
     /// <summary> </summary>
     /// <seealso cref = "IDataAccess"/>
-    [ SuppressMessage( "ReSharper", "ImplicitlyCapturedClosure" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
-    [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
+    [SuppressMessage( "ReSharper", "ImplicitlyCapturedClosure" )]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
+    [SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" )]
     public abstract class DataAccess : DataConfig, ISource, IProvider
     {
         /// <summary> Gets the query. </summary>
@@ -63,7 +63,7 @@ namespace BudgetExecution
         /// <returns> </returns>
         public DataTable GetDataTable()
         {
-            if( Verify.Table(  _dataTable  ) )
+            if( Verify.Table( _dataTable ) )
             {
                 try
                 {

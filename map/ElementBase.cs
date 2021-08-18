@@ -13,7 +13,7 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="BudgetExecution.Unit" />
-    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" )]
     public abstract class ElementBase : Unit
     {
         /// <summary>

@@ -4,31 +4,36 @@
 
 namespace BudgetExecution
 {
-    // ******************************************************************************************************************************
-    // ******************************************************   ASSEMBLIES   ********************************************************
-    // ******************************************************************************************************************************
-
     using System;
     using System.Data;
     using System.Data.Common;
     using System.Diagnostics.CodeAnalysis;
 
-    /// <inheritdoc/>
-    /// <summary> </summary>
-    /// <seealso cref = "T:System.Data.Common.DataAdapter"/>
-    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="System.Data.Common.DbDataAdapter" />
+    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
+    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
     public class AdapterBuilder : DbDataAdapter
     {
-        // ***************************************************************************************************************************
-        // *********************************************   CONSTRUCTORS    ***********************************************************
-        // ***************************************************************************************************************************
-
-        /// <inheritdoc/>
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "T:BudgetExecution.AdapterBuilder"/>
-        /// class.
+        /// The connection
+        /// </summary>
+        private protected readonly DbConnection _connection;
+
+        /// <summary>
+        /// The SQL statement
+        /// </summary>
+        private protected readonly ISqlStatement _sqlStatement;
+
+        /// <summary>
+        /// The connection builder
+        /// </summary>
+        private protected readonly IConnectionBuilder _connectionBuilder;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
         /// </summary>
         public AdapterBuilder()
         {
@@ -40,95 +45,80 @@ namespace BudgetExecution
             AcceptChangesDuringUpdate = true;
         }
 
-        /// <summary> </summary>
-        /// <param name = "commandbuilder" > </param>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
+        /// </summary>
+        /// <param name="commandbuilder">The commandbuilder.</param>
         public AdapterBuilder( ICommandBuilder commandbuilder )
             : this()
         {
-            ConnectionBuilder = commandbuilder?.GetConnectionBuilder();
-            Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
-            SqlStatement = commandbuilder?.GetSqlStatement();
-            SelectCommand = new CommandBuilder( ConnectionBuilder, SqlStatement )?.GetCommand();
+            _connectionBuilder = commandbuilder?.GetConnectionBuilder();
+            _connection = new ConnectionFactory( _connectionBuilder )?.GetConnection();
+            _sqlStatement = commandbuilder?.GetSqlStatement();
+            SelectCommand = new CommandBuilder( _connectionBuilder, _sqlStatement )?.GetCommand();
         }
 
-        /// <inheritdoc/>
         /// <summary>
-        /// Initializes a new instance of the
-        /// <see cref = "T:BudgetExecution.AdapterBuilder"/>
-        /// class.
+        /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
         /// </summary>
-        /// <param name = "connectionbuilder" > The connectionmanager. </param>
-        /// <param name = "sqlstatement" > The sqlstatement. </param>
+        /// <param name="connectionbuilder">The connectionbuilder.</param>
+        /// <param name="sqlstatement">The sqlstatement.</param>
         public AdapterBuilder( IConnectionBuilder connectionbuilder, ISqlStatement sqlstatement )
             : this()
         {
-            ConnectionBuilder = connectionbuilder;
-            Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
-            SqlStatement = sqlstatement;
-            SelectCommand = new CommandBuilder( ConnectionBuilder, SqlStatement )?.GetCommand();
+            _connectionBuilder = connectionbuilder;
+            _connection = new ConnectionFactory( _connectionBuilder )?.GetConnection();
+            _sqlStatement = sqlstatement;
+            SelectCommand = new CommandBuilder( _connectionBuilder, _sqlStatement )?.GetCommand();
         }
 
-        // **********************************************************************************************************************
-        // *************************************************   PROPERTIES   *****************************************************
-        // **********************************************************************************************************************
-
-        /// <summary> Gets the connection. </summary>
-        /// <value> The connection. </value>
-        private DbConnection Connection { get; }
-
-        /// <summary> Gets the SQL statement. </summary>
-        /// <value> The SQL statement. </value>
-        private ISqlStatement SqlStatement { get; }
-
-        /// <summary> Gets the connection manager. </summary>
-        /// <value> The connection manager. </value>
-        private IConnectionBuilder ConnectionBuilder { get; }
-
-        // **********************************************************************************************************************
-        // *************************************************    METHODS     *****************************************************
-        // **********************************************************************************************************************
-
-        /// <summary> Gets the connection. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the connection.
+        /// </summary>
+        /// <returns></returns>
         public DbConnection GetConnection()
         {
             try
             {
-                return Verify.Ref( Connection )
-                    ? Connection
+                return Verify.Ref( _connection )
+                    ? _connection
                     : default( DbConnection );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( DbConnection );
             }
         }
 
-        /// <summary> Gets the connection builder. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the connection builder.
+        /// </summary>
+        /// <returns></returns>
         public IConnectionBuilder GetConnectionBuilder()
         {
             try
             {
-                return Verify.Ref( ConnectionBuilder )
-                    ? ConnectionBuilder
+                return Verify.Ref( _connectionBuilder )
+                    ? _connectionBuilder
                     : default( IConnectionBuilder );
             }
-            catch( Exception ex )
+            catch( Exception _ex )
             {
-                Fail( ex );
+                Fail( _ex );
                 return default( IConnectionBuilder );
             }
         }
 
-        /// <summary> Get Error Dialog. </summary>
-        /// <param name = "ex" > The ex. </param>
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
         private protected static void Fail( Exception ex )
         {
-            using var error = new Error( ex );
-            error?.SetText();
-            error?.ShowDialog();
+            using var _error = new Error( ex );
+            _error?.SetText();
+            _error?.ShowDialog();
         }
     }
 }
