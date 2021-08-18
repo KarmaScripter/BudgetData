@@ -258,9 +258,9 @@ ServiceFabricBackup/
 
 # Budget Execution Files
 # *.exe
-[Ee]tc/
-[Dd]b/
-[Dd]atabases/
+#[Ee]tc/
+#[Dd]b/
+#[Dd]atabases/
 
 # Settings and Condfiguration files
 *.DotSettings
