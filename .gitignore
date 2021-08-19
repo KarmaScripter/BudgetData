@@ -244,9 +244,9 @@ ServiceFabricBackup/
 *.rptproj.bak
 
 # MS SQL Server files
-*.mdf
-*.ldf
-*.ndf
+#*.mdf
+#*.ldf
+#*.ndf
 #*.sdf
 
 # MS Access Database files
