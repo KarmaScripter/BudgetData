@@ -16,6 +16,21 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -534,9 +549,6 @@
     <Content Include="database\sqlce\CompactView.exe" />
     <Content Include="database\sqlce\CompactView_en-EN.xml" />
     <Content Include="database\sqlce\datamodels\Data.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="database\sqlce\Divisions.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="database\sqlce\referencemodels\References.sdf">
@@ -1135,6 +1147,13 @@
     <Content Include="database\sqlserver\datamodels\CREATE\TABLE\dbo.TravelObligations.Table.sql" />
     <Content Include="database\sqlserver\datamodels\CREATE\TABLE\dbo.UpperReconcilliation.Table.sql" />
     <Content Include="database\sqlserver\datamodels\CREATE\TABLE\dbo.WorkCodes.Table.sql" />
+    <Content Include="database\sqlserver\datamodels\Data.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="database\sqlserver\datamodels\Data_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>Data.mdf</DependentUpon>
+    </Content>
     <Content Include="database\sqlserver\datamodels\INSERT\InsertAgencyTransferUpdates.sql" />
     <Content Include="database\sqlserver\datamodels\INSERT\InsertApplicationTableUpdates.sql" />
     <Content Include="database\sqlserver\datamodels\INSERT\InsertBackUpAllocationUpdates.sql" />
@@ -1226,6 +1245,13 @@
     <Content Include="database\sqlserver\referencemodels\CREATE\TABLE\dbo.ReferenceTables.Table.sql" />
     <Content Include="database\sqlserver\referencemodels\CREATE\TABLE\dbo.ResourcePlanningOffices.Table.sql" />
     <Content Include="database\sqlserver\referencemodels\CREATE\TABLE\dbo.ResponsibilityCenters.Table.sql" />
+    <Content Include="database\sqlserver\referencemodels\References.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="database\sqlserver\referencemodels\References_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>References.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="database\access\datamodels\CREATE\VIEW\SELECT\.dist\" />
@@ -1332,6 +1358,18 @@
     <Compile Include="worker\DataWorker.cs">
       <SubType>Component</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.8">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
