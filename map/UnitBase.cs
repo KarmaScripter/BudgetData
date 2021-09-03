@@ -10,9 +10,9 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
-    [SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class UnitBase
     {
         /// <summary>
