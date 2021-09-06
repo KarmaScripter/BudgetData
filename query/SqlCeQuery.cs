@@ -4,10 +4,6 @@
 
 namespace BudgetExecution
 {
-    // **************************************************************************************************************************
-    // ********************************************      ASSEMBLIES    **********************************************************
-    // **************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Data;
@@ -20,18 +16,8 @@ namespace BudgetExecution
     /// <seealso cref = "T:BudgetExecution.Query"/>
     public class SqlCeQuery : Query
     {
-        // **********************************************************************************************************************
-        // ********************************************      FIELDS     *********************************************************
-        // **********************************************************************************************************************
-
-#pragma warning disable CS0414// The field 'SqlCeQuery.Provider' is assigned but its value is never used
         private readonly Provider _provider = Provider.SqlCe;
-#pragma warning restore CS0414// The field 'SqlCeQuery.Provider' is assigned but its value is never used
-
-        // **********************************************************************************************************************
-        // ********************************************   CONSTRUCTORS     ******************************************************
-        // **********************************************************************************************************************
-
+        
         /// <inheritdoc/>
         /// <summary>
         /// Initializes a new instance of the <see cref = "T:BudgetExecution.SqlCeQuery"/>
@@ -73,24 +59,16 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "SqlCeQuery"/> class.
         /// </summary>
-        /// <param name = "connectionbuilder" >
-        /// The connectionbuilder.
+        /// <param name = "connectionBuilder" >
+        /// The connectionBuilder.
         /// </param>
-        /// <param name = "sqlstatement" >
-        /// The sqlstatement.
+        /// <param name = "sqlStatement" >
+        /// The sqlStatement.
         /// </param>
-        public SqlCeQuery( IConnectionBuilder connectionbuilder, ISqlStatement sqlstatement )
-            : base( connectionbuilder, sqlstatement )
+        public SqlCeQuery( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
+            : base( connectionBuilder, sqlStatement )
         {
         }
-
-        // **********************************************************************************************************************
-        // ********************************************      PROPERTIES    ******************************************************
-        // **********************************************************************************************************************
-
-        // **********************************************************************************************************************
-        // ********************************************      METHODS    *********************************************************
-        // **********************************************************************************************************************
 
         /// <summary>
         /// Gets the excel file path.
@@ -101,9 +79,9 @@ namespace BudgetExecution
         {
             try
             {
-                var fname = "";
+                var _fileName = "";
 
-                using var fdlg = new OpenFileDialog
+                using var _fileDialog = new OpenFileDialog
                 {
                     Title = "Excel File Dialog",
                     InitialDirectory = @"c:\",
@@ -112,12 +90,12 @@ namespace BudgetExecution
                     RestoreDirectory = true
                 };
 
-                if( fdlg.ShowDialog() == DialogResult.OK )
+                if( _fileDialog.ShowDialog() == DialogResult.OK )
                 {
-                    fname = fdlg.FileName;
+                    _fileName = _fileDialog.FileName;
                 }
 
-                return fname;
+                return _fileName;
             }
             catch( Exception ex )
             {
@@ -129,38 +107,39 @@ namespace BudgetExecution
         /// <summary>
         /// Creates the table from excel file.
         /// </summary>
-        /// <param name = "filename" >
-        /// The filepath.
+        /// <param name = "fileName" >
+        /// The filePath.
         /// </param>
-        /// <param name = "sheetname" >
-        /// The sheetname.
+        /// <param name = "sheetName" >
+        /// The sheetName.
         /// </param>
         /// <returns>
         /// </returns>
-        public DataTable CreateTableFromExcelFile( string filename, ref string sheetname )
+        public DataTable CreateTableFromExcelFile( string fileName, ref string sheetName )
         {
-            if( Verify.Input( filename )
-                && Verify.Input( sheetname ) )
+            if( Verify.Input( fileName )
+                && Verify.Input( sheetName ) )
             {
                 try
                 {
-                    using var dataset = new DataSet();
-                    using var datatable = new DataTable();
-                    dataset.DataSetName = filename;
-                    datatable.TableName = sheetname;
-                    dataset.Tables.Add( datatable );
+                    using var _dataSet = new DataSet();
+                    using var _dataTable = new DataTable();
+                    _dataSet.DataSetName = fileName;
+                    _dataTable.TableName = sheetName;
+                    _dataSet.Tables.Add( _dataTable );
                     var cstring = GetExcelFilePath();
 
                     if( Verify.Input( cstring ) )
                     {
-                        using var excelquery = new ExcelQuery( cstring );
-                        using var connection = excelquery.GetConnection() as OleDbConnection;
-                        connection?.Open();
-                        var adapter = excelquery.GetAdapter();
-                        adapter.Fill( dataset );
+                        using var _excelQuery = new ExcelQuery( cstring );
+                        using var _connection = _excelQuery.GetConnection() as OleDbConnection;
+                        _connection?.Open();
 
-                        return datatable.Columns.Count > 0
-                            ? datatable
+                        using var _dataAdapter = _excelQuery.GetAdapter();
+                        _dataAdapter.Fill( _dataSet );
+
+                        return _dataTable.Columns.Count > 0
+                            ? _dataTable
                             : default( DataTable );
                     }
                 }
@@ -177,37 +156,37 @@ namespace BudgetExecution
         /// <summary>
         /// Creates the table from CSV file.
         /// </summary>
-        /// <param name = "filepath" >
-        /// The filepath.
+        /// <param name = "filePath" >
+        /// The filePath.
         /// </param>
-        /// <param name = "sheetname" >
-        /// The sheetname.
+        /// <param name = "sheetName" >
+        /// The sheetName.
         /// </param>
         /// <returns>
         /// </returns>
-        public DataTable CreateTableFromCsvFile( string filepath, ref string sheetname )
+        public DataTable CreateTableFromCsvFile( string filePath, ref string sheetName )
         {
-            if( Verify.Input( filepath )
-                && Verify.Input( sheetname ) )
+            if( Verify.Input( filePath )
+                && Verify.Input( sheetName ) )
             {
                 try
                 {
-                    using var dataset = new DataSet();
-                    using var datatable = new DataTable();
-                    var filename = GetConnectionBuilder().GetFileName();
-                    dataset.DataSetName = filename;
-                    datatable.TableName = sheetname;
-                    dataset.Tables.Add( datatable );
-                    var cstring = GetExcelFilePath();
+                    using var _dataSet = new DataSet();
+                    using var _dataTable = new DataTable();
+                    var _fileName = GetConnectionBuilder().GetFileName();
+                    _dataSet.DataSetName = _fileName;
+                    _dataTable.TableName = sheetName;
+                    _dataSet.Tables.Add( _dataTable );
+                    var _cstring = GetExcelFilePath();
 
-                    if( Verify.Input( cstring ) )
+                    if( Verify.Input( _cstring ) )
                     {
-                        using var csvquery = new CsvQuery( cstring );
-                        var adapter = csvquery.GetAdapter() as OleDbDataAdapter;
-                        adapter?.Fill( dataset, sheetname );
+                        using var _csvQuery = new CsvQuery( _cstring );
+                        using var _dataAdapter = _csvQuery.GetAdapter() as OleDbDataAdapter;
+                        _dataAdapter?.Fill( _dataSet, sheetName );
 
-                        return datatable.Columns.Count > 0
-                            ? datatable
+                        return _dataTable.Columns.Count > 0
+                            ? _dataTable
                             : default( DataTable );
                     }
                 }
@@ -224,23 +203,27 @@ namespace BudgetExecution
         /// <summary>
         /// Checks if sheet name exists.
         /// </summary>
-        /// <param name = "sheetname" >
-        /// The sheetname.
+        /// <param name = "sheetName" >
+        /// The sheetName.
         /// </param>
-        /// <param name = "schematable" >
+        /// <param name = "schemaTable" >
         /// The datatable.
         /// </param>
         /// <returns>
         /// </returns>
-        private bool CheckIfSheetNameExists( string sheetname, DataTable schematable )
+        private bool CheckIfSheetNameExists( string sheetName, DataTable schemaTable )
         {
-            for( var i = 0; i < schematable.Rows.Count; i++ )
+            if( Verify.Input( sheetName ) 
+                && Verify.Table( schemaTable ) )
             {
-                var datarow = schematable.Rows[ i ];
-
-                if( sheetname == datarow[ "TABLENAME" ].ToString() )
+                for( var i = 0; i < schemaTable.Rows.Count; i++ )
                 {
-                    return true;
+                    var _dataRow = schemaTable.Rows[ i ];
+
+                    if( sheetName == _dataRow[ "TABLENAME" ].ToString() )
+                    {
+                        return true;
+                    }
                 }
             }
 

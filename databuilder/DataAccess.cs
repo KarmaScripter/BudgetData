@@ -10,17 +10,23 @@ namespace BudgetExecution
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
-    /// <summary> </summary>
-    /// <seealso cref = "IDataAccess"/>
-    [SuppressMessage( "ReSharper", "ImplicitlyCapturedClosure" )]
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
-    [SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" )]
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="BudgetExecution.DataConfig" />
+    /// <seealso cref="BudgetExecution.ISource" />
+    /// <seealso cref="BudgetExecution.IProvider" />
+    [ SuppressMessage( "ReSharper", "ImplicitlyCapturedClosure" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UseObjectOrCollectionInitializer" ) ]
     public abstract class DataAccess : DataConfig, ISource, IProvider
     {
-        /// <summary> Gets the query. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the query.
+        /// </summary>
+        /// <returns></returns>
         public IQuery GetQuery()
         {
             try
@@ -34,8 +40,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Gets the dataRows. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<DataRow> GetData()
         {
             if( Verify.Table( _dataTable ) )
@@ -59,8 +67,10 @@ namespace BudgetExecution
             return default( IEnumerable<DataRow> );
         }
 
-        /// <summary> Gets the dataRows table. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the data table.
+        /// </summary>
+        /// <returns></returns>
         public DataTable GetDataTable()
         {
             if( Verify.Table( _dataTable ) )
@@ -93,8 +103,10 @@ namespace BudgetExecution
             return default( DataTable );
         }
 
-        /// <summary> Gets the dataRows set. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the data set.
+        /// </summary>
+        /// <returns></returns>
         public DataSet GetDataSet()
         {
             if( Enum.IsDefined( typeof( Source ), _source ) )
@@ -183,8 +195,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the column captions. </summary>
-        /// <param name = "dataTable" > The dataTable. </param>
+        /// <summary>
+        /// Sets the column captions.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
         public void SetColumnCaptions( DataTable dataTable )
         {
             if( Verify.Table( dataTable ) )
@@ -213,8 +227,10 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Gets the column schema. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the column schema.
+        /// </summary>
+        /// <returns></returns>
         public DataColumnCollection GetColumnSchema()
         {
             try
@@ -245,9 +261,11 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Gets the primary keys. </summary>
-        /// <param name = "dataRows" > The dataRows. </param>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the primary indexes.
+        /// </summary>
+        /// <param name="dataRows">The data rows.</param>
+        /// <returns></returns>
         public IEnumerable<int> GetPrimaryIndexes( IEnumerable<DataRow> dataRows )
         {
             if( Verify.Input( dataRows )
@@ -272,9 +290,11 @@ namespace BudgetExecution
             return default( IEnumerable<int> );
         }
 
-        /// <summary> Gets the column ordinals. </summary>
-        /// <param name = "dataColumns" > The dataRows. </param>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the column ordinals.
+        /// </summary>
+        /// <param name="dataColumns">The data columns.</param>
+        /// <returns></returns>
         public IEnumerable<int> GetColumnOrdinals( IEnumerable<DataColumn> dataColumns )
         {
             if( Verify.Sequence( dataColumns ) )

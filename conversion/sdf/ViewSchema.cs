@@ -4,8 +4,6 @@
 
 namespace BudgetExecution
 {
-    using System;
-
     /// <summary>
     /// Describes a single view schema
     /// </summary>

@@ -1,13 +1,9 @@
-﻿// // <copyright file = "AccessConversionForm.cs" company = "Terry D. Eppler">
-// // Copyright (c) Terry D. Eppler. All rights reserved.
-// // </copyright>
+﻿// <copyright file = "AccessConversionForm.cs" company = "Terry D. Eppler">
+// Copyright (c) Terry D. Eppler. All rights reserved.
+// </copyright>
 
 namespace BudgetExecution
 {
-    // ********************************************************************************************************************************
-    // *********************************************************  ASSEMBLIES   ********************************************************
-    // ********************************************************************************************************************************
-
     using System.Diagnostics.CodeAnalysis;
     using System;
     using System.Collections.Generic;
@@ -22,44 +18,36 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "BadListLineBreaks" ) ]
     public partial class ConversionForm : MetroForm
     {
-        // ***************************************************************************************************************************
-        // ****************************************************    FIELDS     ********************************************************
-        // ***************************************************************************************************************************
-
         /// <summary>
         /// The access connect
         /// </summary>
-        private AccessConnect AccessConnect;
+        private protected AccessConnect _accessConnect;
 
         /// <summary>
         /// The count
         /// </summary>
-        private int Count;
+        private protected int _count;
 
         /// <summary>
         /// The selected
         /// </summary>
-        private int Selected;
+        private protected int _selected;
 
         /// <summary>
         /// 
         /// </summary>
-        private delegate void UpdateStatusDelegate();
+        protected delegate void UpdateStatusDelegate();
 
         /// <summary>
         /// The updater
         /// </summary>
-        private UpdateStatusDelegate Updater;
+        private protected UpdateStatusDelegate _updater;
 
         /// <summary>
         /// The worker
         /// </summary>
-        private Thread Worker;
-
-        // ***************************************************************************************************************************
-        // ****************************************************  CONSTRUCTORS ********************************************************
-        // ***************************************************************************************************************************
-
+        private protected Thread _worker;
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="ConversionForm"/> class.
         /// </summary>
@@ -68,19 +56,15 @@ namespace BudgetExecution
             InitializeComponent();
         }
 
-        // ***************************************************************************************************************************
-        // ****************************************************     METHODS   ********************************************************
-        // ***************************************************************************************************************************
-
         /// <summary>
         /// Gets the tables.
         /// </summary>
         private void GetTables()
         {
-            AccessConnect = new AccessConnect( AccessPath.Text );
-            var tables = AccessConnect.GetTableNames();
+            _accessConnect = new AccessConnect( AccessPath.Text );
+            var _tableNames = _accessConnect.GetTableNames();
 
-            foreach( var s in tables )
+            foreach( var s in _tableNames )
             {
                 CheckTableNames.Items.Add( s );
             }
@@ -92,18 +76,18 @@ namespace BudgetExecution
         /// <returns></returns>
         private List<string> GetSelectedTables()
         {
-            var result = new List<string>();
+            var _result = new List<string>();
 
             for( var i = 0; i < CheckTableNames.Items.Count; i++ )
             {
                 if( CheckTableNames.GetItemChecked( i ) )
                 {
-                    result.Add( CheckTableNames.Items[ i ].ToString() );
+                    _result.Add( CheckTableNames.Items[ i ].ToString() );
                 }
             }
 
-            Selected = result.Count;
-            return result;
+            _selected = _result.Count;
+            return _result;
         }
 
         /// <summary>
@@ -111,10 +95,10 @@ namespace BudgetExecution
         /// </summary>
         private void UpdateStatus()
         {
-            Count++;
-            lblstatus.Text = Count + "/" + Selected;
+            _count++;
+            lblstatus.Text = _count + "/" + _selected;
 
-            if( Count >= Selected )
+            if( _count >= _selected )
             {
                 MessageBox.Show( "Operation completed" );
             }
@@ -125,38 +109,34 @@ namespace BudgetExecution
         /// </summary>
         private void Convert()
         {
-            var tables = GetSelectedTables();
+            var _selectedTables = GetSelectedTables();
 
-            if( tables.Count == 0 )
+            if( _selectedTables.Count == 0 )
             {
                 return;
             }
 
-            var db = new AccessConversion();
+            var _db = new AccessConversion();
 
-            for( var i = 0; i < tables.Count; i++ )
+            for( var i = 0; i < _selectedTables.Count; i++ )
             {
-                var table = tables[ i ];
-                db.CreateTable( table );
+                var table = _selectedTables[ i ];
+                _db.CreateTable( table );
 
-                var dt = AccessConnect.GetTable( table );
+                var dt = _accessConnect.GetTable( table );
 
                 for( var j = 0; j < dt.Rows.Count; j++ )
                 {
                     var word = dt.Rows[ j ][ "word" ].ToString();
                     var image = dt.Rows[ j ][ "image" ].ToString();
-                    db.InsertRow( word, image, table );
+                    _db.InsertRow( word, image, table );
                 }
 
                 //sending operation status to update current status
-                Invoke( Updater );
+                Invoke( _updater );
             }
         }
-
-        // ***************************************************************************************************************************
-        // ****************************************************     EVENTS    ********************************************************
-        // ***************************************************************************************************************************
-
+        
         /// <summary>
         /// Converts the button on click.
         /// </summary>
@@ -170,11 +150,9 @@ namespace BudgetExecution
                 return;
             }
 
-            Updater = UpdateStatus;
-
-            //running conversation in a thread to prevent windows from freezing! because of heavy operation
-            Worker = new Thread( Convert );
-            Worker.Start();
+            _updater = UpdateStatus;
+            _worker = new Thread( Convert );
+            _worker.Start();
         }
 
         /// <summary>
@@ -219,14 +197,14 @@ namespace BudgetExecution
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void SelectButtonOnClick( object sender, EventArgs e )
         {
-            var openfiledialog = new OpenFileDialog();
-            openfiledialog.Multiselect = false;
-            openfiledialog.Filter = "Access database|*.mdb";
-            openfiledialog.Title = "Select Access database...";
+            var _openFileDialog = new OpenFileDialog();
+            _openFileDialog.Multiselect = false;
+            _openFileDialog.Filter = "Access database|*.mdb";
+            _openFileDialog.Title = "Select Access database...";
 
-            if( openfiledialog.ShowDialog() == DialogResult.OK )
+            if( _openFileDialog.ShowDialog() == DialogResult.OK )
             {
-                AccessPath.Text = openfiledialog.FileName;
+                AccessPath.Text = _openFileDialog.FileName;
                 GetTables();
             }
         }

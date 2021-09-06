@@ -4,10 +4,6 @@
 
 namespace BudgetExecution
 {
-    // **************************************************************************************************************************
-    // ********************************************      ASSEMBLIES    **********************************************************
-    // **************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Data;
@@ -21,27 +17,19 @@ namespace BudgetExecution
     /// <summary>
     /// </summary>
     /// <seealso cref = "Query"/>
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "ConvertToConstant.Local" )]
-    [SuppressMessage( "ReSharper", "BadListLineBreaks" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "ConvertToConstant.Local" ) ]
+    [ SuppressMessage( "ReSharper", "BadListLineBreaks" ) ]
     public class SQLiteQuery : Query
     {
-        // **********************************************************************************************************************
-        // ********************************************      FIELDS     *********************************************************
-        // **********************************************************************************************************************
-
         /// <summary>
         /// Gets the provider.
         /// </summary>
         /// <value>
         /// The provider.
         /// </value>
-        private protected Provider Provider { get; } = Provider.SQLite;
-
-        // **********************************************************************************************************************
-        // ********************************************   CONSTRUCTORS     ******************************************************
-        // **********************************************************************************************************************
+        private protected Provider _provider;
 
         /// <summary>
         /// Initializes a new instance of the <see cref = "SQLiteQuery"/> class.
@@ -78,20 +66,16 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "SQLiteQuery"/> class.
         /// </summary>
-        /// <param name = "connectionbuilder" >
-        /// The connectionbuilder.
+        /// <param name = "connectionBuilder" >
+        /// The connectionBuilder.
         /// </param>
-        /// <param name = "sqlstatement" >
-        /// The sqlstatement.
+        /// <param name = "sqlStatement" >
+        /// The sqlStatement.
         /// </param>
-        public SQLiteQuery( IConnectionBuilder connectionbuilder, ISqlStatement sqlstatement )
-            : base( connectionbuilder, sqlstatement )
+        public SQLiteQuery( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
+            : base( connectionBuilder, sqlStatement )
         {
         }
-
-        // **********************************************************************************************************************
-        // ********************************************      PROPERTIES    ******************************************************
-        // **********************************************************************************************************************
 
         /// <summary>
         /// </summary>
@@ -112,10 +96,6 @@ namespace BudgetExecution
 
             Blob
         }
-
-        // **********************************************************************************************************************
-        // ********************************************      METHODS    *********************************************************
-        // **********************************************************************************************************************
 
         /// <summary>
         /// Gets the data adapter.
@@ -189,7 +169,7 @@ namespace BudgetExecution
         {
             try
             {
-                var fname = "";
+                var _fname = "";
 
                 using var fdlg = new OpenFileDialog
                 {
@@ -202,10 +182,10 @@ namespace BudgetExecution
 
                 if( fdlg.ShowDialog() == DialogResult.OK )
                 {
-                    fname = fdlg.FileName;
+                    _fname = fdlg.FileName;
                 }
 
-                return fname;
+                return _fname;
             }
             catch( Exception ex )
             {
@@ -217,45 +197,44 @@ namespace BudgetExecution
         /// <summary>
         /// Creates the table from excel file.
         /// </summary>
-        /// <param name = "filepath" >
-        /// The filepath.
+        /// <param name = "filePath" >
+        /// The filePath.
         /// </param>
-        /// <param name = "sheetname" >
-        /// The sheetname.
+        /// <param name = "sheetName" >
+        /// The sheetName.
         /// </param>
         /// <returns>
         /// </returns>
-        public DataTable CreateTableFromExcelFile( string filepath, ref string sheetname )
+        public DataTable CreateTableFromExcelFile( string filePath, ref string sheetName )
         {
-            if( Verify.Input( filepath )
-                && Verify.Input( sheetname ) )
+            if( Verify.Input( filePath )
+                && Verify.Input( sheetName ) )
             {
                 try
                 {
-                    using var dataset = new DataSet();
-                    var cstring = GetExcelFilePath();
-                    var sql = "SELECT * FROM [" + sheetname + "]";
-                    var msg = "Sheet Does Not Exist!";
-                    using var excelquery = new ExcelQuery( cstring );
-                    using var connection = excelquery.GetConnection() as OleDbConnection;
-                    connection?.Open();
-                    using var table = connection?.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
+                    using var _dataset = new DataSet();
+                    var _cstring = GetExcelFilePath();
+                    var _sql = "SELECT * FROM [" + sheetName + "]";
+                    var _msg = "Sheet Does Not Exist!";
+                    using var _excelQuery = new ExcelQuery( _cstring );
+                    using var _connection = _excelQuery.GetConnection() as OleDbConnection;
+                    _connection?.Open();
+                    using var _table = _connection?.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
 
-                    if( table != null
-                        && table.Rows.Count > 0
-                        && CheckIfSheetNameExists( sheetname, table ) )
+                    if( _table?.Rows.Count > 0 
+                        && CheckIfSheetNameExists( sheetName, _table ) )
                     {
-                        using var message = new Message( msg );
-                        message?.ShowDialog();
+                        using var _message = new Message( _msg );
+                        _message?.ShowDialog();
                     }
                     else
                     {
-                        sheetname = table?.Rows[ 0 ][ "TABLENAME" ].ToString();
+                        sheetName = _table?.Rows[ 0 ][ "TABLENAME" ].ToString();
                     }
 
-                    using var adapter = new OleDbDataAdapter( sql, connection );
-                    adapter.Fill( dataset, sheetname );
-                    return dataset.Tables[ 0 ];
+                    using var _adapter = new OleDbDataAdapter( _sql, _connection );
+                    _adapter.Fill( _dataset, sheetName );
+                    return _dataset.Tables[ 0 ];
                 }
                 catch( Exception ex )
                 {
@@ -270,38 +249,38 @@ namespace BudgetExecution
         /// <summary>
         /// Creates the table from CSV file.
         /// </summary>
-        /// <param name = "filename" >
-        /// The filename.
+        /// <param name = "fileName" >
+        /// The fileName.
         /// </param>
-        /// <param name = "sheetname" >
-        /// The sheetname.
+        /// <param name = "sheetName" >
+        /// The sheetName.
         /// </param>
         /// <returns>
         /// </returns>
-        public DataTable CreateTableFromCsvFile( string filename, ref string sheetname )
+        public DataTable CreateTableFromCsvFile( string fileName, ref string sheetName )
         {
-            if( Verify.Input( filename )
-                && Verify.Input( sheetname ) )
+            if( Verify.Input( fileName )
+                && Verify.Input( sheetName ) )
             {
                 try
                 {
-                    using var dataset = new DataSet();
-                    using var datatable = new DataTable();
-                    dataset.DataSetName = filename;
-                    datatable.TableName = sheetname;
-                    dataset.Tables.Add( datatable );
-                    var cstring = GetExcelFilePath();
+                    using var _dataSet = new DataSet();
+                    using var _dataTable = new DataTable();
+                    _dataSet.DataSetName = fileName;
+                    _dataTable.TableName = sheetName;
+                    _dataSet.Tables.Add( _dataTable );
+                    var _cstring = GetExcelFilePath();
 
-                    if( Verify.Input( cstring ) )
+                    if( Verify.Input( _cstring ) )
                     {
-                        using var csvquery = new CsvQuery( cstring );
-                        var select = csvquery.GetCommand();
-                        using var connection = csvquery.GetConnection() as OleDbConnection;
-                        using var adapter = new OleDbDataAdapter( select.CommandText, connection );
-                        adapter?.Fill( dataset, sheetname );
+                        using var _csvquery = new CsvQuery( _cstring );
+                        var _select = _csvquery.GetCommand();
+                        using var _connection = _csvquery.GetConnection() as OleDbConnection;
+                        using var _adapter = new OleDbDataAdapter( _select.CommandText, _connection );
+                        _adapter?.Fill( _dataSet, sheetName );
 
-                        return datatable.Columns.Count > 0
-                            ? datatable
+                        return _dataTable.Columns.Count > 0
+                            ? _dataTable
                             : default( DataTable );
                     }
                 }
@@ -325,39 +304,48 @@ namespace BudgetExecution
         /// </returns>
         public IEnumerable<DbParameter> GetParameters( Dictionary<string, object> dict )
         {
-            try
+            if( Verify.Map( dict ) )
             {
-                return dict.Keys.Any()
-                    ? dict.ToSqlDbParameters( Provider )
-                    : default( IEnumerable<DbParameter> );
+                try
+                {
+                    return dict.Keys.Any()
+                        ? dict.ToSqlDbParameters( _provider )
+                        : default( IEnumerable<DbParameter> );
+                }
+                catch( Exception ex )
+                {
+                    Fail( ex );
+                    return default( IEnumerable<DbParameter> );
+                }
             }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IEnumerable<DbParameter> );
-            }
+
+            return default( IEnumerable<DbParameter> );
         }
 
         /// <summary>
         /// Checks if sheet name exists.
         /// </summary>
-        /// <param name = "sheetname" >
-        /// The sheetname.
+        /// <param name = "sheetName" >
+        /// The sheetName.
         /// </param>
-        /// <param name = "dtschema" >
-        /// The dtschema.
+        /// <param name = "dataSchema" >
+        /// The dataSchema.
         /// </param>
         /// <returns>
         /// </returns>
-        private bool CheckIfSheetNameExists( string sheetname, DataTable dtschema )
+        private bool CheckIfSheetNameExists( string sheetName, DataTable dataSchema )
         {
-            for( var i = 0; i < dtschema.Rows.Count; i++ )
+            if( Verify.Input( sheetName ) 
+                && Verify.Table( dataSchema ) )
             {
-                var datarow = dtschema.Rows[ i ];
-
-                if( sheetname == datarow[ "TABLENAME" ].ToString() )
+                for( var i = 0; i < dataSchema.Rows.Count; i++ )
                 {
-                    return true;
+                    var _dataRow = dataSchema.Rows[ i ];
+
+                    if( sheetName == _dataRow[ "TABLENAME" ].ToString() )
+                    {
+                        return true;
+                    }
                 }
             }
 
@@ -369,35 +357,31 @@ namespace BudgetExecution
         /// </summary>
         private void CreateDatabase()
         {
-            var createtablequery = @"CREATE TABLE IF NOT EXISTS [MyTable] (
+            var _commandText = @"CREATE TABLE IF NOT EXISTS [MyTable] (
                                     [ID] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
                                     [Key] NVARCHAR(2048)  NULL,
                                     [Value] VARCHAR(2048)  NULL
                                     )";
 
             SQLiteConnection.CreateFile( "databaseFile.db3" );
-            using var connection = new SQLiteConnection( "data source=databaseFile.db3" );
-            using var command = new SQLiteCommand( connection );
-            connection.Open();
-            command.CommandText = createtablequery;
-            command.ExecuteNonQuery();
-            command.CommandText = "INSERT INTO MyTable (Key,Value) Values ('key one','value one')";
-            command.ExecuteNonQuery();
+            using var _connection = new SQLiteConnection( "data source=databaseFile.db3" );
+            using var _command = new SQLiteCommand( _connection );
+            _connection.Open();
+            _command.CommandText = _commandText;
+            _command.ExecuteNonQuery();
+            _command.CommandText = "INSERT INTO MyTable (Key,Value) _values ('key one','value one')";
+            _command.ExecuteNonQuery();
+            _command.CommandText = "INSERT INTO MyTable (Key,Value) _values ('key two','value value')";
+            _command.ExecuteNonQuery();
+            _command.CommandText = "Select * FROM MyTable";
+            using var _reader = _command.ExecuteReader();
 
-            // Add another entry into our database 
-            command.CommandText = "INSERT INTO MyTable (Key,Value) Values ('key two','value value')";
-
-            // Execute the query
-            command.ExecuteNonQuery();
-            command.CommandText = "Select * FROM MyTable";
-            using var reader = command.ExecuteReader();
-
-            while( reader.Read() )
+            while( _reader.Read() )
             {
-                Console.WriteLine( reader[ "Key" ] + " : " + reader[ "Value" ] );
+                Console.WriteLine( _reader[ "Key" ] + " : " + _reader[ "Value" ] );
             }
 
-            connection.Close();
+            _connection.Close();
         }
 
         /// <summary>

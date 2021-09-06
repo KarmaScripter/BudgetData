@@ -58,157 +58,151 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>BudgetNinja.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
     <None Include="App.config" />
-    <None Include="database\access\datamodels\CREATE\VIEW\SELECT\logs\xvba_debug.log" />
-    <None Include="database\access\datamodels\INSERT\logs\xvba_debug.log" />
-    <None Include="database\sqlce\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
-    <None Include="database\sqlce\CompactView.exe.config" />
-    <None Include="database\sqlce\CompactView.exe.manifest" />
-    <None Include="database\sqlce\x86\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
-    <None Include="database\sqlite\App\AppInfo\appinfo.ini" />
-    <None Include="database\sqlite\App\AppInfo\Launcher\SQLiteDatabaseBrowserPortable.ini" />
-    <None Include="database\sqlite\App\AppInfo\pac_installer_log.ini" />
-    <None Include="database\sqlite\App\DefaultData\settings\sqlitebrowser.reg" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\licenses\LICENSE" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\licenses\LICENSE-PLUGINS" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtbase_ar.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtbase_cs.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtbase_de.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtbase_en.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtbase_es.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtbase_fr.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtbase_it.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtbase_ja.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtbase_ko.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtbase_pl.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtbase_ru.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtbase_uk.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_ar.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_cs.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_de.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_en.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_es.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_fr.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_it.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_ja.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_ko.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_pl.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_ru.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_uk.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtscript_ar.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtscript_cs.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtscript_de.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtscript_en.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtscript_es.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtscript_fr.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtscript_it.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtscript_ja.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtscript_ko.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtscript_pl.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtscript_ru.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtscript_uk.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_cs.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_de.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_en.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_es.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_fr.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_it.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_ja.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_ko.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_pl.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_ru.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_uk.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qt_ar.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qt_cs.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qt_de.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qt_en.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qt_es.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qt_fr.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qt_it.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qt_ja.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qt_ko.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qt_pl.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qt_pt.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qt_ru.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qt_uk.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qt_zh_CN.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser32\translations\qt_zh_TW.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\licenses\LICENSE" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\licenses\LICENSE-PLUGINS" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtbase_ar.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtbase_cs.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtbase_de.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtbase_en.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtbase_es.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtbase_fr.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtbase_it.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtbase_ja.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtbase_ko.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtbase_pl.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtbase_ru.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtbase_uk.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_ar.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_cs.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_de.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_en.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_es.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_fr.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_it.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_ja.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_ko.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_pl.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_ru.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_uk.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtscript_ar.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtscript_cs.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtscript_de.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtscript_en.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtscript_es.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtscript_fr.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtscript_it.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtscript_ja.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtscript_ko.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtscript_pl.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtscript_ru.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtscript_uk.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_cs.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_de.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_en.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_es.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_fr.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_it.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_ja.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_ko.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_pl.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_ru.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_uk.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qt_ar.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qt_cs.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qt_de.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qt_en.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qt_es.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qt_fr.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qt_it.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qt_ja.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qt_ko.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qt_pl.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qt_pt.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qt_ru.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qt_uk.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qt_zh_CN.qm" />
-    <None Include="database\sqlite\App\SQLiteDatabaseBrowser64\translations\qt_zh_TW.qm" />
+    <None Include="database\sqlce\ui\amd64\Microsoft.VC90.CRT\Microsoft.VC90.CRT.manifest" />
+    <None Include="database\sqlce\ui\CompactView.exe.config" />
+    <None Include="database\sqlce\ui\CompactView.exe.manifest" />
     <None Include="database\sqlite\datamodels\Data.db" />
-    <None Include="database\sqlite\Data\settings\sqlitebrowser.reg" />
-    <None Include="database\sqlite\Data\settings\SQLiteDatabaseBrowserPortableSettings.ini" />
-    <None Include="database\sqlite\Other\Source\AppNamePortable.ini" />
     <None Include="database\sqlite\referencemodels\References.db" />
-    <None Include="database\sqlite\datamodels\CREATE\TABLE\logs\xvba_debug.log" />
-    <None Include="database\sqlite\referencemodels\CREATE\TABLE\logs\xvba_debug.log" />
+    <None Include="database\sqlite\ui\App\AppInfo\appinfo.ini" />
+    <None Include="database\sqlite\ui\App\AppInfo\Launcher\SQLiteDatabaseBrowserPortable.ini" />
+    <None Include="database\sqlite\ui\App\AppInfo\pac_installer_log.ini" />
+    <None Include="database\sqlite\ui\App\DefaultData\settings\sqlitebrowser.reg" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\licenses\LICENSE" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\licenses\LICENSE-PLUGINS" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtbase_ar.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtbase_cs.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtbase_de.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtbase_en.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtbase_es.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtbase_fr.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtbase_it.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtbase_ja.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtbase_ko.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtbase_pl.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtbase_ru.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtbase_uk.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_ar.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_cs.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_de.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_en.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_es.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_fr.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_it.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_ja.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_ko.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_pl.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_ru.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtmultimedia_uk.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtscript_ar.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtscript_cs.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtscript_de.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtscript_en.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtscript_es.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtscript_fr.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtscript_it.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtscript_ja.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtscript_ko.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtscript_pl.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtscript_ru.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtscript_uk.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_cs.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_de.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_en.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_es.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_fr.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_it.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_ja.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_ko.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_pl.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_ru.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qtxmlpatterns_uk.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qt_ar.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qt_cs.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qt_de.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qt_en.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qt_es.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qt_fr.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qt_it.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qt_ja.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qt_ko.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qt_pl.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qt_pt.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qt_ru.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qt_uk.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qt_zh_CN.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\translations\qt_zh_TW.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\licenses\LICENSE" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\licenses\LICENSE-PLUGINS" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtbase_ar.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtbase_cs.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtbase_de.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtbase_en.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtbase_es.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtbase_fr.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtbase_it.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtbase_ja.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtbase_ko.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtbase_pl.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtbase_ru.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtbase_uk.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_ar.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_cs.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_de.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_en.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_es.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_fr.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_it.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_ja.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_ko.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_pl.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_ru.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtmultimedia_uk.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtscript_ar.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtscript_cs.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtscript_de.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtscript_en.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtscript_es.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtscript_fr.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtscript_it.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtscript_ja.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtscript_ko.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtscript_pl.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtscript_ru.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtscript_uk.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_cs.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_de.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_en.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_es.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_fr.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_it.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_ja.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_ko.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_pl.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_ru.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qtxmlpatterns_uk.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qt_ar.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qt_cs.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qt_de.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qt_en.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qt_es.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qt_fr.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qt_it.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qt_ja.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qt_ko.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qt_pl.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qt_pt.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qt_ru.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qt_uk.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qt_zh_CN.qm" />
+    <None Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\translations\qt_zh_TW.qm" />
+    <None Include="database\sqlite\ui\Data\settings\sqlitebrowser.reg" />
+    <None Include="database\sqlite\ui\Data\settings\SQLiteDatabaseBrowserPortableSettings.ini" />
+    <None Include="database\sqlite\ui\Other\Source\AppNamePortable.ini" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -234,30 +228,76 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="EPPlus">
-      <HintPath>..\Ninja\lib\EPPlus.dll</HintPath>
+    <Reference Include="EntityFramework.SqlServerCompact, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.SqlServerCompact.6.4.4\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus, Version=5.7.4.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.5.7.4\lib\net45\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>packages\log4net.2.0.12\lib\net45\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.SqlClient, Version=2.0.20168.4, Culture=neutral, PublicKeyToken=23ec7fc2d6eaa4a5, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Data.SqlClient.2.1.2\lib\net46\Microsoft.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Data.Sqlite, Version=5.0.9.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Data.Sqlite.Core.5.0.9\lib\netstandard2.0\Microsoft.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Configuration.Abstractions.2.0.1\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Logging.Abstractions.2.0.1\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=2.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Options.2.0.1\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Extensions.Primitives.2.0.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Identity.Client, Version=4.21.1.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Identity.Client.4.21.1\lib\net461\Microsoft.Identity.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.JsonWebTokens.6.8.0\lib\net461\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=6.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Logging.6.8.0\lib\net461\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols, Version=6.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Protocols.6.8.0\lib\net461\Microsoft.IdentityModel.Protocols.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect, Version=6.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Protocols.OpenIdConnect.6.8.0\lib\net461\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IdentityModel.Tokens.6.8.0\lib\net461\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IO.RecyclableMemoryStream, Version=1.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.IO.RecyclableMemoryStream.1.4.1\lib\net46\Microsoft.IO.RecyclableMemoryStream.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="SQLitePCLRaw.batteries_v2, Version=2.0.4.976, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
-      <HintPath>packages\SQLitePCLRaw.bundle_e_sqlite3.2.0.4\lib\net461\SQLitePCLRaw.batteries_v2.dll</HintPath>
+    <Reference Include="PresentationCore" />
+    <Reference Include="SQLitePCLRaw.batteries_v2, Version=2.0.6.1341, Culture=neutral, PublicKeyToken=8226ea5df37bcae9, processorArchitecture=MSIL">
+      <HintPath>packages\SQLitePCLRaw.bundle_e_sqlite3.2.0.6\lib\net461\SQLitePCLRaw.batteries_v2.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCLRaw.core, Version=2.0.4.976, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
-      <HintPath>packages\SQLitePCLRaw.core.2.0.4\lib\netstandard2.0\SQLitePCLRaw.core.dll</HintPath>
+    <Reference Include="SQLitePCLRaw.core, Version=2.0.6.1341, Culture=neutral, PublicKeyToken=1488e028ca7ab535, processorArchitecture=MSIL">
+      <HintPath>packages\SQLitePCLRaw.core.2.0.6\lib\netstandard2.0\SQLitePCLRaw.core.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCLRaw.nativelibrary, Version=2.0.4.976, Culture=neutral, PublicKeyToken=502ed628492ab262, processorArchitecture=MSIL">
-      <HintPath>packages\SQLitePCLRaw.bundle_e_sqlite3.2.0.4\lib\net461\SQLitePCLRaw.nativelibrary.dll</HintPath>
+    <Reference Include="SQLitePCLRaw.provider.dynamic_cdecl, Version=2.0.6.1341, Culture=neutral, PublicKeyToken=b68184102cba0b3b, processorArchitecture=MSIL">
+      <HintPath>packages\SQLitePCLRaw.provider.dynamic_cdecl.2.0.6\lib\netstandard2.0\SQLitePCLRaw.provider.dynamic_cdecl.dll</HintPath>
     </Reference>
-    <Reference Include="SQLitePCLRaw.provider.dynamic_cdecl, Version=2.0.4.976, Culture=neutral, PublicKeyToken=b68184102cba0b3b, processorArchitecture=MSIL">
-      <HintPath>packages\SQLitePCLRaw.provider.dynamic_cdecl.2.0.4\lib\netstandard2.0\SQLitePCLRaw.provider.dynamic_cdecl.dll</HintPath>
+    <Reference Include="SQLitePCLRaw.provider.e_sqlite3, Version=2.0.6.1341, Culture=neutral, PublicKeyToken=9c301db686d0bd12, processorArchitecture=MSIL">
+      <HintPath>packages\SQLitePCLRaw.provider.e_sqlite3.2.0.6\lib\netstandard2.0\SQLitePCLRaw.provider.e_sqlite3.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.Shared.Base">
       <HintPath>..\Static\lib\Syncfusion.Shared.Base.dll</HintPath>
@@ -266,6 +306,9 @@
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
@@ -273,21 +316,28 @@
     <Reference Include="System.Data.SqlClient, Version=4.6.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Data.SqlClient.4.8.2\lib\net461\System.Data.SqlClient.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.SQLite, Version=1.0.114.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    <Reference Include="System.Data.SQLite, Version=1.0.115.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.0\lib\net46\System.Data.SQLite.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.SQLite.EF6, Version=1.0.114.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>packages\System.Data.SQLite.EF6.1.0.114.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.115.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SQLite.EF6.1.0.115.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.SQLite.Linq, Version=1.0.114.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <HintPath>packages\System.Data.SQLite.Linq.1.0.114.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.115.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>packages\System.Data.SQLite.Linq.1.0.115.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+      <HintPath>packages\System.Data.SqlServerCe_unofficial.4.0.8482.1\lib\net20\System.Data.SqlServerCe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=6.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>packages\System.IdentityModel.Tokens.Jwt.6.8.0\lib\net461\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
@@ -295,17 +345,28 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Threading.Tasks" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="VisualPlus">
+      <HintPath>..\BudgetNinja\bin\Debug\VisualPlus.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
+    <Content Include="BudgetNinja.ico" />
     <Content Include="database\access\datamodels\CREATE\TABLE\AgencyTransfers.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\Allocations.sql" />
+    <Content Include="database\access\datamodels\CREATE\TABLE\AllowanceHolders.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\BackUp.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\BudgetParameters.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\Changes.sql" />
@@ -325,14 +386,12 @@
     <Content Include="database\access\datamodels\CREATE\TABLE\FiscalYears.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\FullTimeEquivalents.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\HumanResourceOrganizations.sql" />
-    <Content Include="database\access\datamodels\CREATE\TABLE\Messages.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\OperatingPlans.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\PayPeriods.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\Payroll.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\PayrollHours.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\PayrollObligations.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\ProgrammaticReserve.sql" />
-    <Content Include="database\access\datamodels\CREATE\TABLE\Projects.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\Purchases.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\QueryDefinitions.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\RecoveryFundTransfers.sql" />
@@ -341,6 +400,7 @@
     <Content Include="database\access\datamodels\CREATE\TABLE\RegionalRescissionAuthority.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\RegionalTransfers.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\RegionTravel.sql" />
+    <Content Include="database\access\datamodels\CREATE\TABLE\Reprogrammings.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\Rescission.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\Sites.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\SiteTravel.sql" />
@@ -535,86 +595,24 @@
     <Content Include="database\access\referencemodels\References.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="database\mssql\CREATE\DATABASE\R6.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Accounts.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Activity.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Allocations.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.AllowanceHolders.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.BudgetLevels.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.BudgetObjectClass.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.ControlNumbers.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Divisions.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Employees.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.FinanceObjectClass.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.FiscalYears.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Funds.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Goals.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.HumanResourceOrganizations.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.InformationTechnology.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.NationalPrograms.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Objectives.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Organizations.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Outlays.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.PayrollHours.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.PayrollObligations.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.PRC.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.ProgramAreas.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.ProgramProjects.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Projects.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Purchases.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.ResourcePlanningOffices.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.ResponsibilityCenters.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Sites.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.SubAppropriations.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Supplemental.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Transfers.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.TravelObligations.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.Vendors.Table.sql" />
-    <Content Include="database\mssql\CREATE\TABLE\dbo.WorkCodes.Table.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.ARD.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.BudgetLevels.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.Carryover.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.CategoricalGrants.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.CleanWaterStateRevolvingFund.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.Commitments.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.Contracts.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.DivisionAccounts.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.DWH.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.ECAD.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.EJ.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.EPM.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.ExecutionLevel7.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.ExecutionLevel8.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.Expenses.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.ExpiringFunds.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.FTE.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.Grants.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.LCARD.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.LSASD.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.LUST.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.NewObligationalAuthority.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.OilSpill.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.ORA.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.ORC.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.Payroll.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.RegionalAccounts.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.SEMD.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.SF6A.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.SiteTravel.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.STAG.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.Superfund.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.Travel.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.Utilization.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.WCF.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.WD.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.WQ.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.WSA.View.sql" />
-    <Content Include="database\mssql\CREATE\VIEW\dbo.XA.View.sql" />
+    <Content Include="database\access\referencemodels\References.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="database\access\referencemodels\References_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>References.mdf</DependentUpon>
+    </Content>
+    <Content Include="database\mssql\datamodels\CREATE\DATABASE\R6.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Accounts.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Activity.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.AgencyTransfers.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Allocations.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.AllowanceHolders.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.ApplicationTables.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.BackUp.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.BenefitCharges.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.BudgetLevels.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.BudgetObjectClass.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.BudgetParameters.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.CarryoverEstimates.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.CarryoverSurvey.Table.sql" />
@@ -627,6 +625,7 @@
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.DivisionBudgets.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.DivisionExecution.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.DivisionPersonnel.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Divisions.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.DivisionTraining.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.DivisionTravel.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.DocumentControlNumbers.Table.sql" />
@@ -636,12 +635,21 @@
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Employees.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.ExecutionTables.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.ExternalUpdates.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.FinanceObjectClass.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.FiscalYears.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.FullTimeEquivalents.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Funds.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Goals.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.HumanResourceOrganizations.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Images.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.InformationTechnology.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.LocatorData.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.LowerReconcilliation.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.NationalPrograms.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Objectives.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.OperatingPlanUpdates.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Organizations.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Outlays.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.PayPeriods.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Payroll.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.PayrollAccruals.Table.sql" />
@@ -649,9 +657,14 @@
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.PayrollHours.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.PayrollObligations.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.PeoplePlus.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.PRC.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.ProgramAreas.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.ProgrammaticReserve.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.ProgrammaticReservePriorYearUtilization.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.ProgramProjects.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Projects.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.PurchaseRequestNumbers.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Purchases.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.QueryDefinitions.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.RecoveryFundTransfers.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.RegionalAuthority.Table.sql" />
@@ -663,23 +676,66 @@
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.ReportingCodes.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Reprogrammings.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Rescission.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.ResourcePlanningOffices.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.ResponsibilityCenters.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.SiteProjectCodes.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Sites.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.SiteSpending.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Sources.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.StatusOfFunds.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.SubAppropriations.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Supplemental.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.SystemUpdates.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Transfers.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.TravelObligations.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.UpperReconcilliation.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.Vendors.Table.sql" />
     <Content Include="database\mssql\datamodels\CREATE\TABLE\dbo.WorkCodes.Table.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.ARD.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.BudgetLevels.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.Carryover.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.CategoricalGrants.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.CleanWaterStateRevolvingFund.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.Commitments.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.Contracts.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.DivisionAccounts.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.DWH.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.ECAD.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.EJ.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.EPM.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.ExecutionLevel7.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.ExecutionLevel8.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.Expenses.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.ExpiringFunds.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.FTE.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.Grants.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.LCARD.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.LSASD.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.LUST.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.NewObligationalAuthority.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.OilSpill.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.ORA.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.ORC.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.Payroll.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.RegionalAccounts.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.SEMD.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.SF6A.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.SiteTravel.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.STAG.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.Superfund.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.Travel.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.Utilization.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.WCF.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.WD.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.WQ.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.WSA.View.sql" />
+    <Content Include="database\mssql\datamodels\CREATE\VIEW\dbo.XA.View.sql" />
     <Content Include="database\mssql\datamodels\Data.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="database\mssql\datamodels\Data.sql" />
     <Content Include="database\mssql\datamodels\Data_log.ldf">
-      <DependentUpon>Data.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>Data.mdf</DependentUpon>
     </Content>
     <Content Include="database\mssql\datamodels\INSERT\InsertAgencyTransferUpdates.sql" />
     <Content Include="database\mssql\datamodels\INSERT\InsertApplicationTableUpdates.sql" />
@@ -746,66 +802,13 @@
     <Content Include="database\mssql\datamodels\INSERT\Param-InsertAllocationFormData.sql" />
     <Content Include="database\mssql\datamodels\INSERT\ParamInsertChangeUpdate.sql" />
     <Content Include="database\mssql\datamodels\INSERT\ParamInsertFormAllocationUpdates.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\References.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.Accounts.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.Activity.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.AllowanceHolders.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.Appropriations.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.BudgetObjectClasses.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.CPIC.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.Divisions.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.Documents.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.FinanceObjectClasses.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.FiscalYears.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.Funds.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.Goals.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.GsPayScale.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.Holidays.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.Messages.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.NationalPrograms.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.Objectives.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.OperatingPlan.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.Organizations.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.ProgramAreas.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.ProgramDescriptions.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.ProgramProjects.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.Projects.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.ReferenceTables.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.ResourcePlanningOffices.Table.sql" />
-    <Content Include="database\mssql\referencemodels\CREATE\TABLE\dbo.ResponsibilityCenters.Table.sql" />
-    <Content Include="database\mssql\referencemodels\References.mdf">
+    <Content Include="database\mssql\Referencemodels\References.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="database\mssql\referencemodels\References_log.ldf">
+    <Content Include="database\mssql\Referencemodels\References_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>References.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="database\sqlce\amd64\Microsoft.VC90.CRT\msvcr90.dll" />
-    <Content Include="database\sqlce\amd64\Microsoft.VC90.CRT\README_ENU.txt" />
-    <Content Include="database\sqlce\amd64\sqlceca40.dll" />
-    <Content Include="database\sqlce\amd64\sqlcecompact40.dll" />
-    <Content Include="database\sqlce\amd64\sqlceer40EN.dll" />
-    <Content Include="database\sqlce\amd64\sqlceme40.dll" />
-    <Content Include="database\sqlce\amd64\sqlceqp40.dll" />
-    <Content Include="database\sqlce\amd64\sqlcese40.dll" />
-    <Content Include="database\sqlce\CompactView.exe" />
-    <Content Include="database\sqlce\CompactView_en-EN.xml" />
-    <Content Include="database\sqlce\datamodels\Data.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="database\sqlce\referencemodels\References.sdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="database\sqlce\System.Data.SqlServerCe.dll" />
-    <Content Include="database\sqlce\x86\Microsoft.VC90.CRT\msvcr90.dll" />
-    <Content Include="database\sqlce\x86\Microsoft.VC90.CRT\README_ENU.txt" />
-    <Content Include="database\sqlce\x86\sqlceca40.dll" />
-    <Content Include="database\sqlce\x86\sqlcecompact40.dll" />
-    <Content Include="database\sqlce\x86\sqlceer40EN.dll" />
-    <Content Include="database\sqlce\x86\sqlceme40.dll" />
-    <Content Include="database\sqlce\x86\sqlceqp40.dll" />
-    <Content Include="database\sqlce\x86\sqlcese40.dll" />
-    <Content Include="database\sqlce\x86\SQLite.Interop.dll" />
     <Content Include="database\sqlce\datamodels\CREATE\TABLE\AgencyTransfers.sql" />
     <Content Include="database\sqlce\datamodels\CREATE\TABLE\Allocations.sql" />
     <Content Include="database\sqlce\datamodels\CREATE\TABLE\ApplicationTables.sql" />
@@ -866,6 +869,9 @@
     <Content Include="database\sqlce\datamodels\CREATE\TABLE\TravelObligations.sql" />
     <Content Include="database\sqlce\datamodels\CREATE\TABLE\UpperReconcilliation.sql" />
     <Content Include="database\sqlce\datamodels\CREATE\TABLE\WorkCodes.sql" />
+    <Content Include="database\sqlce\datamodels\Data.sdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="database\sqlce\datamodels\Data.sql" />
     <Content Include="database\sqlce\datamodels\INSERT\InsertAgencyTransferUpdates.sql" />
     <Content Include="database\sqlce\datamodels\INSERT\InsertApplicationTableUpdates.sql" />
@@ -961,173 +967,21 @@
     <Content Include="database\sqlce\referencemodels\CREATE\TABLE\Projects.sql" />
     <Content Include="database\sqlce\referencemodels\CREATE\TABLE\ResourcePlanningOffices.sql" />
     <Content Include="database\sqlce\referencemodels\CREATE\TABLE\ResponsibilityCenters.sql" />
+    <Content Include="database\sqlce\referencemodels\References.sdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="database\sqlce\referencemodels\References.sql" />
-    <Content Include="database\sqlite\App\AppInfo\appicon.ico" />
-    <Content Include="database\sqlite\App\AppInfo\appicon_128.png" />
-    <Content Include="database\sqlite\App\AppInfo\appicon_16.png" />
-    <Content Include="database\sqlite\App\AppInfo\appicon_32.png" />
-    <Content Include="database\sqlite\App\AppInfo\appicon_75.png" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-console-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-datetime-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-debug-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-errorhandling-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-file-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-file-l1-2-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-file-l2-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-handle-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-heap-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-interlocked-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-libraryloader-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-localization-l1-2-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-memory-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-namedpipe-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-processenvironment-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-processthreads-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-processthreads-l1-1-1.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-profile-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-rtlsupport-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-string-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-synch-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-synch-l1-2-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-sysinfo-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-timezone-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-core-util-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-crt-conio-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-crt-convert-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-crt-environment-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-crt-filesystem-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-crt-heap-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-crt-locale-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-crt-math-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-crt-multibyte-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-crt-private-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-crt-process-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-crt-runtime-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-crt-stdio-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-crt-string-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-crt-time-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\api-ms-win-crt-utility-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\bearer\qgenericbearer.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\concrt140.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\DB Browser for SQLCipher.exe" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\DB Browser for SQLite.exe" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\extensions\fileio.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\extensions\formats.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\extensions\math.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\imageformats\qgif.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\imageformats\qicns.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\imageformats\qico.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\imageformats\qjpeg.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\imageformats\qsvg.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\imageformats\qtga.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\imageformats\qtiff.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\imageformats\qwbmp.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\imageformats\qwebp.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\libcrypto-1_1.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\libssl-1_1.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\msvcp140.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\msvcp140_1.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\msvcp140_2.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\platforms\qwindows.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\printsupport\windowsprintersupport.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\Qt5Concurrent.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\Qt5Core.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\Qt5Gui.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\Qt5Network.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\Qt5PrintSupport.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\Qt5Widgets.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\Qt5Xml.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\sqlcipher.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\sqlite3.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\styles\qwindowsvistastyle.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\ucrtbase.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\vccorlib140.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser32\vcruntime140.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-console-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-datetime-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-debug-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-errorhandling-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-file-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-file-l1-2-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-file-l2-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-handle-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-heap-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-interlocked-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-libraryloader-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-localization-l1-2-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-memory-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-namedpipe-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-processenvironment-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-processthreads-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-processthreads-l1-1-1.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-profile-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-rtlsupport-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-string-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-synch-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-synch-l1-2-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-sysinfo-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-timezone-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-core-util-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-crt-conio-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-crt-convert-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-crt-environment-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-crt-filesystem-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-crt-heap-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-crt-locale-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-crt-math-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-crt-multibyte-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-crt-private-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-crt-process-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-crt-runtime-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-crt-stdio-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-crt-string-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-crt-time-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\api-ms-win-crt-utility-l1-1-0.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\bearer\qgenericbearer.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\concrt140.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\DB Browser for SQLCipher.exe" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\DB Browser for SQLite.exe" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\extensions\fileio.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\extensions\formats.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\extensions\math.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\imageformats\qgif.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\imageformats\qicns.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\imageformats\qico.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\imageformats\qjpeg.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\imageformats\qsvg.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\imageformats\qtga.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\imageformats\qtiff.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\imageformats\qwbmp.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\imageformats\qwebp.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\libcrypto-1_1-x64.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\libssl-1_1-x64.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\msvcp140.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\msvcp140_1.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\msvcp140_2.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\platforms\qwindows.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\printsupport\windowsprintersupport.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\Qt5Concurrent.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\Qt5Core.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\Qt5Gui.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\Qt5Network.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\Qt5PrintSupport.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\Qt5Widgets.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\Qt5Xml.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\sqlcipher.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\sqlite3.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\styles\qwindowsvistastyle.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\ucrtbase.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\vccorlib140.dll" />
-    <Content Include="database\sqlite\App\SQLiteDatabaseBrowser64\vcruntime140.dll" />
-    <Content Include="database\sqlite\help.html" />
-    <Content Include="database\sqlite\Other\Help\images\donation_button.png" />
-    <Content Include="database\sqlite\Other\Help\images\favicon.ico" />
-    <Content Include="database\sqlite\Other\Help\images\help_background_footer.png" />
-    <Content Include="database\sqlite\Other\Help\images\help_background_header.png" />
-    <Content Include="database\sqlite\Other\Help\images\help_logo_top.png" />
-    <Content Include="database\sqlite\Other\Source\LauncherLicense.txt" />
-    <Content Include="database\sqlite\Other\Source\Readme.txt" />
-    <Content Include="database\sqlite\SQLiteDatabaseBrowserPortable.exe" />
+    <Content Include="database\sqlce\ui\amd64\Microsoft.VC90.CRT\msvcr90.dll" />
+    <Content Include="database\sqlce\ui\amd64\Microsoft.VC90.CRT\README_ENU.txt" />
+    <Content Include="database\sqlce\ui\amd64\sqlceca40.dll" />
+    <Content Include="database\sqlce\ui\amd64\sqlcecompact40.dll" />
+    <Content Include="database\sqlce\ui\amd64\sqlceer40EN.dll" />
+    <Content Include="database\sqlce\ui\amd64\sqlceme40.dll" />
+    <Content Include="database\sqlce\ui\amd64\sqlceqp40.dll" />
+    <Content Include="database\sqlce\ui\amd64\sqlcese40.dll" />
+    <Content Include="database\sqlce\ui\CompactView.exe" />
+    <Content Include="database\sqlce\ui\CompactView_en-EN.xml" />
+    <Content Include="database\sqlce\ui\System.Data.SqlServerCe.dll" />
     <Content Include="database\sqlite\datamodels\CREATE\TABLE\AgencyTransfers.sql" />
     <Content Include="database\sqlite\datamodels\CREATE\TABLE\Allocations.sql" />
     <Content Include="database\sqlite\datamodels\CREATE\TABLE\ApplicationTables.sql" />
@@ -1326,29 +1180,177 @@
     <Content Include="database\sqlite\referencemodels\CREATE\TABLE\ResourcePlanningOffices.sql" />
     <Content Include="database\sqlite\referencemodels\CREATE\TABLE\ResponsibilityCenters.sql" />
     <Content Include="database\sqlite\referencemodels\References.sql" />
+    <Content Include="database\sqlite\ui\App\AppInfo\appicon.ico" />
+    <Content Include="database\sqlite\ui\App\AppInfo\appicon_128.png" />
+    <Content Include="database\sqlite\ui\App\AppInfo\appicon_16.png" />
+    <Content Include="database\sqlite\ui\App\AppInfo\appicon_32.png" />
+    <Content Include="database\sqlite\ui\App\AppInfo\appicon_75.png" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-console-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-datetime-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-debug-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-errorhandling-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-file-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-file-l1-2-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-file-l2-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-handle-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-heap-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-interlocked-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-libraryloader-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-localization-l1-2-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-memory-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-namedpipe-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-processenvironment-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-processthreads-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-processthreads-l1-1-1.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-profile-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-rtlsupport-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-string-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-synch-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-synch-l1-2-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-sysinfo-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-timezone-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-core-util-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-crt-conio-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-crt-convert-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-crt-environment-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-crt-filesystem-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-crt-heap-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-crt-locale-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-crt-math-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-crt-multibyte-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-crt-private-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-crt-process-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-crt-runtime-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-crt-stdio-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-crt-string-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-crt-time-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\api-ms-win-crt-utility-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\bearer\qgenericbearer.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\concrt140.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\DB Browser for SQLCipher.exe" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\DB Browser for SQLite.exe" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\extensions\fileio.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\extensions\formats.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\extensions\math.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\imageformats\qgif.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\imageformats\qicns.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\imageformats\qico.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\imageformats\qjpeg.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\imageformats\qsvg.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\imageformats\qtga.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\imageformats\qtiff.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\imageformats\qwbmp.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\imageformats\qwebp.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\libcrypto-1_1.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\libssl-1_1.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\msvcp140.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\msvcp140_1.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\msvcp140_2.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\platforms\qwindows.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\printsupport\windowsprintersupport.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\Qt5Concurrent.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\Qt5Core.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\Qt5Gui.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\Qt5Network.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\Qt5PrintSupport.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\Qt5Widgets.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\Qt5Xml.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\sqlcipher.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\sqlite3.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\styles\qwindowsvistastyle.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\ucrtbase.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\vccorlib140.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser32\vcruntime140.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-console-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-datetime-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-debug-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-errorhandling-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-file-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-file-l1-2-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-file-l2-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-handle-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-heap-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-interlocked-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-libraryloader-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-localization-l1-2-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-memory-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-namedpipe-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-processenvironment-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-processthreads-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-processthreads-l1-1-1.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-profile-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-rtlsupport-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-string-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-synch-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-synch-l1-2-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-sysinfo-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-timezone-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-core-util-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-crt-conio-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-crt-convert-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-crt-environment-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-crt-filesystem-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-crt-heap-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-crt-locale-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-crt-math-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-crt-multibyte-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-crt-private-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-crt-process-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-crt-runtime-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-crt-stdio-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-crt-string-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-crt-time-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\api-ms-win-crt-utility-l1-1-0.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\bearer\qgenericbearer.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\concrt140.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\DB Browser for SQLCipher.exe" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\DB Browser for SQLite.exe" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\extensions\fileio.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\extensions\formats.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\extensions\math.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\imageformats\qgif.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\imageformats\qicns.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\imageformats\qico.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\imageformats\qjpeg.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\imageformats\qsvg.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\imageformats\qtga.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\imageformats\qtiff.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\imageformats\qwbmp.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\imageformats\qwebp.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\libcrypto-1_1-x64.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\libssl-1_1-x64.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\msvcp140.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\msvcp140_1.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\msvcp140_2.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\platforms\qwindows.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\printsupport\windowsprintersupport.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\Qt5Concurrent.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\Qt5Core.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\Qt5Gui.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\Qt5Network.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\Qt5PrintSupport.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\Qt5Widgets.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\Qt5Xml.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\sqlcipher.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\sqlite3.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\styles\qwindowsvistastyle.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\ucrtbase.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\vccorlib140.dll" />
+    <Content Include="database\sqlite\ui\App\SQLiteDatabaseBrowser64\vcruntime140.dll" />
+    <Content Include="database\sqlite\ui\help.html" />
+    <Content Include="database\sqlite\ui\Other\Help\images\donation_button.png" />
+    <Content Include="database\sqlite\ui\Other\Help\images\favicon.ico" />
+    <Content Include="database\sqlite\ui\Other\Help\images\help_background_footer.png" />
+    <Content Include="database\sqlite\ui\Other\Help\images\help_background_header.png" />
+    <Content Include="database\sqlite\ui\Other\Help\images\help_logo_top.png" />
+    <Content Include="database\sqlite\ui\Other\Source\LauncherLicense.txt" />
+    <Content Include="database\sqlite\ui\Other\Source\Readme.txt" />
+    <Content Include="database\sqlite\ui\SQLiteDatabaseBrowserPortable.exe" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="database\access\datamodels\CREATE\VIEW\SELECT\.dist\" />
-    <Folder Include="database\access\datamodels\INSERT\.dist\" />
-    <Folder Include="database\access\referencemodels\CREATE\VIEW\" />
-    <Folder Include="database\access\referencemodels\DELETE\" />
-    <Folder Include="database\access\referencemodels\INSERT\" />
-    <Folder Include="database\access\referencemodels\UPDATE\" />
-    <Folder Include="database\sqlce\datamodels\CREATE\VIEW\" />
-    <Folder Include="database\sqlce\datamodels\DELETE\" />
-    <Folder Include="database\sqlce\datamodels\UPDATE\" />
-    <Folder Include="database\sqlce\referencemodels\CREATE\TABLE\.dist\" />
-    <Folder Include="database\sqlce\referencemodels\DELETE\" />
-    <Folder Include="database\sqlce\referencemodels\INSERT\" />
-    <Folder Include="database\sqlce\referencemodels\UPDATE\" />
-    <Folder Include="database\sqlite\datamodels\CREATE\TABLE\.dist\" />
-    <Folder Include="database\sqlite\datamodels\DELETE\" />
-    <Folder Include="database\sqlite\referencemodels\CREATE\TABLE\.dist\" />
-    <Folder Include="database\sqlite\referencemodels\CREATE\VIEW\" />
-    <Folder Include="database\sqlite\referencemodels\DELETE\" />
-    <Folder Include="database\sqlite\referencemodels\INSERT\" />
-    <Folder Include="database\sqlite\referencemodels\UPDATE\" />
-    <Folder Include="etc\" />
+    <EmbeddedResource Include="conversion\mdb\ConversionForm.resx">
+      <DependentUpon>ConversionForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="adapter\AdapterBuilder.cs">
@@ -1356,15 +1358,6 @@
     </Compile>
     <Compile Include="adapter\AdapterFactory.cs" />
     <Compile Include="adapter\IAdapter.cs" />
-    <Compile Include="databuilder\Builder.cs" />
-    <Compile Include="databuilder\BuilderBase.cs" />
-    <Compile Include="databuilder\DataAccess.cs" />
-    <Compile Include="databuilder\DataBuilder.cs" />
-    <Compile Include="databuilder\DataConfig.cs" />
-    <Compile Include="databuilder\IBuilder.cs" />
-    <Compile Include="databuilder\IDataAccess.cs" />
-    <Compile Include="databuilder\IDataBuilder.cs" />
-    <Compile Include="databuilder\IDataSchema.cs" />
     <Compile Include="command\CommandBase.cs" />
     <Compile Include="command\CommandBuilder.cs" />
     <Compile Include="command\CommandFactory.cs" />
@@ -1379,6 +1372,12 @@
     <Compile Include="connection\ISource.cs" />
     <Compile Include="conversion\mdb\AccessConnect.cs" />
     <Compile Include="conversion\mdb\AccessConversion.cs" />
+    <Compile Include="conversion\mdb\ConversionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="conversion\mdb\ConversionForm.Designer.cs">
+      <DependentUpon>ConversionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="conversion\sdf\ColumnSchema.cs" />
     <Compile Include="conversion\sdf\DatabaseSchema.cs" />
     <Compile Include="conversion\sdf\FailedViewDefinitionHandler.cs" />
@@ -1391,6 +1390,15 @@
     <Compile Include="conversion\sdf\TriggerBuilder.cs" />
     <Compile Include="conversion\sdf\TriggerSchema.cs" />
     <Compile Include="conversion\sdf\ViewSchema.cs" />
+    <Compile Include="databuilder\Builder.cs" />
+    <Compile Include="databuilder\BuilderBase.cs" />
+    <Compile Include="databuilder\DataAccess.cs" />
+    <Compile Include="databuilder\DataBuilder.cs" />
+    <Compile Include="databuilder\DataConfig.cs" />
+    <Compile Include="databuilder\IBuilder.cs" />
+    <Compile Include="databuilder\IDataAccess.cs" />
+    <Compile Include="databuilder\IDataBuilder.cs" />
+    <Compile Include="databuilder\IDataSchema.cs" />
     <Compile Include="map\Amount.cs" />
     <Compile Include="map\AmountBase.cs" />
     <Compile Include="map\Arg.cs" />
@@ -1444,8 +1452,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
-    <Error Condition="!Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
-    <Error Condition="!Exists('packages\SQLitePCLRaw.lib.e_sqlite3.2.0.4\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\SQLitePCLRaw.lib.e_sqlite3.2.0.4\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets'))" />
+    <Error Condition="!Exists('packages\SQLitePCLRaw.lib.e_sqlite3.2.0.6\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\SQLitePCLRaw.lib.e_sqlite3.2.0.6\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets'))" />
+    <Error Condition="!Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+    <Error Condition="!Exists('packages\Microsoft.Data.SqlClient.SNI.2.1.1\build\net46\Microsoft.Data.SqlClient.SNI.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Data.SqlClient.SNI.2.1.1\build\net46\Microsoft.Data.SqlClient.SNI.targets'))" />
+    <Error Condition="!Exists('packages\FluentMigrator.Runner.SqlServerCe.3.3.0\build\netstandard2.0\FluentMigrator.Runner.SqlServerCe.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\FluentMigrator.Runner.SqlServerCe.3.3.0\build\netstandard2.0\FluentMigrator.Runner.SqlServerCe.targets'))" />
   </Target>
   <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <PropertyGroup>
@@ -1455,6 +1465,8 @@
     if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
     xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
   </PropertyGroup>
-  <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.114.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
-  <Import Project="packages\SQLitePCLRaw.lib.e_sqlite3.2.0.4\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('packages\SQLitePCLRaw.lib.e_sqlite3.2.0.4\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" />
+  <Import Project="packages\SQLitePCLRaw.lib.e_sqlite3.2.0.6\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('packages\SQLitePCLRaw.lib.e_sqlite3.2.0.6\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" />
+  <Import Project="packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <Import Project="packages\Microsoft.Data.SqlClient.SNI.2.1.1\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('packages\Microsoft.Data.SqlClient.SNI.2.1.1\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />
+  <Import Project="packages\FluentMigrator.Runner.SqlServerCe.3.3.0\build\netstandard2.0\FluentMigrator.Runner.SqlServerCe.targets" Condition="Exists('packages\FluentMigrator.Runner.SqlServerCe.3.3.0\build\netstandard2.0\FluentMigrator.Runner.SqlServerCe.targets')" />
 </Project>

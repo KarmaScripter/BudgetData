@@ -1,4 +1,4 @@
-﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+﻿// <copyright file="ElementBase.cs" company="Terry D. Eppler">
 // Copyright (c) Terry Eppler. All rights reserved.
 // </copyright>
 
@@ -13,7 +13,7 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="BudgetExecution.Unit" />
-    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     public abstract class ElementBase : Unit
     {
         /// <summary>
@@ -30,7 +30,7 @@ namespace BudgetExecution
             try
             {
                 _name = Verify.Input( columnName )
-                    && Enum.GetNames( typeof( Field ) )?.Contains( columnName ) == true
+                    && ( Enum.GetNames( typeof( Field ) )?.Contains( columnName ) == true )
                         ? columnName
                         : default( string );
             }

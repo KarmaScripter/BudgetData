@@ -4,36 +4,19 @@
 
 namespace BudgetExecution
 {
-    // ********************************************************************************************************************************
-    // *********************************************************  ASSEMBLIES   ********************************************************
-    // ********************************************************************************************************************************
-
     using System.Diagnostics.CodeAnalysis;
-    using System;
     using System.Data.SQLite;
-
-    // ***************************************************************************************************************************
-    // ****************************************************  CONSTRUCTORS ********************************************************
-    // ***************************************************************************************************************************
 
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "UnusedMethodReturnValue.Global" )]
+    [ SuppressMessage( "ReSharper", "UnusedMethodReturnValue.Global" ) ]
     public class AccessConversion
     {
-        // ***************************************************************************************************************************
-        // ****************************************************    FIELDS     ********************************************************
-        // ***************************************************************************************************************************
-
         /// <summary>
         /// The connection
         /// </summary>
         private readonly SQLiteConnection _connection;
-
-        // ***************************************************************************************************************************
-        // ****************************************************  CONSTRUCTORS ********************************************************
-        // ***************************************************************************************************************************
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AccessConversion"/> class.
@@ -45,10 +28,6 @@ namespace BudgetExecution
             _connection.Open();
         }
 
-        // ***************************************************************************************************************************
-        // ****************************************************     METHODS   ********************************************************
-        // ***************************************************************************************************************************
-
         /// <summary>
         /// Creates the table.
         /// </summary>
@@ -56,9 +35,9 @@ namespace BudgetExecution
         /// <returns></returns>
         public int CreateTable( string name )
         {
-            var sql = "CREATE TABLE " + name + " (word varchar(200), image text)";
-            var cmd = new SQLiteCommand( sql, _connection );
-            return cmd.ExecuteNonQuery();
+            var _sql = "CREATE TABLE " + name + " (word varchar(200), image text)";
+            using var _cmd = new SQLiteCommand( _sql, _connection );
+            return _cmd.ExecuteNonQuery();
         }
 
         /// <summary>
@@ -70,11 +49,11 @@ namespace BudgetExecution
         /// <returns></returns>
         public int InsertRow( string word, string image, string table )
         {
-            var sql = "INSERT INTO " + table + " (word,image) VALUES ( @word, @image )";
-            var cmd = new SQLiteCommand( sql, _connection );
-            cmd.Parameters.AddWithValue( "@word", word );
-            cmd.Parameters.AddWithValue( "@image", image );
-            return cmd.ExecuteNonQuery();
+            var _sql = "INSERT INTO " + table + " (word,image) VALUES ( @word, @image )";
+            using var _cmd = new SQLiteCommand( _sql, _connection );
+            _cmd.Parameters.AddWithValue( "@word", word );
+            _cmd.Parameters.AddWithValue( "@image", image );
+            return _cmd.ExecuteNonQuery();
         }
     }
 }

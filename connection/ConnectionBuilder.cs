@@ -15,10 +15,10 @@ namespace BudgetExecution
     /// <seealso cref="BudgetExecution.ISource" />
     /// <seealso cref="BudgetExecution.IProvider" />
     /// <seealso cref="BudgetExecution.IConnectionBuilder" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" )]
-    [SuppressMessage( "ReSharper", "InconsistentNaming" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
+    [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     public class ConnectionBuilder : ConnectionBase, ISource, IProvider, IConnectionBuilder
     {
         /// <summary>
@@ -91,9 +91,10 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _filePath ) && File.Exists( _filePath )
-                    ? Path.GetFullPath( _filePath )
-                    : default( string );
+                return Verify.Input( _filePath ) 
+                    && File.Exists( _filePath )
+                        ? Path.GetFullPath( _filePath )
+                        : default( string );
             }
             catch( Exception ex )
             {
@@ -129,10 +130,9 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _filePath )
-                    && File.Exists( _filePath )
-                        ? Path.GetFullPath( _filePath )
-                        : default( string );
+                return Verify.Input( _filePath ) && File.Exists( _filePath )
+                    ? Path.GetFullPath( _filePath )
+                    : default( string );
             }
             catch( Exception ex )
             {

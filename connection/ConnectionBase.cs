@@ -204,13 +204,13 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the file path.
         /// </summary>
-        /// <param name="filepath">The filepath.</param>
-        private protected void SetFilePath( string filepath )
+        /// <param name="filePath">The filePath.</param>
+        private protected void SetFilePath( string filePath )
         {
             try
             {
-                _filePath = Verify.Input( filepath ) && File.Exists( filepath )
-                    ? Path.GetFullPath( filepath )
+                _filePath = Verify.Input( filePath ) && File.Exists( filePath )
+                    ? Path.GetFullPath( filePath )
                     : default( string );
             }
             catch( Exception ex )
@@ -222,17 +222,17 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the file extension.
         /// </summary>
-        /// <param name="filepath">The filepath.</param>
-        private protected void SetFileExtension( string filepath )
+        /// <param name="filePath">The filePath.</param>
+        private protected void SetFileExtension( string filePath )
         {
-            if( Verify.Input( filepath ) )
+            if( Verify.Input( filePath ) )
             {
                 try
                 {
-                    var filext = Path.GetExtension( filepath )?.Trim( '.' )?.ToUpper();
+                    var _filext = Path.GetExtension( filePath )?.Trim( '.' )?.ToUpper();
 
-                    _fileExtension = Enum.IsDefined( typeof( EXT ), filext )
-                        ? (EXT)Enum.Parse( typeof( EXT ), filext )
+                    _fileExtension = Enum.IsDefined( typeof( EXT ), _filext )
+                        ? (EXT)Enum.Parse( typeof( EXT ), _filext )
                         : EXT.NS;
                 }
                 catch( Exception ex )

@@ -4,7 +4,6 @@
 
 namespace BudgetExecution
 {
-    using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Diagnostics.CodeAnalysis;
@@ -13,7 +12,7 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="BudgetExecution.ISource" />
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     public interface IBuilder : ISource
     {
         /// <summary>

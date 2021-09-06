@@ -5,6 +5,7 @@
 namespace BudgetExecution
 {
     using System;
+    using System.Data;
     using System.Data.Common;
     using System.Data.OleDb;
     using System.Data.SqlClient;
@@ -16,9 +17,9 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="System.IDisposable" />
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class AdapterFactory : IDisposable
     {
         /// <summary>
@@ -244,7 +245,12 @@ namespace BudgetExecution
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
-        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        /// <param name="disposing">
+        /// <c>true</c>
+        /// to release both managed and unmanaged resources;
+        /// <c>false</c>
+        /// to release only unmanaged resources.
+        /// </param>
         private protected virtual void Dispose( bool disposing )
         {
             if( disposing )

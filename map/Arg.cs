@@ -4,69 +4,66 @@
 
 namespace BudgetExecution
 {
-    // ******************************************************************************************************************************
-    // ******************************************************   ASSEMBLIES   ********************************************************
-    // ******************************************************************************************************************************
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
 
-    /// <summary> </summary>
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" )]
-    [SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" )]
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <seealso cref="BudgetExecution.UnitBase" />
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     public abstract class Arg : UnitBase
     {
-        // ***************************************************************************************************************************
-        // ************************************************  PROPERTIES **************************************************************
-        // ***************************************************************************************************************************
+        /// <summary>
+        /// The values
+        /// </summary>
+        private protected IEnumerable<string> _values;
 
-        /// <summary> Gets or sets the elements. </summary>
-        /// <value> The elements. </value>
-        private protected IEnumerable<string> Values { get; set; }
+        /// <summary>
+        /// The names
+        /// </summary>
+        private protected IEnumerable<string> _names;
 
-        /// <summary> Gets or sets the keys. </summary>
-        /// <value> The keys. </value>
-        private protected IEnumerable<string> Names { get; set; }
+        /// <summary>
+        /// The input
+        /// </summary>
+        private protected IDictionary<string, object> _input;
 
-        /// <summary> Gets or sets the input. </summary>
-        /// <value> The input. </value>
-        private protected IDictionary<string, object> Input { get; set; }
+        /// <summary>
+        /// The output
+        /// </summary>
+        private protected IDictionary<string, object> _output;
 
-        /// <summary> Gets or sets the output. </summary>
-        /// <value> The output. </value>
-        private protected IDictionary<string, object> Output { get; set; }
-
-        // ***************************************************************************************************************************
-        // ************************************************  METHODS   ***************************************************************
-        // ***************************************************************************************************************************
-
-        /// <summary> Sets the input. </summary>
-        /// <param name = "dict" > The dictionary. </param>
-        /// <returns> </returns>
+        /// <summary>
+        /// Sets the input.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
         private protected void SetInput( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
             {
                 try
                 {
-                    var args = new Dictionary<string, object>();
-                    var fields = Enum.GetNames( typeof( Field ) );
+                    var _dictionary = new Dictionary<string, object>();
+                    var _fields = Enum.GetNames( typeof( Field ) );
 
                     foreach( var kvp in dict )
                     {
                         if( Verify.Input( kvp.Key )
-                            && fields?.Contains( kvp.Key ) == true )
+                            && _fields?.Contains( kvp.Key ) == true )
                         {
-                            args?.Add( kvp.Key, kvp.Value );
+                            _dictionary?.Add( kvp.Key, kvp.Value );
                         }
                     }
 
-                    Input = args?.Any() == true
-                        ? args
+                    _input = _dictionary?.Any() == true
+                        ? _dictionary
                         : default( Dictionary<string, object> );
                 }
                 catch( Exception ex )
@@ -76,20 +73,21 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Sets the output. </summary>
-        /// <param name = "dict" > The dictionary. </param>
-        /// <returns> </returns>
+        /// <summary>
+        /// Sets the output.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
         private protected void SetOutput( IDictionary<string, object> dict )
         {
             if( Verify.Map( dict ) )
             {
                 try
                 {
-                    var args = new Dictionary<string, object>();
+                    var _dictionary = new Dictionary<string, object>();
 
-                    if( Values?.Any() == true )
+                    if( _values?.Any() == true )
                     {
-                        var data = Values.ToArray();
+                        var data = _values.ToArray();
 
                         foreach( var kvp in dict )
                         {
@@ -97,13 +95,13 @@ namespace BudgetExecution
                             {
                                 if( kvp.Key.Contains( data[ i ] ) )
                                 {
-                                    args?.Add( kvp.Key, kvp.Value );
+                                    _dictionary?.Add( kvp.Key, kvp.Value );
                                 }
                             }
                         }
 
-                        Output = args?.Any() == true
-                            ? args
+                        _output = _dictionary?.Any() == true
+                            ? _dictionary
                             : default( Dictionary<string, object> );
                     }
                 }
@@ -114,34 +112,36 @@ namespace BudgetExecution
             }
         }
 
-        /// <summary> Gets the values. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the values.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<string> GetValues()
         {
-            if( Output?.Any() == true )
+            if( _output?.Any() == true )
             {
                 try
                 {
-                    var data = Output?.Values?.ToArray();
-                    var values = data?.Select( o => o.ToString() );
-                    var fields = Enum.GetNames( typeof( Field ) );
-                    var list = new List<string>();
+                    var _array = _output?.Values?.ToArray();
+                    var _enumerable = _array?.Select( o => o.ToString() );
+                    var _fields = Enum.GetNames( typeof( Field ) );
+                    var _list = new List<string>();
 
-                    if( values?.Any() == true
-                        && fields?.Any() == true )
+                    if( _enumerable?.Any() == true
+                        && _fields?.Any() == true )
                     {
-                        foreach( var value in values )
+                        foreach( var value in _enumerable )
                         {
                             if( Verify.Input( value )
-                                && fields.Contains( value ) )
+                                && _fields.Contains( value ) )
                             {
-                                list.Add( value );
+                                _list.Add( value );
                             }
                         }
                     }
 
-                    return values?.Any() == true
-                        ? values
+                    return _enumerable?.Any() == true
+                        ? _enumerable
                         : default( IEnumerable<string> );
                 }
                 catch( Exception ex )
@@ -154,32 +154,34 @@ namespace BudgetExecution
             return default( IEnumerable<string> );
         }
 
-        /// <summary> Gets the output values. </summary>
-        /// <returns> </returns>
+        /// <summary>
+        /// Gets the names.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<string> GetNames()
         {
-            if( Output?.Any() == true )
+            if( _output?.Any() == true )
             {
                 try
                 {
-                    var keys = Output?.Keys;
-                    var fields = Enum.GetNames( typeof( Field ) );
-                    var list = new List<string>();
+                    var _keys = _output?.Keys;
+                    var _fields = Enum.GetNames( typeof( Field ) );
+                    var _list = new List<string>();
 
-                    if( keys?.Any() == true )
+                    if( _keys?.Any() == true )
                     {
-                        foreach( var key in keys )
+                        foreach( var key in _keys )
                         {
                             if( Verify.Input( key )
-                                && fields.Contains( key ) )
+                                && _fields.Contains( key ) )
                             {
-                                list.Add( key );
+                                _list.Add( key );
                             }
                         }
                     }
 
-                    return list?.Any() == true
-                        ? list
+                    return _list?.Any() == true
+                        ? _list
                         : default( List<string> );
                 }
                 catch( Exception ex )

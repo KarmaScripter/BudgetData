@@ -4,8 +4,6 @@
 
 namespace BudgetExecution
 {
-    using System;
-
     public class ForeignKeySchema
     {
         public bool cascadeOnDelete;

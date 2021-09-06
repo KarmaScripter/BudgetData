@@ -1,4 +1,4 @@
-﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+﻿// <copyright file="BuilderBase.cs" company="Terry D. Eppler">
 // Copyright (c) Terry Eppler. All rights reserved.
 // </copyright>
 

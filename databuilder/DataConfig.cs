@@ -283,7 +283,6 @@ namespace BudgetExecution
                 catch( Exception ex )
                 {
                     Fail( ex );
-                    ;
                 }
             }
         }

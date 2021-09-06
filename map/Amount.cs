@@ -13,10 +13,11 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="BudgetExecution.AmountBase" />
     /// <seealso cref="BudgetExecution.IAmount" />
-    [SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" )]
-    [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
-    [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" ) ]
+    [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
+    [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "ArrangeModifiersOrder" ) ]
     public class Amount : AmountBase, IAmount
     {
         /// <summary>
@@ -243,14 +244,14 @@ namespace BudgetExecution
         public static bool IsEqual( IAmount first, IAmount second )
         {
             if( first != null
-                && first != Default
-                && first != null
+                && first  != Default
+                && first  != null
                 && second != Default )
             {
                 try
                 {
                     if( first?.GetFunding().Equals( second?.GetFunding() ) == true
-                        && first?.GetName()?.Equals( second?.GetName() ) == true )
+                        && first?.GetName()?.Equals( second?.GetName() )   == true )
                     {
                         return true;
                     }
@@ -274,7 +275,7 @@ namespace BudgetExecution
         {
             try
             {
-                using var msg = new Message( "Not Yet Implemented" );
+                using var _message = new Message( "Not Yet Implemented" );
             }
             catch( Exception ex )
             {

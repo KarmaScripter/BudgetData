@@ -4,13 +4,12 @@
 
 namespace BudgetExecution
 {
-    using System;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
     /// <summary> </summary>
     /// <seealso cref = "SqlStatement"/>
-    [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
+    [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
     public class SqlFactory : SqlConfig
     {
         /// <summary>
@@ -36,11 +35,11 @@ namespace BudgetExecution
         /// <see cref = "SqlFactory"/>
         /// class.
         /// </summary>
-        /// <param name = "filepath" > The filepath. </param>
+        /// <param name = "filePath" > The filePath. </param>
         /// <param name = "command" > The command. </param>
-        public SqlFactory( string filepath, SQL command = SQL.SELECT )
+        public SqlFactory( string filePath, SQL command = SQL.SELECT )
         {
-            _connectionBuilder = new ConnectionBuilder( filepath );
+            _connectionBuilder = new ConnectionBuilder( filePath );
             _source = _connectionBuilder.GetSource();
             _provider = _connectionBuilder.GetProvider();
             _commandType = command;

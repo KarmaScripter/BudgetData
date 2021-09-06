@@ -4,7 +4,6 @@
 
 namespace BudgetExecution
 {
-    using System;
     using System.Data.Common;
 
     /// <summary>

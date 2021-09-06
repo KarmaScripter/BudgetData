@@ -276,7 +276,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _connection = new ConnectionFactory( _connectionBuilder )?.GetConnection();
+                    var _connection = new ConnectionFactory( _connectionBuilder )
+                        ?.GetConnection();
 
                     switch( sqlStatement?.GetCommandType() )
                     {

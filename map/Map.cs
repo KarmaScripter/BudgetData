@@ -28,11 +28,11 @@
         public Map( IDictionary<string, object> dict )
         {
             SetInput( dict );
-            SetOutput( Input );
+            SetOutput( _input );
             SetData( dict );
-            Names = GetNames();
-            Values = GetValues();
-            Count = Output.Count;
+            _names = GetNames();
+            _values = GetValues();
+            Count = _output.Count;
         }
 
         /// <summary>
@@ -42,11 +42,11 @@
         public Map( DataRow data )
         {
             SetInput( data?.ToDictionary() );
-            SetOutput( Input );
+            SetOutput( _input );
             SetData( data );
-            Names = GetNames();
-            Values = GetValues();
-            Count = Output.Count;
+            _names = GetNames();
+            _values = GetValues();
+            Count = _output.Count;
         }
 
         /// <summary>
@@ -65,8 +65,8 @@
         {
             try
             {
-                return Input?.Any() == true
-                    ? Input
+                return _input?.Any() == true
+                    ? _input
                     : default( IDictionary<string, object> );
             }
             catch( Exception ex )
@@ -84,8 +84,8 @@
         {
             try
             {
-                return Output?.Any() == true
-                    ? Output
+                return _output?.Any() == true
+                    ? _output
                     : default( IDictionary<string, object> );
             }
             catch( Exception ex )
@@ -105,7 +105,7 @@
         {
             try
             {
-                return Input?.HasPrimaryKey() == true;
+                return _input?.HasPrimaryKey() == true;
             }
             catch( Exception ex )
             {
@@ -122,13 +122,13 @@
         /// </returns>
         public bool HasElements()
         {
-            if( Input?.Any() == true )
+            if( _input?.Any() == true )
             {
                 try
                 {
                     var _fields = Enum.GetNames( typeof( Field ) );
 
-                    foreach( var kvp in Input )
+                    foreach( var kvp in _input )
                     {
                         if( Verify.Input( kvp.Key )
                             && _fields?.Contains( kvp.Key ) == true )
@@ -153,11 +153,11 @@
         /// <returns></returns>
         public IKey GetKey()
         {
-            if( Input?.HasPrimaryKey() == true )
+            if( _input?.HasPrimaryKey() == true )
             {
                 try
                 {
-                    var _data = Input.GetPrimaryKey();
+                    var _data = _input.GetPrimaryKey();
 
                     return Verify.Input( _data.Key )
                         ? new Key( _data )
@@ -179,14 +179,14 @@
         /// <returns></returns>
         public IEnumerable<IElement> GetElements()
         {
-            if( Output?.Any() == true )
+            if( _output?.Any() == true )
             {
                 try
                 {
                     var _output = new List<IElement>();
                     var _fields = Enum.GetNames( typeof( Field ) );
 
-                    foreach( var kvp in Output )
+                    foreach( var kvp in base._output )
                     {
                         if( Verify.Input( kvp.Key )
                             && _fields?.Contains( kvp.Key ) == true )

@@ -4,10 +4,6 @@
 
 namespace BudgetExecution
 {
-    // **************************************************************************************************************************
-    // ********************************************      ASSEMBLIES    **********************************************************
-    // **************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Data;
@@ -19,13 +15,9 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref = "ISource"/>
     /// <seealso cref = "IDataSchema"/>
-    [SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" )]
+    [ SuppressMessage( "ReSharper", "ClassNeverInstantiated.Global" ) ]
     public class DataSchema : ISource, IDataSchema
     {
-        // **************************************************************************************************************************
-        // ********************************************   CONSTRUCTORS     **********************************************************
-        // **************************************************************************************************************************
-
         /// <summary>
         /// Initializes a new instance of the <see cref = "DataSchema"/> class.
         /// </summary>
@@ -41,9 +33,9 @@ namespace BudgetExecution
         /// </param>
         public DataSchema( DataTable table )
         {
-            Name = table?.TableName;
-            Data = table?.AsEnumerable();
-            IsSource = Resource.Sources.Contains( Name );
+            _name = table?.TableName;
+            _data = table?.AsEnumerable();
+            IsSource = Resource.Sources.Contains( _name );
         }
 
         /// <summary>
@@ -54,14 +46,10 @@ namespace BudgetExecution
         /// </param>
         public DataSchema( IEnumerable<DataRow> data )
         {
-            Name = data?.CopyToDataTable()?.TableName;
-            Data = data;
-            IsSource = Resource.Sources.Contains( Name );
+            _name = data?.CopyToDataTable()?.TableName;
+            _data = data;
+            IsSource = Resource.Sources.Contains( _name );
         }
-
-        // **************************************************************************************************************************
-        // ********************************************      PROPERTIES    **********************************************************
-        // **************************************************************************************************************************
 
         /// <summary>
         /// Gets the name of the Table.
@@ -69,7 +57,7 @@ namespace BudgetExecution
         /// <value>
         /// The name of the Table.
         /// </value>
-        private string Name { get; }
+        private protected readonly string _name;
 
         /// <summary>
         /// Gets the data.
@@ -77,7 +65,7 @@ namespace BudgetExecution
         /// <value>
         /// The data.
         /// </value>
-        private IEnumerable<DataRow> Data { get; }
+        private protected readonly IEnumerable<DataRow> _data;
 
         /// <summary>
         /// Gets a value indicating whether this instance is source.
@@ -95,10 +83,6 @@ namespace BudgetExecution
         [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
         public bool IsSource { get; }
 
-        // **************************************************************************************************************************
-        // ********************************************      METHODS    *************************************************************
-        // **************************************************************************************************************************
-
         /// <summary>
         /// Sets the column names.
         /// </summary>
@@ -108,19 +92,19 @@ namespace BudgetExecution
         {
             try
             {
-                var list = new List<string>();
-                var table = Data?.CopyToDataTable();
+                var _list = new List<string>();
+                var _dataTable = _data?.CopyToDataTable();
 
-                if( table?.Columns != null )
+                if( _dataTable?.Columns != null )
                 {
-                    foreach( DataColumn datacolumn in table?.Columns )
+                    foreach( DataColumn datacolumn in _dataTable?.Columns )
                     {
-                        list.Add( datacolumn?.ColumnName );
+                        _list.Add( datacolumn?.ColumnName );
                     }
                 }
 
-                return list?.Any() == true
-                    ? list
+                return _list?.Any() == true
+                    ? _list
                     : default( List<string> );
             }
             catch( Exception ex )
@@ -139,26 +123,26 @@ namespace BudgetExecution
         {
             try
             {
-                var schema = Data?.CopyToDataTable()?.Columns;
-                var list = new List<string>();
+                var _schema = _data?.CopyToDataTable()?.Columns;
+                var _list = new List<string>();
 
-                if( schema != null )
+                if( _schema != null )
                 {
-                    foreach( DataColumn caption in schema )
+                    foreach( DataColumn caption in _schema )
                     {
                         if( Verify.Input( caption.Caption ) )
                         {
-                            list.Add( caption.Caption );
+                            _list.Add( caption.Caption );
                         }
                         else if( Verify.Input( caption.ColumnName ) )
                         {
-                            list.Add( caption.ColumnName.SplitPascal() );
+                            _list.Add( caption.ColumnName.SplitPascal() );
                         }
                     }
                 }
 
-                return list?.Any() == true
-                    ? list
+                return _list?.Any() == true
+                    ? _list
                     : default( List<string> );
             }
             catch( Exception ex )
@@ -177,22 +161,22 @@ namespace BudgetExecution
         {
             try
             {
-                var schema = Data
+                var _schema = _data
                     ?.CopyToDataTable()
                     ?.Columns;
 
-                var list = new List<int>();
+                var _list = new List<int>();
 
-                if( schema != null )
+                if( _schema != null )
                 {
-                    foreach( DataColumn column in schema )
+                    foreach( DataColumn column in _schema )
                     {
-                        list.Add( column.Ordinal );
+                        _list.Add( column.Ordinal );
                     }
                 }
 
-                return list?.Any() == true
-                    ? list
+                return _list?.Any() == true
+                    ? _list
                     : default( List<int> );
             }
             catch( Exception ex )
@@ -211,19 +195,19 @@ namespace BudgetExecution
         {
             try
             {
-                var list = new List<Type>();
-                var table = Data?.CopyToDataTable();
+                var _list = new List<Type>();
+                var _dataTable = _data?.CopyToDataTable();
 
-                if( table?.Columns != null )
+                if( _dataTable?.Columns != null )
                 {
-                    foreach( DataColumn datacolumn in table?.Columns )
+                    foreach( DataColumn datacolumn in _dataTable?.Columns )
                     {
-                        list.Add( datacolumn?.DataType );
+                        _list.Add( datacolumn?.DataType );
                     }
                 }
 
-                return list?.Any() == true
-                    ? list
+                return _list?.Any() == true
+                    ? _list
                     : default( List<Type> );
             }
             catch( Exception ex )
@@ -242,12 +226,12 @@ namespace BudgetExecution
         {
             try
             {
-                var list = new List<int>();
-                var table = Data?.CopyToDataTable();
+                var _list = new List<int>();
+                var _dataTable = _data?.CopyToDataTable();
 
-                if( table?.Rows != null )
+                if( _dataTable?.Rows != null )
                 {
-                    foreach( DataRow datarow in table?.Rows )
+                    foreach( DataRow datarow in _dataTable?.Rows )
                     {
                         if( datarow?.HasPrimaryKey() == true )
                         {
@@ -257,14 +241,14 @@ namespace BudgetExecution
 
                             if( key?.Any() == true )
                             {
-                                list.Add( (int)key[ 0 ].Value );
+                                _list.Add( (int)key[ 0 ].Value );
                             }
                         }
                     }
                 }
 
-                return list?.Any() == true
-                    ? list
+                return _list?.Any() == true
+                    ? _list
                     : default( List<int> );
             }
             catch( Exception ex )
@@ -283,10 +267,10 @@ namespace BudgetExecution
         {
             try
             {
-                var columns = Data?.CopyToDataTable()?.PrimaryKey;
+                var _primaryKey = _data?.CopyToDataTable()?.PrimaryKey;
 
-                return columns?.Any() == true
-                    ? columns?.ToArray()
+                return _primaryKey?.Any() == true
+                    ? _primaryKey?.ToArray()
                     : default( DataColumn[ ] );
             }
             catch( Exception ex )
@@ -305,8 +289,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Rows( Data )
-                    ? Data?.CopyToDataTable()?.Columns
+                return Verify.Rows( _data )
+                    ? _data?.CopyToDataTable()?.Columns
                     : default( DataColumnCollection );
             }
             catch( Exception ex )
@@ -325,8 +309,8 @@ namespace BudgetExecution
         {
             try
             {
-                using var datareader = new DataTableReader( Data.CopyToDataTable() );
-                return datareader?.GetSchemaTable();
+                using var _dataTableReader = new DataTableReader( _data.CopyToDataTable() );
+                return _dataTableReader?.GetSchemaTable();
             }
             catch( Exception ex )
             {
@@ -344,8 +328,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Rows( Data )
-                    ? Data?.CopyToDataTable()
+                return Verify.Rows( _data )
+                    ? _data?.CopyToDataTable()
                     : default( DataTable );
             }
             catch( Exception ex )
@@ -364,8 +348,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( Name )
-                    ? Name
+                return Verify.Input( _name )
+                    ? _name
                     : string.Empty;
             }
             catch( Exception ex )
@@ -384,8 +368,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Rows( Data )
-                    ? Data
+                return Verify.Rows( _data )
+                    ? _data
                     : default( IEnumerable<DataRow> );
             }
             catch( Exception ex )
@@ -404,8 +388,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( Name ) && IsSource
-                    ? (Source)Enum.Parse( typeof( Source ), Name )
+                return Verify.Input( _name ) && IsSource
+                    ? (Source)Enum.Parse( typeof( Source ), _name )
                     : Source.NS;
             }
             catch( Exception ex )
@@ -421,9 +405,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private protected static void Fail( Exception ex )
         {
-            using var error = new Error( ex );
-            error?.SetText();
-            error?.ShowDialog();
+            using var _error = new Error( ex );
+            _error?.SetText();
+            _error?.ShowDialog();
         }
     }
 }

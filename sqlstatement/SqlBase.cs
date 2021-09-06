@@ -12,8 +12,8 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     public abstract class SqlBase
     {
         /// <summary>
@@ -122,16 +122,16 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var vals = string.Empty;
+                    var _empty = string.Empty;
 
                     foreach( var kvp in dict )
                     {
-                        vals += $"{kvp.Key} = '{kvp.Value}' AND";
+                        _empty += $"{kvp.Key} = '{kvp.Value}' AND";
                     }
 
-                    var values = vals.TrimEnd( " AND".ToCharArray() );
-                    var table = _connectionBuilder?.GetTableName();
-                    _commandText = $"{SQL.SELECT} * FROM {table} WHERE {values};";
+                    var _values = _empty.TrimEnd( " AND".ToCharArray() );
+                    var _tableName = _connectionBuilder?.GetTableName();
+                    _commandText = $"{SQL.SELECT} * FROM {_tableName} WHERE {_values};";
                 }
                 catch( Exception ex )
                 {
@@ -154,15 +154,15 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var update = string.Empty;
+                    var _update = string.Empty;
 
                     foreach( var kvp in dict )
                     {
-                        update += $" {kvp.Key} = '{kvp.Value}' AND";
+                        _update += $" {kvp.Key} = '{kvp.Value}' AND";
                     }
 
-                    var vals = update.TrimEnd( " AND".ToCharArray() );
-                    _commandText = $"{SQL.UPDATE} {_connectionBuilder?.GetTableName()} SET {vals};";
+                    var _vals = _update.TrimEnd( " AND".ToCharArray() );
+                    _commandText = $"{SQL.UPDATE} {_connectionBuilder?.GetTableName()} SET {_vals};";
                 }
                 catch( Exception ex )
                 {

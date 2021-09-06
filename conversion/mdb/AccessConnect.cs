@@ -1,4 +1,4 @@
-﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+﻿// <copyright file="AccessConnect.cs" company="Terry D. Eppler">
 // Copyright (c) Terry Eppler. All rights reserved.
 // </copyright>
 
@@ -10,10 +10,20 @@ namespace BudgetExecution
     using System.Data;
     using System.Linq;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class AccessConnect
     {
+        /// <summary>
+        /// The connection
+        /// </summary>
         private readonly OleDbConnection _connection;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccessConnect"/> class.
+        /// </summary>
+        /// <param name="path">The path.</param>
         public AccessConnect( string path )
         {
             var connectionstring = "provider=microsoft.jet.oledb.4.0;data source="
@@ -24,6 +34,10 @@ namespace BudgetExecution
             _connection?.Open();
         }
 
+        /// <summary>
+        /// Gets the table names.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<string> GetTableNames()
         {
             var _names = new List<string>();
@@ -39,6 +53,11 @@ namespace BudgetExecution
             return _names;
         }
 
+        /// <summary>
+        /// Gets the table.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
         public DataTable GetTable( string name )
         {
             try
@@ -58,10 +77,15 @@ namespace BudgetExecution
             }
         }
 
-        public List<string> GetColumnNames( string tablename )
+        /// <summary>
+        /// Gets the column names.
+        /// </summary>
+        /// <param name="tableName">The tableName.</param>
+        /// <returns></returns>
+        public List<string> GetColumnNames( string tableName )
         {
             var _names = new List<string>();
-            using var _command = new OleDbCommand( "select * from " + tablename, _connection );
+            using var _command = new OleDbCommand( "select * from " + tableName, _connection );
             using var _dataReader = _command.ExecuteReader( CommandBehavior.SchemaOnly );
             var _dataTable = _dataReader.GetSchemaTable();
             var _dataColumn = _dataTable?.Columns[ "ColumnName" ];

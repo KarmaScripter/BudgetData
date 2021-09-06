@@ -14,7 +14,7 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="BudgetExecution.Builder" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class DataBuilder : Builder
     {
         /// <summary>
@@ -85,7 +85,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _columns = _record.Table?.GetColumnNames();
+                    var _columns = _record.Table
+                        ?.GetColumnNames();
 
                     if( _columns?.Contains( $"{field}" ) == true )
                     {

@@ -19,12 +19,20 @@ namespace BudgetExecution
     /// <seealso cref = "T:BudgetExecution.ISource"/>
     /// <seealso cref = "T:BudgetExecution.IProvider"/>
     /// <seealso/>
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Local" )]
-    [SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Local" ) ]
+    [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
     public class ConnectionFactory : ISource, IConnectionFactory
     {
         private readonly IConnectionBuilder _connectionBuilder;
+
+        /// <summary>
+        /// Gets the connection.
+        /// </summary>
+        /// <value>
+        /// The connection.
+        /// </value>
+        private readonly DbConnection _connection;
 
         /// <summary>
         /// Initializes a new instance of the <see cref = "ConnectionFactory"/> class.
@@ -42,7 +50,7 @@ namespace BudgetExecution
         public ConnectionFactory( IConnectionBuilder builder )
         {
             _connectionBuilder = GetConnectionBuilder( builder );
-            Connection = SetConnection( _connectionBuilder );
+            _connection = SetConnection( _connectionBuilder );
         }
 
         /// <summary>
@@ -51,22 +59,14 @@ namespace BudgetExecution
         /// <param name = "builder" >
         /// The connectionBuilder.
         /// </param>
-        /// <param name = "sqlstatement" >
-        /// The sqlstatement.
+        /// <param name = "sqlStatement" >
+        /// The sqlStatement.
         /// </param>
-        public ConnectionFactory( IConnectionBuilder builder, ISqlStatement sqlstatement )
+        public ConnectionFactory( IConnectionBuilder builder, ISqlStatement sqlStatement )
         {
             _connectionBuilder = GetConnectionBuilder( builder );
-            Connection = SetConnection( _connectionBuilder );
+            _connection = SetConnection( _connectionBuilder );
         }
-
-        /// <summary>
-        /// Gets the connection.
-        /// </summary>
-        /// <value>
-        /// The connection.
-        /// </value>
-        private DbConnection Connection;
 
         /// <summary>
         /// Sets the connection manager.
@@ -125,7 +125,7 @@ namespace BudgetExecution
                 {
                     var _provider = connectionBuilder.GetProvider();
 
-                    if( Verify.Provider( _provider ) )
+                    if( Validate.Provider( _provider ) )
                     {
                         switch( _provider )
                         {
@@ -194,8 +194,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Ref( Connection )
-                    ? Connection
+                return Verify.Ref( _connection )
+                    ? _connection
                     : default( DbConnection );
             }
             catch( Exception ex )
@@ -215,10 +215,10 @@ namespace BudgetExecution
         {
             try
             {
-                var connectionstring = _connectionBuilder?.GetConnectionString();
+                var _connectionString = _connectionBuilder?.GetConnectionString();
 
-                return Verify.Input( connectionstring )
-                    ? connectionstring
+                return Verify.Input( _connectionString )
+                    ? _connectionString
                     : string.Empty;
             }
             catch( Exception ex )
@@ -237,10 +237,10 @@ namespace BudgetExecution
         {
             try
             {
-                var provider = _connectionBuilder.GetProvider();
+                var _provider = _connectionBuilder.GetProvider();
 
-                return Verify.Provider( provider )
-                    ? provider
+                return Validate.Provider( _provider )
+                    ? _provider
                     : Provider.NS;
             }
             catch( Exception ex )
@@ -259,10 +259,10 @@ namespace BudgetExecution
         {
             try
             {
-                var source = _connectionBuilder.GetSource();
+                var _source = _connectionBuilder.GetSource();
 
-                return Verify.Source( source )
-                    ? source
+                return Validate.Source( _source )
+                    ? _source
                     : Source.NS;
             }
             catch( Exception ex )
@@ -278,9 +278,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private protected static void Fail( Exception ex )
         {
-            using var error = new Error( ex );
-            error?.SetText();
-            error?.ShowDialog();
+            using var _error = new Error( ex );
+            _error?.SetText();
+            _error?.ShowDialog();
         }
     }
 }

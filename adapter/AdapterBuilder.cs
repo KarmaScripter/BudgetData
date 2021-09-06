@@ -13,8 +13,8 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="System.Data.Common.DbDataAdapter" />
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class AdapterBuilder : DbDataAdapter
     {
         /// <summary>
@@ -84,9 +84,9 @@ namespace BudgetExecution
                     ? _connection
                     : default( DbConnection );
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Fail( _ex );
+                Fail( ex );
                 return default( DbConnection );
             }
         }
@@ -103,9 +103,9 @@ namespace BudgetExecution
                     ? _connectionBuilder
                     : default( IConnectionBuilder );
             }
-            catch( Exception _ex )
+            catch( Exception ex )
             {
-                Fail( _ex );
+                Fail( ex );
                 return default( IConnectionBuilder );
             }
         }

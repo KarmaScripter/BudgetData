@@ -97,7 +97,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    return unit.GetName()?.Equals( _name ) == true
+                    return unit.GetName()?.Equals( _name )   == true
                         && unit.GetValue()?.Equals( _value ) == true;
                 }
                 catch( Exception ex )
@@ -108,32 +108,6 @@ namespace BudgetExecution
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// Converts to string.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString()
-        {
-            if( Verify.Input( _name ) )
-            {
-                try
-                {
-                    return _name;
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return string.Empty;
-                }
-            }
-            else
-            {
-                return string.Empty;
-            }
         }
 
         /// <summary>

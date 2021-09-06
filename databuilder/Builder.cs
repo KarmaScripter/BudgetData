@@ -212,7 +212,7 @@ namespace BudgetExecution
                 {
                     var _sheets = 0;
 
-                    var _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="
+                    var _connectionString = @"_provider=Microsoft.ACE.OLEDB.12.0;Data Source="
                         + filePath
                         + ";Extended Properties='Excel 12.0;HDR=YES;IMEX=1;';";
 

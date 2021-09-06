@@ -4,8 +4,6 @@
 
 namespace BudgetExecution
 {
-    using System;
-
     public enum TriggerEvent { Delete, Update, Insert }
 
     public enum TriggerType { After, Before }

@@ -4,10 +4,6 @@
 
 namespace BudgetExecution
 {
-    // ******************************************************************************************************************************
-    // ******************************************************   ASSEMBLIES   ********************************************************
-    // ******************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Data;
@@ -17,16 +13,12 @@ namespace BudgetExecution
     /// <summary>
     /// </summary>
     /// <seealso cref = "IDisposable"/>
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     public class Query : QueryBase, IQuery
     {
-        // ***************************************************************************************************************************
-        // *********************************************   CONSTRUCTORS **************************************************************
-        // ***************************************************************************************************************************
-
         /// <summary>
         /// Initializes a new instance of the <see cref = "Query"/> class.
         /// </summary>
@@ -43,14 +35,14 @@ namespace BudgetExecution
         /// <param name = "provider" >
         /// The provider.
         /// </param>
-        /// <param name = "commandtype" >
-        /// The commandtype.
+        /// <param name = "commandType" >
+        /// The commandType.
         /// </param>
-        public Query( Source source, Provider provider = Provider.SQLite, SQL commandtype = SQL.SELECT )
+        public Query( Source source, Provider provider = Provider.SQLite, SQL commandType = SQL.SELECT )
         {
             SetConnectionBuilder( source, provider );
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
-            SqlStatement = new SqlStatement( ConnectionBuilder, commandtype );
+            SqlStatement = new SqlStatement( ConnectionBuilder, commandType );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
@@ -69,15 +61,15 @@ namespace BudgetExecution
         /// <param name = "dict" >
         /// The dictionary of parameters.
         /// </param>
-        /// <param name = "commandtype" >
+        /// <param name = "commandType" >
         /// The type of sql command.
         /// </param>
         public Query( Source source, Provider provider, IDictionary<string, object> dict,
-            SQL commandtype )
+            SQL commandType )
         {
             SetConnectionBuilder( source, provider );
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandtype );
+            SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandType );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
@@ -87,17 +79,17 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "Query"/> class.
         /// </summary>
-        /// <param name = "connectionbuilder" >
-        /// The connectionbuilder.
+        /// <param name = "connectionBuilder" >
+        /// The connectionBuilder.
         /// </param>
-        /// <param name = "sqlstatement" >
-        /// The sqlstatement.
+        /// <param name = "sqlStatement" >
+        /// The sqlStatement.
         /// </param>
-        public Query( IConnectionBuilder connectionbuilder, ISqlStatement sqlstatement )
+        public Query( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
         {
-            ConnectionBuilder = connectionbuilder;
+            ConnectionBuilder = connectionBuilder;
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
-            SqlStatement = sqlstatement;
+            SqlStatement = sqlStatement;
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
@@ -134,7 +126,7 @@ namespace BudgetExecution
         /// The fullpath.
         /// </param>
         /// <param name = "commandtype" >
-        /// The commandtype.
+        /// The commandType.
         /// </param>
         public Query( string fullpath, SQL commandtype = SQL.SELECT )
         {
@@ -153,7 +145,7 @@ namespace BudgetExecution
         /// The fullpath.
         /// </param>
         /// <param name = "commandtype" >
-        /// The commandtype.
+        /// The commandType.
         /// </param>
         /// <param name = "dict" >
         /// The dictionary.
@@ -168,10 +160,6 @@ namespace BudgetExecution
             IsDisposed = false;
             Args = SqlStatement?.GetArgs();
         }
-
-        // ***************************************************************************************************************************
-        // ************************************************  METHODS   ***************************************************************
-        // ***************************************************************************************************************************
 
         /// <inheritdoc/>
         /// <summary>
@@ -233,7 +221,7 @@ namespace BudgetExecution
         /// </c>
         /// to release only unmanaged resources.
         /// </param>
-        [SuppressMessage( "ReSharper", "UnusedParameter.Global" )]
+        [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
         protected virtual void Dispose( bool disposing )
         {
             if( ConnectionFactory?.GetConnection() != null )

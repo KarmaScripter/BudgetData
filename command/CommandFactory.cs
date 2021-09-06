@@ -26,12 +26,12 @@ namespace BudgetExecution
         /// <summary>
         /// The command builder
         /// </summary>
-        private readonly ICommandBuilder _commandBuilder;
+        private protected readonly ICommandBuilder _commandBuilder;
 
         /// <summary>
         /// The connection factory
         /// </summary>
-        private readonly IConnectionFactory _connectionFactory;
+        private protected readonly IConnectionFactory _connectionFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandFactory"/> class.
