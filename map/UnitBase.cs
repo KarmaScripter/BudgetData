@@ -18,17 +18,17 @@ namespace BudgetExecution
         /// <summary>
         /// The data
         /// </summary>
-        private protected object _data;
+        protected internal object _data;
 
         /// <summary>
         /// The name
         /// </summary>
-        private protected string _name;
+        protected internal string _name;
 
         /// <summary>
         /// The value
         /// </summary>
-        private protected string _value;
+        protected internal string _value;
 
         /// <summary>
         /// Sets the name.
