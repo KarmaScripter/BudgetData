@@ -335,7 +335,6 @@ C:\Users\teppler\source\repos\BudgetData\bin\Debug\pt-BR\Microsoft.Data.SqlClien
 C:\Users\teppler\source\repos\BudgetData\bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll
 C:\Users\teppler\source\repos\BudgetData\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\teppler\source\repos\BudgetData\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
-C:\Users\teppler\source\repos\BudgetData\obj\Debug\Data.csproj.AssemblyReference.cache
 C:\Users\teppler\source\repos\BudgetData\obj\Debug\Data.csproj.CopyComplete
 C:\Users\teppler\source\repos\BudgetData\obj\Debug\BudgetData.dll
 C:\Users\teppler\source\repos\BudgetData\obj\Debug\BudgetData.pdb
