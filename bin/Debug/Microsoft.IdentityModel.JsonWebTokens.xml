@@ -817,6 +817,11 @@
             http://tools.ietf.org/html/rfc7519#section-4
             </summary>
         </member>
+        <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Name">
+            <summary>
+            https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
+            </summary>
+        </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.NameId">
             <summary>
             </summary>
@@ -829,6 +834,16 @@
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Nbf">
             <summary>
             http://tools.ietf.org/html/rfc7519#section-4
+            </summary>
+        </member>
+        <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.PhoneNumber">
+            <summary>
+            https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
+            </summary>
+        </member>
+        <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.PhoneNumberVerified">
+            <summary>
+            https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
             </summary>
         </member>
         <member name="F:Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames.Prn">

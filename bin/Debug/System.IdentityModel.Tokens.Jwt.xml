@@ -283,6 +283,12 @@
             Gets the thumbprint of the certificate used to sign the token
             </summary>
         </member>
+        <member name="P:System.IdentityModel.Tokens.Jwt.JwtHeader.X5c">
+            <summary>
+            Gets the certificate used to sign the token
+            </summary>
+            <remarks>If the 'x5c' claim is not found, null is returned.</remarks>   
+        </member>
         <member name="P:System.IdentityModel.Tokens.Jwt.JwtHeader.Zip">
             <summary>
             Gets the 'value' of the 'zip' claim { zip, 'value' }.
@@ -723,6 +729,11 @@
         <member name="F:System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Jti">
             <summary>
             http://tools.ietf.org/html/rfc7519#section-4
+            </summary>
+        </member>
+        <member name="F:System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Name">
+            <summary>
+            https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
             </summary>
         </member>
         <member name="F:System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.NameId">
@@ -1369,7 +1380,7 @@
             <exception cref="T:Microsoft.IdentityModel.Tokens.SecurityTokenReplayDetectedException"><paramref name="token"/> is found in the cache.</exception>
             <returns> A <see cref="T:System.Security.Claims.ClaimsPrincipal"/> from the JWT. Does not include claims found in the JWT header.</returns>
             <remarks> 
-            Many of the exceptions listed above are not thrown directly from this method. See <see cref="T:Microsoft.IdentityModel.Tokens.Validators"/> to examin the call graph.
+            Many of the exceptions listed above are not thrown directly from this method. See <see cref="T:Microsoft.IdentityModel.Tokens.Validators"/> to examine the call graph.
             </remarks>
         </member>
         <member name="M:System.IdentityModel.Tokens.Jwt.JwtSecurityTokenHandler.ValidateTokenPayload(System.IdentityModel.Tokens.Jwt.JwtSecurityToken,Microsoft.IdentityModel.Tokens.TokenValidationParameters)">
@@ -1419,8 +1430,14 @@
             <exception cref="T:System.ArgumentNullException">If 'jwt' is null or whitespace.</exception>
             <exception cref="T:System.ArgumentNullException">If 'validationParameters' is null.</exception>
             <exception cref="T:Microsoft.IdentityModel.Tokens.SecurityTokenValidationException">If a signature is not found and <see cref="P:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RequireSignedTokens"/> is true.</exception>
-            <exception cref="T:Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException">If the 'token' has a key identifier and none of the <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/>(s) provided result in a validated signature. 
-            This can indicate that a key refresh is required.</exception>
+            <exception cref="T:Microsoft.IdentityModel.Tokens.SecurityTokenSignatureKeyNotFoundException">
+            If the 'token' has a key identifier and none of the <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/>(s) provided result in a validated signature.
+            This can indicate that a key refresh is required.
+            </exception>
+            <exception cref="T:Microsoft.IdentityModel.Tokens.SecurityTokenUnableToValidateException">
+            If the 'token' has a key identifier and none of the <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/>(s) provided result in a validated signature as well as the token
+            had validation errors or lifetime or issuer. This is not intended to be a signal to refresh keys.
+            </exception>
             <exception cref="T:Microsoft.IdentityModel.Tokens.SecurityTokenInvalidSignatureException">If after trying all the <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/>(s), none result in a validated signature AND the 'token' does not have a key identifier.</exception>
             <returns>A <see cref="T:System.IdentityModel.Tokens.Jwt.JwtSecurityToken"/> that has the signature validated if token was signed.</returns>
             <remarks><para>If the 'token' is signed, the signature is validated even if <see cref="P:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RequireSignedTokens"/> is false.</para>
