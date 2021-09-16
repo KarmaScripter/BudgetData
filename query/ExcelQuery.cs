@@ -8,6 +8,7 @@ namespace BudgetExecution
     using System.Collections.Generic;
     using System.Data;
     using System.Data.OleDb;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Runtime.InteropServices;
     using System.Windows.Forms;
@@ -21,8 +22,12 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref = "T:BudgetExecution.Query"/>
     /// <seealso cref = "T:BudgetExecution.IQueryBase"/>
+    [ SuppressMessage( "ReSharper", "UnassignedReadonlyField" ) ]
     public class ExcelQuery : Query
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private protected Provider Provider { get; } = Provider.Excel;
 
         /// <summary>
@@ -244,7 +249,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using var _dataSet = new DataSet();
+                    using var _data = new DataSet();
                     using var _connection = GetConnection();
                     _connection?.Open();
                     var _sql = "SELECT * FROM [" + sheetName + "]";
@@ -265,8 +270,8 @@ namespace BudgetExecution
                     }
 
                     using var _dataAdapter = new OleDbDataAdapter( _sql, _connection as OleDbConnection );
-                    _dataAdapter?.Fill( _dataSet );
-                    return _dataSet?.Tables[ 0 ];
+                    _dataAdapter?.Fill( _data );
+                    return _data?.Tables[ 0 ];
                 }
                 catch( Exception ex )
                 {
