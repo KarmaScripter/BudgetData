@@ -25029,7 +25029,7 @@
             <param name="cellAddress">The alphanumeric cell address</param>
             <returns>True if the cell address is valid</returns>
         </member>
-        <member name="M:OfficeOpenXml.ExcelCellBase.UpdateFormulaReferences(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Boolean)">
+        <member name="M:OfficeOpenXml.ExcelCellBase.UpdateFormulaReferences(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Boolean,System.Boolean)">
             <summary>
             Updates the Excel formula so that all the cellAddresses are incremented by the row and column increments
             if they fall after the afterRow and afterColumn.
@@ -25043,6 +25043,7 @@
             <param name="currentSheet">The sheet that contains the formula currently being processed.</param>
             <param name="modifiedSheet">The sheet where cells are being inserted or deleted.</param>
             <param name="setFixed">Fixed address</param>
+            <param name="copy">If a copy operation is performed, fully fixed cells should be untoughe.</param>
             <returns>The updated version of the <paramref name="formula"/>.</returns>
         </member>
         <member name="M:OfficeOpenXml.ExcelCellBase.UpdateFormulaReferences(System.String,OfficeOpenXml.ExcelAddressBase,OfficeOpenXml.ExcelAddressBase,OfficeOpenXml.eShiftTypeInsert,System.String,System.String,System.Boolean)">

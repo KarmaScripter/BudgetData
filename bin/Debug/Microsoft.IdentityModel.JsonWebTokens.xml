@@ -1004,6 +1004,16 @@
             <exception cref="T:System.FormatException">If the value of the claim cannot be parsed into a long.</exception>
             <returns>The DateTime representation of a claim.</returns>
         </member>
+        <member name="M:Microsoft.IdentityModel.JsonWebTokens.JwtTokenUtilities.ResolveTokenSigningKeyWithConfig(System.String,System.String,Microsoft.IdentityModel.Tokens.TokenValidationParameters)">
+            <summary>
+            Returns a <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/> to use when validating the signature of a token.
+            </summary>
+            <param name="kid">The <see cref="T:System.String"/> kid field of the token being validated</param>
+            <param name="x5t">The <see cref="T:System.String"/> x5t field of the token being validated</param>
+            <param name="validationParameters">A <see cref="T:Microsoft.IdentityModel.Tokens.TokenValidationParameters"/>  required for validation.</param>
+            <returns>Returns a <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/> to use for signature validation.</returns>
+            <remarks>If key fails to resolve, then null is returned</remarks>
+        </member>
         <member name="M:Microsoft.IdentityModel.JsonWebTokens.JwtTokenUtilities.ResolveTokenSigningKey(System.String,System.String,Microsoft.IdentityModel.Tokens.TokenValidationParameters)">
             <summary>
             Returns a <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/> to use when validating the signature of a token.

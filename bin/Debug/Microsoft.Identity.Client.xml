@@ -7909,6 +7909,13 @@
             Go to a URL using the OS default browser. 
             </summary>
         </member>
+        <member name="M:Microsoft.Identity.Client.PlatformsCommon.Interfaces.IPlatformProxy.CanBrokerSupportSilentAuth">
+            <summary>
+            Most brokers take care of both silent auth and interactive auth, however some (iOS) 
+            does not support silent auth and gives the RT back to MSAL.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="P:Microsoft.Identity.Client.PlatformsCommon.Interfaces.IPlatformProxy.BrokerSupportsWamAccounts">
             <summary>
             WAM broker has a deeper integration into MSAL because MSAL needs to store 

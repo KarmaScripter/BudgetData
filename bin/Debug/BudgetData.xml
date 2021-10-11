@@ -3225,11 +3225,6 @@
             <seealso cref = "T:BudgetExecution.Query"/>
             <seealso cref = "T:BudgetExecution.IQueryBase"/>
         </member>
-        <member name="P:BudgetExecution.ExcelQuery.Provider">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="M:BudgetExecution.ExcelQuery.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.ExcelQuery"/> class.

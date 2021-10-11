@@ -15639,6 +15639,11 @@ If `Multi Subnet Failover` or "Transparent Network IP Resolution" is set to `tru
         <member name="F:Microsoft.Data.SqlClient.SqlAuthenticationMethod.ActiveDirectoryDefault">
             <summary>The authentication method uses Active Directory Default. Use this mode to connect to a SQL Database using multiple non-interactive authentication methods tried sequentially to acquire an access token. This method does not fallback to the "Active Directory Interactive" authentication method.</summary><value>9</value>
         </member>
+        <member name="P:Microsoft.Data.SqlClient.TdsParser.ClientOSEncryptionSupport">
+            <summary>
+            Verify client encryption possibility.
+            </summary>
+        </member>
         <member name="P:Microsoft.Data.SqlClient.TdsParser.IsColumnEncryptionSupported">
             <summary>
             Get or set if column encryption is supported by the server.
@@ -16036,6 +16041,11 @@ If `Multi Subnet Failover` or "Transparent Network IP Resolution" is set to `tru
             </summary>
             <param name="protocol"></param>
             <returns>Localized warning message</returns>
+        </member>
+        <member name="P:Microsoft.Data.SqlClient.SNILoadHandle.ClientOSEncryptionSupport">
+            <summary>
+            Verify client encryption possibility.
+            </summary>
         </member>
         <member name="M:Microsoft.Data.SqlClient.TdsParserStateObject.NullBitmap.IsGuaranteedNull(System.Int32)">
             <summary>
@@ -22114,7 +22124,7 @@ For example, if the event handler of the <xref:Microsoft.Data.SqlClient.SqlBulkC
         </member>
         <member name="P:System.Strings.SQL_MSALInnerException">
             <summary>
-              Looks up a localized string similar to Error code 0x{0}; state {1}.
+              Looks up a localized string similar to Error code 0x{0}.
             </summary>
         </member>
         <member name="P:System.Strings.SQL_NestedTransactionScopesNotSupported">

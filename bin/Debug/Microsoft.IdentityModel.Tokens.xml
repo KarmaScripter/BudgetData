@@ -179,6 +179,11 @@
             Encodes and Decodes strings as Base64Url encoding.
             </summary>
         </member>
+        <member name="F:Microsoft.IdentityModel.Tokens.Base64UrlEncoder.s_base64Table">
+            <summary>
+            Encoding table
+            </summary>
+        </member>
         <member name="M:Microsoft.IdentityModel.Tokens.Base64UrlEncoder.Encode(System.String)">
             <summary>
             The following functions perform base64url encoding which differs from regular base64 encoding as follows
@@ -224,6 +229,84 @@
             <param name="arg">string to decode.</param>
             <returns>UTF8 string.</returns>
         </member>
+        <member name="T:Microsoft.IdentityModel.Tokens.BaseConfiguration">
+            <summary>
+             Represents a generic metadata configuration which is applicable for both XML and JSON based configurations.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.BaseConfiguration.Issuer">
+            <summary>
+            Gets the issuer specified via the metadata endpoint.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.BaseConfiguration.SigningKeys">
+            <summary>
+            Gets the <see cref="T:System.Collections.Generic.ICollection`1"/> that the IdentityProvider indicates are to be used in order to sign tokens.
+            </summary>
+        </member>
+        <member name="T:Microsoft.IdentityModel.Tokens.BaseConfigurationManager">
+            <summary>
+            Represents a generic configuration manager.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.BaseConfigurationManager.AutomaticRefreshInterval">
+            <summary>
+            Gets or sets the <see cref="T:System.TimeSpan"/> that controls how often an automatic metadata refresh should occur.
+            </summary>
+        </member>
+        <member name="F:Microsoft.IdentityModel.Tokens.BaseConfigurationManager.DefaultAutomaticRefreshInterval">
+            <summary>
+            12 hours is the default time interval that afterwards will obtain new configuration.
+            </summary>
+        </member>
+        <member name="F:Microsoft.IdentityModel.Tokens.BaseConfigurationManager.DefaultRefreshInterval">
+            <summary>
+            5 minutes is the default time interval that must pass for <see cref="M:Microsoft.IdentityModel.Tokens.BaseConfigurationManager.RequestRefresh"/> to obtain a new configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.BaseConfigurationManager.LastKnownGoodConfiguration">
+            <summary>
+            The last known good configuration or LKG (a configuration retrieved in the past that we were able to successfully validate a token against).
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.BaseConfigurationManager.GetBaseConfigurationAsync(System.Threading.CancellationToken)">
+            <summary>
+            Obtains an updated version of <see cref="T:Microsoft.IdentityModel.Tokens.BaseConfiguration"/> if the appropriate refresh interval has passed.
+            This method may return a cached version of the configuration.
+            </summary>
+            <param name="cancel">CancellationToken</param>
+            <returns>Configuration of type Configuration.</returns>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.BaseConfigurationManager.MetadataAddress">
+            <summary>
+            The metadata address to retrieve the configuration from.
+            </summary>
+        </member>
+        <member name="F:Microsoft.IdentityModel.Tokens.BaseConfigurationManager.MinimumAutomaticRefreshInterval">
+            <summary>
+            5 minutes is the minimum value for automatic refresh. <see cref="P:Microsoft.IdentityModel.Tokens.BaseConfigurationManager.AutomaticRefreshInterval"/> can not be set less than this value.
+            </summary>
+        </member>
+        <member name="F:Microsoft.IdentityModel.Tokens.BaseConfigurationManager.MinimumRefreshInterval">
+            <summary>
+            1 second is the minimum time interval that must pass for <see cref="M:Microsoft.IdentityModel.Tokens.BaseConfigurationManager.RequestRefresh"/> to  obtain new configuration.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.BaseConfigurationManager.RefreshInterval">
+            <summary>
+            The minimum time between retrievals, in the event that a retrieval failed, or that a refresh was explicitly requested.
+            </summary>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.BaseConfigurationManager.UseLastKnownGoodConfiguration">
+            <summary>
+            Indicates whether the last known good configuraton (LKG) can be used, false by default.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.BaseConfigurationManager.RequestRefresh">
+            <summary>
+            Indicate that the configuration may be stale (as indicated by failing to process incoming tokens).
+            </summary>
+        </member>
         <member name="T:Microsoft.IdentityModel.Tokens.CallContext">
             <summary>
             An opaque context used to store work when working with authentication artifacts.
@@ -259,6 +342,19 @@
             <summary>
             Gets or sets an <see cref="T:System.Collections.Generic.IDictionary`2"/> that enables custom extensibility scenarios.
             </summary>
+        </member>
+        <member name="T:Microsoft.IdentityModel.Tokens.CollectionUtilities">
+            <summary>
+            A class which contains useful methods for processing collections.
+            </summary>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.CollectionUtilities.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Checks whether <paramref name="enumerable"/> is null or empty.
+            </summary>
+            <typeparam name="T">The type of the <paramref name="enumerable"/>.</typeparam>
+            <param name="enumerable">The <see cref="T:System.Collections.Generic.IEnumerable`1"/> to be checked.</param>
+            <returns>True if <paramref name="enumerable"/> is null or empty, false otherwise.</returns>
         </member>
         <member name="T:Microsoft.IdentityModel.Tokens.CompressionAlgorithms">
             <summary>
@@ -1356,35 +1452,15 @@
             <typeparam name="TKey">The key type to be used by the cache.</typeparam>
             <typeparam name="TValue">The value type to be used by the cache</typeparam>
         </member>
-        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.WaitForProcessing">
+        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.#ctor(System.Int32,System.Threading.Tasks.TaskCreationOptions,System.Collections.Generic.IEqualityComparer{`0},System.Boolean,System.Int32)">
             <summary>
-            FOR TESTING PURPOSES ONLY.
+            Constructor.
             </summary>
-        </member>
-        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.RemoveLRUs">
-            <summary>
-            Remove items from the LinkedList by the desired compaction percentage.
-            This should be a private method.
-            </summary>
-        </member>
-        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.RemoveExpiredValuesPeriodically(System.Object)">
-            <summary>
-            The timer callback that adds a request to remove expired items from the event queue.
-            </summary>
-            <param name="state">the timer state</param>
-        </member>
-        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.TryGetValue(`0,`1@)">
-            Each time a node gets accessed, it gets moved to the beginning (head) of the list.
-        </member>
-        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.TryRemove(`0,`1@)">
-            Removes a particular key from the cache.
-        </member>
-        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.RemoveItemFromLinkedList(Microsoft.IdentityModel.Tokens.LRUCacheItem{`0,`1})">
-            <summary>
-            Remove an item from the LinkedList.
-            When the last item is removed from the LinkedList, the OnLinkedListItemRemoved() will cancel the running _eventQueue task.
-            </summary>
-            <param name="newCacheItem">the item to be removed</param>
+            <param name="capacity">The capacity of the cache, used to determine if experiencing overflow.</param>
+            <param name="options">The event queue task creation option, default to None instead of LongRunning as LongRunning will always start a task on a new thread instead of ThreadPool.</param>
+            <param name="comparer">The equality comparison implementation to be used by the map when comparing keys.</param>
+            <param name="removeExpiredValues">Whether or not to remove expired items.</param>
+            <param name="removeExpiredValuesIntervalInSeconds">The period to wait to remove expired items, in milliseconds.</param>
         </member>
         <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.EventQueueTaskAction">
             <summary>
@@ -1393,10 +1469,16 @@
             Note the task and timer are synchronized; both are running or stopped.
             </summary>
         </member>
-        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.StartEventQueueTaskIfNotRunning">
+        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.RemoveExpiredValuesPeriodically(System.Object)">
             <summary>
-            This method is called after an item is added to the event queue, and the event queue task needs to be started if not running (_eventQueueTaskState != EventQueueTaskRunning).
-            Settitng _eventQueueTaskState to EventQueueTaskRunning should prevent multiple task being started.
+            The timer callback that adds a request to remove expired items from the event queue.
+            </summary>
+            <param name="state">the timer state</param>
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.RemoveLRUs">
+            <summary>
+            Remove items from the LinkedList by the desired compaction percentage.
+            This should be a private method.
             </summary>
         </member>
         <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.SetTaskEndTime">
@@ -1409,15 +1491,17 @@
             </summary>
             <returns>the time when the event queue task should end</returns>
         </member>
-        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.PauseTimer">
+        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.StartEventQueueTaskIfNotRunning">
             <summary>
-            Pause the timer.
+            This method is called after an item is added to the event queue, and the event queue task needs to be started if not running (_eventQueueTaskState != EventQueueTaskRunning).
+            Setting _eventQueueTaskState to EventQueueTaskRunning should prevent multiple task being started.
             </summary>
         </member>
-        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.ResumeTimer">
-            <summary>
-            Resume the timer.
-            </summary>
+        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.TryGetValue(`0,`1@)">
+            Each time a node gets accessed, it gets moved to the beginning (head) of the list.
+        </member>
+        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.TryRemove(`0,`1@)">
+            Removes a particular key from the cache.
         </member>
         <member name="P:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.LinkedList">
             <summary>
@@ -1452,22 +1536,10 @@
             This is for tests to verify all tasks exit at the end of tests if the queue is empty.
             </summary>
         </member>
-        <member name="P:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.TaskExecutionTimeInSeconds">
+        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.WaitForProcessing">
             <summary>
             FOR TESTING PURPOSES ONLY.
-            This is for tests to determine how long to wait for the event queue task to complete.
             </summary>
-        </member>
-        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.Dispose">
-            <summary>
-            Calls <see cref="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.Dispose(System.Boolean)"/> and <see cref="M:System.GC.SuppressFinalize(System.Object)"/>
-            </summary>
-        </member>
-        <member name="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.Dispose(System.Boolean)">
-            <summary>
-            If <paramref name="disposing"/> is true, this method disposes of <see cref="F:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2._eventQueue"/>.
-            </summary>
-            <param name="disposing">True if called from the <see cref="M:Microsoft.IdentityModel.Tokens.EventBasedLRUCache`2.Dispose"/> method, false otherwise.</param>
         </member>
         <member name="T:Microsoft.IdentityModel.Tokens.SecurityTokenCompressionFailedException">
             <summary>
@@ -2370,6 +2442,8 @@
         <member name="M:Microsoft.IdentityModel.Tokens.InMemoryCryptoProviderCache.Dispose">
             <summary>
             Calls <see cref="M:Microsoft.IdentityModel.Tokens.InMemoryCryptoProviderCache.Dispose(System.Boolean)"/> and <see cref="M:System.GC.SuppressFinalize(System.Object)"/>
+            Note: the EventBasedLRUCache is no longer being disposed of, but since this is a public class and can be used as base class of
+            custom cache implementations, we need to keep it as some implementations may override Dispose().
             </summary>
         </member>
         <member name="M:Microsoft.IdentityModel.Tokens.InMemoryCryptoProviderCache.Dispose(System.Boolean)">
@@ -2413,7 +2487,7 @@
             FOR TESTING PURPOSES ONLY.
             </summary>
         </member>
-        <member name="P:Microsoft.IdentityModel.Tokens.InMemoryCryptoProviderCache.TaskExecutionTimeInSeconds">
+        <member name="P:Microsoft.IdentityModel.Tokens.InMemoryCryptoProviderCache.EventQueueTaskIdleTimeoutInSeconds">
             <summary>
             FOR TESTING PURPOSES ONLY.
             </summary>
@@ -3932,7 +4006,8 @@
             Gets or sets a delegate that will be used to validate the audience.
             </summary>
             <remarks>
-            If set, this delegate will be called to validate the 'audience', instead of normal processing. This means that no default 'audience' validation will occur.
+            If set, this delegate will be called to validate the 'audience', instead of default processing.
+            This means that no default 'audience' validation will occur.
             Even if <see cref="P:Microsoft.IdentityModel.Tokens.TokenValidationParameters.ValidateAudience"/> is false, this delegate will still be called.
             </remarks>
         </member>
@@ -3964,6 +4039,22 @@
             </summary>
             <returns>A <see cref="T:System.Security.Claims.ClaimsIdentity"/> with Authentication, NameClaimType and RoleClaimType set.</returns>
         </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.TokenValidationParameters.Configuration">
+            <summary>
+            This property represents the metadata (specifically the issuer and signing keys) retrieved by the <see cref="P:Microsoft.IdentityModel.Tokens.TokenValidationParameters.ConfigurationManager"/>.
+            It will be used along with the other properties set on the TokenValidationParameters in order to validate the token.
+            </summary>
+            <remarks>
+            We make a copy of the TokenValidationParameters passed in to the JsonWebTokenHandler.ValidateToken(...) method, so the value of this
+            property will never change on the original object.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.IdentityModel.Tokens.TokenValidationParameters.ConfigurationManager">
+            <summary>
+            If set, this property will be used to obtain the issuer and signing keys associated with the metadata endpoint of <see cref="P:Microsoft.IdentityModel.Tokens.BaseConfiguration.Issuer"/>.
+            The obtained issuer and signing keys will then be used along with those present on the TokenValidationParameters for validation of the incoming token.
+            </summary>
+        </member>
         <member name="P:Microsoft.IdentityModel.Tokens.TokenValidationParameters.CryptoProviderFactory">
             <summary>
             Users can override the default <see cref="P:Microsoft.IdentityModel.Tokens.TokenValidationParameters.CryptoProviderFactory"/> with this property. This factory will be used for creating signature providers.
@@ -3979,7 +4070,8 @@
             Gets or sets a delegate for validating the <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/> that signed the token.
             </summary>
             <remarks>
-            If set, this delegate will be called to validate the <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/> that signed the token, instead of normal processing. This means that no default <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/> validation will occur.
+            If set, this delegate will be called to validate the <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/> that signed the token, instead of default processing.
+            This means that no default <see cref="T:Microsoft.IdentityModel.Tokens.SecurityKey"/> validation will occur.
             Even if <see cref="P:Microsoft.IdentityModel.Tokens.TokenValidationParameters.ValidateIssuerSigningKey"/> is false, this delegate will still be called.
             </remarks>
         </member>
@@ -4006,7 +4098,8 @@
             Gets or sets a delegate that will be used to validate the issuer of the token.
             </summary>
             <remarks>
-            If set, this delegate will be called to validate the 'issuer' of the token, instead of normal processing. This means that no default 'issuer' validation will occur.
+            If set, this delegate will be called to validate the 'issuer' of the token, instead of default processing.
+            This means that no default 'issuer' validation will occur.
             Even if <see cref="P:Microsoft.IdentityModel.Tokens.TokenValidationParameters.ValidateIssuer"/> is false, this delegate will still be called.
             </remarks>
         </member>
@@ -4015,7 +4108,8 @@
             Gets or sets a delegate that will be used to validate the lifetime of the token
             </summary>
             <remarks>
-            If set, this delegate will be called to validate the lifetime of the token, instead of normal processing. This means that no default lifetime validation will occur.
+            If set, this delegate will be called to validate the lifetime of the token, instead of default processing.
+            This means that no default lifetime validation will occur.
             Even if <see cref="P:Microsoft.IdentityModel.Tokens.TokenValidationParameters.ValidateLifetime"/> is false, this delegate will still be called.
             </remarks>
         </member>
@@ -4079,7 +4173,7 @@
             Gets or sets a delegate that will be used to validate the signature of the token.
             </summary>
             <remarks>
-            If set, this delegate will be called to signature of the token, instead of normal processing.
+            If set, this delegate will be called to signature of the token, instead of default processing.
             </remarks>
         </member>
         <member name="P:Microsoft.IdentityModel.Tokens.TokenValidationParameters.TokenDecryptionKey">
@@ -4105,7 +4199,7 @@
             Gets or sets a delegate that will be used to read the token.
             </summary>
             <remarks>
-            If set, this delegate will be called to read the token instead of normal processing.
+            If set, this delegate will be called to read the token instead of default processing.
             </remarks>
         </member>
         <member name="P:Microsoft.IdentityModel.Tokens.TokenValidationParameters.TokenReplayCache">
@@ -4119,7 +4213,8 @@
             Gets or sets a delegate that will be used to validate the token replay of the token
             </summary>
             <remarks>
-            If set, this delegate will be called to validate the token replay of the token, instead of normal processing. This means no default token replay validation will occur.
+            If set, this delegate will be called to validate the token replay of the token, instead of default processing.
+            This means no default token replay validation will occur.
             Even if <see cref="P:Microsoft.IdentityModel.Tokens.TokenValidationParameters.ValidateTokenReplay"/> is false, this delegate will still be called.
             </remarks>
         </member>
@@ -4136,7 +4231,7 @@
             Implementations that need to resolve it from a different location can use the 'token' parameter.
             </summary>
             <remarks>
-            If set, this delegate will be called to validate the 'type' of the token, instead of normal processing.
+            If set, this delegate will be called to validate the 'type' of the token, instead of default processing.
             This means that no default 'type' validation will occur.
             </remarks>
         </member>
