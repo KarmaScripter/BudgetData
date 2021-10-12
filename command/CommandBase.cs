@@ -18,32 +18,33 @@ namespace BudgetExecution
     /// <seealso cref="BudgetExecution.ISource" />
     /// <seealso cref="BudgetExecution.IProvider" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" ) ]
     public abstract class CommandBase : ISource, IProvider
     {
         /// <summary>
         /// The command
         /// </summary>
-        private protected DbCommand _command;
+        public DbCommand Command { get; set; }
 
         /// <summary>
         /// The connection builder
         /// </summary>
-        private protected IConnectionBuilder _connectionBuilder;
+        public IConnectionBuilder ConnectionBuilder { get; set; }
 
         /// <summary>
         /// The provider
         /// </summary>
-        private protected Provider _provider;
+        public Provider Provider { get; set; }
 
         /// <summary>
         /// The source
         /// </summary>
-        private protected Source _source;
+        public Source Source { get; }
 
         /// <summary>
         /// The SQL statement
         /// </summary>
-        private protected ISqlStatement _sqlStatement;
+        public ISqlStatement SqlStatement { get; set; }
 
         /// <summary>
         /// </summary>
@@ -52,8 +53,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Provider( _provider )
-                    ? _provider
+                return Validate.Provider( Provider )
+                    ? Provider
                     : default( Provider );
             }
             catch( Exception ex )
@@ -71,8 +72,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Source( _source )
-                    ? _source
+                return Validate.Source( Source )
+                    ? Source
                     : default( Source );
             }
             catch( Exception ex )
@@ -90,8 +91,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Ref( _connectionBuilder )
-                    ? _connectionBuilder
+                return Verify.Ref( ConnectionBuilder )
+                    ? ConnectionBuilder
                     : default( IConnectionBuilder );
             }
             catch( Exception ex )
@@ -109,8 +110,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Ref( _sqlStatement )
-                    ? _sqlStatement
+                return Verify.Ref( SqlStatement )
+                    ? SqlStatement
                     : default( ISqlStatement );
             }
             catch( Exception ex )
@@ -131,7 +132,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _connection = new ConnectionFactory( _connectionBuilder )?.GetConnection();
+                    var _connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
 
                     switch( sqlStatement?.GetCommandType() )
                     {
@@ -202,7 +203,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _connection = new ConnectionFactory( _connectionBuilder )?.GetConnection();
+                    var _connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
 
                     if( Verify.Input( _connection?.ConnectionString ) )
                     {
@@ -276,7 +277,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _connection = new ConnectionFactory( _connectionBuilder )
+                    var _connection = new ConnectionFactory( ConnectionBuilder )
                         ?.GetConnection();
 
                     switch( sqlStatement?.GetCommandType() )
@@ -348,7 +349,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _connection = new ConnectionFactory( _connectionBuilder )?.GetConnection();
+                    var _connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
 
                     switch( sqlStatement?.GetCommandType() )
                     {
@@ -417,7 +418,7 @@ namespace BudgetExecution
         {
             try
             {
-                _connectionBuilder = Validate.Source( source ) && Validate.Provider( provider )
+                ConnectionBuilder = Validate.Source( source ) && Validate.Provider( provider )
                     ? new ConnectionBuilder( source, provider )
                     : default( ConnectionBuilder );
             }

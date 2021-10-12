@@ -30,9 +30,9 @@ namespace BudgetExecution
         /// <param name="sqlStatement">The SQL statement.</param>
         public CommandBuilder( ISqlStatement sqlStatement )
         {
-            _sqlStatement = sqlStatement;
-            _connectionBuilder = _sqlStatement.GetConnectionBuilder();
-            _command = SetCommand( _sqlStatement );
+            SqlStatement = sqlStatement;
+            ConnectionBuilder = SqlStatement.GetConnectionBuilder();
+            Command = SetCommand( SqlStatement );
         }
 
         /// <summary>
@@ -42,9 +42,9 @@ namespace BudgetExecution
         /// <param name="sqlStatement">The SQL statement.</param>
         public CommandBuilder( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
         {
-            _sqlStatement = sqlStatement;
-            _connectionBuilder = connectionBuilder;
-            _command = SetCommand( _sqlStatement );
+            SqlStatement = sqlStatement;
+            ConnectionBuilder = connectionBuilder;
+            Command = SetCommand( SqlStatement );
         }
 
         /// <summary>
@@ -55,30 +55,30 @@ namespace BudgetExecution
         public DbCommand SetCommand( ISqlStatement sqlStatement )
         {
             if( Verify.Ref( sqlStatement )
-                && Enum.IsDefined( typeof( Provider ), _connectionBuilder.GetProvider() ) )
+                && Enum.IsDefined( typeof( Provider ), ConnectionBuilder.GetProvider() ) )
             {
                 try
                 {
-                    _provider = _connectionBuilder.GetProvider();
+                    Provider = ConnectionBuilder.GetProvider();
 
-                    switch( _provider )
+                    switch( Provider )
                     {
                         case Provider.SQLite:
                         {
-                            _command = GetSQLiteCommand( sqlStatement );
-                            return _command;
+                            Command = GetSQLiteCommand( sqlStatement );
+                            return Command;
                         }
 
                         case Provider.SqlCe:
                         {
-                            _command = GetSQLiteCommand( sqlStatement );
-                            return _command;
+                            Command = GetSQLiteCommand( sqlStatement );
+                            return Command;
                         }
 
                         case Provider.SqlServer:
                         {
-                            _command = GetSQLiteCommand( sqlStatement );
-                            return _command;
+                            Command = GetSQLiteCommand( sqlStatement );
+                            return Command;
                         }
 
                         case Provider.Excel:
@@ -86,8 +86,8 @@ namespace BudgetExecution
                         case Provider.Access:
                         case Provider.OleDb:
                         {
-                            _command = GetSQLiteCommand( sqlStatement );
-                            return _command;
+                            Command = GetSQLiteCommand( sqlStatement );
+                            return Command;
                         }
 
                         default:
@@ -114,8 +114,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Ref( _command )
-                    ? _command
+                return Verify.Ref( Command )
+                    ? Command
                     : default( DbCommand );
             }
             catch( Exception ex )

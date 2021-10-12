@@ -1,4 +1,4 @@
-﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
 // Copyright (c) Terry Eppler. All rights reserved.
 // </copyright>
 
@@ -17,59 +17,59 @@ namespace BudgetExecution
         /// <summary>
         /// The source
         /// </summary>
-        private protected Source _source;
+        public Source Source { get; set; }
 
         /// <summary>
         /// The provider
         /// </summary>
-        private protected Provider _provider;
+        public Provider Provider { get; set; }
 
         /// <summary>
         /// The connection builder
         /// </summary>
-        private protected IConnectionBuilder _connectionBuilder;
+        public IConnectionBuilder ConnectionBuilder { get; set; }
 
         /// <summary>
         /// The arguments
         /// </summary>
-        private protected IDictionary<string, object> _args;
+        public IDictionary<string, object> Args { get; set; }
 
         /// <summary>
         /// The SQL statement
         /// </summary>
-        private protected ISqlStatement _sqlStatement;
+        public ISqlStatement SqlStatement { get; set; }
 
         /// <summary>
         /// The query
         /// </summary>
-        private protected IQuery _query;
+        public IQuery Query { get; set; }
 
         /// <summary>
         /// The record
         /// </summary>
-        private protected DataRow _record;
+        public DataRow Record { get; set; }
 
         /// <summary>
         /// The data table
         /// </summary>
-        private protected DataTable _dataTable;
+        public DataTable DataTable { get; set; }
 
         /// <summary>
         /// The data set
         /// </summary>
-        private protected DataSet _dataSet;
+        public DataSet DataSet { get; set; }
 
         /// <summary>
         /// Sets the source.
         /// </summary>
         /// <param name="source">The source.</param>
-        private protected void SetSource( Source source )
+        public void SetSource( Source source )
         {
             if( Validate.Source( source ) )
             {
                 try
                 {
-                    _source = source;
+                    Source = source;
                 }
                 catch( Exception ex )
                 {
@@ -82,13 +82,13 @@ namespace BudgetExecution
         /// Sets the provider.
         /// </summary>
         /// <param name="provider">The provider.</param>
-        private protected void SetProvider( Provider provider )
+        public void SetProvider( Provider provider )
         {
             if( Validate.Provider( provider ) )
             {
                 try
                 {
-                    _provider = provider;
+                    Provider = provider;
                 }
                 catch( Exception ex )
                 {
@@ -101,36 +101,36 @@ namespace BudgetExecution
         /// Sets the query.
         /// </summary>
         /// <param name="connectionBuilder">The connection builder.</param>
-        private protected void SetQuery( IConnectionBuilder connectionBuilder )
+        public void SetQuery( IConnectionBuilder connectionBuilder )
         {
-            if( Validate.Source( _source )
-                && Validate.Provider( _provider ) )
+            if( Validate.Source( Source )
+                && Validate.Provider( Provider ) )
             {
                 try
                 {
-                    switch( _provider )
+                    switch( Provider )
                     {
                         case Provider.SQLite:
                         {
-                            _query = new SQLiteQuery( _source );
+                            Query = new SQLiteQuery( Source );
                             break;
                         }
 
                         case Provider.SqlServer:
                         {
-                            _query = new SqlServerQuery( _source );
+                            Query = new SqlServerQuery( Source );
                             break;
                         }
 
                         case Provider.SqlCe:
                         {
-                            _query = new SqlCeQuery( _source );
+                            Query = new SqlCeQuery( Source );
                             break;
                         }
 
                         case Provider.Access:
                         {
-                            _query = new AccessQuery( _source );
+                            Query = new AccessQuery( Source );
                             break;
                         }
 
@@ -138,7 +138,7 @@ namespace BudgetExecution
                         {
                             var _filePath = connectionBuilder?.GetFilePath();
 
-                            _query = Verify.Input( _filePath )
+                            Query = Verify.Input( _filePath )
                                 && File.Exists( _filePath )
                                     ? new ExcelQuery( _filePath )
                                     : default( ExcelQuery );
@@ -149,14 +149,14 @@ namespace BudgetExecution
                         case Provider.Excel:
                         {
                             var _filePath = connectionBuilder?.GetFilePath();
-                            _query = new ExcelQuery( _filePath );
+                            Query = new ExcelQuery( _filePath );
                             break;
                         }
 
                         case Provider.CSV:
                         {
                             var _filePath = connectionBuilder.GetFilePath();
-                            _query = new CsvQuery( _filePath );
+                            Query = new CsvQuery( _filePath );
                             break;
                         }
 
@@ -165,7 +165,7 @@ namespace BudgetExecution
 
                         default:
                         {
-                            _query = new SQLiteQuery( _source );
+                            Query = new SQLiteQuery( Source );
                             break;
                         }
                     }
@@ -182,37 +182,37 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="connectionBuilder">The connection builder.</param>
         /// <param name="sqlStatement">The SQL statement.</param>
-        private protected void SetQuery( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
+        public void SetQuery( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
         {
-            if( Validate.Source( _source )
-                && Validate.Provider( _provider )
+            if( Validate.Source( Source )
+                && Validate.Provider( Provider )
                 && Verify.Ref( sqlStatement ) )
             {
                 try
                 {
-                    switch( _provider )
+                    switch( Provider )
                     {
                         case Provider.SQLite:
                         {
-                            _query = new SQLiteQuery( _source, _args );
+                            Query = new SQLiteQuery( Source, Args );
                             break;
                         }
 
                         case Provider.SqlServer:
                         {
-                            _query = new SqlServerQuery( _source, _args );
+                            Query = new SqlServerQuery( Source, Args );
                             break;
                         }
 
                         case Provider.SqlCe:
                         {
-                            _query = new SqlCeQuery( _source, _args );
+                            Query = new SqlCeQuery( Source, Args );
                             break;
                         }
 
                         case Provider.Access:
                         {
-                            _query = new AccessQuery( _source, _args );
+                            Query = new AccessQuery( Source, Args );
                             break;
                         }
 
@@ -220,8 +220,8 @@ namespace BudgetExecution
                         {
                             var filepath = connectionBuilder?.GetFilePath();
 
-                            _query = Verify.Input( filepath ) && File.Exists( filepath )
-                                ? new ExcelQuery( filepath, _args )
+                            Query = Verify.Input( filepath ) && File.Exists( filepath )
+                                ? new ExcelQuery( filepath, Args )
                                 : default( ExcelQuery );
 
                             break;
@@ -230,14 +230,14 @@ namespace BudgetExecution
                         case Provider.Excel:
                         {
                             var filepath = connectionBuilder?.GetFilePath();
-                            _query = new ExcelQuery( filepath, _args );
+                            Query = new ExcelQuery( filepath, Args );
                             break;
                         }
 
                         case Provider.CSV:
                         {
                             var filepath = connectionBuilder.GetFilePath();
-                            _query = new CsvQuery( filepath, _args );
+                            Query = new CsvQuery( filepath, Args );
                             break;
                         }
 
@@ -246,7 +246,7 @@ namespace BudgetExecution
 
                         default:
                         {
-                            _query = new SQLiteQuery( _source, _args );
+                            Query = new SQLiteQuery( Source, Args );
                             break;
                         }
                     }
@@ -262,23 +262,23 @@ namespace BudgetExecution
         /// Sets the data.
         /// </summary>
         /// <param name="name">The name.</param>
-        private protected void SetData( string name )
+        public void SetData( string name )
         {
             if( Verify.Input( name )
-                && Validate.Source( _source ) )
+                && Validate.Source( Source ) )
             {
                 try
                 {
-                    _dataSet = new DataSet( $"{name}" )
+                    DataSet = new DataSet( $"{name}" )
                     {
                         DataSetName = $"{name}"
                     };
 
-                    _dataTable = new DataTable( $"{_source}" );
-                    _dataTable.TableName = $"{_source}";
-                    _dataSet.Tables.Add( _dataTable );
-                    var _adapter = _query?.GetAdapter();
-                    _adapter?.Fill( _dataSet, _dataTable.TableName );
+                    DataTable = new DataTable( $"{Source}" );
+                    DataTable.TableName = $"{Source}";
+                    DataSet.Tables.Add( DataTable );
+                    var _adapter = Query?.GetAdapter();
+                    _adapter?.Fill( DataSet, DataTable.TableName );
                 }
                 catch( Exception ex )
                 {
@@ -291,7 +291,7 @@ namespace BudgetExecution
         /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        private protected static void Fail( Exception ex )
+        public static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
             _error?.SetText();

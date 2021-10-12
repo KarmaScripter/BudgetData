@@ -1,4 +1,4 @@
-﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
 // Copyright (c) Terry Eppler. All rights reserved.
 // </copyright>
 
@@ -32,7 +32,7 @@ namespace BudgetExecution
         {
             SetName( kvp.Key );
             SetData( kvp.Value );
-            SetValue( _data );
+            SetValue( Data );
         }
 
         /// <summary>
@@ -43,8 +43,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _name )
-                    ? _name
+                return Verify.Input( Name )
+                    ? Name
                     : string.Empty;
             }
             catch( Exception ex )
@@ -62,8 +62,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _value )
-                    ? _value
+                return Verify.Input( Value )
+                    ? Value
                     : string.Empty;
             }
             catch( Exception ex )
@@ -81,8 +81,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Ref( _data )
-                    ? _data
+                return Verify.Ref( Data )
+                    ? Data
                     : default( object );
             }
             catch( Exception ex )
@@ -102,9 +102,9 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _name )
-                    && Verify.Input( _value )
-                        ? _name + " = " + _value
+                return Verify.Input( Name )
+                    && Verify.Input( Value )
+                        ? Name + " = " + Value
                         : string.Empty;
             }
             catch( Exception ex )

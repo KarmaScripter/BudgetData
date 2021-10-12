@@ -1,4 +1,4 @@
-﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
 // Copyright (c) Terry Eppler. All rights reserved.
 // </copyright>
 
@@ -20,17 +20,17 @@ namespace BudgetExecution
         /// <summary>
         /// The connection
         /// </summary>
-        private protected readonly DbConnection _connection;
+        public DbConnection Connection { get;  }
 
         /// <summary>
         /// The SQL statement
         /// </summary>
-        private protected readonly ISqlStatement _sqlStatement;
+        public ISqlStatement SqlStatement { get;  }
 
         /// <summary>
         /// The connection builder
         /// </summary>
-        private protected readonly IConnectionBuilder _connectionBuilder;
+        public IConnectionBuilder ConnectionBuilder { get;  }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
@@ -52,10 +52,10 @@ namespace BudgetExecution
         public AdapterBuilder( ICommandBuilder commandbuilder )
             : this()
         {
-            _connectionBuilder = commandbuilder?.GetConnectionBuilder();
-            _connection = new ConnectionFactory( _connectionBuilder )?.GetConnection();
-            _sqlStatement = commandbuilder?.GetSqlStatement();
-            SelectCommand = new CommandBuilder( _connectionBuilder, _sqlStatement )?.GetCommand();
+            ConnectionBuilder = commandbuilder?.GetConnectionBuilder();
+            Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
+            SqlStatement = commandbuilder?.GetSqlStatement();
+            SelectCommand = new CommandBuilder( ConnectionBuilder, SqlStatement )?.GetCommand();
         }
 
         /// <summary>
@@ -66,10 +66,10 @@ namespace BudgetExecution
         public AdapterBuilder( IConnectionBuilder connectionbuilder, ISqlStatement sqlstatement )
             : this()
         {
-            _connectionBuilder = connectionbuilder;
-            _connection = new ConnectionFactory( _connectionBuilder )?.GetConnection();
-            _sqlStatement = sqlstatement;
-            SelectCommand = new CommandBuilder( _connectionBuilder, _sqlStatement )?.GetCommand();
+            ConnectionBuilder = connectionbuilder;
+            Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
+            SqlStatement = sqlstatement;
+            SelectCommand = new CommandBuilder( ConnectionBuilder, SqlStatement )?.GetCommand();
         }
 
         /// <summary>
@@ -80,8 +80,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Ref( _connection )
-                    ? _connection
+                return Verify.Ref( Connection )
+                    ? Connection
                     : default( DbConnection );
             }
             catch( Exception ex )
@@ -99,8 +99,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Ref( _connectionBuilder )
-                    ? _connectionBuilder
+                return Verify.Ref( ConnectionBuilder )
+                    ? ConnectionBuilder
                     : default( IConnectionBuilder );
             }
             catch( Exception ex )

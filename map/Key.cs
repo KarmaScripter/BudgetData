@@ -34,9 +34,9 @@ namespace BudgetExecution
         public Key( KeyValuePair<string, object> kvp )
         {
             SetName( kvp.Key );
-            SetPrimaryKey( _name );
+            SetPrimaryKey( Name );
             SetIndex( int.Parse( kvp.Value.ToString() ) );
-            _data = _index.ToString();
+            Data = Index.ToString();
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace BudgetExecution
             SetPrimaryKey( name );
             SetName( name );
             SetIndex( value );
-            _data = _index.ToString();
+            Data = Index.ToString();
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace BudgetExecution
             SetPrimaryKey( dataRow, field );
             SetName( dataRow, field );
             SetIndex( dataRow, field );
-            _data = _index.ToString();
+            Data = Index.ToString();
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace BudgetExecution
             SetPrimaryKey( field );
             SetName( field );
             SetIndex( int.Parse( value ) );
-            _data = _index.ToString();
+            Data = Index.ToString();
         }
 
         /// <summary>
@@ -85,9 +85,9 @@ namespace BudgetExecution
         public Key( DataRow dataRow )
         {
             SetPrimaryKey( dataRow );
-            SetName( dataRow, _primaryKey );
-            SetIndex( dataRow, _primaryKey );
-            _data = _index.ToString();
+            SetName( dataRow, PrimaryKey );
+            SetIndex( dataRow, PrimaryKey );
+            Data = Index.ToString();
         }
 
         /// <summary>
@@ -98,8 +98,8 @@ namespace BudgetExecution
         {
             try
             {
-                return _index > -1
-                    ? _index
+                return Index > -1
+                    ? Index
                     : (int)PrimaryKey.NS;
             }
             catch( Exception ex )
@@ -117,8 +117,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Enum.IsDefined( typeof( PrimaryKey ), _primaryKey )
-                    ? _primaryKey
+                return Enum.IsDefined( typeof( PrimaryKey ), PrimaryKey )
+                    ? PrimaryKey
                     : PrimaryKey.NS;
             }
             catch( Exception ex )
@@ -138,10 +138,10 @@ namespace BudgetExecution
         {
             try
             {
-                return !Validate.PrimaryKey( _primaryKey )
-                    && _index > -1
-                    && Verify.Input( _name )
-                        ? _name + " = " + _index
+                return !Validate.PrimaryKey( PrimaryKey )
+                    && Index > -1
+                    && Verify.Input( Name )
+                        ? Name + " = " + Index
                         : string.Empty;
             }
             catch( Exception ex )
@@ -164,8 +164,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    return key?.GetIndex() == _index
-                        && key?.GetName()?.Equals( _name ) == true;
+                    return key?.GetIndex() == Index
+                        && key?.GetName()?.Equals( Name ) == true;
                 }
                 catch( Exception ex )
                 {

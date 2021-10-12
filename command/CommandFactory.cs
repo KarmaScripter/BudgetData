@@ -26,12 +26,12 @@ namespace BudgetExecution
         /// <summary>
         /// The command builder
         /// </summary>
-        private protected readonly ICommandBuilder _commandBuilder;
+        public ICommandBuilder CommandBuilder { get; set; }
 
         /// <summary>
         /// The connection factory
         /// </summary>
-        private protected readonly IConnectionFactory _connectionFactory;
+        public IConnectionFactory ConnectionFactory;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandFactory"/> class.
@@ -39,9 +39,9 @@ namespace BudgetExecution
         /// <param name="commandBuilder">The command builder.</param>
         public CommandFactory( ICommandBuilder commandBuilder )
         {
-            _commandBuilder = commandBuilder;
-            _sqlStatement = _commandBuilder?.GetSqlStatement();
-            _connectionFactory = new ConnectionFactory( _sqlStatement?.GetConnectionBuilder() );
+            CommandBuilder = commandBuilder;
+            SqlStatement = CommandBuilder?.GetSqlStatement();
+            ConnectionFactory = new ConnectionFactory( SqlStatement?.GetConnectionBuilder() );
         }
 
         /// <summary>
@@ -57,14 +57,14 @@ namespace BudgetExecution
             {
                 try
                 {
-                    _connectionBuilder = GetConnectionBuilder();
-                    _provider = _connectionBuilder.GetProvider();
+                    ConnectionBuilder = GetConnectionBuilder();
+                    Provider = ConnectionBuilder.GetProvider();
                     var _sql = $"CREATE TABLE {tableName}";
 
-                    if( Validate.Provider( _provider )
+                    if( Validate.Provider( Provider )
                         && Verify.Input( _sql ) )
                     {
-                        switch( _provider )
+                        switch( Provider )
                         {
                             case Provider.SQLite:
                             {
@@ -119,15 +119,15 @@ namespace BudgetExecution
         {
             if( Verify.Input( viewName )
                 && dataColumns?.Any() == true
-                && _connectionBuilder != null
-                && _connectionBuilder.GetProvider() != Provider.SqlCe )
+                && ConnectionBuilder != null
+                && ConnectionBuilder.GetProvider() != Provider.SqlCe )
             {
                 try
                 {
-                    _provider = _connectionBuilder.GetProvider();
+                    Provider = ConnectionBuilder.GetProvider();
                     var _sql = $"CREATE VIEW {viewName};";
 
-                    switch( _provider )
+                    switch( Provider )
                     {
                         case Provider.SQLite:
                         {
@@ -172,17 +172,17 @@ namespace BudgetExecution
         public DbCommand GetDropTableCommand( DataTable dataTable )
         {
             if( dataTable != null
-                && _connectionBuilder != null )
+                && ConnectionBuilder != null )
             {
                 try
                 {
                     var _sql = $"DROP {dataTable.TableName};";
-                    _provider = _connectionBuilder.GetProvider();
+                    Provider = ConnectionBuilder.GetProvider();
 
                     if( Verify.Input( _sql )
-                        && Enum.IsDefined( typeof( Provider ), _provider ) )
+                        && Enum.IsDefined( typeof( Provider ), Provider ) )
                     {
-                        switch( _provider )
+                        switch( Provider )
                         {
                             case Provider.SQLite:
                             {
@@ -237,19 +237,19 @@ namespace BudgetExecution
         {
             if( dataTable != null
                 && dataColumn != null
-                && _connectionBuilder != null )
+                && ConnectionBuilder != null )
             {
                 try
                 {
-                    _provider = _connectionBuilder.GetProvider();
+                    Provider = ConnectionBuilder.GetProvider();
 
                     var _sql =
                         $"ALTER TABLE {dataTable.TableName} ADD COLUMN {dataColumn.ColumnName};";
 
                     if( Verify.Input( _sql )
-                        && Enum.IsDefined( typeof( Provider ), _provider ) )
+                        && Enum.IsDefined( typeof( Provider ), Provider ) )
                     {
-                        switch( _provider )
+                        switch( Provider )
                         {
                             case Provider.SQLite:
                             {
@@ -304,17 +304,17 @@ namespace BudgetExecution
         {
             if( dataTable != null
                 && Verify.Input( name )
-                && _commandBuilder != null )
+                && CommandBuilder != null )
             {
                 try
                 {
-                    _provider = _commandBuilder.GetProvider();
+                    Provider = CommandBuilder.GetProvider();
                     var _sql = $"ALTER TABLE {dataTable.TableName} RENAME {name};";
 
-                    if( Enum.IsDefined( typeof( Provider ), _provider )
+                    if( Enum.IsDefined( typeof( Provider ), Provider )
                         && Verify.Input( _sql ) )
                     {
-                        switch( _provider )
+                        switch( Provider )
                         {
                             case Provider.SQLite:
                             {
@@ -367,7 +367,7 @@ namespace BudgetExecution
         {
             try
             {
-                return _commandBuilder?.GetCommand();
+                return CommandBuilder?.GetCommand();
             }
             catch( Exception ex )
             {
@@ -384,7 +384,7 @@ namespace BudgetExecution
         {
             try
             {
-                return _commandBuilder?.GetCommand();
+                return CommandBuilder?.GetCommand();
             }
             catch( Exception ex )
             {
@@ -401,7 +401,7 @@ namespace BudgetExecution
         {
             try
             {
-                return _commandBuilder?.GetCommand();
+                return CommandBuilder?.GetCommand();
             }
             catch( Exception ex )
             {
@@ -418,7 +418,7 @@ namespace BudgetExecution
         {
             try
             {
-                return _commandBuilder?.GetCommand();
+                return CommandBuilder?.GetCommand();
             }
             catch( Exception ex )
             {

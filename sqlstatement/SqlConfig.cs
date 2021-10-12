@@ -1,4 +1,4 @@
-﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
 // Copyright (c) Terry Eppler. All rights reserved.
 // </copyright>
 
@@ -24,12 +24,12 @@ namespace BudgetExecution
         /// <summary>
         /// The extension
         /// </summary>
-        private protected readonly EXT _extension = EXT.SQL;
+        public EXT _extension = EXT.SQL;
 
         /// <summary>
         /// The provider path
         /// </summary>
-        private protected readonly NameValueCollection _providerPath = ConfigurationManager.AppSettings;
+        public NameValueCollection _providerPath = ConfigurationManager.AppSettings;
 
         /// <summary>
         /// The source

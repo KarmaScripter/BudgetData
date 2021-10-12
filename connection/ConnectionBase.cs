@@ -1,4 +1,4 @@
-﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
 // Copyright (c) Terry Eppler. All rights reserved.
 // </copyright>
 
@@ -27,53 +27,53 @@ namespace BudgetExecution
         /// <summary>
         /// The provider path
         /// </summary>
-        private protected readonly NameValueCollection _providerPath = ConfigurationManager.AppSettings;
+        public readonly NameValueCollection ProviderPath = ConfigurationManager.AppSettings;
 
         /// <summary>
         /// The source
         /// </summary>
-        private protected Source _source;
+        public Source Source { get; set; }
 
         /// <summary>
         /// The provider
         /// </summary>
-        private protected Provider _provider;
+        public Provider Provider { get; set; }
 
         /// <summary>
         /// The file extension
         /// </summary>
-        private protected EXT _fileExtension;
+        public EXT FileExtension { get; set; }
 
         /// <summary>
         /// The file path
         /// </summary>
-        private protected string _filePath;
+        public string FilePath { get; set; }
 
         /// <summary>
         /// The file name
         /// </summary>
-        private protected string _fileName;
+        public string FileName { get; set; }
 
         /// <summary>
         /// The table name
         /// </summary>
-        private protected string _tableName;
+        public string TableName  { get; set; }
 
         /// <summary>
         /// The connection string
         /// </summary>
-        private protected string _connectionString;
+        public string ConnectionString;
 
         /// <summary>
         /// Sets the source.
         /// </summary>
         /// <param name="source">
         /// The source.</param>
-        private protected void SetSource( Source source )
+        public void SetSource( Source source )
         {
             try
             {
-                _source = Validate.Source( source )
+                Source = Validate.Source( source )
                     ? source
                     : Source.NS;
             }
@@ -87,7 +87,7 @@ namespace BudgetExecution
         /// Sets the source.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
-        private protected void SetSource( string fileName )
+        public void SetSource( string fileName )
         {
             if( Verify.Input( fileName )
                 && File.Exists( fileName )
@@ -95,7 +95,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    _source = (Source)Enum.Parse( typeof( Source ), fileName );
+                    Source = (Source)Enum.Parse( typeof( Source ), fileName );
                 }
                 catch( Exception ex )
                 {
@@ -113,7 +113,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    _source = Source.External;
+                    Source = Source.External;
                 }
                 catch( Exception ex )
                 {
@@ -126,11 +126,11 @@ namespace BudgetExecution
         /// Sets the provider.
         /// </summary>
         /// <param name="provider">The provider.</param>
-        private protected void SetProvider( Provider provider )
+        public void SetProvider( Provider provider )
         {
             try
             {
-                _provider = Validate.Provider( provider )
+                Provider = Validate.Provider( provider )
                     && Resource.Providers?.Contains( provider.ToString() ) == true
                         ? (Provider)Enum.Parse( typeof( Provider ), $"{provider}" )
                         : Provider.NS;
@@ -145,13 +145,13 @@ namespace BudgetExecution
         /// Sets the provider.
         /// </summary>
         /// <param name="extension">The extension.</param>
-        private protected void SetProvider( EXT extension )
+        public void SetProvider( EXT extension )
         {
             if( Validate.EXT( extension ) )
             {
                 try
                 {
-                    _provider = extension switch
+                    Provider = extension switch
                     {
                         EXT.MDB => Provider.OleDb,
                         EXT.XLS => Provider.OleDb,
@@ -175,23 +175,23 @@ namespace BudgetExecution
         /// Sets the file path.
         /// </summary>
         /// <param name="provider">The provider.</param>
-        private protected void SetFilePath( Provider provider )
+        public void SetFilePath( Provider provider )
         {
             if( Validate.Provider( provider ) )
             {
                 try
                 {
-                    _filePath = provider switch
+                    FilePath = provider switch
                     {
-                        Provider.OleDb => _providerPath[ "OleDb" ],
-                        Provider.Access => _providerPath[ "Access" ],
-                        Provider.SQLite => _providerPath[ "SQLite" ],
-                        Provider.SqlCe => _providerPath[ "SqlCe" ],
-                        Provider.SqlServer => _providerPath[ "SqlServer" ],
-                        Provider.CSV => _providerPath[ "CSV" ],
-                        Provider.Excel => _providerPath[ "Excel" ],
-                        Provider.NS => _providerPath[ "Excel" ],
-                        _ => _providerPath[ "SQLite" ]
+                        Provider.OleDb => ProviderPath[ "OleDb" ],
+                        Provider.Access => ProviderPath[ "Access" ],
+                        Provider.SQLite => ProviderPath[ "SQLite" ],
+                        Provider.SqlCe => ProviderPath[ "SqlCe" ],
+                        Provider.SqlServer => ProviderPath[ "SqlServer" ],
+                        Provider.CSV => ProviderPath[ "CSV" ],
+                        Provider.Excel => ProviderPath[ "Excel" ],
+                        Provider.NS => ProviderPath[ "Excel" ],
+                        _ => ProviderPath[ "SQLite" ]
                     };
                 }
                 catch( Exception ex )
@@ -205,11 +205,11 @@ namespace BudgetExecution
         /// Sets the file path.
         /// </summary>
         /// <param name="filePath">The filePath.</param>
-        private protected void SetFilePath( string filePath )
+        public void SetFilePath( string filePath )
         {
             try
             {
-                _filePath = Verify.Input( filePath ) && File.Exists( filePath )
+                FilePath = Verify.Input( filePath ) && File.Exists( filePath )
                     ? Path.GetFullPath( filePath )
                     : default( string );
             }
@@ -223,7 +223,7 @@ namespace BudgetExecution
         /// Sets the file extension.
         /// </summary>
         /// <param name="filePath">The filePath.</param>
-        private protected void SetFileExtension( string filePath )
+        public void SetFileExtension( string filePath )
         {
             if( Verify.Input( filePath ) )
             {
@@ -231,7 +231,7 @@ namespace BudgetExecution
                 {
                     var _filext = Path.GetExtension( filePath )?.Trim( '.' )?.ToUpper();
 
-                    _fileExtension = Enum.IsDefined( typeof( EXT ), _filext )
+                    FileExtension = Enum.IsDefined( typeof( EXT ), _filext )
                         ? (EXT)Enum.Parse( typeof( EXT ), _filext )
                         : EXT.NS;
                 }
@@ -246,7 +246,7 @@ namespace BudgetExecution
         /// Sets the name of the file.
         /// </summary>
         /// <param name="filePath">The file path.</param>
-        private protected void SetFileName( string filePath )
+        public void SetFileName( string filePath )
         {
             if( Verify.Input( filePath ) )
             {
@@ -254,7 +254,7 @@ namespace BudgetExecution
                 {
                     var _filename = Path.GetFileNameWithoutExtension( filePath );
 
-                    _fileName = Verify.Input( filePath )
+                    FileName = Verify.Input( filePath )
                         ? _filename
                         : string.Empty;
                 }
@@ -269,7 +269,7 @@ namespace BudgetExecution
         /// Sets the provider path.
         /// </summary>
         /// <param name="filePath">The file path.</param>
-        private protected void SetProviderPath( string filePath )
+        public void SetProviderPath( string filePath )
         {
             if( Verify.Input( filePath )
                 && File.Exists( filePath )
@@ -279,7 +279,7 @@ namespace BudgetExecution
                 {
                     var _extension = (EXT)Enum.Parse( typeof( EXT ), Path.GetExtension( filePath ) );
 
-                    _filePath = _extension switch
+                    FilePath = _extension switch
                     {
                         EXT.MDB => ConfigurationManager.AppSettings[ "OleDbFilePath" ],
                         EXT.ACCDB => ConfigurationManager.AppSettings[ "AccessFilePath" ],
@@ -304,7 +304,7 @@ namespace BudgetExecution
         /// Sets the connection string.
         /// </summary>
         /// <param name="provider">The provider.</param>
-        private protected void SetConnectionString( Provider provider )
+        public void SetConnectionString( Provider provider )
         {
             if( Validate.Provider( provider ) )
             {
@@ -319,8 +319,8 @@ namespace BudgetExecution
                             var _connection = ConfigurationManager.ConnectionStrings[ provider.ToString() ]
                                 ?.ConnectionString;
 
-                            _connectionString = Verify.Input( _connection )
-                                ? _connection?.Replace( "{FilePath}", _filePath )
+                            ConnectionString = Verify.Input( _connection )
+                                ? _connection?.Replace( "{FilePath}", FilePath )
                                 : string.Empty;
 
                             break;
@@ -334,7 +334,7 @@ namespace BudgetExecution
                             var _connection = ConfigurationManager.ConnectionStrings[ provider.ToString() ]
                                 ?.ConnectionString;
 
-                            _connectionString = Verify.Input( _connection )
+                            ConnectionString = Verify.Input( _connection )
                                 ? _connection
                                 : string.Empty;
 
@@ -353,7 +353,7 @@ namespace BudgetExecution
         /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        private protected static void Fail( Exception ex )
+        public static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
             _error?.SetText();

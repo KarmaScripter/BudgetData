@@ -1,4 +1,4 @@
-﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
 // Copyright (c) Terry Eppler. All rights reserved.
 // </copyright>
 
@@ -70,7 +70,7 @@ namespace BudgetExecution
         /// <param name="dataRow">The data row.</param>
         public DataBuilder( DataRow dataRow )
         {
-            _record = dataRow;
+            Record = dataRow;
         }
 
         /// <summary>
@@ -80,17 +80,17 @@ namespace BudgetExecution
         /// <returns></returns>
         public DateTime GetDate( Field field )
         {
-            if( Verify.Row( _record )
+            if( Verify.Row( Record )
                 && Validate.Field( field ) )
             {
                 try
                 {
-                    var _columns = _record.Table
+                    var _columns = Record.Table
                         ?.GetColumnNames();
 
                     if( _columns?.Contains( $"{field}" ) == true )
                     {
-                        var _date = _record.GetDate( field );
+                        var _date = Record.GetDate( field );
 
                         return Verify.DateTime( _date )
                             ? _date

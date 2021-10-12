@@ -18,17 +18,17 @@ namespace BudgetExecution
         /// <summary>
         /// The data
         /// </summary>
-        protected internal object _data;
+        public object Data { get; set; }
 
         /// <summary>
         /// The name
         /// </summary>
-        protected internal string _name;
+        public string Name { get; set; }
 
         /// <summary>
         /// The value
         /// </summary>
-        protected internal string _value;
+        public string Value { get; set; }
 
         /// <summary>
         /// Sets the name.
@@ -38,7 +38,7 @@ namespace BudgetExecution
         {
             try
             {
-                _name = Verify.Input( columnName )
+                Name = Verify.Input( columnName )
                     ? columnName
                     : string.Empty;
             }
@@ -56,7 +56,7 @@ namespace BudgetExecution
         {
             try
             {
-                _data = Verify.Input( data?.ToString() )
+                Data = Verify.Input( data?.ToString() )
                     ? data
                     : default( object );
             }
@@ -74,7 +74,7 @@ namespace BudgetExecution
         {
             try
             {
-                _value = Verify.Input( data?.ToString() )
+                Value = Verify.Input( data?.ToString() )
                     ? data?.ToString()
                     : string.Empty;
             }
@@ -97,8 +97,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    return unit.GetName()?.Equals( _name )   == true
-                        && unit.GetValue()?.Equals( _value ) == true;
+                    return unit.GetName()?.Equals( Name )   == true
+                        && unit.GetValue()?.Equals( Value ) == true;
                 }
                 catch( Exception ex )
                 {

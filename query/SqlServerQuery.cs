@@ -13,7 +13,7 @@ namespace BudgetExecution
     public class SqlServerQuery : Query
     {
         /// <summary>
-        /// Gets or sets the _provider
+        /// Gets or sets the Provider
         /// </summary>
         /// <value>
         /// The provider.

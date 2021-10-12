@@ -84,7 +84,7 @@ namespace BudgetExecution
         /// <value>
         /// The r6.
         /// </value>
-        private protected readonly DataSet _dataSet;
+        public DataSet DataSet { get; set; }
 
         /// <summary>
         /// Gets or sets the dataTable.
@@ -92,7 +92,7 @@ namespace BudgetExecution
         /// <value>
         /// The dataTable.
         /// </value>
-        private protected readonly DataTable _table;
+        public DataTable Table { get; set; }
 
         /// <summary>
         /// Gets or sets the excel.
@@ -100,7 +100,7 @@ namespace BudgetExecution
         /// <value>
         /// The excel.
         /// </value>
-        private protected readonly ExcelPackage _excel;
+        public ExcelPackage Excel { get; set; }
 
         /// <summary>
         /// Saves the file.
@@ -305,7 +305,7 @@ namespace BudgetExecution
                     var _sql = "SELECT * FROM [" + sheetName + "]";
 
                     var _connectionString =
-                        $@"_provider=Microsoft.Jet.OLEDB.4.0;Data Source={Path.GetDirectoryName( fileName )};"
+                        $@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={Path.GetDirectoryName( fileName )};"
                         + @"Extended Properties='Text;HDR=YES;FMT=Delimited'";
 
                     using var _connection = new OleDbConnection( _connectionString );
@@ -384,7 +384,7 @@ namespace BudgetExecution
         /// Checks if sheet name exists.
         /// </summary>
         /// <dict name = "sheetName" >
-        /// _name of the sheet.
+        /// Name of the sheet.
         /// </dict>
         /// <dict name = "dataTable" >
         /// The dt dataTable.

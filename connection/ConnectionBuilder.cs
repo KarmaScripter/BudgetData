@@ -41,11 +41,11 @@ namespace BudgetExecution
         {
             SetSource( source );
             SetProvider( provider );
-            SetFilePath( _provider );
-            SetFileName( _filePath );
-            SetFileExtension( _filePath );
-            _tableName = _source.ToString();
-            SetConnectionString( _provider );
+            SetFilePath( Provider );
+            SetFileName( FilePath );
+            SetFileExtension( FilePath );
+            TableName = Source.ToString();
+            SetConnectionString( Provider );
         }
 
         /// <summary>
@@ -56,13 +56,13 @@ namespace BudgetExecution
         /// <param name="fullPath">The fullPath.</param>
         public ConnectionBuilder( string fullPath )
         {
-            _source = Source.External;
+            Source = Source.External;
             SetFilePath( fullPath );
-            SetFileName( _filePath );
-            SetFileExtension( _filePath );
-            SetProvider( _fileExtension );
-            _tableName = _fileName;
-            SetConnectionString( _provider );
+            SetFileName( FilePath );
+            SetFileExtension( FilePath );
+            SetProvider( FileExtension );
+            TableName = FileName;
+            SetConnectionString( Provider );
         }
 
         /// <summary>
@@ -74,13 +74,13 @@ namespace BudgetExecution
         /// <param name="provider">The provider.</param>
         public ConnectionBuilder( string fullPath, Provider provider = Provider.SQLite )
         {
-            _source = Source.External;
+            Source = Source.External;
             SetFilePath( fullPath );
-            SetFileName( _filePath );
-            SetFileExtension( _filePath );
+            SetFileName( FilePath );
+            SetFileExtension( FilePath );
             SetProvider( provider );
-            _tableName = _fileName;
-            SetConnectionString( _provider );
+            TableName = FileName;
+            SetConnectionString( Provider );
         }
 
         /// <summary>
@@ -91,9 +91,9 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _filePath ) 
-                    && File.Exists( _filePath )
-                        ? Path.GetFullPath( _filePath )
+                return Verify.Input( FilePath ) 
+                    && File.Exists( FilePath )
+                        ? Path.GetFullPath( FilePath )
                         : default( string );
             }
             catch( Exception ex )
@@ -111,8 +111,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.EXT( _fileExtension )
-                    ? _fileExtension
+                return Validate.EXT( FileExtension )
+                    ? FileExtension
                     : EXT.NS;
             }
             catch( Exception ex )
@@ -130,8 +130,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _filePath ) && File.Exists( _filePath )
-                    ? Path.GetFullPath( _filePath )
+                return Verify.Input( FilePath ) && File.Exists( FilePath )
+                    ? Path.GetFullPath( FilePath )
                     : default( string );
             }
             catch( Exception ex )
@@ -149,8 +149,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _filePath )
-                    ? Path.GetFullPath( _filePath )
+                return Verify.Input( FilePath )
+                    ? Path.GetFullPath( FilePath )
                     : default( string );
             }
             catch( Exception ex )
@@ -168,8 +168,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _connectionString )
-                    ? _connectionString
+                return Verify.Input( ConnectionString )
+                    ? ConnectionString
                     : default( string );
             }
             catch( Exception ex )
@@ -187,8 +187,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _tableName )
-                    ? _tableName
+                return Verify.Input( TableName )
+                    ? TableName
                     : default( string );
             }
             catch( Exception ex )
@@ -206,8 +206,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Provider( _provider )
-                    ? _provider
+                return Validate.Provider( Provider )
+                    ? Provider
                     : default( Provider );
             }
             catch( Exception ex )
@@ -225,8 +225,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Source( _source )
-                    ? _source
+                return Validate.Source( Source )
+                    ? Source
                     : Source.NS;
             }
             catch( Exception ex )

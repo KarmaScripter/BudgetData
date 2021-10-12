@@ -1,4 +1,4 @@
-﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
 // Copyright (c) Terry Eppler. All rights reserved.
 // </copyright>
 
@@ -31,7 +31,7 @@ namespace BudgetExecution
         {
             try
             {
-                return _query ?? new Query( _connectionBuilder, _sqlStatement );
+                return Query ?? new Query( ConnectionBuilder, SqlStatement );
             }
             catch( Exception ex )
             {
@@ -46,11 +46,11 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<DataRow> GetData()
         {
-            if( Verify.Table( _dataTable ) )
+            if( Verify.Table( DataTable ) )
             {
                 try
                 {
-                    var _data = _dataTable
+                    var _data = DataTable
                         ?.AsEnumerable();
 
                     return Verify.Rows( _data )
@@ -73,24 +73,24 @@ namespace BudgetExecution
         /// <returns></returns>
         public DataTable GetDataTable()
         {
-            if( Verify.Table( _dataTable ) )
+            if( Verify.Table( DataTable ) )
             {
                 try
                 {
-                    _dataSet = new DataSet( $"{_source}" )
+                    DataSet = new DataSet( $"{Source}" )
                     {
-                        DataSetName = $"{_source}"
+                        DataSetName = $"{Source}"
                     };
 
-                    _dataTable = new DataTable( $"{_source}" );
-                    _dataTable.TableName = $"{_source}";
-                    _dataSet.Tables.Add( _dataTable );
-                    var _adapter = _query?.GetAdapter();
-                    _adapter?.Fill( _dataSet, _dataTable.TableName );
-                    SetColumnCaptions( _dataTable );
+                    DataTable = new DataTable( $"{Source}" );
+                    DataTable.TableName = $"{Source}";
+                    DataSet.Tables.Add( DataTable );
+                    var _adapter = Query?.GetAdapter();
+                    _adapter?.Fill( DataSet, DataTable.TableName );
+                    SetColumnCaptions( DataTable );
 
-                    return _dataTable?.Rows?.Count > 0
-                        ? _dataTable
+                    return DataTable?.Rows?.Count > 0
+                        ? DataTable
                         : default( DataTable );
                 }
                 catch( Exception ex )
@@ -109,24 +109,24 @@ namespace BudgetExecution
         /// <returns></returns>
         public DataSet GetDataSet()
         {
-            if( Enum.IsDefined( typeof( Source ), _source ) )
+            if( Enum.IsDefined( typeof( Source ), Source ) )
             {
                 try
                 {
-                    _dataSet = new DataSet( "DataSet" )
+                    DataSet = new DataSet( "DataSet" )
                     {
                         DataSetName = "DataSet"
                     };
 
-                    var _table = new DataTable( $"{_source}" );
-                    _table.TableName = $"{_source}";
-                    _dataSet.Tables.Add( _table );
-                    using var _adapter = _query?.GetAdapter();
-                    _adapter?.Fill( _dataSet, _table?.TableName );
+                    var _table = new DataTable( $"{Source}" );
+                    _table.TableName = $"{Source}";
+                    DataSet.Tables.Add( _table );
+                    using var _adapter = Query?.GetAdapter();
+                    _adapter?.Fill( DataSet, _table?.TableName );
                     SetColumnCaptions( _table );
 
                     return _table?.Rows?.Count > 0
-                        ? _dataSet
+                        ? DataSet
                         : default( DataSet );
                 }
                 catch( Exception ex )
@@ -147,8 +147,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Source( _source )
-                    ? _source
+                return Validate.Source( Source )
+                    ? Source
                     : Source.NS;
             }
             catch( Exception ex )
@@ -165,8 +165,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Provider( _provider )
-                    ? _provider
+                return Validate.Provider( Provider )
+                    ? Provider
                     : Provider.NS;
             }
             catch( Exception ex )
@@ -184,8 +184,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Row( _record )
-                    ? _record
+                return Verify.Row( Record )
+                    ? Record
                     : default( DataRow );
             }
             catch( Exception ex )
@@ -205,18 +205,20 @@ namespace BudgetExecution
             {
                 try
                 {
-                    foreach( DataColumn column in dataTable.Columns )
+                    foreach( DataColumn _column in dataTable.Columns )
                     {
-                        if( column?.ColumnName?.Length < 5 )
+                        switch( _column?.ColumnName?.Length )
                         {
-                            var _caption = column.ColumnName.ToUpper();
-                            column.Caption = _caption;
-                            continue;
-                        }
+                            case < 5:
+                            {
+                                var _caption = _column.ColumnName.ToUpper();
+                                _column.Caption = _caption;
+                                continue;
+                            }
 
-                        if( column?.ColumnName?.Length >= 5 )
-                        {
-                            column.Caption = column.ColumnName.SplitPascal();
+                            case >= 5:
+                                _column.Caption = _column.ColumnName.SplitPascal();
+                                break;
                         }
                     }
                 }
@@ -238,16 +240,16 @@ namespace BudgetExecution
                 var _table = GetDataTable();
                 SetColumnCaptions( _table );
 
-                _dataSet = new DataSet( $"{_source}" )
+                DataSet = new DataSet( $"{Source}" )
                 {
-                    DataSetName = $"{_source}"
+                    DataSetName = $"{Source}"
                 };
 
-                var _datatable = new DataTable( $"{_source}" );
-                _datatable.TableName = $"{_source}";
-                _dataSet.Tables.Add( _datatable );
-                using var _adapter = _query?.GetAdapter();
-                _adapter?.Fill( _dataSet, _datatable.TableName );
+                var _datatable = new DataTable( $"{Source}" );
+                _datatable.TableName = $"{Source}";
+                DataSet.Tables.Add( _datatable );
+                using var _adapter = Query?.GetAdapter();
+                _adapter?.Fill( DataSet, _datatable.TableName );
                 SetColumnCaptions( _datatable );
 
                 return _table.Columns.Count > 0

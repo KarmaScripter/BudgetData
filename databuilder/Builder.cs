@@ -1,4 +1,4 @@
-﻿// <copyright file=" <File _name> .cs" company="Terry D. Eppler">
+﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
 // Copyright (c) Terry Eppler. All rights reserved.
 // </copyright>
 
@@ -28,7 +28,7 @@ namespace BudgetExecution
         /// <summary>
         /// The program elements
         /// </summary>
-        private protected readonly IDictionary<string, IEnumerable<string>> _programElements;
+        public IDictionary<string, IEnumerable<string>> ProgramElements { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Builder"/> class.
@@ -44,14 +44,14 @@ namespace BudgetExecution
         /// <param name="provider">The provider.</param>
         public Builder( Source source, Provider provider = Provider.SQLite )
         {
-            _source = source;
-            _provider = provider;
-            _connectionBuilder = new ConnectionBuilder( source, provider );
-            _sqlStatement = new SqlStatement( _connectionBuilder, SQL.SELECT );
-            SetQuery( _connectionBuilder, _sqlStatement );
-            _programElements = GetSeries( GetDataTable() );
-            _record = GetData()?.FirstOrDefault();
-            _args = _record?.ToDictionary();
+            Source = source;
+            Provider = provider;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            SqlStatement = new SqlStatement( ConnectionBuilder, SQL.SELECT );
+            SetQuery( ConnectionBuilder, SqlStatement );
+            ProgramElements = GetSeries( GetDataTable() );
+            Record = GetData()?.FirstOrDefault();
+            Args = Record?.ToDictionary();
         }
 
         /// <summary>
@@ -62,14 +62,14 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         public Builder( Source source, Provider provider, IDictionary<string, object> dict )
         {
-            _source = source;
-            _provider = provider;
-            _connectionBuilder = new ConnectionBuilder( source, provider );
-            _sqlStatement = new SqlStatement( _connectionBuilder, dict, SQL.SELECT );
-            SetQuery( _connectionBuilder, _sqlStatement );
-            _programElements = GetSeries( GetDataTable() );
-            _record = GetRecord();
-            _args = _record?.ToDictionary();
+            Source = source;
+            Provider = provider;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
+            SetQuery( ConnectionBuilder, SqlStatement );
+            ProgramElements = GetSeries( GetDataTable() );
+            Record = GetRecord();
+            Args = Record?.ToDictionary();
         }
 
         /// <summary>
@@ -79,14 +79,14 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         public Builder( Source source, IDictionary<string, object> dict )
         {
-            _source = source;
-            _provider = Provider.SQLite;
-            _connectionBuilder = new ConnectionBuilder( _source, _provider );
-            _sqlStatement = new SqlStatement( _connectionBuilder, dict, SQL.SELECT );
-            SetQuery( _connectionBuilder, _sqlStatement );
-            _programElements = GetSeries( GetDataTable() );
-            _record = GetRecord();
-            _args = _record?.ToDictionary();
+            Source = source;
+            Provider = Provider.SQLite;
+            ConnectionBuilder = new ConnectionBuilder( Source, Provider );
+            SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
+            SetQuery( ConnectionBuilder, SqlStatement );
+            ProgramElements = GetSeries( GetDataTable() );
+            Record = GetRecord();
+            Args = Record?.ToDictionary();
         }
 
         /// <summary>
@@ -95,14 +95,14 @@ namespace BudgetExecution
         /// <param name="query">The query.</param>
         public Builder( IQuery query )
         {
-            _query = query;
-            _source = _connectionBuilder.GetSource();
-            _provider = _connectionBuilder.GetProvider();
-            _connectionBuilder = _query.GetConnectionBuilder();
-            _sqlStatement = _query.GetSqlStatement();
-            _programElements = GetSeries( GetDataTable() );
-            _record = GetRecord();
-            _args = _record?.ToDictionary();
+            Query = query;
+            Source = ConnectionBuilder.GetSource();
+            Provider = ConnectionBuilder.GetProvider();
+            ConnectionBuilder = Query.GetConnectionBuilder();
+            SqlStatement = Query.GetSqlStatement();
+            ProgramElements = GetSeries( GetDataTable() );
+            Record = GetRecord();
+            Args = Record?.ToDictionary();
         }
 
         /// <summary>
@@ -212,7 +212,7 @@ namespace BudgetExecution
                 {
                     var _sheets = 0;
 
-                    var _connectionString = @"_provider=Microsoft.ACE.OLEDB.12.0;Data Source="
+                    var _connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source="
                         + filePath
                         + ";Extended Properties='Excel 12.0;HDR=YES;IMEX=1;';";
 
@@ -368,7 +368,7 @@ namespace BudgetExecution
         {
             try
             {
-                return _query != null
+                return Query != null
                     ? MemberwiseClone() as Builder
                     : default( Builder );
             }

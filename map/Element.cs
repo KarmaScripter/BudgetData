@@ -14,13 +14,13 @@ namespace BudgetExecution
     /// </summary>
     /// <seealso cref="BudgetExecution.ElementBase" />
     /// <seealso cref="BudgetExecution.IElement" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class Element : ElementBase, IElement
     {
         /// <summary>
         /// The initial
         /// </summary>
-        private protected string _initial;
+        public string Initial { get; set; }
 
         /// <summary>
         /// The default
@@ -41,7 +41,7 @@ namespace BudgetExecution
         public Element( KeyValuePair<string, object> kvp )
         {
             SetName( kvp.Key );
-            SetField( _name );
+            SetField( Name );
             SetValue( kvp.Value?.ToString() );
         }
 
@@ -79,7 +79,7 @@ namespace BudgetExecution
         public Element( Field field, string value = "" )
         {
             SetField( field );
-            SetName( _field );
+            SetName( Field );
             SetValue( value );
             SetData( value );
         }
@@ -118,8 +118,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Enum.IsDefined( typeof( Field ), _field )
-                    ? _field
+                return Enum.IsDefined( typeof( Field ), Field )
+                    ? Field
                     : Field.NS;
             }
             catch( Exception ex )
@@ -139,9 +139,9 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _name )
-                    && Verify.Input( _value )
-                        ? $"{_name} = {_value}"
+                return Verify.Input( Name )
+                    && Verify.Input( Value )
+                        ? $"{Name} = {Value}"
                         : string.Empty;
             }
             catch( Exception ex )
@@ -164,8 +164,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    if( element.GetValue()?.Equals( _value ) == true
-                        && element.GetName()?.Equals( _name ) == true )
+                    if( element.GetValue()?.Equals( Value ) == true
+                        && element.GetName()?.Equals( Name ) == true )
                     {
                         return true;
                     }
