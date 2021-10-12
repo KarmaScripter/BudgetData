@@ -101,7 +101,7 @@ namespace BudgetExecution
         /// <value>
         /// The data set.
         /// </value>
-        public DataSet DataSet { get; set; }
+        public DataSet DataSet { get; internal set; }
 
         /// <summary>
         /// Gets or sets the table.
@@ -109,7 +109,7 @@ namespace BudgetExecution
         /// <value>
         /// The table.
         /// </value>
-        public DataTable Table { get; set; }
+        public DataTable Table { get; internal set; }
 
         /// <summary>
         /// Gets or sets the excel.
@@ -117,7 +117,7 @@ namespace BudgetExecution
         /// <value>
         /// The excel.
         /// </value>
-        public ExcelPackage Excel { get; set; }
+        public ExcelPackage Excel { get; internal set; }
 
         /// <summary>
         /// Saves the file.
