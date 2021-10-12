@@ -18,17 +18,17 @@ namespace BudgetExecution
         /// <summary>
         /// The data
         /// </summary>
-        public object Data { get; set; }
+        public object Data { get; protected internal set; }
 
         /// <summary>
         /// The name
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; protected internal set; }
 
         /// <summary>
         /// The value
         /// </summary>
-        public string Value { get; set; }
+        public string Value { get; protected internal set; }
 
         /// <summary>
         /// Sets the name.
