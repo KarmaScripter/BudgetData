@@ -16,12 +16,13 @@ namespace BudgetExecution
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     public abstract class ConnectionBase
     {
         /// <summary>
         /// The connector
         /// </summary>
-        private readonly ConnectionStringSettingsCollection _connector =
+        public readonly ConnectionStringSettingsCollection Connector =
             ConfigurationManager.ConnectionStrings;
 
         /// <summary>
