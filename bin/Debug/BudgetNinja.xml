@@ -9922,24 +9922,24 @@
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.Time" /> class.
             </summary>
-            <param name="dataRow">The data.</param>
+            <param name="datarow">The data.</param>
             <param name="date">The date.</param>
         </member>
         <member name="M:BudgetExecution.Time.#ctor(System.Data.DataRow,System.String)">
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.Time" /> class.
             </summary>
-            <param name="dataRow">The data.</param>
+            <param name="datarow">The data.</param>
             <param name="value">The value.</param>
         </member>
         <member name="M:BudgetExecution.Time.#ctor(System.Data.DataRow,System.Data.DataColumn)">
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.Time" /> class.
             </summary>
-            <param name="dataRow">The data.</param>
+            <param name="datarow">The data.</param>
             <param name="column">The column.</param>
         </member>
-        <member name="F:BudgetExecution.Time._date">
+        <member name="P:BudgetExecution.Time.Date">
             <summary>
             Gets the date.
             </summary>
@@ -9947,7 +9947,7 @@
             The date.
             </value>
         </member>
-        <member name="F:BudgetExecution.Time._day">
+        <member name="P:BudgetExecution.Time.Day">
             <summary>
             Gets the value.
             </summary>
@@ -10024,6 +10024,8 @@
             <summary>
             
             </summary>
+            <seealso cref = "T:BudgetExecution.UnitBase"/>
+            <seealso cref = "T:BudgetExecution.IUnit"/>
         </member>
         <member name="M:BudgetExecution.TimeBase.SetName(System.String)">
             <summary>

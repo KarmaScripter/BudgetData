@@ -10,17 +10,17 @@
             </summary>
             <seealso cref="T:System.Data.Common.DbDataAdapter" />
         </member>
-        <member name="F:BudgetExecution.AdapterBuilder._connection">
+        <member name="P:BudgetExecution.AdapterBuilder.Connection">
             <summary>
             The connection
             </summary>
         </member>
-        <member name="F:BudgetExecution.AdapterBuilder._sqlStatement">
+        <member name="P:BudgetExecution.AdapterBuilder.SqlStatement">
             <summary>
             The SQL statement
             </summary>
         </member>
-        <member name="F:BudgetExecution.AdapterBuilder._connectionBuilder">
+        <member name="P:BudgetExecution.AdapterBuilder.ConnectionBuilder">
             <summary>
             The connection builder
             </summary>
@@ -67,27 +67,27 @@
             </summary>
             <seealso cref="T:System.IDisposable" />
         </member>
-        <member name="F:BudgetExecution.AdapterFactory._dataConnection">
+        <member name="P:BudgetExecution.AdapterFactory.DataConnection">
             <summary>
             The data connection
             </summary>
         </member>
-        <member name="F:BudgetExecution.AdapterFactory._sqlStatement">
+        <member name="P:BudgetExecution.AdapterFactory.SqlStatement">
             <summary>
             The SQL statement
             </summary>
         </member>
-        <member name="F:BudgetExecution.AdapterFactory._commandBuilder">
+        <member name="P:BudgetExecution.AdapterFactory.CommandBuilder">
             <summary>
             The command builder
             </summary>
         </member>
-        <member name="F:BudgetExecution.AdapterFactory._connectionBuilder">
+        <member name="P:BudgetExecution.AdapterFactory.ConnectionBuilder">
             <summary>
             The connection builder
             </summary>
         </member>
-        <member name="F:BudgetExecution.AdapterFactory._adapterBuilder">
+        <member name="P:BudgetExecution.AdapterFactory.AdapterBuilder">
             <summary>
             The adapter builder
             </summary>
@@ -164,25 +164,40 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
+        <member name="T:BudgetExecution.IAdapter">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:BudgetExecution.IAdapter.GetConnection">
-            <summary> Gets the connection. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the connection.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.IAdapter.GetSelectCommand">
-            <summary> Gets the select command. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the select command.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.IAdapter.GetInsertCommand">
-            <summary> Gets the insert command. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the insert command.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.IAdapter.GetUpdateCommand">
-            <summary> Gets the update command. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the update command.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.IAdapter.GetDeleteCommand">
-            <summary> Gets the delete command. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the delete command.
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:BudgetExecution.CommandBase">
             <summary>
@@ -191,27 +206,27 @@
             <seealso cref="T:BudgetExecution.ISource" />
             <seealso cref="T:BudgetExecution.IProvider" />
         </member>
-        <member name="F:BudgetExecution.CommandBase._command">
+        <member name="P:BudgetExecution.CommandBase.Command">
             <summary>
             The command
             </summary>
         </member>
-        <member name="F:BudgetExecution.CommandBase._connectionBuilder">
+        <member name="P:BudgetExecution.CommandBase.ConnectionBuilder">
             <summary>
             The connection builder
             </summary>
         </member>
-        <member name="F:BudgetExecution.CommandBase._provider">
+        <member name="P:BudgetExecution.CommandBase.Provider">
             <summary>
             The provider
             </summary>
         </member>
-        <member name="F:BudgetExecution.CommandBase._source">
+        <member name="P:BudgetExecution.CommandBase.Source">
             <summary>
             The source
             </summary>
         </member>
-        <member name="F:BudgetExecution.CommandBase._sqlStatement">
+        <member name="P:BudgetExecution.CommandBase.SqlStatement">
             <summary>
             The SQL statement
             </summary>
@@ -325,12 +340,12 @@
             <seealso cref="T:BudgetExecution.CommandBase" />
             <seealso cref="T:BudgetExecution.ICommandFactory" />
         </member>
-        <member name="F:BudgetExecution.CommandFactory._commandBuilder">
+        <member name="P:BudgetExecution.CommandFactory.CommandBuilder">
             <summary>
             The command builder
             </summary>
         </member>
-        <member name="F:BudgetExecution.CommandFactory._connectionFactory">
+        <member name="F:BudgetExecution.CommandFactory.ConnectionFactory">
             <summary>
             The connection factory
             </summary>
@@ -604,42 +619,42 @@
             The connector
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._providerPath">
+        <member name="F:BudgetExecution.ConnectionBase.ProviderPath">
             <summary>
             The provider path
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._source">
+        <member name="P:BudgetExecution.ConnectionBase.Source">
             <summary>
             The source
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._provider">
+        <member name="P:BudgetExecution.ConnectionBase.Provider">
             <summary>
             The provider
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._fileExtension">
+        <member name="P:BudgetExecution.ConnectionBase.FileExtension">
             <summary>
             The file extension
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._filePath">
+        <member name="P:BudgetExecution.ConnectionBase.FilePath">
             <summary>
             The file path
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._fileName">
+        <member name="P:BudgetExecution.ConnectionBase.FileName">
             <summary>
             The file name
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._tableName">
+        <member name="P:BudgetExecution.ConnectionBase.TableName">
             <summary>
             The table name
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._connectionString">
+        <member name="F:BudgetExecution.ConnectionBase.ConnectionString">
             <summary>
             The connection string
             </summary>
@@ -809,7 +824,12 @@
             <seealso cref = "T:BudgetExecution.IProvider"/>
             <seealso/>
         </member>
-        <member name="F:BudgetExecution.ConnectionFactory._connection">
+        <member name="P:BudgetExecution.ConnectionFactory.ConnectionBuilder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.ConnectionFactory.Connection">
             <summary>
             Gets the connection.
             </summary>
@@ -1194,6 +1214,41 @@
             Contains the entire database schema
             </summary>
         </member>
+        <member name="T:BudgetExecution.ForeignKeySchema">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:BudgetExecution.ForeignKeySchema.cascadeOnDelete">
+            <summary>
+            The cascade on delete
+            </summary>
+        </member>
+        <member name="F:BudgetExecution.ForeignKeySchema.columnName">
+            <summary>
+            The column name
+            </summary>
+        </member>
+        <member name="F:BudgetExecution.ForeignKeySchema.foreignColumnName">
+            <summary>
+            The foreign column name
+            </summary>
+        </member>
+        <member name="F:BudgetExecution.ForeignKeySchema.foreignTableName">
+            <summary>
+            The foreign table name
+            </summary>
+        </member>
+        <member name="F:BudgetExecution.ForeignKeySchema.isNullable">
+            <summary>
+            The is nullable
+            </summary>
+        </member>
+        <member name="F:BudgetExecution.ForeignKeySchema.tableName">
+            <summary>
+            The table name
+            </summary>
+        </member>
         <member name="T:BudgetExecution.SqlServerConverter">
             <summary>
             This class is responsible to take a single SQL Server database and convert it to
@@ -1553,7 +1608,7 @@
             <seealso cref="T:BudgetExecution.BuilderBase" />
             <seealso cref="T:BudgetExecution.IBuilder" />
         </member>
-        <member name="F:BudgetExecution.Builder._programElements">
+        <member name="P:BudgetExecution.Builder.ProgramElements">
             <summary>
             The program elements
             </summary>
@@ -1825,47 +1880,47 @@
             
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._source">
+        <member name="P:BudgetExecution.DataConfig.Source">
             <summary>
             The source
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._provider">
+        <member name="P:BudgetExecution.DataConfig.Provider">
             <summary>
             The provider
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._connectionBuilder">
+        <member name="P:BudgetExecution.DataConfig.ConnectionBuilder">
             <summary>
             The connection builder
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._args">
+        <member name="P:BudgetExecution.DataConfig.Args">
             <summary>
             The arguments
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._sqlStatement">
+        <member name="P:BudgetExecution.DataConfig.SqlStatement">
             <summary>
             The SQL statement
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._query">
+        <member name="P:BudgetExecution.DataConfig.Query">
             <summary>
             The query
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._record">
+        <member name="P:BudgetExecution.DataConfig.Record">
             <summary>
             The record
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._dataTable">
+        <member name="P:BudgetExecution.DataConfig.DataTable">
             <summary>
             The data table
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._dataSet">
+        <member name="P:BudgetExecution.DataConfig.DataSet">
             <summary>
             The data set
             </summary>
@@ -2191,22 +2246,22 @@
             </summary>
             <seealso cref="T:BudgetExecution.Unit" />
         </member>
-        <member name="F:BudgetExecution.AmountBase._funding">
+        <member name="P:BudgetExecution.AmountBase.Funding">
             <summary>
             The funding
             </summary>
         </member>
-        <member name="F:BudgetExecution.AmountBase._initial">
+        <member name="P:BudgetExecution.AmountBase.Initial">
             <summary>
             The initial
             </summary>
         </member>
-        <member name="F:BudgetExecution.AmountBase._delta">
+        <member name="P:BudgetExecution.AmountBase.Delta">
             <summary>
             The delta
             </summary>
         </member>
-        <member name="F:BudgetExecution.AmountBase._numeric">
+        <member name="F:BudgetExecution.AmountBase.Numeric">
             <summary>
             The numeric
             </summary>
@@ -2358,7 +2413,7 @@
             <seealso cref="T:BudgetExecution.ElementBase" />
             <seealso cref="T:BudgetExecution.IElement" />
         </member>
-        <member name="F:BudgetExecution.Element._initial">
+        <member name="P:BudgetExecution.Element.Initial">
             <summary>
             The initial
             </summary>
@@ -2453,7 +2508,7 @@
             </summary>
             <seealso cref="T:BudgetExecution.Unit" />
         </member>
-        <member name="F:BudgetExecution.ElementBase._field">
+        <member name="P:BudgetExecution.ElementBase.Field">
             <summary>
             The field
             </summary>
@@ -2775,70 +2830,89 @@
             </returns>
         </member>
         <member name="T:BudgetExecution.KeyBase">
-            <summary> </summary>
-            <seealso cref = "T:BudgetExecution.UnitBase"/>
-            <seealso cref = "T:BudgetExecution.IUnit"/>
+            <summary>
+            
+            </summary>
+            <seealso cref="T:BudgetExecution.Unit" />
         </member>
-        <member name="F:BudgetExecution.KeyBase._primaryKey">
-            <summary> Gets or sets the field. </summary>
-            <value> The field. </value>
+        <member name="P:BudgetExecution.KeyBase.PrimaryKey">
+            <summary>
+            Gets or sets the primary key.
+            </summary>
+            <value>
+            The primary key.
+            </value>
         </member>
-        <member name="F:BudgetExecution.KeyBase._index">
-            <summary> Gets or sets the value. </summary>
-            <value> The value. </value>
+        <member name="P:BudgetExecution.KeyBase.Index">
+            <summary>
+            Gets or sets the index.
+            </summary>
+            <value>
+            The index.
+            </value>
         </member>
         <member name="M:BudgetExecution.KeyBase.SetName(System.String)">
-            <summary> Sets the columnName. </summary>
-            <param name = "columnName" > </param>
-            <returns> </returns>
+            <summary>
+            Sets the name.
+            </summary>
+            <param name="columnName">Name of the column.</param>
         </member>
         <member name="M:BudgetExecution.KeyBase.SetName(System.Data.DataRow)">
-            <summary> Sets the columnName. </summary>
-            <param name = "dataRow" > </param>
-            <returns> </returns>
+            <summary>
+            Sets the name.
+            </summary>
+            <param name="dataRow">The data row.</param>
         </member>
         <member name="M:BudgetExecution.KeyBase.SetName(BudgetExecution.PrimaryKey)">
-            <summary> Sets the columnName. </summary>
-            <param name = "field" > </param>
-            <returns> </returns>
+            <summary>
+            Sets the name.
+            </summary>
+            <param name="field">The field.</param>
         </member>
         <member name="M:BudgetExecution.KeyBase.SetName(System.Data.DataRow,BudgetExecution.PrimaryKey)">
-            <summary> Sets the columnName. </summary>
-            <param name = "dataRow" > </param>
-            <param name = "index" > </param>
-            <returns> </returns>
+            <summary>
+            Sets the name.
+            </summary>
+            <param name="dataRow">The data row.</param>
+            <param name="index">The index.</param>
         </member>
         <member name="M:BudgetExecution.KeyBase.SetPrimaryKey(System.String)">
-            <summary> Sets the field. </summary>
-            <param name = "keyName" > </param>
-            <returns> </returns>
+            <summary>
+            Sets the primary key.
+            </summary>
+            <param name="keyName">Name of the key.</param>
         </member>
         <member name="M:BudgetExecution.KeyBase.SetPrimaryKey(System.Data.DataRow)">
-            <summary> Sets the field. </summary>
-            <param name = "dataRow" > </param>
-            <returns> </returns>
+            <summary>
+            Sets the primary key.
+            </summary>
+            <param name="dataRow">The data row.</param>
         </member>
         <member name="M:BudgetExecution.KeyBase.SetPrimaryKey(BudgetExecution.PrimaryKey)">
-            <summary> Sets the field. </summary>
-            <param name = "keyName" > </param>
-            <returns> </returns>
+            <summary>
+            Sets the primary key.
+            </summary>
+            <param name="keyName">Name of the key.</param>
         </member>
         <member name="M:BudgetExecution.KeyBase.SetPrimaryKey(System.Data.DataRow,BudgetExecution.PrimaryKey)">
-            <summary> Sets the field. </summary>
-            <param name = "dataRow" > </param>
-            <param name = "keyName" > </param>
-            <returns> </returns>
+            <summary>
+            Sets the primary key.
+            </summary>
+            <param name="dataRow">The data row.</param>
+            <param name="keyName">Name of the key.</param>
         </member>
         <member name="M:BudgetExecution.KeyBase.SetIndex(System.Int32)">
-            <summary> Sets the value. </summary>
-            <param name = "value" > </param>
-            <returns> </returns>
+            <summary>
+            Sets the index.
+            </summary>
+            <param name="value">The value.</param>
         </member>
         <member name="M:BudgetExecution.KeyBase.SetIndex(System.Data.DataRow,BudgetExecution.PrimaryKey)">
-            <summary> Sets the value. </summary>
-            <param name = "dataRow" > </param>
-            <param name = "key" > </param>
-            <returns> </returns>
+            <summary>
+            Sets the index.
+            </summary>
+            <param name="dataRow">The data row.</param>
+            <param name="key">The key.</param>
         </member>
         <member name="T:BudgetExecution.Map">
             <summary>
@@ -2961,17 +3035,17 @@
             
             </summary>
         </member>
-        <member name="F:BudgetExecution.UnitBase._data">
+        <member name="P:BudgetExecution.UnitBase.Data">
             <summary>
             The data
             </summary>
         </member>
-        <member name="F:BudgetExecution.UnitBase._name">
+        <member name="P:BudgetExecution.UnitBase.Name">
             <summary>
             The name
             </summary>
         </member>
-        <member name="F:BudgetExecution.UnitBase._value">
+        <member name="P:BudgetExecution.UnitBase.Value">
             <summary>
             The value
             </summary>
@@ -3114,7 +3188,7 @@
             The sqlStatement.
             </param>
         </member>
-        <member name="F:BudgetExecution.CsvQuery._dataSet">
+        <member name="P:BudgetExecution.CsvQuery.DataSet">
             <summary>
             Gets or sets the data set.
             </summary>
@@ -3122,7 +3196,7 @@
             The data set.
             </value>
         </member>
-        <member name="F:BudgetExecution.CsvQuery._table">
+        <member name="P:BudgetExecution.CsvQuery.Table">
             <summary>
             Gets or sets the table.
             </summary>
@@ -3130,7 +3204,7 @@
             The table.
             </value>
         </member>
-        <member name="F:BudgetExecution.CsvQuery._excel">
+        <member name="P:BudgetExecution.CsvQuery.Excel">
             <summary>
             Gets or sets the excel.
             </summary>
@@ -3225,6 +3299,11 @@
             <seealso cref = "T:BudgetExecution.Query"/>
             <seealso cref = "T:BudgetExecution.IQueryBase"/>
         </member>
+        <member name="P:BudgetExecution.ExcelQuery.Provider">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:BudgetExecution.ExcelQuery.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.ExcelQuery"/> class.
@@ -3259,7 +3338,7 @@
             <param name="connectionBuilder">The connectionBuilder.</param>
             <param name="sqlStatement">The sqlStatement.</param>
         </member>
-        <member name="F:BudgetExecution.ExcelQuery._dataSet">
+        <member name="P:BudgetExecution.ExcelQuery.DataSet">
             <summary>
             Gets or sets the r6.
             </summary>
@@ -3267,7 +3346,7 @@
             The r6.
             </value>
         </member>
-        <member name="F:BudgetExecution.ExcelQuery._table">
+        <member name="P:BudgetExecution.ExcelQuery.Table">
             <summary>
             Gets or sets the dataTable.
             </summary>
@@ -3275,7 +3354,7 @@
             The dataTable.
             </value>
         </member>
-        <member name="F:BudgetExecution.ExcelQuery._excel">
+        <member name="P:BudgetExecution.ExcelQuery.Excel">
             <summary>
             Gets or sets the excel.
             </summary>
@@ -3352,7 +3431,7 @@
             Checks if sheet name exists.
             </summary>
             <dict name = "sheetName" >
-            _name of the sheet.
+            Name of the sheet.
             </dict>
             <dict name = "dataTable" >
             The dt dataTable.
@@ -4021,7 +4100,7 @@
         </member>
         <member name="F:BudgetExecution.SqlServerQuery._provider">
             <summary>
-            Gets or sets the _provider
+            Gets or sets the Provider
             </summary>
             <value>
             The provider.
@@ -4093,7 +4172,7 @@
             The data.
             </param>
         </member>
-        <member name="F:BudgetExecution.DataSchema._name">
+        <member name="P:BudgetExecution.DataSchema.Name">
             <summary>
             Gets the name of the Table.
             </summary>
@@ -4101,7 +4180,7 @@
             The name of the Table.
             </value>
         </member>
-        <member name="F:BudgetExecution.DataSchema._data">
+        <member name="P:BudgetExecution.DataSchema.Data">
             <summary>
             Gets the data.
             </summary>
@@ -4509,6 +4588,21 @@
             Gets the delete statement.
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:BudgetExecution.DataWorker">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:BudgetExecution.DataWorker.unitBuilder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BudgetExecution.DataWorker.#ctor">
+            <summary>
+            
+            </summary>
         </member>
         <member name="P:BudgetExecution.DataWorker.BindingSource">
             <summary>
