@@ -19,7 +19,7 @@ namespace BudgetExecution
         /// <summary>
         /// The field
         /// </summary>
-        public Field Field { get; set; }
+        public Field Field { get; protected internal set; }
 
         /// <summary>
         /// Sets the columnName.
@@ -270,7 +270,7 @@ namespace BudgetExecution
         private protected void SetValue( DataRow dataRow, Field field )
         {
             if( Verify.Row( dataRow )
-                && Verify.Field( field ) )
+                && Validate.Field( field ) )
             {
                 try
                 {

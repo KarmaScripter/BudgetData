@@ -17,17 +17,17 @@ namespace BudgetExecution
         /// <summary>
         /// The funding
         /// </summary>
-        public double Funding { get; set; }
+        public double Funding { get; protected internal set; }
 
         /// <summary>
         /// The initial
         /// </summary>
-        public double Initial { get; set; }
+        public double Initial { get; protected internal set; }
 
         /// <summary>
         /// The delta
         /// </summary>
-        public double Delta { get; set; }
+        public double Delta { get; protected internal set; }
 
         /// <summary>
         /// The numeric

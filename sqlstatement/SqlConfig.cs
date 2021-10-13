@@ -24,37 +24,37 @@ namespace BudgetExecution
         /// <summary>
         /// The extension
         /// </summary>
-        public EXT _extension = EXT.SQL;
+        public readonly EXT Extension = EXT.SQL;
 
         /// <summary>
         /// The provider path
         /// </summary>
-        public NameValueCollection _providerPath = ConfigurationManager.AppSettings;
+        public readonly NameValueCollection ProviderPath = ConfigurationManager.AppSettings;
 
         /// <summary>
         /// The source
         /// </summary>
-        private protected Source _source;
+        public Source Source { get; protected internal set; }
 
         /// <summary>
         /// The provider
         /// </summary>
-        private protected Provider _provider;
+        public Provider Provider { get; protected internal set; }
 
         /// <summary>
         /// The SQL statement
         /// </summary>
-        private protected ISqlStatement _sqlStatement;
+        public ISqlStatement SqlStatement { get; protected internal set; }
 
         /// <summary>
         /// The file path
         /// </summary>
-        private protected string _filePath;
+        public string FilePath { get; protected internal set; }
 
         /// <summary>
         /// The file name
         /// </summary>
-        protected string _fileName;
+        public string FileName { get; protected internal set; }
 
         /// <summary>
         /// Gets the source.
@@ -64,8 +64,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Source( _source )
-                    ? _source
+                return Verify.Source( Source )
+                    ? Source
                     : default( Source );
             }
             catch( Exception ex )
@@ -83,8 +83,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Provider( _provider )
-                    ? _provider
+                return Verify.Provider( Provider )
+                    ? Provider
                     : default( Provider );
             }
             catch( Exception ex )
@@ -179,12 +179,12 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<string> GetScriptFiles()
         {
-            if( Validate.Provider( _provider )
+            if( Validate.Provider( Provider )
                 && Enum.IsDefined( typeof( SQL ), CommandType ) )
             {
                 try
                 {
-                    var _directory = _providerPath[ $"{_provider}" ] + $@"\{CommandType}";
+                    var _directory = ProviderPath[ $"{Provider}" ] + $@"\{CommandType}";
 
                     if( Verify.Input( _directory )
                         && Directory.Exists( _directory ) )

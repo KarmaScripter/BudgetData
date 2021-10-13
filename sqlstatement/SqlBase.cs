@@ -125,9 +125,9 @@ namespace BudgetExecution
                 {
                     var _empty = string.Empty;
 
-                    foreach( var kvp in dict )
+                    foreach( var _kvp in dict )
                     {
-                        _empty += $"{kvp.Key} = '{kvp.Value}' AND";
+                        _empty += $"{_kvp.Key} = '{_kvp.Value}' AND";
                     }
 
                     var _values = _empty.TrimEnd( " AND".ToCharArray() );
@@ -186,10 +186,10 @@ namespace BudgetExecution
                     var _column = string.Empty;
                     var _values = string.Empty;
 
-                    foreach( var kvp in dict )
+                    foreach( var _kvp in dict )
                     {
-                        _column += $"{kvp.Key}, ";
-                        _values += $"{kvp.Value}, ";
+                        _column += $"{_kvp.Key}, ";
+                        _values += $"{_kvp.Value}, ";
                     }
 
                     var values =

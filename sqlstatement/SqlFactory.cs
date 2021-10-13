@@ -21,13 +21,13 @@ namespace BudgetExecution
         /// <param name = "command" > The command. </param>
         public SqlFactory( IConnectionBuilder builder, SQL command = SQL.SELECT )
         {
-            _source = builder.GetSource();
-            _provider = builder.GetProvider();
+            Source = builder.GetSource();
+            Provider = builder.GetProvider();
             CommandType = command;
             ConnectionBuilder = builder;
-            _sqlStatement = new SqlStatement( ConnectionBuilder, CommandType );
-            _filePath = Path.GetFullPath( _providerPath[ _provider.ToString() ] );
-            _fileName = Path.GetFileNameWithoutExtension( _filePath );
+            SqlStatement = new SqlStatement( ConnectionBuilder, CommandType );
+            FilePath = Path.GetFullPath( ProviderPath[ Provider.ToString() ] );
+            FileName = Path.GetFileNameWithoutExtension( FilePath );
         }
 
         /// <summary>
@@ -40,12 +40,12 @@ namespace BudgetExecution
         public SqlFactory( string filePath, SQL command = SQL.SELECT )
         {
             ConnectionBuilder = new ConnectionBuilder( filePath );
-            _source = ConnectionBuilder.GetSource();
-            _provider = ConnectionBuilder.GetProvider();
+            Source = ConnectionBuilder.GetSource();
+            Provider = ConnectionBuilder.GetProvider();
             CommandType = command;
-            _sqlStatement = new SqlStatement( ConnectionBuilder, CommandType );
-            _fileName = ConnectionBuilder.GetFileName();
-            _filePath = ConnectionBuilder.GetFilePath();
+            SqlStatement = new SqlStatement( ConnectionBuilder, CommandType );
+            FileName = ConnectionBuilder.GetFileName();
+            FilePath = ConnectionBuilder.GetFilePath();
         }
     }
 }

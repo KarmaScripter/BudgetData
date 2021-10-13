@@ -29,7 +29,7 @@ namespace BudgetExecution
         /// <value>
         /// The provider.
         /// </value>
-        private protected Provider _provider;
+        public Provider Provider { get; protected internal set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref = "SQLiteQuery"/> class.
@@ -249,7 +249,10 @@ namespace BudgetExecution
 
                     using var _adapter = new OleDbDataAdapter( _sql, _connection );
                     _adapter.Fill( _dataset, sheetName );
-                    return _dataset.Tables[ 0 ];
+
+                    return Verify.Table( _dataset.Tables[ 0 ] )
+                        ? _dataset.Tables[ 0 ]
+                        : default( DataTable );
                 }
                 catch( Exception ex )
                 {
@@ -324,7 +327,7 @@ namespace BudgetExecution
                 try
                 {
                     return dict.Keys.Any()
-                        ? dict.ToSqlDbParameters( _provider )
+                        ? dict.ToSqlDbParameters( Provider )
                         : default( IEnumerable<DbParameter> );
                 }
                 catch( Exception ex )
@@ -384,9 +387,9 @@ namespace BudgetExecution
             _connection.Open();
             _command.CommandText = _commandText;
             _command.ExecuteNonQuery();
-            _command.CommandText = "INSERT INTO MyTable (Key,Value) _values ('key one','value one')";
+            _command.CommandText = "INSERT INTO MyTable (Key,Value) Values ('key one','value one')";
             _command.ExecuteNonQuery();
-            _command.CommandText = "INSERT INTO MyTable (Key,Value) _values ('key two','value value')";
+            _command.CommandText = "INSERT INTO MyTable (Key,Value) Values ('key two','value value')";
             _command.ExecuteNonQuery();
             _command.CommandText = "Select * FROM MyTable";
             using var _reader = _command.ExecuteReader();

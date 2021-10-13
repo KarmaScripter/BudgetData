@@ -28,7 +28,7 @@ namespace BudgetExecution
         /// <summary>
         /// 
         /// </summary>
-        private protected Provider Provider { get; } = Provider.Excel;
+        public readonly Provider Provider = Provider.Excel;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExcelQuery"/> class.
@@ -84,7 +84,7 @@ namespace BudgetExecution
         /// <value>
         /// The r6.
         /// </value>
-        public DataSet DataSet { get; set; }
+        public DataSet DataSet { get; protected internal set; }
 
         /// <summary>
         /// Gets or sets the dataTable.
@@ -92,7 +92,7 @@ namespace BudgetExecution
         /// <value>
         /// The dataTable.
         /// </value>
-        public DataTable Table { get; set; }
+        public DataTable Table { get; protected internal set; }
 
         /// <summary>
         /// Gets or sets the excel.
@@ -100,7 +100,7 @@ namespace BudgetExecution
         /// <value>
         /// The excel.
         /// </value>
-        public ExcelPackage Excel { get; set; }
+        public ExcelPackage Excel { get; protected internal set; }
 
         /// <summary>
         /// Saves the file.
@@ -130,7 +130,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    ExcelQuery.Fail( ex );
+                    Fail( ex );
                 }
             }
         }
@@ -148,7 +148,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    using var _excelPackage = ExcelQuery.ReadExcelFile( filePath );
+                    using var _excelPackage = ReadExcelFile( filePath );
                     var _name = Path.GetFileNameWithoutExtension( filePath );
                     using var _excelWorksheet = _excelPackage.Workbook.Worksheets.Add( _name );
                     var _columns = table.Columns.Count;
@@ -169,7 +169,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    ExcelQuery.Fail( ex );
+                    Fail( ex );
                 }
             }
         }
@@ -189,11 +189,14 @@ namespace BudgetExecution
                 try
                 {
                     var _fileInfo = new FileInfo( filePath );
-                    return new ExcelPackage( _fileInfo );
+
+                    return _fileInfo.Exists 
+                        ? new ExcelPackage( _fileInfo )
+                        : default( ExcelPackage );
                 }
                 catch( Exception ex )
                 {
-                    ExcelQuery.Fail( ex );
+                    Fail( ex );
                     return default( ExcelPackage );
                 }
             }
@@ -226,11 +229,13 @@ namespace BudgetExecution
                     _fileName = dialog.FileName;
                 }
 
-                return _fileName;
+                return Verify.Input( _fileName )
+                    ? _fileName
+                    : string.Empty;
             }
             catch( Exception ex )
             {
-                ExcelQuery.Fail( ex );
+                Fail( ex );
                 return default( string );
             }
         }
@@ -271,11 +276,14 @@ namespace BudgetExecution
 
                     using var _dataAdapter = new OleDbDataAdapter( _sql, _connection as OleDbConnection );
                     _dataAdapter?.Fill( _data );
-                    return _data?.Tables[ 0 ];
+
+                    return Verify.Table( _data?.Tables[ 0 ] )
+                        ? _data.Tables[ 0 ]
+                        : default( DataTable );
                 }
                 catch( Exception ex )
                 {
-                    ExcelQuery.Fail( ex );
+                    Fail( ex );
                     return default( DataTable );
                 }
             }
@@ -327,11 +335,14 @@ namespace BudgetExecution
 
                     using var _dataAdapter = new OleDbDataAdapter( _sql, _connection );
                     _dataAdapter.Fill( _data );
-                    return _data.Tables[ 0 ];
+
+                    return Verify.Table( _data?.Tables[ 0 ] )
+                        ? _data.Tables[ 0 ]
+                        : default( DataTable );
                 }
                 catch( Exception ex )
                 {
-                    ExcelQuery.Fail( ex );
+                    Fail( ex );
                     return default( DataTable );
                 }
             }
@@ -363,7 +374,7 @@ namespace BudgetExecution
                 {
                     for( var j = 1; j <= _columns; j++ )
                     {
-                        if( _range.Cells[ i, j ]           != null
+                        if( _range.Cells[ i, j ] != null
                             && _range.Cells[ i, j ].Value2 != null )
                         {
                             dataGrid.Rows[ i - 1 ].Cells[ j - 1 ].Value =
@@ -376,7 +387,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                ExcelQuery.Fail( ex );
+                Fail( ex );
             }
         }
 
@@ -395,7 +406,7 @@ namespace BudgetExecution
         {
             if( Verify.Input( sheetName )
                 && dataTable?.Columns.Count > 0
-                && dataTable.Rows.Count     > 0 )
+                && dataTable.Rows.Count > 0 )
             {
                 try
                 {
@@ -413,7 +424,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    ExcelQuery.Fail( ex );
+                    Fail( ex );
                 }
             }
 
@@ -451,7 +462,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                ExcelQuery.Fail( ex );
+                Fail( ex );
             }
         }
 

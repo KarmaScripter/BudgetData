@@ -22,7 +22,7 @@ namespace BudgetExecution
         /// <value>
         /// The primary key.
         /// </value>
-        public PrimaryKey PrimaryKey { get; set; }
+        public PrimaryKey PrimaryKey { get; protected internal set; }
 
         /// <summary>
         /// Gets or sets the index.
@@ -30,7 +30,7 @@ namespace BudgetExecution
         /// <value>
         /// The index.
         /// </value>
-        public int Index { get; set; }
+        public int Index { get; protected internal set; }
 
         /// <summary>
         /// Sets the name.
@@ -63,9 +63,10 @@ namespace BudgetExecution
                     var _column = dataRow[ 0 ].ToString();
                     var _names = dataRow?.Table?.GetColumnNames();
 
-                    Name = Verify.Input( _column ) && _names?.Contains( _column ) == true
-                        ? _column
-                        : PrimaryKey.NS.ToString();
+                    Name = Verify.Input( _column ) 
+                        && _names?.Contains( _column ) == true
+                            ? _column
+                            : PrimaryKey.NS.ToString();
                 }
                 catch( Exception ex )
                 {
@@ -107,7 +108,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _names = dataRow?.Table?.GetColumnNames();
+                    var _names = dataRow
+                        ?.Table
+                        ?.GetColumnNames();
 
                     Name = _names?.Contains( index.ToString() ) == true
                         ? index.ToString()

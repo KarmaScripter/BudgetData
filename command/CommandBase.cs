@@ -40,7 +40,7 @@ namespace BudgetExecution
         /// <summary>
         /// The source
         /// </summary>
-        public Source Source { get; }
+        public Source Source { get; protected internal set; }
 
         /// <summary>
         /// The SQL statement
@@ -54,7 +54,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Provider( Provider )
+                return Verify.Provider( Provider )
                     ? Provider
                     : default( Provider );
             }
@@ -73,7 +73,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Source( Source )
+                return Verify.Source( Source )
                     ? Source
                     : default( Source );
             }

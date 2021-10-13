@@ -4,10 +4,6 @@
 
 namespace BudgetExecution
 {
-    // ********************************************************************************************************************************
-    // *********************************************************  ASSEMBLIES   ********************************************************
-    // ********************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Data.Common;
@@ -15,23 +11,18 @@ namespace BudgetExecution
     using System.IO;
     using System.Linq;
 
-    // ********************************************************************************************************************************
-    // *********************************************************  ASSEMBLIES   ********************************************************
-    // ********************************************************************************************************************************
-
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class QueryBase
     {
-        // **********************************************************************************************************************
-        // *************************************************   PROPERTIES   *****************************************************
-        // **********************************************************************************************************************
-
         /// <summary>
         /// Gets the arguments.
         /// </summary>
         /// <value>
         /// The arguments.
         /// </value>
-        private protected IDictionary<string, object> Args { get; set; }
+        public IDictionary<string, object> Args { get; protected internal set; }
 
         /// <summary>
         /// Gets the connection manager.
@@ -39,7 +30,7 @@ namespace BudgetExecution
         /// <value>
         /// The connection manager.
         /// </value>
-        private protected IConnectionBuilder ConnectionBuilder { get; set; }
+        public IConnectionBuilder ConnectionBuilder { get; protected internal set; }
 
         /// <summary>
         /// Gets the SQL statement.
@@ -47,7 +38,7 @@ namespace BudgetExecution
         /// <value>
         /// The SQL statement.
         /// </value>
-        private protected ISqlStatement SqlStatement { get; set; }
+        public ISqlStatement SqlStatement { get; protected internal set; }
 
         /// <summary>
         /// Gets the connector.
@@ -55,7 +46,7 @@ namespace BudgetExecution
         /// <value>
         /// The connector.
         /// </value>
-        private protected IConnectionFactory ConnectionFactory { get; set; }
+        public IConnectionFactory ConnectionFactory { get; protected internal set; }
 
         /// <summary>
         /// Gets the commander.
@@ -63,7 +54,7 @@ namespace BudgetExecution
         /// <value>
         /// The commander.
         /// </value>
-        private protected ICommandBuilder CommandBuilder { get; set; }
+        public ICommandBuilder CommandBuilder { get; protected internal set; }
 
         /// <summary>
         /// Gets the command.
@@ -72,7 +63,7 @@ namespace BudgetExecution
         /// The command.
         /// </value>
         [SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" )]
-        private protected DbCommand Command { get; set; }
+        public DbCommand Command { get; protected internal set; }
 
         /// <summary>
         /// Gets the adapter.
@@ -80,7 +71,7 @@ namespace BudgetExecution
         /// <value>
         /// The adapter.
         /// </value>
-        private protected DbDataAdapter Adapter { get; set; }
+        public DbDataAdapter Adapter { get; protected internal set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is disposed.
@@ -95,7 +86,7 @@ namespace BudgetExecution
         /// </c>
         /// .
         /// </value>
-        public bool IsDisposed { get; set; }
+        public bool IsDisposed { get; protected internal set; }
 
         /// <summary>
         /// Gets or sets the data reader.
@@ -103,12 +94,8 @@ namespace BudgetExecution
         /// <value>
         /// The data reader.
         /// </value>
-        private protected DbDataReader DataReader { get; set; }
-
-        // ***************************************************************************************************************************
-        // ************************************************  METHODS   ***************************************************************
-        // ***************************************************************************************************************************
-
+        public DbDataReader DataReader { get; protected internal set; }
+        
         /// <summary>
         /// Gets the source.
         /// </summary>
@@ -153,7 +140,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected IDictionary<string, object> SetArgs( IDictionary<string, object> dict )
+        public IDictionary<string, object> SetArgs( IDictionary<string, object> dict )
         {
             try
             {
@@ -200,7 +187,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected void SetConnectionBuilder( Source source, Provider provider )
+        public void SetConnectionBuilder( Source source, Provider provider )
         {
             if( Enum.IsDefined( typeof( Source ), source )
                 && Enum.IsDefined( typeof( Provider ), provider ) )
@@ -224,7 +211,7 @@ namespace BudgetExecution
         /// </param>
         /// <returns>
         /// </returns>
-        private protected void SetConnectionBuilder( string fullpath )
+        public void SetConnectionBuilder( string fullpath )
         {
             if( Verify.Input( fullpath )
                 && File.Exists( fullpath ) )
@@ -371,7 +358,7 @@ namespace BudgetExecution
         /// Get Error Dialog.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        private protected static void Fail( Exception ex )
+        public static void Fail( Exception ex )
         {
             using var error = new Error( ex );
             error?.SetText();

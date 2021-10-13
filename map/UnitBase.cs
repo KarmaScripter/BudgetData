@@ -97,7 +97,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    return unit.GetName()?.Equals( Name )   == true
+                    return unit.GetName()?.Equals( Name ) == true
                         && unit.GetValue()?.Equals( Value ) == true;
                 }
                 catch( Exception ex )
