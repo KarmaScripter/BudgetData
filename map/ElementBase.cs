@@ -30,7 +30,7 @@ namespace BudgetExecution
             try
             {
                 Name = Verify.Input( columnName )
-                    && ( Enum.GetNames( typeof( Field ) )?.Contains( columnName ) == true )
+                    && Enum.GetNames( typeof( Field ) ).Contains( columnName )
                         ? columnName
                         : default( string );
             }
@@ -270,7 +270,7 @@ namespace BudgetExecution
         private protected void SetValue( DataRow dataRow, Field field )
         {
             if( Verify.Row( dataRow )
-                && Validate.Field( field ) )
+                && Verify.Field( field ) )
             {
                 try
                 {
