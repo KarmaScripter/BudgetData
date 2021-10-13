@@ -11,9 +11,17 @@
     /// </summary>
     /// <seealso cref="BudgetExecution.Arg" />
     /// <seealso cref="BudgetExecution.IMap" />
-    [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
+    [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class Map : Arg, IMap
     {
+        /// <summary>
+        /// Gets the count.
+        /// </summary>
+        /// <value>
+        /// The count.
+        /// </value>
+        public int Count { get; protected internal set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Map"/> class.
         /// </summary>
@@ -48,14 +56,6 @@
             _values = GetValues();
             Count = _output.Count;
         }
-
-        /// <summary>
-        /// Gets the count.
-        /// </summary>
-        /// <value>
-        /// The count.
-        /// </value>
-        public int Count { get; }
 
         /// <summary>
         /// Gets the input.
@@ -183,7 +183,7 @@
             {
                 try
                 {
-                    var _output = new List<IElement>();
+                    var _list = new List<IElement>();
                     var _fields = Enum.GetNames( typeof( Field ) );
 
                     foreach( var kvp in base._output )
@@ -191,12 +191,12 @@
                         if( Verify.Input( kvp.Key )
                             && _fields?.Contains( kvp.Key ) == true )
                         {
-                            _output.Add( new Element( kvp ) );
+                            _list.Add( new Element( kvp ) );
                         }
                     }
 
-                    return _output?.Any() == true
-                        ? _output
+                    return _list?.Any() == true
+                        ? _list
                         : default( List<IElement> );
                 }
                 catch( Exception ex )
