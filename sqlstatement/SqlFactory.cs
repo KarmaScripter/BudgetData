@@ -23,9 +23,9 @@ namespace BudgetExecution
         {
             _source = builder.GetSource();
             _provider = builder.GetProvider();
-            _commandType = command;
-            _connectionBuilder = builder;
-            _sqlStatement = new SqlStatement( _connectionBuilder, _commandType );
+            CommandType = command;
+            ConnectionBuilder = builder;
+            _sqlStatement = new SqlStatement( ConnectionBuilder, CommandType );
             _filePath = Path.GetFullPath( _providerPath[ _provider.ToString() ] );
             _fileName = Path.GetFileNameWithoutExtension( _filePath );
         }
@@ -39,13 +39,13 @@ namespace BudgetExecution
         /// <param name = "command" > The command. </param>
         public SqlFactory( string filePath, SQL command = SQL.SELECT )
         {
-            _connectionBuilder = new ConnectionBuilder( filePath );
-            _source = _connectionBuilder.GetSource();
-            _provider = _connectionBuilder.GetProvider();
-            _commandType = command;
-            _sqlStatement = new SqlStatement( _connectionBuilder, _commandType );
-            _fileName = _connectionBuilder.GetFileName();
-            _filePath = _connectionBuilder.GetFilePath();
+            ConnectionBuilder = new ConnectionBuilder( filePath );
+            _source = ConnectionBuilder.GetSource();
+            _provider = ConnectionBuilder.GetProvider();
+            CommandType = command;
+            _sqlStatement = new SqlStatement( ConnectionBuilder, CommandType );
+            _fileName = ConnectionBuilder.GetFileName();
+            _filePath = ConnectionBuilder.GetFilePath();
         }
     }
 }

@@ -19,22 +19,22 @@ namespace BudgetExecution
         /// <summary>
         /// The connection builder
         /// </summary>
-        private protected IConnectionBuilder _connectionBuilder;
+        public IConnectionBuilder ConnectionBuilder { get; protected internal set; }
 
         /// <summary>
         /// The command type
         /// </summary>
-        private protected SQL _commandType;
+        public SQL CommandType { get; protected internal set; }
 
         /// <summary>
         /// The arguments
         /// </summary>
-        private protected IDictionary<string, object> _args;
+        public IDictionary<string, object> Args { get; protected internal set; }
 
         /// <summary>
         /// The command text
         /// </summary>
-        private protected string _commandText;
+        public string CommandText { get; protected internal set; }
 
         /// <summary>
         /// Sets the connection builder.
@@ -45,9 +45,10 @@ namespace BudgetExecution
         {
             try
             {
-                _connectionBuilder = Validate.Source( source ) && Validate.Provider( provider )
-                    ? new ConnectionBuilder( source, provider )
-                    : default( ConnectionBuilder );
+                ConnectionBuilder = Validate.Source( source ) 
+                    && Validate.Provider( provider )
+                        ? new ConnectionBuilder( source, provider )
+                        : default( ConnectionBuilder );
             }
             catch( Exception ex )
             {
@@ -65,7 +66,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    _args = dict?.Any() == true
+                    Args = dict?.Any() == true
                         ? dict
                         : new Dictionary<string, object>();
                 }
@@ -84,7 +85,7 @@ namespace BudgetExecution
         {
             try
             {
-                _commandType = Enum.IsDefined( typeof( SQL ), commandType )
+                CommandType = Enum.IsDefined( typeof( SQL ), commandType )
                     && Enum.GetNames( typeof( SQL ) ).Contains( commandType.ToString() )
                         ? commandType
                         : SQL.SELECT;
@@ -102,8 +103,8 @@ namespace BudgetExecution
         {
             try
             {
-                _commandText = Verify.Input( _connectionBuilder?.GetConnectionString() )
-                    ? $"{SQL.SELECT} * FROM {_connectionBuilder?.GetTableName()};"
+                CommandText = Verify.Input( ConnectionBuilder?.GetConnectionString() )
+                    ? $"{SQL.SELECT} * FROM {ConnectionBuilder?.GetTableName()};"
                     : string.Empty;
             }
             catch( Exception ex )
@@ -130,8 +131,8 @@ namespace BudgetExecution
                     }
 
                     var _values = _empty.TrimEnd( " AND".ToCharArray() );
-                    var _tableName = _connectionBuilder?.GetTableName();
-                    _commandText = $"{SQL.SELECT} * FROM {_tableName} WHERE {_values};";
+                    var _tableName = ConnectionBuilder?.GetTableName();
+                    CommandText = $"{SQL.SELECT} * FROM {_tableName} WHERE {_values};";
                 }
                 catch( Exception ex )
                 {
@@ -140,7 +141,7 @@ namespace BudgetExecution
             }
             else if( dict == null )
             {
-                _commandText = $"{SQL.SELECT} * FROM {_connectionBuilder?.GetTableName()};";
+                CommandText = $"{SQL.SELECT} * FROM {ConnectionBuilder?.GetTableName()};";
             }
         }
 
@@ -162,7 +163,7 @@ namespace BudgetExecution
                     }
 
                     var _vals = _update.TrimEnd( " AND".ToCharArray() );
-                    _commandText = $"{SQL.UPDATE} {_connectionBuilder?.GetTableName()} SET {_vals};";
+                    CommandText = $"{SQL.UPDATE} {ConnectionBuilder?.GetTableName()} SET {_vals};";
                 }
                 catch( Exception ex )
                 {
@@ -181,7 +182,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _table = _connectionBuilder?.GetTableName();
+                    var _table = ConnectionBuilder?.GetTableName();
                     var _column = string.Empty;
                     var _values = string.Empty;
 
@@ -194,7 +195,7 @@ namespace BudgetExecution
                     var values =
                         $"({_column.TrimEnd( ", ".ToCharArray() )}) VALUES ({_values.TrimEnd( ", ".ToCharArray() )})";
 
-                    _commandText = $"{SQL.INSERT} INTO {_table} {values};";
+                    CommandText = $"{SQL.INSERT} INTO {_table} {values};";
                 }
                 catch( Exception ex )
                 {
@@ -221,8 +222,8 @@ namespace BudgetExecution
                     }
 
                     var _values = _columns.TrimEnd( " AND".ToCharArray() );
-                    var _table = _connectionBuilder?.GetTableName();
-                    _commandText = $"{SQL.DELETE} FROM {_table} WHERE {_values};";
+                    var _table = ConnectionBuilder?.GetTableName();
+                    CommandText = $"{SQL.DELETE} FROM {_table} WHERE {_values};";
                 }
                 catch( Exception ex )
                 {
@@ -231,7 +232,7 @@ namespace BudgetExecution
             }
             else if( dict == null )
             {
-                _commandText = $"{SQL.DELETE} * FROM {_connectionBuilder?.GetTableName()};";
+                CommandText = $"{SQL.DELETE} * FROM {ConnectionBuilder?.GetTableName()};";
             }
         }
 
@@ -243,7 +244,7 @@ namespace BudgetExecution
         {
             try
             {
-                _commandText = Verify.Input( sql )
+                CommandText = Verify.Input( sql )
                     ? sql
                     : string.Empty;
             }
@@ -261,7 +262,7 @@ namespace BudgetExecution
         public void SetCommandText( IDictionary<string, object> dict, SQL commandType = SQL.SELECT )
         {
             if( dict == null
-                && Verify.Input( _connectionBuilder?.GetConnectionString() ) )
+                && Verify.Input( ConnectionBuilder?.GetConnectionString() ) )
             {
                 SetSelectStatement();
             }
@@ -324,8 +325,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _commandText )
-                    ? _commandText
+                return Verify.Input( CommandText )
+                    ? CommandText
                     : string.Empty;
             }
             catch( Exception ex )

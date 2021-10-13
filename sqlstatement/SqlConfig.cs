@@ -102,8 +102,8 @@ namespace BudgetExecution
         {
             try
             {
-                return _commandType != SQL.NS
-                    ? _commandType
+                return CommandType != SQL.NS
+                    ? CommandType
                     : default( SQL );
             }
             catch( Exception ex )
@@ -119,11 +119,11 @@ namespace BudgetExecution
         /// <returns></returns>
         public IDictionary<string, object> GetArgs()
         {
-            if( _args.Any() )
+            if( Args.Any() )
             {
                 try
                 {
-                    return _args ?? new Dictionary<string, object>();
+                    return Args ?? new Dictionary<string, object>();
                 }
                 catch( Exception ex )
                 {
@@ -143,8 +143,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _connectionBuilder?.GetConnectionString() )
-                    ? _connectionBuilder
+                return Verify.Input( ConnectionBuilder?.GetConnectionString() )
+                    ? ConnectionBuilder
                     : default( ConnectionBuilder );
             }
             catch( Exception ex )
@@ -162,8 +162,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _commandText )
-                    ? _commandText
+                return Verify.Input( CommandText )
+                    ? CommandText
                     : string.Empty;
             }
             catch( Exception ex )
@@ -180,11 +180,11 @@ namespace BudgetExecution
         public IEnumerable<string> GetScriptFiles()
         {
             if( Validate.Provider( _provider )
-                && Enum.IsDefined( typeof( SQL ), _commandType ) )
+                && Enum.IsDefined( typeof( SQL ), CommandType ) )
             {
                 try
                 {
-                    var _directory = _providerPath[ $"{_provider}" ] + $@"\{_commandType}";
+                    var _directory = _providerPath[ $"{_provider}" ] + $@"\{CommandType}";
 
                     if( Verify.Input( _directory )
                         && Directory.Exists( _directory ) )
