@@ -18,7 +18,7 @@ namespace BudgetExecution
         /// <value>
         /// The provider.
         /// </value>
-        private readonly Provider _provider = Provider.SqlServer;
+        public readonly Provider Provider = Provider.SqlServer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SqlServerQuery"/> class.

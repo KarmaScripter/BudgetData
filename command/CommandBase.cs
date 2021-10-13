@@ -19,22 +19,23 @@ namespace BudgetExecution
     /// <seealso cref="BudgetExecution.IProvider" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     public abstract class CommandBase : ISource, IProvider
     {
         /// <summary>
         /// The command
         /// </summary>
-        public DbCommand Command { get; set; }
+        public DbCommand Command { get; protected internal set; }
 
         /// <summary>
         /// The connection builder
         /// </summary>
-        public IConnectionBuilder ConnectionBuilder { get; set; }
+        public IConnectionBuilder ConnectionBuilder { get; protected internal set; }
 
         /// <summary>
         /// The provider
         /// </summary>
-        public Provider Provider { get; set; }
+        public Provider Provider { get; protected internal set; }
 
         /// <summary>
         /// The source
@@ -44,7 +45,7 @@ namespace BudgetExecution
         /// <summary>
         /// The SQL statement
         /// </summary>
-        public ISqlStatement SqlStatement { get; set; }
+        public ISqlStatement SqlStatement { get; protected internal set; }
 
         /// <summary>
         /// </summary>

@@ -12,18 +12,27 @@
         </member>
         <member name="P:BudgetExecution.AdapterBuilder.Connection">
             <summary>
-            The connection
+            Gets or sets the connection.
             </summary>
+            <value>
+            The connection.
+            </value>
         </member>
         <member name="P:BudgetExecution.AdapterBuilder.SqlStatement">
             <summary>
-            The SQL statement
+            Gets or sets the SQL statement.
             </summary>
+            <value>
+            The SQL statement.
+            </value>
         </member>
         <member name="P:BudgetExecution.AdapterBuilder.ConnectionBuilder">
             <summary>
-            The connection builder
+            Gets or sets the connection builder.
             </summary>
+            <value>
+            The connection builder.
+            </value>
         </member>
         <member name="M:BudgetExecution.AdapterBuilder.#ctor">
             <summary>
@@ -34,14 +43,14 @@
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.AdapterBuilder"/> class.
             </summary>
-            <param name="commandbuilder">The commandbuilder.</param>
+            <param name="commandBuilder">The commandBuilder.</param>
         </member>
         <member name="M:BudgetExecution.AdapterBuilder.#ctor(BudgetExecution.IConnectionBuilder,BudgetExecution.ISqlStatement)">
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.AdapterBuilder"/> class.
             </summary>
-            <param name="connectionbuilder">The connectionbuilder.</param>
-            <param name="sqlstatement">The sqlstatement.</param>
+            <param name="connectionBuilder">The connectionBuilder.</param>
+            <param name="sqlStatement">The sqlStatement.</param>
         </member>
         <member name="M:BudgetExecution.AdapterBuilder.GetConnection">
             <summary>
@@ -69,28 +78,43 @@
         </member>
         <member name="P:BudgetExecution.AdapterFactory.DataConnection">
             <summary>
-            The data connection
+            Gets or sets the data connection.
             </summary>
+            <value>
+            The data connection.
+            </value>
         </member>
         <member name="P:BudgetExecution.AdapterFactory.SqlStatement">
             <summary>
-            The SQL statement
+            Gets or sets the SQL statement.
             </summary>
+            <value>
+            The SQL statement.
+            </value>
         </member>
         <member name="P:BudgetExecution.AdapterFactory.CommandBuilder">
             <summary>
-            The command builder
+            Gets or sets the command builder.
             </summary>
+            <value>
+            The command builder.
+            </value>
         </member>
         <member name="P:BudgetExecution.AdapterFactory.ConnectionBuilder">
             <summary>
-            The connection builder
+            Gets or sets the connection builder.
             </summary>
+            <value>
+            The connection builder.
+            </value>
         </member>
         <member name="P:BudgetExecution.AdapterFactory.AdapterBuilder">
             <summary>
-            The adapter builder
+            Gets or sets the adapter builder.
             </summary>
+            <value>
+            The adapter builder.
+            </value>
         </member>
         <member name="M:BudgetExecution.AdapterFactory.#ctor(BudgetExecution.AdapterBuilder)">
             <summary>
@@ -146,12 +170,7 @@
             <summary>
             Releases unmanaged and - optionally - managed resources.
             </summary>
-            <param name="disposing">
-            <c>true</c>
-            to release both managed and unmanaged resources;
-            <c>false</c>
-            to release only unmanaged resources.
-            </param>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         </member>
         <member name="M:BudgetExecution.AdapterFactory.Dispose">
             <summary>
@@ -345,7 +364,7 @@
             The command builder
             </summary>
         </member>
-        <member name="F:BudgetExecution.CommandFactory.ConnectionFactory">
+        <member name="P:BudgetExecution.CommandFactory.ConnectionFactory">
             <summary>
             The connection factory
             </summary>
@@ -614,7 +633,7 @@
             
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._connector">
+        <member name="F:BudgetExecution.ConnectionBase.Connector">
             <summary>
             The connector
             </summary>
@@ -654,7 +673,7 @@
             The table name
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase.ConnectionString">
+        <member name="P:BudgetExecution.ConnectionBase.ConnectionString">
             <summary>
             The connection string
             </summary>
@@ -3128,12 +3147,36 @@
             </summary>
             <seealso cref = "T:BudgetExecution.Query"/>
         </member>
-        <member name="F:BudgetExecution.CsvQuery._provider">
+        <member name="F:BudgetExecution.CsvQuery.Provider">
             <summary>
             Gets the provider.
             </summary>
             <value>
             The provider.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.CsvQuery.DataSet">
+            <summary>
+            Gets or sets the data set.
+            </summary>
+            <value>
+            The data set.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.CsvQuery.Table">
+            <summary>
+            Gets or sets the table.
+            </summary>
+            <value>
+            The table.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.CsvQuery.Excel">
+            <summary>
+            Gets or sets the excel.
+            </summary>
+            <value>
+            The excel.
             </value>
         </member>
         <member name="M:BudgetExecution.CsvQuery.#ctor">
@@ -3187,30 +3230,6 @@
             <param name = "sqlStatement" >
             The sqlStatement.
             </param>
-        </member>
-        <member name="P:BudgetExecution.CsvQuery.DataSet">
-            <summary>
-            Gets or sets the data set.
-            </summary>
-            <value>
-            The data set.
-            </value>
-        </member>
-        <member name="P:BudgetExecution.CsvQuery.Table">
-            <summary>
-            Gets or sets the table.
-            </summary>
-            <value>
-            The table.
-            </value>
-        </member>
-        <member name="P:BudgetExecution.CsvQuery.Excel">
-            <summary>
-            Gets or sets the excel.
-            </summary>
-            <value>
-            The excel.
-            </value>
         </member>
         <member name="M:BudgetExecution.CsvQuery.SaveFile(OfficeOpenXml.ExcelPackage)">
             <summary>
@@ -3986,6 +4005,31 @@
             The default
             </summary>
         </member>
+        <member name="F:BudgetExecution.SQLiteQuery.ColDataType.Text">
+            <summary>
+            The text
+            </summary>
+        </member>
+        <member name="F:BudgetExecution.SQLiteQuery.ColDataType.DateTime">
+            <summary>
+            The date time
+            </summary>
+        </member>
+        <member name="F:BudgetExecution.SQLiteQuery.ColDataType.Integer">
+            <summary>
+            The integer
+            </summary>
+        </member>
+        <member name="F:BudgetExecution.SQLiteQuery.ColDataType.Decimal">
+            <summary>
+            The decimal
+            </summary>
+        </member>
+        <member name="F:BudgetExecution.SQLiteQuery.ColDataType.Blob">
+            <summary>
+            The BLOB
+            </summary>
+        </member>
         <member name="M:BudgetExecution.SQLiteQuery.GetDataAdapter(System.Data.SQLite.SQLiteCommand)">
             <summary>
             Gets the data adapter.
@@ -4098,7 +4142,7 @@
             </summary>
             <seealso cref="T:BudgetExecution.Query" />
         </member>
-        <member name="F:BudgetExecution.SqlServerQuery._provider">
+        <member name="F:BudgetExecution.SqlServerQuery.Provider">
             <summary>
             Gets or sets the Provider
             </summary>
@@ -4594,7 +4638,7 @@
             
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataWorker.unitBuilder">
+        <member name="P:BudgetExecution.DataWorker.UnitBuilder">
             <summary>
             
             </summary>

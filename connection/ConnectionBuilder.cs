@@ -41,11 +41,11 @@ namespace BudgetExecution
         {
             SetSource( source );
             SetProvider( provider );
-            SetFilePath( Provider );
+            SetFilePath( provider );
             SetFileName( FilePath );
             SetFileExtension( FilePath );
-            TableName = Source.ToString();
-            SetConnectionString( Provider );
+            TableName = source.ToString();
+            SetConnectionString( provider );
         }
 
         /// <summary>
@@ -58,8 +58,8 @@ namespace BudgetExecution
         {
             Source = Source.External;
             SetFilePath( fullPath );
-            SetFileName( FilePath );
-            SetFileExtension( FilePath );
+            SetFileName( fullPath );
+            SetFileExtension( fullPath );
             SetProvider( FileExtension );
             TableName = FileName;
             SetConnectionString( Provider );
@@ -76,11 +76,11 @@ namespace BudgetExecution
         {
             Source = Source.External;
             SetFilePath( fullPath );
-            SetFileName( FilePath );
-            SetFileExtension( FilePath );
+            SetFileName( fullPath );
+            SetFileExtension( fullPath );
             SetProvider( provider );
             TableName = FileName;
-            SetConnectionString( Provider );
+            SetConnectionString( provider );
         }
 
         /// <summary>
@@ -130,9 +130,10 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( FilePath ) && File.Exists( FilePath )
-                    ? Path.GetFullPath( FilePath )
-                    : default( string );
+                return Verify.Input( FilePath ) 
+                    && File.Exists( FilePath )
+                        ? Path.GetFullPath( FilePath )
+                        : default( string );
             }
             catch( Exception ex )
             {

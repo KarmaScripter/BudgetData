@@ -58,12 +58,12 @@ namespace BudgetExecution
         /// <summary>
         /// The table name
         /// </summary>
-        public string TableName  { get; protected internal set; }
+        public string TableName { get; protected internal set; }
 
         /// <summary>
         /// The connection string
         /// </summary>
-        public string ConnectionString;
+        public string ConnectionString { get; protected internal set; }
 
         /// <summary>
         /// Sets the source.
@@ -210,9 +210,10 @@ namespace BudgetExecution
         {
             try
             {
-                FilePath = Verify.Input( filePath ) && File.Exists( filePath )
-                    ? Path.GetFullPath( filePath )
-                    : default( string );
+                FilePath = Verify.Input( filePath ) 
+                    && File.Exists( filePath )
+                        ? Path.GetFullPath( filePath )
+                        : default( string );
             }
             catch( Exception ex )
             {
@@ -230,7 +231,9 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _filext = Path.GetExtension( filePath )?.Trim( '.' )?.ToUpper();
+                    var _filext = Path.GetExtension( filePath )
+                        ?.Trim( '.' )
+                        ?.ToUpper();
 
                     FileExtension = Enum.IsDefined( typeof( EXT ), _filext )
                         ? (EXT)Enum.Parse( typeof( EXT ), _filext )

@@ -26,12 +26,12 @@ namespace BudgetExecution
         /// <summary>
         /// The command builder
         /// </summary>
-        public ICommandBuilder CommandBuilder { get; set; }
+        public ICommandBuilder CommandBuilder { get; protected internal set; }
 
         /// <summary>
         /// The connection factory
         /// </summary>
-        public IConnectionFactory ConnectionFactory;
+        public IConnectionFactory ConnectionFactory { get; protected internal set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandFactory"/> class.

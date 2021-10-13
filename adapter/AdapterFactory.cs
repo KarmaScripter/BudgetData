@@ -22,29 +22,44 @@ namespace BudgetExecution
     public class AdapterFactory : IDisposable
     {
         /// <summary>
-        /// The data connection
+        /// Gets or sets the data connection.
         /// </summary>
-        public DbConnection DataConnection { get;  }
+        /// <value>
+        /// The data connection.
+        /// </value>
+        public DbConnection DataConnection { get; protected internal set; }
 
         /// <summary>
-        /// The SQL statement
+        /// Gets or sets the SQL statement.
         /// </summary>
-        public ISqlStatement SqlStatement { get; }
+        /// <value>
+        /// The SQL statement.
+        /// </value>
+        public ISqlStatement SqlStatement { get; protected internal set; }
 
         /// <summary>
-        /// The command builder
+        /// Gets or sets the command builder.
         /// </summary>
-        public ICommandBuilder CommandBuilder { get; }
+        /// <value>
+        /// The command builder.
+        /// </value>
+        public ICommandBuilder CommandBuilder { get; protected internal set; }
 
         /// <summary>
-        /// The connection builder
+        /// Gets or sets the connection builder.
         /// </summary>
-        public IConnectionBuilder ConnectionBuilder { get;  }
+        /// <value>
+        /// The connection builder.
+        /// </value>
+        public IConnectionBuilder ConnectionBuilder { get; protected internal set; }
 
         /// <summary>
-        /// The adapter builder
+        /// Gets or sets the adapter builder.
         /// </summary>
-        public AdapterBuilder AdapterBuilder { get; }
+        /// <value>
+        /// The adapter builder.
+        /// </value>
+        public AdapterBuilder AdapterBuilder { get; protected internal set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterFactory"/> class.
@@ -244,12 +259,7 @@ namespace BudgetExecution
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
-        /// <param name="disposing">
-        /// <c>true</c>
-        /// to release both managed and unmanaged resources;
-        /// <c>false</c>
-        /// to release only unmanaged resources.
-        /// </param>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         private protected virtual void Dispose( bool disposing )
         {
             if( disposing )

@@ -28,7 +28,7 @@ namespace BudgetExecution
         /// <summary>
         /// 
         /// </summary>
-        public IConnectionBuilder ConnectionBuilder { get; set; }
+        public IConnectionBuilder ConnectionBuilder { get; protected internal set; }
 
         /// <summary>
         /// Gets the connection.
@@ -36,7 +36,7 @@ namespace BudgetExecution
         /// <value>
         /// The connection.
         /// </value>
-        public DbConnection Connection { get; set; }
+        public DbConnection Connection { get; protected internal set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref = "ConnectionFactory"/> class.

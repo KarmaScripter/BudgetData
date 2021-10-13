@@ -27,8 +27,32 @@ namespace BudgetExecution
         /// <value>
         /// The provider.
         /// </value>
-        public readonly Provider _provider = Provider.CSV;
+        public readonly Provider Provider = Provider.CSV;
         
+        /// <summary>
+        /// Gets or sets the data set.
+        /// </summary>
+        /// <value>
+        /// The data set.
+        /// </value>
+        public DataSet DataSet { get; protected internal set; }
+
+        /// <summary>
+        /// Gets or sets the table.
+        /// </summary>
+        /// <value>
+        /// The table.
+        /// </value>
+        public DataTable Table { get; protected internal set; }
+
+        /// <summary>
+        /// Gets or sets the excel.
+        /// </summary>
+        /// <value>
+        /// The excel.
+        /// </value>
+        public ExcelPackage Excel { get; protected internal set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref = "CsvQuery"/> class.
         /// </summary>
@@ -94,30 +118,6 @@ namespace BudgetExecution
             : base( connectionBuilder, sqlStatement )
         {
         }
-
-        /// <summary>
-        /// Gets or sets the data set.
-        /// </summary>
-        /// <value>
-        /// The data set.
-        /// </value>
-        public DataSet DataSet { get; internal set; }
-
-        /// <summary>
-        /// Gets or sets the table.
-        /// </summary>
-        /// <value>
-        /// The table.
-        /// </value>
-        public DataTable Table { get; internal set; }
-
-        /// <summary>
-        /// Gets or sets the excel.
-        /// </summary>
-        /// <value>
-        /// The excel.
-        /// </value>
-        public ExcelPackage Excel { get; internal set; }
 
         /// <summary>
         /// Saves the file.

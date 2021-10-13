@@ -182,7 +182,7 @@ namespace BudgetExecution
                 try
                 {
                     using var _reader = new DataTableReader( dataTable );
-                    var _schema = _reader?.GetSchemaTable();
+                    using var _schema = _reader?.GetSchemaTable();
 
                     return _schema?.Rows?.Count > 0
                         ? _schema
@@ -225,12 +225,11 @@ namespace BudgetExecution
                     if( _schema != null )
                     {
                         var _dataTable = _schema?.AsEnumerable()
-                            ?.Where( r =>
-                                r.Field<string>( "TABLE_NAME" ).Contains( "FilterDatabase" ) )
+                            ?.Where( r => r.Field<string>( "TABLE_NAME" ).Contains( "FilterDatabase" ) )
                             ?.Select( r => r )
                             ?.CopyToDataTable();
 
-                        _sheetName = _dataTable.Rows[ 0 ][ "TABLE_NAME" ].ToString();
+                        _sheetName = _dataTable?.Rows[ 0 ][ "TABLE_NAME" ].ToString();
                     }
 
                     using var _command = new OleDbCommand();
@@ -240,7 +239,10 @@ namespace BudgetExecution
                     _dataAdapter.Fill( _dataSet, "excelData" );
                     using var _table = _dataSet.Tables[ "ExcelData" ];
                     _connection.Close();
-                    return _table;
+
+                    return _table?.Rows.Count > 0
+                        ? _table
+                        : default( DataTable );
                 }
                 catch( Exception ex )
                 {

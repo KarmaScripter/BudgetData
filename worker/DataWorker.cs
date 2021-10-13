@@ -15,8 +15,8 @@ namespace BudgetExecution
         /// <summary>
         /// 
         /// </summary>
-        public readonly Builder unitBuilder = null;
-        
+        public Builder UnitBuilder { get; protected internal set; }
+
         /// <summary>
         /// 
         /// </summary>
