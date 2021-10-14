@@ -19,6 +19,37 @@ namespace BudgetExecution
     public class DataSchema : ISource, IDataSchema
     {
         /// <summary>
+        /// Gets the name of the Table.
+        /// </summary>
+        /// <value>
+        /// The name of the Table.
+        /// </value>
+        public string Name { get; protected internal set; }
+
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <value>
+        /// The data.
+        /// </value>
+        public IEnumerable<DataRow> Data { get; protected internal set; }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is source.
+        /// </summary>
+        /// <value>
+        /// <c>
+        /// true
+        /// </c>
+        /// if this instance is source; otherwise,
+        /// <c>
+        /// false
+        /// </c>
+        /// .
+        /// </value>
+        public bool IsSource { get; protected internal set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref = "DataSchema"/> class.
         /// </summary>
         public DataSchema()
@@ -50,38 +81,6 @@ namespace BudgetExecution
             Data = data;
             IsSource = Resource.Sources.Contains( Name );
         }
-
-        /// <summary>
-        /// Gets the name of the Table.
-        /// </summary>
-        /// <value>
-        /// The name of the Table.
-        /// </value>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <value>
-        /// The data.
-        /// </value>
-        public IEnumerable<DataRow> Data { get; set; }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance is source.
-        /// </summary>
-        /// <value>
-        /// <c>
-        /// true
-        /// </c>
-        /// if this instance is source; otherwise,
-        /// <c>
-        /// false
-        /// </c>
-        /// .
-        /// </value>
-        [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-        public bool IsSource { get; }
 
         /// <summary>
         /// Sets the column names.

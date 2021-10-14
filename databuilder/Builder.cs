@@ -28,7 +28,7 @@ namespace BudgetExecution
         /// <summary>
         /// The program elements
         /// </summary>
-        public IDictionary<string, IEnumerable<string>> ProgramElements { get; }
+        public IDictionary<string, IEnumerable<string>> ProgramElements { get; protected internal set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Builder"/> class.
@@ -270,25 +270,25 @@ namespace BudgetExecution
                     using var _package = new ExcelPackage();
                     using var _stream = File.OpenRead( filePath );
                     _package.Load( _stream );
-                    var _worksheet = _package?.Workbook?.Worksheets?.First();
-                    var _table = new DataTable( _worksheet?.Name );
+                    var _workSheet = _package?.Workbook?.Worksheets?.First();
+                    var _table = new DataTable( _workSheet?.Name );
 
-                    if( _worksheet?.Cells != null )
+                    if( _workSheet?.Cells != null )
                     {
-                        foreach( var firstrowcell in _worksheet?.Cells[ 1, 1, 1, _worksheet.Dimension.End.Column ] )
+                        foreach( var _firstRowCell in _workSheet?.Cells[ 1, 1, 1, _workSheet.Dimension.End.Column ] )
                         {
                             _table?.Columns?.Add( header
-                                ? firstrowcell.Text
-                                : $"Column {firstrowcell.Start.Column}" );
+                                ? _firstRowCell.Text
+                                : $"Column {_firstRowCell.Start.Column}" );
                         }
 
                         var _start = header
                             ? 2
                             : 1;
 
-                        for( var _row = _start; _row <= _worksheet.Dimension.End.Row; _row++ )
+                        for( var _row = _start; _row <= _workSheet.Dimension.End.Row; _row++ )
                         {
-                            var _excelRange = _worksheet.Cells[ _row, 1, _row, _worksheet.Dimension.End.Column ];
+                            var _excelRange = _workSheet.Cells[ _row, 1, _row, _workSheet.Dimension.End.Column ];
                             var _dataRow = _table.Rows?.Add();
 
                             foreach( var cell in _excelRange )
@@ -319,7 +319,8 @@ namespace BudgetExecution
         /// <param name="field">The field.</param>
         /// <param name="filter">The filter.</param>
         /// <returns></returns>
-        public static IDictionary<string, IEnumerable<string>> GetSeries( IEnumerable<DataRow> dataRows, Field field, string filter )
+        public static IDictionary<string, IEnumerable<string>> GetSeries( IEnumerable<DataRow> dataRows, 
+            Field field, string filter )
         {
             if( Verify.Input( dataRows )
                 && Validate.Field( field )
