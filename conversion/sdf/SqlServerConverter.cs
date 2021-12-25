@@ -4,10 +4,6 @@
 
 namespace BudgetExecution
 {
-    // ******************************************************************************************************************************
-    // ******************************************************   ASSEMBLIES   ********************************************************
-    // ******************************************************************************************************************************
-
     using System;
     using System.Collections.Generic;
     using System.Data;
@@ -28,15 +24,11 @@ namespace BudgetExecution
     /// <remarks>
     /// The class knows how to convert table and index structures only.
     /// </remarks>
-    [SuppressMessage( "ReSharper", "FunctionComplexityOverflow" )]
-    [SuppressMessage( "ReSharper", "ConvertSwitchStatementToSwitchExpression" )]
-    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Local" )]
+    [ SuppressMessage( "ReSharper", "FunctionComplexityOverflow" ) ]
+    [ SuppressMessage( "ReSharper", "ConvertSwitchStatementToSwitchExpression" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Local" ) ]
     public class SqlServerConverter
     {
-        // *************************************************************************************************************************
-        // ****************************************************     FIELDS    ******************************************************
-        // *************************************************************************************************************************
-
         /// <summary>
         /// The cancelled
         /// </summary>
@@ -57,10 +49,6 @@ namespace BudgetExecution
         /// </summary>
         private readonly ILog _log = LogManager.GetLogger( typeof( SqlServerConverter ) );
 
-        // **************************************************************************************************************************
-        // *******************************************************   CONSTRUCTORS ***************************************************
-        // **************************************************************************************************************************
-
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="SqlServerConverter" />
@@ -69,10 +57,6 @@ namespace BudgetExecution
         public SqlServerConverter()
         {
         }
-
-        // **************************************************************************************************************************
-        // ******************************************************   PROPERTIES   ****************************************************
-        // **************************************************************************************************************************
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is active.
@@ -84,10 +68,6 @@ namespace BudgetExecution
         /// .
         /// </value>
         private bool IsActive { get; set; }
-
-        // **************************************************************************************************************************
-        // ****************************************************  METHODS   **********************************************************
-        // **************************************************************************************************************************
 
         /// <summary>
         /// Writes the trigger schema.
@@ -205,7 +185,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Copies the data rows.
+        /// Copies the Data rows.
         /// </summary>
         /// <param name="sqlconnstring">The sqlconnstring.</param>
         /// <param name="path">The path.</param>
@@ -269,7 +249,7 @@ namespace BudgetExecution
                                 CheckCancelled();
                                 tx.Commit();
 
-                                handler( false, true, (int)( 100.0 * i / schema.Count ),
+                                handler( false, true, (int)( ( 100.0 * i ) / schema.Count ),
                                     "Added "
                                     + counter
                                     + " rows to table "
@@ -284,7 +264,7 @@ namespace BudgetExecution
                     CheckCancelled();
                     tx.Commit();
 
-                    handler( false, true, (int)( 100.0 * i / schema.Count ),
+                    handler( false, true, (int)( ( 100.0 * i ) / schema.Count ),
                         "Finished inserting rows for table " + schema[ i ].TableName );
 
                     _log.Debug( "finished inserting all rows for table ["
@@ -477,22 +457,30 @@ namespace BudgetExecution
         {
             var data = blob.ToArray();
 
-            if( blob.Count() > 16 )
+            switch( blob.Count() )
             {
-                data = new byte[ 16 ];
-
-                for( var i = 0; i < 16; i++ )
+                case > 16:
                 {
-                    data[ i ] = blob.ToArray()[ i ];
+                    data = new byte[ 16 ];
+
+                    for( var i = 0; i < 16; i++ )
+                    {
+                        data[ i ] = blob.ToArray()[ i ];
+                    }
+
+                    break;
                 }
-            }
-            else if( blob.Count() < 16 )
-            {
-                data = new byte[ 16 ];
 
-                for( var i = 0; i < blob.Count(); i++ )
+                case < 16:
                 {
-                    data[ i ] = blob.ToArray()[ i ];
+                    data = new byte[ 16 ];
+
+                    for( var i = 0; i < blob.Count(); i++ )
+                    {
+                        data[ i ] = blob.ToArray()[ i ];
+                    }
+
+                    break;
                 }
             }
 
@@ -663,8 +651,7 @@ namespace BudgetExecution
                 default:
                     _log.Error( "illegal db type found" );
 
-                    throw new ApplicationException(
-                        "Illegal DB type found (" + cs.columnType + ")" );
+                    throw new ApplicationException( "Illegal DB type found (" + cs.columnType + ")" );
             }
         }
 
@@ -738,7 +725,7 @@ namespace BudgetExecution
                     count++;
                     CheckCancelled();
 
-                    handler( false, true, (int)( count * 50.0 / schema.tables.Count ),
+                    handler( false, true, (int)( ( count * 50.0 ) / schema.tables.Count ),
                         "Added table " + dt.TableName + " to the SQLite database" );
 
                     _log.Debug( "added schema for SQLite table [" + dt.TableName + "]" );
@@ -764,7 +751,7 @@ namespace BudgetExecution
                         count++;
                         CheckCancelled();
 
-                        handler( false, true, 50 + (int)( count * 50.0 / schema.views.Count ),
+                        handler( false, true, 50 + (int)( ( count * 50.0 ) / schema.views.Count ),
                             "Added view " + vs.viewName + " to the SQLite database" );
 
                         _log.Debug( "added schema for SQLite view [" + vs.viewName + "]" );
@@ -806,7 +793,11 @@ namespace BudgetExecution
 
                 if( handler != null )
                 {
-                    var updated = new ViewSchema { viewName = vs.viewName, viewSQL = vs.viewSQL };
+                    var updated = new ViewSchema
+                    {
+                        viewName = vs.viewName,
+                        viewSQL = vs.viewSQL
+                    };
 
                     // Ask the user to supply the new view definition SQL statement
                     var sql = handler( updated );
@@ -1132,10 +1123,9 @@ namespace BudgetExecution
                 var tblschema = new List<string>();
 
                 // This command will read the names of all tables in the database
-                using( var cmd =
-                    new SqlCommand(
-                        @"select * from INFORMATIONSCHEMA.TABLES  where TABLETYPE = 'BASE TABLE'",
-                        conn ) )
+                var _sql = @"select * from INFORMATIONSCHEMA.TABLES  where TABLETYPE = 'BASE TABLE'";
+
+                using( var cmd = new SqlCommand( _sql, conn ) )
                 {
                     using var reader = cmd.ExecuteReader();
 
@@ -1169,7 +1159,7 @@ namespace BudgetExecution
                     count++;
                     CheckCancelled();
 
-                    handler( false, true, (int)( count * 50.0 / tablenames.Count ),
+                    handler( false, true, (int)( ( count * 50.0 ) / tablenames.Count ),
                         "Parsed table " + tname );
 
                     _log.Debug( "parsed table schema for [" + tname + "]" );
@@ -1194,11 +1184,8 @@ namespace BudgetExecution
             using( var conn = new SqlConnection( connstring ) )
             {
                 conn.Open();
-
-                using var cmd =
-                    new SqlCommand(
-                        @"SELECT TABLENAME, VIEWDEFINITION  from INFORMATIONSCHEMA.VIEWS", conn );
-
+                var _sql = @"SELECT TABLENAME, VIEWDEFINITION  from INFORMATIONSCHEMA.VIEWS";
+                using var cmd = new SqlCommand( _sql, conn );
                 using var reader = cmd.ExecuteReader();
                 var count = 0;
 
@@ -1225,14 +1212,18 @@ namespace BudgetExecution
                     count++;
                     CheckCancelled();
 
-                    handler( false, true, 50 + (int)( count * 50.0 / views.Count ),
+                    handler( false, true, 50 + (int)( ( count * 50.0 ) / views.Count ),
                         "Parsed view " + vs.viewName );
 
                     _log.Debug( "parsed view schema for [" + vs.viewName + "]" );
                 }// while
             }    // using
 
-            var ds = new DatabaseSchema { tables = tables, views = views };
+            var ds = new DatabaseSchema
+            {
+                tables = tables,
+                views = views
+            };
 
             return ds;
         }
@@ -1256,12 +1247,13 @@ namespace BudgetExecution
         /// <param name="tablename">The tablename.</param>
         /// <param name="tschma">The tschma.</param>
         /// <returns></returns>
-        [SuppressMessage( "ReSharper", "BadParensLineBreaks" )]
+        [ SuppressMessage( "ReSharper", "BadParensLineBreaks" ) ]
         private TableSchema CreateTableSchema( SqlConnection conn, string tablename, string tschma )
         {
             var res = new TableSchema
             {
-                TableName = tablename, TableSchemaName = tschma,
+                TableName = tablename,
+                TableSchemaName = tschma,
                 Columns = new List<ColumnSchema>()
             };
 
@@ -1309,7 +1301,7 @@ namespace BudgetExecution
 
                     switch( datatype )
                     {
-                        // Note that not all data type names need to be converted because
+                        // Note that not all Data type names need to be converted because
                         // SQLite establishes type affinity by searching certain strings
                         // in the type name. For example - everything containing the string
                         // 'int' in its type name will be assigned an INTEGER affinity
@@ -1403,8 +1395,11 @@ namespace BudgetExecution
 
                     var col = new ColumnSchema
                     {
-                        columnName = colname, columnType = datatype, length = length,
-                        isNullable = isnullable, isIdentity = isidentity,
+                        columnName = colname,
+                        columnType = datatype,
+                        length = length,
+                        isNullable = isnullable,
+                        isIdentity = isidentity,
                         defaultValue = AdjustDefaultValue( coldefault )
                     };
 
@@ -1492,10 +1487,10 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Validates the type of the data.
+        /// Validates the type of the Data.
         /// </summary>
         /// <param name="datatype">The datatype.</param>
-        /// <exception cref="ApplicationException">Validation failed for data type [" +
+        /// <exception cref="ApplicationException">Validation failed for Data type [" +
         /// datatype + "]</exception>
         private void ValidateDataType( string datatype )
         {
@@ -1532,7 +1527,7 @@ namespace BudgetExecution
                 return;
             }
 
-            throw new ApplicationException( "Validation failed for data type [" + datatype + "]" );
+            throw new ApplicationException( "Validation failed for Data type [" + datatype + "]" );
         }
 
         /// <summary>
@@ -1568,7 +1563,7 @@ namespace BudgetExecution
             if( first != -1
                 && last > first )
             {
-                return res.Substring( first, last - first + 1 );
+                return res.Substring( first, ( last - first ) + 1 );
             }
 
             var sb = new StringBuilder();
@@ -1593,7 +1588,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="conn">The connection.</param>
         /// <param name="ts">The ts.</param>
-        [SuppressMessage( "ReSharper", "BadParensLineBreaks" )]
+        [ SuppressMessage( "ReSharper", "BadParensLineBreaks" ) ]
         private void CreateForeignKeySchema( SqlConnection conn, TableSchema ts )
         {
             ts.ForeignKeys = new List<ForeignKeySchema>();

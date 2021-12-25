@@ -21,13 +21,13 @@ namespace BudgetExecution
         /// <param name = "command" > The command. </param>
         public SqlFactory( IConnectionBuilder builder, SQL command = SQL.SELECT )
         {
-            _source = builder.GetSource();
-            _provider = builder.GetProvider();
-            _commandType = command;
-            _connectionBuilder = builder;
-            _sqlStatement = new SqlStatement( _connectionBuilder, _commandType );
-            _filePath = Path.GetFullPath( _providerPath[ _provider.ToString() ] );
-            _fileName = Path.GetFileNameWithoutExtension( _filePath );
+            Source = builder.GetSource();
+            Provider = builder.GetProvider();
+            CommandType = command;
+            ConnectionBuilder = builder;
+            SqlStatement = new SqlStatement( ConnectionBuilder, CommandType );
+            FilePath = Path.GetFullPath( ProviderPath[ Provider.ToString() ] );
+            FileName = Path.GetFileNameWithoutExtension( FilePath );
         }
 
         /// <summary>
@@ -39,13 +39,13 @@ namespace BudgetExecution
         /// <param name = "command" > The command. </param>
         public SqlFactory( string filePath, SQL command = SQL.SELECT )
         {
-            _connectionBuilder = new ConnectionBuilder( filePath );
-            _source = _connectionBuilder.GetSource();
-            _provider = _connectionBuilder.GetProvider();
-            _commandType = command;
-            _sqlStatement = new SqlStatement( _connectionBuilder, _commandType );
-            _fileName = _connectionBuilder.GetFileName();
-            _filePath = _connectionBuilder.GetFilePath();
+            ConnectionBuilder = new ConnectionBuilder( filePath );
+            Source = ConnectionBuilder.GetSource();
+            Provider = ConnectionBuilder.GetProvider();
+            CommandType = command;
+            SqlStatement = new SqlStatement( ConnectionBuilder, CommandType );
+            FileName = ConnectionBuilder.GetFileName();
+            FilePath = ConnectionBuilder.GetFilePath();
         }
     }
 }

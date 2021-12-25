@@ -18,20 +18,61 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="BudgetExecution.CommandBase" />
     /// <seealso cref="BudgetExecution.ICommandFactory" />
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
-    public class CommandFactory : CommandBase, ICommandFactory
+    public class CommandFactory : ICommandFactory
     {
         /// <summary>
         /// The command builder
         /// </summary>
-        public ICommandBuilder CommandBuilder { get; set; }
+        public ICommandBuilder CommandBuilder { get;  }
 
         /// <summary>
-        /// The connection factory
+        /// Gets the connection builder.
         /// </summary>
-        public IConnectionFactory ConnectionFactory;
+        /// <value>
+        /// The connection builder.
+        /// </value>
+        public IConnectionBuilder ConnectionBuilder { get; }
+
+        /// <summary>
+        /// Gets the SQL statement.
+        /// </summary>
+        /// <value>
+        /// The SQL statement.
+        /// </value>
+        public ISqlStatement SqlStatement { get; set; }
+
+        /// <summary>
+        /// Gets the source.
+        /// </summary>
+        /// <value>
+        /// The source.
+        /// </value>
+        public Source Source { get; set; }
+
+        /// <summary>
+        /// Gets the provider.
+        /// </summary>
+        /// <value>
+        /// The provider.
+        /// </value>
+        public Provider Provider { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandFactory"/> class.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="dict">The dictionary.</param>
+        public CommandFactory( Source source, Provider provider, IDictionary<string, object> dict )
+        {
+            Source = source;
+            Provider = provider;
+            ConnectionBuilder = new ConnectionBuilder( source, provider );
+            SqlStatement = new SqlStatement( ConnectionBuilder, dict );
+            CommandBuilder = new CommandBuilder( SqlStatement );
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandFactory"/> class.
@@ -40,15 +81,17 @@ namespace BudgetExecution
         public CommandFactory( ICommandBuilder commandBuilder )
         {
             CommandBuilder = commandBuilder;
-            SqlStatement = CommandBuilder?.GetSqlStatement();
-            ConnectionFactory = new ConnectionFactory( SqlStatement?.GetConnectionBuilder() );
+            Source = CommandBuilder.Source;
+            Provider = CommandBuilder.Provider;
+            ConnectionBuilder = CommandBuilder.ConnectionBuilder;
+            SqlStatement = CommandBuilder.SqlStatement;
         }
 
         /// <summary>
         /// Gets the create table command.
         /// </summary>
         /// <param name="tableName">Name of the table.</param>
-        /// <param name="dataColumns">The data columns.</param>
+        /// <param name="dataColumns">The Data columns.</param>
         /// <returns></returns>
         public DbCommand GetCreateTableCommand( string tableName, IEnumerable<DataColumn> dataColumns )
         {
@@ -57,8 +100,6 @@ namespace BudgetExecution
             {
                 try
                 {
-                    ConnectionBuilder = GetConnectionBuilder();
-                    Provider = ConnectionBuilder.GetProvider();
                     var _sql = $"CREATE TABLE {tableName}";
 
                     if( Validate.Provider( Provider )
@@ -113,7 +154,7 @@ namespace BudgetExecution
         /// Gets the create view command.
         /// </summary>
         /// <param name="viewName">Name of the view.</param>
-        /// <param name="dataColumns">The data columns.</param>
+        /// <param name="dataColumns">The Data columns.</param>
         /// <returns></returns>
         public DbCommand GetCreateViewCommand( string viewName, IEnumerable<DataColumn> dataColumns )
         {
@@ -124,7 +165,6 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Provider = ConnectionBuilder.GetProvider();
                     var _sql = $"CREATE VIEW {viewName};";
 
                     switch( Provider )
@@ -167,7 +207,7 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the drop table command.
         /// </summary>
-        /// <param name="dataTable">The data table.</param>
+        /// <param name="dataTable">The Data table.</param>
         /// <returns></returns>
         public DbCommand GetDropTableCommand( DataTable dataTable )
         {
@@ -177,7 +217,6 @@ namespace BudgetExecution
                 try
                 {
                     var _sql = $"DROP {dataTable.TableName};";
-                    Provider = ConnectionBuilder.GetProvider();
 
                     if( Verify.Input( _sql )
                         && Enum.IsDefined( typeof( Provider ), Provider ) )
@@ -230,8 +269,8 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the alter command.
         /// </summary>
-        /// <param name="dataTable">The data table.</param>
-        /// <param name="dataColumn">The data column.</param>
+        /// <param name="dataTable">The Data table.</param>
+        /// <param name="dataColumn">The Data column.</param>
         /// <returns></returns>
         public DbCommand GetAlterCommand( DataTable dataTable, DataColumn dataColumn )
         {
@@ -241,8 +280,6 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Provider = ConnectionBuilder.GetProvider();
-
                     var _sql =
                         $"ALTER TABLE {dataTable.TableName} ADD COLUMN {dataColumn.ColumnName};";
 
@@ -297,7 +334,7 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the alter command.
         /// </summary>
-        /// <param name="dataTable">The data table.</param>
+        /// <param name="dataTable">The Data table.</param>
         /// <param name="name">The name.</param>
         /// <returns></returns>
         public DbCommand GetAlterCommand( DataTable dataTable, string name )
@@ -308,7 +345,6 @@ namespace BudgetExecution
             {
                 try
                 {
-                    Provider = CommandBuilder.GetProvider();
                     var _sql = $"ALTER TABLE {dataTable.TableName} RENAME {name};";
 
                     if( Enum.IsDefined( typeof( Provider ), Provider )
@@ -367,7 +403,8 @@ namespace BudgetExecution
         {
             try
             {
-                return CommandBuilder?.GetCommand();
+                var _sql = new SqlStatement( ConnectionBuilder, SQL.SELECT );
+                return CommandBuilder?.GetSqlCommand( _sql );
             }
             catch( Exception ex )
             {
@@ -384,7 +421,8 @@ namespace BudgetExecution
         {
             try
             {
-                return CommandBuilder?.GetCommand();
+                var _sql = new SqlStatement( ConnectionBuilder, SQL.INSERT );
+                return CommandBuilder?.GetSqlCommand( _sql );
             }
             catch( Exception ex )
             {
@@ -394,14 +432,15 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Gets the update command.
+        /// Gets the update commande.
         /// </summary>
         /// <returns></returns>
         public DbCommand GetUpdateCommand()
         {
             try
             {
-                return CommandBuilder?.GetCommand();
+                var _sql = new SqlStatement( ConnectionBuilder, SQL.UPDATE );
+                return CommandBuilder?.GetSqlCommand( _sql );
             }
             catch( Exception ex )
             {
@@ -418,13 +457,25 @@ namespace BudgetExecution
         {
             try
             {
-                return CommandBuilder?.GetCommand();
+                var _sql = new SqlStatement( ConnectionBuilder, SQL.DELETE );
+                return CommandBuilder?.GetSqlCommand( _sql );
             }
             catch( Exception ex )
             {
                 Fail( ex );
                 return default( DbCommand );
             }
+        }
+
+        /// <summary>
+        /// Fails the specified ex.
+        /// </summary>
+        /// <param name="ex">The ex.</param>
+        private protected static void Fail( Exception ex )
+        {
+            using var _error = new Error( ex );
+            _error?.SetText( ex.Message );
+            _error?.ShowDialog();
         }
     }
 }

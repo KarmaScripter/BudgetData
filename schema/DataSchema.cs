@@ -19,6 +19,38 @@ namespace BudgetExecution
     public class DataSchema : ISource, IDataSchema
     {
         /// <summary>
+        /// Gets the name of the Table.
+        /// </summary>
+        /// <value>
+        /// The name of the Table.
+        /// </value>
+        public string Name { get;  }
+
+        /// <summary>
+        /// Gets the Data.
+        /// </summary>
+        /// <value>
+        /// The Data.
+        /// </value>
+        public IEnumerable<DataRow> Data { get;  }
+
+        /// <summary>
+        /// Gets a value indicating whether this instance is source.
+        /// </summary>
+        /// <value>
+        /// <c>
+        /// true
+        /// </c>
+        /// if this instance is source; otherwise,
+        /// <c>
+        /// false
+        /// </c>
+        /// .
+        /// </value>
+        [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+        public bool IsSource { get; }
+        
+        /// <summary>
         /// Initializes a new instance of the <see cref = "DataSchema"/> class.
         /// </summary>
         public DataSchema()
@@ -42,7 +74,7 @@ namespace BudgetExecution
         /// Initializes a new instance of the <see cref = "DataSchema"/> class.
         /// </summary>
         /// <param name = "data" >
-        /// The data.
+        /// The Data.
         /// </param>
         public DataSchema( IEnumerable<DataRow> data )
         {
@@ -52,42 +84,9 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Gets the name of the Table.
-        /// </summary>
-        /// <value>
-        /// The name of the Table.
-        /// </value>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets the data.
-        /// </summary>
-        /// <value>
-        /// The data.
-        /// </value>
-        public IEnumerable<DataRow> Data { get; set; }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance is source.
-        /// </summary>
-        /// <value>
-        /// <c>
-        /// true
-        /// </c>
-        /// if this instance is source; otherwise,
-        /// <c>
-        /// false
-        /// </c>
-        /// .
-        /// </value>
-        [SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" )]
-        public bool IsSource { get; }
-
-        /// <summary>
         /// Sets the column names.
         /// </summary>
-        /// <returns>
-        /// </returns>
+        /// <returns></returns>
         public IEnumerable<string> GetColumnNames()
         {
             try
@@ -320,7 +319,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Gets the data Table.
+        /// Gets the Data Table.
         /// </summary>
         /// <returns>
         /// </returns>
@@ -360,7 +359,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Gets the data.
+        /// Gets the Data.
         /// </summary>
         /// <returns>
         /// </returns>
@@ -406,7 +405,7 @@ namespace BudgetExecution
         private protected static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error?.SetText();
+            _error?.SetText( ex.Message );
             _error?.ShowDialog();
         }
     }

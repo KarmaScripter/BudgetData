@@ -13,23 +13,17 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="BudgetExecution.Unit" />
-    [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" )]
     public abstract class KeyBase : Unit
     {
         /// <summary>
-        /// Gets or sets the primary key.
+        /// The primary key
         /// </summary>
-        /// <value>
-        /// The primary key.
-        /// </value>
         public PrimaryKey PrimaryKey { get; set; }
 
         /// <summary>
-        /// Gets or sets the index.
+        /// The index
         /// </summary>
-        /// <value>
-        /// The index.
-        /// </value>
         public int Index { get; set; }
 
         /// <summary>
@@ -53,19 +47,20 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the name.
         /// </summary>
-        /// <param name="dataRow">The data row.</param>
-        public void SetName( DataRow dataRow )
+        /// <param name="dataRow">The Data row.</param>
+        private protected void SetName( DataRow dataRow )
         {
             if( dataRow != null )
             {
                 try
                 {
-                    var _column = dataRow[ 0 ].ToString();
+                    var _colName = dataRow[ 0 ].ToString();
                     var _names = dataRow?.Table?.GetColumnNames();
 
-                    Name = Verify.Input( _column ) && _names?.Contains( _column ) == true
-                        ? _column
-                        : PrimaryKey.NS.ToString();
+                    Name = Verify.Input( _colName ) 
+                        && _names?.Contains( _colName ) == true
+                            ? _colName
+                            : PrimaryKey.NS.ToString();
                 }
                 catch( Exception ex )
                 {
@@ -78,7 +73,7 @@ namespace BudgetExecution
         /// Sets the name.
         /// </summary>
         /// <param name="field">The field.</param>
-        public void SetName( PrimaryKey field )
+        private protected void SetName( PrimaryKey field )
         {
             if( Validate.Field( field ) )
             {
@@ -98,9 +93,9 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the name.
         /// </summary>
-        /// <param name="dataRow">The data row.</param>
+        /// <param name="dataRow">The Data row.</param>
         /// <param name="index">The index.</param>
-        public void SetName( DataRow dataRow, PrimaryKey index )
+        private protected void SetName( DataRow dataRow, PrimaryKey index )
         {
             if( Verify.Input( dataRow?.ItemArray )
                 && Validate.Field( index ) )
@@ -124,7 +119,7 @@ namespace BudgetExecution
         /// Sets the primary key.
         /// </summary>
         /// <param name="keyName">Name of the key.</param>
-        public void SetPrimaryKey( string keyName )
+        private protected void SetPrimaryKey( string keyName )
         {
             try
             {
@@ -143,8 +138,8 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the primary key.
         /// </summary>
-        /// <param name="dataRow">The data row.</param>
-        public void SetPrimaryKey( DataRow dataRow )
+        /// <param name="dataRow">The Data row.</param>
+        private protected void SetPrimaryKey( DataRow dataRow )
         {
             if( Verify.Row( dataRow ) )
             {
@@ -179,7 +174,7 @@ namespace BudgetExecution
         /// Sets the primary key.
         /// </summary>
         /// <param name="keyName">Name of the key.</param>
-        public void SetPrimaryKey( PrimaryKey keyName )
+        private protected void SetPrimaryKey( PrimaryKey keyName )
         {
             try
             {
@@ -196,9 +191,9 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the primary key.
         /// </summary>
-        /// <param name="dataRow">The data row.</param>
+        /// <param name="dataRow">The Data row.</param>
         /// <param name="keyName">Name of the key.</param>
-        public void SetPrimaryKey( DataRow dataRow, PrimaryKey keyName )
+        private protected void SetPrimaryKey( DataRow dataRow, PrimaryKey keyName )
         {
             if( Verify.Input( dataRow?.ItemArray )
                 && Validate.Field( keyName ) )
@@ -223,7 +218,7 @@ namespace BudgetExecution
         /// Sets the index.
         /// </summary>
         /// <param name="value">The value.</param>
-        public void SetIndex( int value )
+        private protected void SetIndex( int value )
         {
             try
             {
@@ -240,9 +235,9 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the index.
         /// </summary>
-        /// <param name="dataRow">The data row.</param>
+        /// <param name="dataRow">The Data row.</param>
         /// <param name="key">The key.</param>
-        public void SetIndex( DataRow dataRow, PrimaryKey key )
+        private protected void SetIndex( DataRow dataRow, PrimaryKey key )
         {
             if( Verify.Input( dataRow?.ItemArray )
                 && Validate.PrimaryKey( key ) )

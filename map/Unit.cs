@@ -74,7 +74,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Gets the data.
+        /// Gets the Data.
         /// </summary>
         /// <returns></returns>
         public virtual object GetData()

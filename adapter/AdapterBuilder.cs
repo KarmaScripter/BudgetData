@@ -8,6 +8,7 @@ namespace BudgetExecution
     using System.Data;
     using System.Data.Common;
     using System.Diagnostics.CodeAnalysis;
+    using Microsoft.Office.Interop.Excel;
 
     /// <summary>
     /// 
@@ -33,6 +34,22 @@ namespace BudgetExecution
         public IConnectionBuilder ConnectionBuilder { get;  }
 
         /// <summary>
+        /// Gets the command builder.
+        /// </summary>
+        /// <value>
+        /// The command builder.
+        /// </value>
+        public ICommandBuilder CommandBuilder { get; }
+
+        /// <summary>
+        /// Gets the command factory.
+        /// </summary>
+        /// <value>
+        /// The command factory.
+        /// </value>
+        public ICommandFactory CommandFactory { get; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
         /// </summary>
         public AdapterBuilder()
@@ -52,10 +69,12 @@ namespace BudgetExecution
         public AdapterBuilder( ICommandBuilder commandbuilder )
             : this()
         {
-            ConnectionBuilder = commandbuilder?.GetConnectionBuilder();
+            ConnectionBuilder = commandbuilder.ConnectionBuilder;
+            SqlStatement = commandbuilder.SqlStatement;
             Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
-            SqlStatement = commandbuilder?.GetSqlStatement();
-            SelectCommand = new CommandBuilder( ConnectionBuilder, SqlStatement )?.GetCommand();
+            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
+            CommandFactory = new CommandFactory( CommandBuilder );
+            SelectCommand = CommandFactory.GetSelectCommand();
         }
 
         /// <summary>
@@ -69,7 +88,9 @@ namespace BudgetExecution
             ConnectionBuilder = connectionbuilder;
             Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
             SqlStatement = sqlstatement;
-            SelectCommand = new CommandBuilder( ConnectionBuilder, SqlStatement )?.GetCommand();
+            CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
+            CommandFactory = new CommandFactory( CommandBuilder );
+            SelectCommand = CommandFactory.GetSelectCommand();
         }
 
         /// <summary>
@@ -117,7 +138,7 @@ namespace BudgetExecution
         private protected static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error?.SetText();
+            _error?.SetText( ex.Message );
             _error?.ShowDialog();
         }
     }

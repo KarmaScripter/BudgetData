@@ -2,7 +2,6 @@
 // Copyright (c) Terry D. Eppler. All rights reserved.
 // </copyright>
 
-// ReSharper disable All
 namespace BudgetExecution
 {
     using System;
@@ -25,10 +24,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
     public class ConnectionFactory : ISource, IConnectionFactory
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public IConnectionBuilder ConnectionBuilder { get; set; }
+        private readonly IConnectionBuilder _connectionBuilder;
 
         /// <summary>
         /// Gets the connection.
@@ -36,7 +32,7 @@ namespace BudgetExecution
         /// <value>
         /// The connection.
         /// </value>
-        public DbConnection Connection { get; set; }
+        private readonly DbConnection _connection;
 
         /// <summary>
         /// Initializes a new instance of the <see cref = "ConnectionFactory"/> class.
@@ -53,8 +49,8 @@ namespace BudgetExecution
         /// </param>
         public ConnectionFactory( IConnectionBuilder builder )
         {
-            ConnectionBuilder = GetConnectionBuilder( builder );
-            Connection = SetConnection( ConnectionBuilder );
+            _connectionBuilder = GetConnectionBuilder( builder );
+            _connection = SetConnection( _connectionBuilder );
         }
 
         /// <summary>
@@ -68,8 +64,8 @@ namespace BudgetExecution
         /// </param>
         public ConnectionFactory( IConnectionBuilder builder, ISqlStatement sqlStatement )
         {
-            ConnectionBuilder = GetConnectionBuilder( builder );
-            Connection = SetConnection( ConnectionBuilder );
+            _connectionBuilder = GetConnectionBuilder( builder );
+            _connection = SetConnection( _connectionBuilder );
         }
 
         /// <summary>
@@ -105,8 +101,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Ref( ConnectionBuilder )
-                    ? ConnectionBuilder
+                return Verify.Ref( _connectionBuilder )
+                    ? _connectionBuilder
                     : default( IConnectionBuilder );
             }
             catch( Exception ex )
@@ -198,8 +194,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Ref( Connection )
-                    ? Connection
+                return Verify.Ref( _connection )
+                    ? _connection
                     : default( DbConnection );
             }
             catch( Exception ex )
@@ -219,7 +215,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _connectionString = ConnectionBuilder?.GetConnectionString();
+                var _connectionString = _connectionBuilder?.GetConnectionString();
 
                 return Verify.Input( _connectionString )
                     ? _connectionString
@@ -241,7 +237,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _provider = ConnectionBuilder.GetProvider();
+                var _provider = _connectionBuilder.GetProvider();
 
                 return Validate.Provider( _provider )
                     ? _provider
@@ -263,7 +259,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _source = ConnectionBuilder.GetSource();
+                var _source = _connectionBuilder.GetSource();
 
                 return Validate.Source( _source )
                     ? _source
@@ -283,7 +279,7 @@ namespace BudgetExecution
         private protected static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error?.SetText();
+            _error?.SetText( ex.Message );
             _error?.ShowDialog();
         }
     }

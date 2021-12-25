@@ -23,22 +23,22 @@ namespace BudgetExecution
         /// <summary>
         /// The values
         /// </summary>
-        private protected IEnumerable<string> _values;
+        public IEnumerable<string> Values { get; set; }
 
         /// <summary>
         /// The names
         /// </summary>
-        private protected IEnumerable<string> _names;
+        public IEnumerable<string> Names { get; set; }
 
         /// <summary>
         /// The input
         /// </summary>
-        private protected IDictionary<string, object> _input;
+        public IDictionary<string, object> Input { get; set; }
 
         /// <summary>
         /// The output
         /// </summary>
-        private protected IDictionary<string, object> _output;
+        public IDictionary<string, object> Output { get; set; }
 
         /// <summary>
         /// Sets the input.
@@ -62,7 +62,7 @@ namespace BudgetExecution
                         }
                     }
 
-                    _input = _dictionary?.Any() == true
+                    Input = _dictionary?.Any() == true
                         ? _dictionary
                         : default( Dictionary<string, object> );
                 }
@@ -85,9 +85,9 @@ namespace BudgetExecution
                 {
                     var _dictionary = new Dictionary<string, object>();
 
-                    if( _values?.Any() == true )
+                    if( Values?.Any() == true )
                     {
-                        var data = _values.ToArray();
+                        var data = Values.ToArray();
 
                         foreach( var kvp in dict )
                         {
@@ -100,7 +100,7 @@ namespace BudgetExecution
                             }
                         }
 
-                        _output = _dictionary?.Any() == true
+                        Output = _dictionary?.Any() == true
                             ? _dictionary
                             : default( Dictionary<string, object> );
                     }
@@ -118,11 +118,11 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<string> GetValues()
         {
-            if( _output?.Any() == true )
+            if( Output?.Any() == true )
             {
                 try
                 {
-                    var _array = _output?.Values?.ToArray();
+                    var _array = Output?.Values?.ToArray();
                     var _enumerable = _array?.Select( o => o.ToString() );
                     var _fields = Enum.GetNames( typeof( Field ) );
                     var _list = new List<string>();
@@ -160,11 +160,11 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<string> GetNames()
         {
-            if( _output?.Any() == true )
+            if( Output?.Any() == true )
             {
                 try
                 {
-                    var _keys = _output?.Keys;
+                    var _keys = Output?.Keys;
                     var _fields = Enum.GetNames( typeof( Field ) );
                     var _list = new List<string>();
 

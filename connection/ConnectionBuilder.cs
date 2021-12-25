@@ -39,8 +39,8 @@ namespace BudgetExecution
         /// <param name="provider">The provider.</param>
         public ConnectionBuilder( Source source, Provider provider = Provider.SQLite )
         {
-            SetSource( source );
-            SetProvider( provider );
+            Source = source;
+            Provider = provider;
             SetFilePath( Provider );
             SetFileName( FilePath );
             SetFileExtension( FilePath );

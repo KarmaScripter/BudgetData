@@ -16,7 +16,7 @@ namespace BudgetExecution
     public abstract class UnitBase
     {
         /// <summary>
-        /// The data
+        /// The Data
         /// </summary>
         public object Data { get; set; }
 
@@ -49,9 +49,9 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Sets the data.
+        /// Sets the Data.
         /// </summary>
-        /// <param name="data">The data.</param>
+        /// <param name="data">The Data.</param>
         public virtual void SetData( object data )
         {
             try
@@ -69,7 +69,7 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the value.
         /// </summary>
-        /// <param name="data">The data.</param>
+        /// <param name="data">The Data.</param>
         public virtual void SetValue( object data )
         {
             try
@@ -117,7 +117,7 @@ namespace BudgetExecution
         private protected static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error?.SetText();
+            _error?.SetText( ex.Message );
             _error?.ShowDialog();
         }
     }

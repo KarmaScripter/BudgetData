@@ -12,42 +12,37 @@ namespace BudgetExecution
     public interface ICommandBuilder
     {
         /// <summary>
+        /// The command
+        /// </summary>
+        public DbCommand Command { get; set; }
+
+        /// <summary>
+        /// The connection builder
+        /// </summary>
+        public IConnectionBuilder ConnectionBuilder { get; }
+
+        /// <summary>
+        /// The provider
+        /// </summary>
+        public Provider Provider { get; }
+
+        /// <summary>
+        /// The source
+        /// </summary>
+        public Source Source { get; }
+
+        /// <summary>
+        /// The SQL statement
+        /// </summary>
+        public ISqlStatement SqlStatement { get; }
+
+        /// <summary>
         /// Sets the command.
         /// </summary>
         /// <param name="sqlStatement">The SQL statement.</param>
         /// <returns></returns>
-        DbCommand SetCommand( ISqlStatement sqlStatement );
-
-        /// <summary>
-        /// Gets the command.
-        /// </summary>
-        /// <returns></returns>
-        DbCommand GetCommand();
-
-        /// <summary>
-        /// Gets the source.
-        /// </summary>
-        /// <returns></returns>
-        Source GetSource();
-
-        /// <summary>
-        /// Gets the provider.
-        /// </summary>
-        /// <returns></returns>
-        Provider GetProvider();
-
-        /// <summary>
-        /// Gets the connection builder.
-        /// </summary>
-        /// <returns></returns>
-        IConnectionBuilder GetConnectionBuilder();
-
-        /// <summary>
-        /// Gets the SQL statement.
-        /// </summary>
-        /// <returns></returns>
-        ISqlStatement GetSqlStatement();
-
+        DbCommand GetCommand( ISqlStatement sqlStatement );
+        
         /// <summary>
         /// Gets the sq lite command.
         /// </summary>

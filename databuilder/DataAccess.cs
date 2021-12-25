@@ -41,16 +41,16 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Gets the data.
+        /// Gets the Data.
         /// </summary>
         /// <returns></returns>
         public IEnumerable<DataRow> GetData()
         {
-            if( Verify.Table( DataTable ) )
+            if( Verify.Table( Table ) )
             {
                 try
                 {
-                    var _data = DataTable
+                    var _data = Table
                         ?.AsEnumerable();
 
                     return Verify.Rows( _data )
@@ -68,12 +68,12 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Gets the data table.
+        /// Gets the Data table.
         /// </summary>
         /// <returns></returns>
         public DataTable GetDataTable()
         {
-            if( Verify.Table( DataTable ) )
+            if( Verify.Table( Table ) )
             {
                 try
                 {
@@ -82,15 +82,18 @@ namespace BudgetExecution
                         DataSetName = $"{Source}"
                     };
 
-                    DataTable = new DataTable( $"{Source}" );
-                    DataTable.TableName = $"{Source}";
-                    DataSet.Tables.Add( DataTable );
-                    var _adapter = Query?.GetAdapter();
-                    _adapter?.Fill( DataSet, DataTable.TableName );
-                    SetColumnCaptions( DataTable );
+                    Table = new DataTable( $"{Source}" )
+                    {
+                        TableName = $"{Source}"
+                    };
 
-                    return DataTable?.Rows?.Count > 0
-                        ? DataTable
+                    DataSet.Tables.Add( Table );
+                    var _adapter = Query?.GetAdapter();
+                    _adapter?.Fill( DataSet, Table.TableName );
+                    SetColumnCaptions( Table );
+
+                    return Table?.Rows?.Count > 0
+                        ? Table
                         : default( DataTable );
                 }
                 catch( Exception ex )
@@ -104,7 +107,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Gets the data set.
+        /// Gets the Data set.
         /// </summary>
         /// <returns></returns>
         public DataSet GetDataSet()
@@ -118,8 +121,11 @@ namespace BudgetExecution
                         DataSetName = "DataSet"
                     };
 
-                    var _table = new DataTable( $"{Source}" );
-                    _table.TableName = $"{Source}";
+                    var _table = new DataTable( $"{Source}" )
+                    {
+                        TableName = $"{Source}"
+                    };
+
                     DataSet.Tables.Add( _table );
                     using var _adapter = Query?.GetAdapter();
                     _adapter?.Fill( DataSet, _table?.TableName );
@@ -198,26 +204,26 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the column captions.
         /// </summary>
-        /// <param name="dataTable">The data table.</param>
+        /// <param name="dataTable">The Data table.</param>
         public void SetColumnCaptions( DataTable dataTable )
         {
             if( Verify.Table( dataTable ) )
             {
                 try
                 {
-                    foreach( DataColumn _column in dataTable.Columns )
+                    foreach( DataColumn column in dataTable.Columns )
                     {
-                        switch( _column?.ColumnName?.Length )
+                        switch( column?.ColumnName?.Length )
                         {
                             case < 5:
                             {
-                                var _caption = _column.ColumnName.ToUpper();
-                                _column.Caption = _caption;
+                                var _caption = column.ColumnName.ToUpper();
+                                column.Caption = _caption;
                                 continue;
                             }
 
                             case >= 5:
-                                _column.Caption = _column.ColumnName.SplitPascal();
+                                column.Caption = column.ColumnName.SplitPascal();
                                 break;
                         }
                     }
@@ -240,17 +246,20 @@ namespace BudgetExecution
                 var _table = GetDataTable();
                 SetColumnCaptions( _table );
 
-                DataSet = new DataSet( $"{Source}" )
+                DataSet = new DataSet( $"{ Source }" )
                 {
                     DataSetName = $"{Source}"
                 };
 
-                var _datatable = new DataTable( $"{Source}" );
-                _datatable.TableName = $"{Source}";
-                DataSet.Tables.Add( _datatable );
+                var _dataTable = new DataTable( $"{ Source }" )
+                {
+                    TableName = $"{Source}"
+                };
+
+                DataSet.Tables.Add( _dataTable );
                 using var _adapter = Query?.GetAdapter();
-                _adapter?.Fill( DataSet, _datatable.TableName );
-                SetColumnCaptions( _datatable );
+                _adapter?.Fill( DataSet, _dataTable.TableName );
+                SetColumnCaptions( _dataTable );
 
                 return _table.Columns.Count > 0
                     ? _table.Columns
@@ -266,7 +275,7 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the primary indexes.
         /// </summary>
-        /// <param name="dataRows">The data rows.</param>
+        /// <param name="dataRows">The Data rows.</param>
         /// <returns></returns>
         public IEnumerable<int> GetPrimaryIndexes( IEnumerable<DataRow> dataRows )
         {
@@ -295,7 +304,7 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the column ordinals.
         /// </summary>
-        /// <param name="dataColumns">The data columns.</param>
+        /// <param name="dataColumns">The Data columns.</param>
         /// <returns></returns>
         public IEnumerable<int> GetColumnOrdinals( IEnumerable<DataColumn> dataColumns )
         {

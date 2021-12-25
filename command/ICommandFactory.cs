@@ -14,10 +14,47 @@ namespace BudgetExecution
     public interface ICommandFactory
     {
         /// <summary>
+        /// The command builder
+        /// </summary>
+        public ICommandBuilder CommandBuilder { get; }
+
+        /// <summary>
+        /// Gets the connection builder.
+        /// </summary>
+        /// <value>
+        /// The connection builder.
+        /// </value>
+        public IConnectionBuilder ConnectionBuilder { get; }
+
+        /// <summary>
+        /// Gets the SQL statement.
+        /// </summary>
+        /// <value>
+        /// The SQL statement.
+        /// </value>
+        public ISqlStatement SqlStatement { get; set; }
+
+        /// <summary>
+        /// Gets the source.
+        /// </summary>
+        /// <value>
+        /// The source.
+        /// </value>
+        public Source Source { get; set; }
+
+        /// <summary>
+        /// Gets the provider.
+        /// </summary>
+        /// <value>
+        /// The provider.
+        /// </value>
+        public Provider Provider { get; set; }
+
+        /// <summary>
         /// Gets the create table command.
         /// </summary>
         /// <param name="tableName">Name of the table.</param>
-        /// <param name="dataColumns">The data columns.</param>
+        /// <param name="dataColumns">The Data columns.</param>
         /// <returns></returns>
         DbCommand GetCreateTableCommand( string tableName, IEnumerable<DataColumn> dataColumns );
 
@@ -25,29 +62,29 @@ namespace BudgetExecution
         /// Gets the create view command.
         /// </summary>
         /// <param name="viewName">Name of the view.</param>
-        /// <param name="dataColumns">The data columns.</param>
+        /// <param name="dataColumns">The Data columns.</param>
         /// <returns></returns>
         DbCommand GetCreateViewCommand( string viewName, IEnumerable<DataColumn> dataColumns );
 
         /// <summary>
         /// Gets the drop table command.
         /// </summary>
-        /// <param name="dataTable">The data table.</param>
+        /// <param name="dataTable">The Data table.</param>
         /// <returns></returns>
         DbCommand GetDropTableCommand( DataTable dataTable );
 
         /// <summary>
         /// Gets the alter command.
         /// </summary>
-        /// <param name="dataTable">The data table.</param>
-        /// <param name="dataColumn">The data column.</param>
+        /// <param name="dataTable">The Data table.</param>
+        /// <param name="dataColumn">The Data column.</param>
         /// <returns></returns>
         DbCommand GetAlterCommand( DataTable dataTable, DataColumn dataColumn );
 
         /// <summary>
         /// Gets the alter command.
         /// </summary>
-        /// <param name="dataTable">The data table.</param>
+        /// <param name="dataTable">The Data table.</param>
         /// <param name="name">The name.</param>
         /// <returns></returns>
         DbCommand GetAlterCommand( DataTable dataTable, string name );
@@ -75,57 +112,5 @@ namespace BudgetExecution
         /// </summary>
         /// <returns></returns>
         DbCommand GetDeleteCommand();
-
-        /// <summary>
-        /// Gets the source.
-        /// </summary>
-        /// <returns></returns>
-        Source GetSource();
-
-        /// <summary>
-        /// Gets the provider.
-        /// </summary>
-        /// <returns></returns>
-        Provider GetProvider();
-
-        /// <summary>
-        /// Gets the connection builder.
-        /// </summary>
-        /// <returns></returns>
-        IConnectionBuilder GetConnectionBuilder();
-
-        /// <summary>
-        /// Gets the SQL statement.
-        /// </summary>
-        /// <returns></returns>
-        ISqlStatement GetSqlStatement();
-
-        /// <summary>
-        /// Gets the sq lite command.
-        /// </summary>
-        /// <param name="sqlStatement">The SQL statement.</param>
-        /// <returns></returns>
-        DbCommand GetSQLiteCommand( ISqlStatement sqlStatement );
-
-        /// <summary>
-        /// Gets the SQL ce command.
-        /// </summary>
-        /// <param name="sqlStatement">The SQL statement.</param>
-        /// <returns></returns>
-        DbCommand GetSqlCeCommand( ISqlStatement sqlStatement );
-
-        /// <summary>
-        /// Gets the SQL command.
-        /// </summary>
-        /// <param name="sqlStatement">The SQL statement.</param>
-        /// <returns></returns>
-        DbCommand GetSqlCommand( ISqlStatement sqlStatement );
-
-        /// <summary>
-        /// Gets the OLE database command.
-        /// </summary>
-        /// <param name="sqlStatement">The SQL statement.</param>
-        /// <returns></returns>
-        DbCommand GetOleDbCommand( ISqlStatement sqlStatement );
     }
 }

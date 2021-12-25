@@ -30,10 +30,10 @@ namespace BudgetExecution
         /// <param name="commandType">The commandType.</param>
         public SqlStatement( IConnectionBuilder connectionBuilder, SQL commandType = SQL.SELECT )
         {
-            _connectionBuilder = connectionBuilder;
+            ConnectionBuilder = connectionBuilder;
             SetCommandType( commandType );
-            _args = null;
-            SetCommandText( _args );
+            Args = null;
+            SetCommandText( Args );
         }
 
         /// <summary>
@@ -43,10 +43,10 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         public SqlStatement( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict )
         {
-            _connectionBuilder = connectionBuilder;
-            _commandType = SQL.SELECT;
-            _args = dict;
-            _commandText = GetCommandText();
+            ConnectionBuilder = connectionBuilder;
+            CommandType = SQL.SELECT;
+            SetArgs( dict );
+            SetCommandText( Args );
         }
 
         /// <summary>
@@ -58,10 +58,21 @@ namespace BudgetExecution
         public SqlStatement( IConnectionBuilder connectionBuilder, IDictionary<string, object> dict,
             SQL commandType = SQL.SELECT )
         {
-            _connectionBuilder = connectionBuilder;
+            ConnectionBuilder = connectionBuilder;
             SetCommandType( commandType );
             SetArgs( dict );
-            _commandText = GetCommandText();
+            SetCommandText( Args );
+        }
+
+        /// <summary>
+        /// Gets the type of the command.
+        /// </summary>
+        /// <returns>
+        /// SQL
+        /// </returns>
+        public SQL GetCommandType()
+        {
+            return SQL.NS;
         }
 
         /// <summary>
@@ -70,23 +81,23 @@ namespace BudgetExecution
         /// <returns></returns>
         public string GetSelectStatement()
         {
-            if( _args != null )
+            if( Args != null )
             {
                 try
                 {
                     var _values = string.Empty;
 
-                    foreach( var kvp in _args )
+                    foreach( var kvp in Args )
                     {
                         _values += $"{kvp.Key} = '{kvp.Value}' AND ";
                     }
 
                     _values = _values.TrimEnd( " AND".ToCharArray() );
-                    var _table = _connectionBuilder?.GetTableName();
-                    _commandText = $"{SQL.SELECT} * FROM {_table} WHERE {_values};";
+                    var _table = ConnectionBuilder?.GetTableName();
+                    CommandText = $"{SQL.SELECT} * FROM {_table} WHERE {_values};";
 
-                    return Verify.Input( _commandText )
-                        ? _commandText
+                    return Verify.Input( CommandText )
+                        ? CommandText
                         : default( string );
                 }
                 catch( Exception ex )
@@ -95,9 +106,9 @@ namespace BudgetExecution
                     return default( string );
                 }
             }
-            else if( _args == null )
+            else if( Args == null )
             {
-                return $"{SQL.SELECT} * FROM {_connectionBuilder?.GetTableName()};";
+                return $"{SQL.SELECT} * FROM {ConnectionBuilder?.GetTableName()};";
             }
 
             return default( string );
@@ -109,22 +120,22 @@ namespace BudgetExecution
         /// <returns></returns>
         public string GetUpdateStatement()
         {
-            if( _args != null )
+            if( Args != null )
             {
                 try
                 {
                     var _update = string.Empty;
 
-                    foreach( var kvp in _args )
+                    foreach( var kvp in Args )
                     {
                         _update += $" {kvp.Key} = '{kvp.Value}' AND";
                     }
 
                     var _values = _update.TrimEnd( " AND".ToCharArray() );
-                    _commandText = $"{SQL.UPDATE} {_connectionBuilder?.GetTableName()} SET {_values};";
+                    CommandText = $"{SQL.UPDATE} {ConnectionBuilder?.GetTableName()} SET {_values};";
 
-                    return Verify.Input( _commandText )
-                        ? _commandText
+                    return Verify.Input( CommandText )
+                        ? CommandText
                         : default( string );
                 }
                 catch( Exception ex )
@@ -145,11 +156,11 @@ namespace BudgetExecution
         {
             try
             {
-                var _table = _connectionBuilder?.GetTableName();
+                var _table = ConnectionBuilder?.GetTableName();
                 var _columnName = string.Empty;
                 var _values = string.Empty;
 
-                foreach( var kvp in _args )
+                foreach( var kvp in Args )
                 {
                     _columnName += $"{kvp.Key}, ";
                     _values += $"{kvp.Value}, ";
@@ -158,10 +169,10 @@ namespace BudgetExecution
                 var values =
                     $"({_columnName.TrimEnd( ", ".ToCharArray() )}) VALUES ({_values.TrimEnd( ", ".ToCharArray() )})";
 
-                _commandText = $"{SQL.INSERT} INTO {_table} {values};";
+                CommandText = $"{SQL.INSERT} INTO {_table} {values};";
 
-                return Verify.Input( _commandText )
-                    ? _commandText
+                return Verify.Input( CommandText )
+                    ? CommandText
                     : default( string );
             }
             catch( Exception ex )
@@ -179,8 +190,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Map( _args ) && Verify.Input( _commandText )
-                    ? _commandText
+                return Verify.Map( Args ) && Verify.Input( CommandText )
+                    ? CommandText
                     : string.Empty;
             }
             catch( Exception ex )

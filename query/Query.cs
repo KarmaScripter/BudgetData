@@ -46,14 +46,13 @@ namespace BudgetExecution
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
-            Args = new Dictionary<string, object>();
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref = "Query"/> class.
         /// </summary>
         /// <param name = "source" >
-        /// The source data.
+        /// The source Data.
         /// </param>
         /// <param name = "provider" >
         /// The provider used.
@@ -73,7 +72,6 @@ namespace BudgetExecution
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
-            Args = new Dictionary<string, object>();
         }
 
         /// <summary>
@@ -93,7 +91,6 @@ namespace BudgetExecution
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
-            Args = SqlStatement.GetArgs();
         }
 
         /// <summary>
@@ -116,7 +113,6 @@ namespace BudgetExecution
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
-            Args = SqlStatement?.GetArgs();
         }
 
         /// <summary>
@@ -158,12 +154,11 @@ namespace BudgetExecution
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
-            Args = SqlStatement?.GetArgs();
         }
 
         /// <inheritdoc/>
         /// <summary>
-        /// Sets the data reader.
+        /// Sets the Data reader.
         /// </summary>
         /// <param name = "command" >
         /// The command.

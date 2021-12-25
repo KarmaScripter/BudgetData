@@ -22,7 +22,7 @@ namespace BudgetExecution
         /// <returns> </returns>
         string GetValue();
 
-        /// <summary> Gets the data. </summary>
+        /// <summary> Gets the Data. </summary>
         /// <returns> </returns>
         object GetData();
 

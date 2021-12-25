@@ -61,7 +61,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
-        /// <param name="dataRow">The data row.</param>
+        /// <param name="dataRow">The Data row.</param>
         /// <param name="field">The field.</param>
         public Element( DataRow dataRow, Field field )
         {
@@ -87,7 +87,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
-        /// <param name="dataRow">The data row.</param>
+        /// <param name="dataRow">The Data row.</param>
         /// <param name="value">The value.</param>
         public Element( DataRow dataRow, string value )
         {
@@ -100,8 +100,8 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="Element"/> class.
         /// </summary>
-        /// <param name="dataRow">The data row.</param>
-        /// <param name="dataColumn">The data column.</param>
+        /// <param name="dataRow">The Data row.</param>
+        /// <param name="dataColumn">The Data column.</param>
         public Element( DataRow dataRow, DataColumn dataColumn )
         {
             SetField( dataColumn.ColumnName );

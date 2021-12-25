@@ -65,7 +65,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount"/> class.
         /// </summary>
-        /// <param name="dataRow">The data row.</param>
+        /// <param name="dataRow">The Data row.</param>
         /// <param name="numeric">The numeric.</param>
         public Amount( DataRow dataRow, Numeric numeric = Numeric.Amount )
         {
@@ -270,7 +270,7 @@ namespace BudgetExecution
         /// Called when [changed].
         /// </summary>
         /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event Data.</param>
         public void OnChanged( object sender, EventArgs e )
         {
             try

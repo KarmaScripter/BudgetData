@@ -64,7 +64,7 @@ namespace BudgetExecution
         DbDataAdapter GetAdapter();
 
         /// <summary>
-        /// Sets the data reader.
+        /// Sets the Data reader.
         /// </summary>
         /// <param name = "command" >
         /// The command.

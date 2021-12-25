@@ -28,7 +28,7 @@ namespace BudgetExecution
         /// <summary>
         /// The program elements
         /// </summary>
-        public IDictionary<string, IEnumerable<string>> ProgramElements { get; }
+        public IDictionary<string, IEnumerable<string>> ProgramElements { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Builder"/> class.
@@ -48,7 +48,7 @@ namespace BudgetExecution
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = new SqlStatement( ConnectionBuilder, SQL.SELECT );
-            SetQuery( ConnectionBuilder, SqlStatement );
+            Query = new Query( ConnectionBuilder, SqlStatement );
             ProgramElements = GetSeries( GetDataTable() );
             Record = GetData()?.FirstOrDefault();
             Args = Record?.ToDictionary();
@@ -66,7 +66,7 @@ namespace BudgetExecution
             Provider = provider;
             ConnectionBuilder = new ConnectionBuilder( source, provider );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
-            SetQuery( ConnectionBuilder, SqlStatement );
+            Query = new Query( ConnectionBuilder, SqlStatement );
             ProgramElements = GetSeries( GetDataTable() );
             Record = GetRecord();
             Args = Record?.ToDictionary();
@@ -83,7 +83,7 @@ namespace BudgetExecution
             Provider = Provider.SQLite;
             ConnectionBuilder = new ConnectionBuilder( Source, Provider );
             SqlStatement = new SqlStatement( ConnectionBuilder, dict, SQL.SELECT );
-            SetQuery( ConnectionBuilder, SqlStatement );
+            Query = new Query( ConnectionBuilder, SqlStatement );
             ProgramElements = GetSeries( GetDataTable() );
             Record = GetRecord();
             Args = Record?.ToDictionary();

@@ -19,111 +19,54 @@ namespace BudgetExecution
     /// <seealso cref="BudgetExecution.IProvider" />
     /// <seealso cref="BudgetExecution.ISource" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
-    public abstract class SqlConfig : SqlBase, IProvider, ISource
+    public abstract class SqlConfig : SqlBase
     {
         /// <summary>
         /// The extension
         /// </summary>
-        public EXT _extension = EXT.SQL;
+        public readonly EXT Extension = EXT.SQL;
 
         /// <summary>
         /// The provider path
         /// </summary>
-        public NameValueCollection _providerPath = ConfigurationManager.AppSettings;
+        public readonly NameValueCollection ProviderPath = ConfigurationManager.AppSettings;
 
         /// <summary>
         /// The source
         /// </summary>
-        private protected Source _source;
+        public Source Source { get; set; }
 
         /// <summary>
         /// The provider
         /// </summary>
-        private protected Provider _provider;
+        public Provider Provider { get; set; }
 
         /// <summary>
         /// The SQL statement
         /// </summary>
-        private protected ISqlStatement _sqlStatement;
+        public ISqlStatement SqlStatement { get; set; }
 
         /// <summary>
         /// The file path
         /// </summary>
-        private protected string _filePath;
+        public string FilePath { get; set; }
 
         /// <summary>
         /// The file name
         /// </summary>
-        protected string _fileName;
-
-        /// <summary>
-        /// Gets the source.
-        /// </summary>
-        /// <returns></returns>
-        public Source GetSource()
-        {
-            try
-            {
-                return Validate.Source( _source )
-                    ? _source
-                    : default( Source );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( Source );
-            }
-        }
-
-        /// <summary>
-        /// Gets the provider.
-        /// </summary>
-        /// <returns></returns>
-        public Provider GetProvider()
-        {
-            try
-            {
-                return Validate.Provider( _provider )
-                    ? _provider
-                    : default( Provider );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( Provider );
-            }
-        }
-
-        /// <summary>
-        /// Gets the type of the command.
-        /// </summary>
-        /// <returns></returns>
-        public SQL GetCommandType()
-        {
-            try
-            {
-                return _commandType != SQL.NS
-                    ? _commandType
-                    : default( SQL );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( SQL );
-            }
-        }
-
+        public string FileName { get; set; }
+        
         /// <summary>
         /// Gets the arguments.
         /// </summary>
         /// <returns></returns>
         public IDictionary<string, object> GetArgs()
         {
-            if( _args.Any() )
+            if( Args.Any() )
             {
                 try
                 {
-                    return _args ?? new Dictionary<string, object>();
+                    return Args ?? new Dictionary<string, object>();
                 }
                 catch( Exception ex )
                 {
@@ -143,8 +86,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( _connectionBuilder?.GetConnectionString() )
-                    ? _connectionBuilder
+                return Verify.Input( ConnectionBuilder?.GetConnectionString() )
+                    ? ConnectionBuilder
                     : default( ConnectionBuilder );
             }
             catch( Exception ex )
@@ -153,38 +96,19 @@ namespace BudgetExecution
                 return default( ConnectionBuilder );
             }
         }
-
-        /// <summary>
-        /// Gets the command text.
-        /// </summary>
-        /// <returns></returns>
-        public string GetCommandText()
-        {
-            try
-            {
-                return Verify.Input( _commandText )
-                    ? _commandText
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( string );
-            }
-        }
-
+        
         /// <summary>
         /// Gets the script files.
         /// </summary>
         /// <returns></returns>
         public IEnumerable<string> GetScriptFiles()
         {
-            if( Validate.Provider( _provider )
-                && Enum.IsDefined( typeof( SQL ), _commandType ) )
+            if( Validate.Provider( Provider )
+                && Enum.IsDefined( typeof( SQL ), CommandType ) )
             {
                 try
                 {
-                    var _directory = _providerPath[ $"{_provider}" ] + $@"\{_commandType}";
+                    var _directory = ProviderPath[ $"{Provider}" ] + $@"\{CommandType}";
 
                     if( Verify.Input( _directory )
                         && Directory.Exists( _directory ) )

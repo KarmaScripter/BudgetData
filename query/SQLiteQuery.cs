@@ -86,19 +86,34 @@ namespace BudgetExecution
             /// </summary>
             Default,
 
+            /// <summary>
+            /// 
+            /// </summary>
             Text,
 
+            /// <summary>
+            /// 
+            /// </summary>
             DateTime,
 
+            /// <summary>
+            /// 
+            /// </summary>
             Integer,
 
+            /// <summary>
+            /// 
+            /// </summary>
             Decimal,
 
+            /// <summary>
+            /// 
+            /// </summary>
             Blob
         }
 
         /// <summary>
-        /// Gets the data adapter.
+        /// Gets the Data adapter.
         /// </summary>
         /// <param name = "command" >
         /// The command.
@@ -119,7 +134,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Gets the data reader.
+        /// Gets the Data reader.
         /// </summary>
         /// <param name = "command" >
         /// The command.
@@ -364,14 +379,14 @@ namespace BudgetExecution
                                     )";
 
             SQLiteConnection.CreateFile( "databaseFile.db3" );
-            using var _connection = new SQLiteConnection( "data source=databaseFile.db3" );
+            using var _connection = new SQLiteConnection( "Data source=databaseFile.db3" );
             using var _command = new SQLiteCommand( _connection );
             _connection.Open();
             _command.CommandText = _commandText;
             _command.ExecuteNonQuery();
-            _command.CommandText = "INSERT INTO MyTable (Key,Value) _values ('key one','value one')";
+            _command.CommandText = "INSERT INTO MyTable (Key,Value) Values ('key one','value one')";
             _command.ExecuteNonQuery();
-            _command.CommandText = "INSERT INTO MyTable (Key,Value) _values ('key two','value value')";
+            _command.CommandText = "INSERT INTO MyTable (Key,Value) Values ('key two','value value')";
             _command.ExecuteNonQuery();
             _command.CommandText = "Select * FROM MyTable";
             using var _reader = _command.ExecuteReader();

@@ -1,7 +1,5 @@
 ﻿namespace BudgetExecution
 {
-    using System.Drawing;
-
     partial class ConversionForm
     {
         /// <summary>

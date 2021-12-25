@@ -45,6 +45,9 @@
             Overridden. Cleans up any resources being used.
             </summary>
         </member>
+        <member name="T:Syncfusion.Windows.Forms.Chart.ChartCalloutPropertiesDialog">
+            <exclude/>
+        </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartCalloutPropertiesDialog.components">
             <summary>
             Required designer variable.
@@ -90,10 +93,11 @@
             <summary>
             The CalloutProperties Class.
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartCalloutPropertiesDialog.CalloutProperties.ShowInfo(Syncfusion.Windows.Forms.Chart.ChartCalloutInfo)">
             <summary>
-            Show the info in property window
+            Show the info in property window.
             </summary>
             <param name="info">The info.</param>
         </member>
@@ -111,13 +115,13 @@
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartCalloutPropertiesDialog.CalloutProperties.Enable">
             <summary>
-            Gets or sets the display of callout
+            Gets or sets the display of callout.
             </summary>
             <value>The display of label.</value>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartCalloutPropertiesDialog.CalloutProperties.Font">
             <summary>
-            Gets or sets the font to the text
+            Gets or sets the font to the text.
             </summary>
             <value>The font of label.</value>
         </member>
@@ -170,68 +174,73 @@
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles.NoneFormat">
             <summary>
-            ChartAppearnceStyle is None
+            ChartAppearnceStyle is None.
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles.BlackFormat">
             <summary>
-            ChartAppearnceStyle is Black
+            ChartAppearnceStyle is Black.
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles.ContrastFormat">
             <summary>
-            ChartAppearnceStyle is Contrast
+            ChartAppearnceStyle is Contrast.
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles.DefaultFormat">
             <summary>
-            ChartAppearnceStyle is Default
+            ChartAppearnceStyle is Default.
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles.GainsBoroFormat">
             <summary>
-            ChartAppearnceStyle is GainsBoro
+            ChartAppearnceStyle is GainsBoro.
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles.GradientFormat">
             <summary>
-            ChartAppearnceStyle is Gradient
+            ChartAppearnceStyle is Gradient.
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles.LightOliveFormat">
             <summary>
-            ChartAppearnceStyle is LightOlive
+            ChartAppearnceStyle is LightOlive.
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles.LinenFormat">
             <summary>
-            ChartAppearnceStyle is Linen
+            ChartAppearnceStyle is Linen.
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles.MistyRoseFormat">
             <summary>
-            ChartAppearnceStyle is MistyRoseFormat
+            ChartAppearnceStyle is MistyRoseFormat.
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles.PaleYellowFormat">
             <summary>
-            ChartAppearnceStyle is PaleYellow
+            ChartAppearnceStyle is PaleYellow.
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles.PinkOverlayFormat">
             <summary>
-            ChartAppearnceStyle is PinkOverLay
+            ChartAppearnceStyle is PinkOverLay.
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles.SolidColorFormat">
             <summary>
-            ChartAppearnceStyle is SolidColor
+            ChartAppearnceStyle is SolidColor.
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles.TriColorFormat">
             <summary>
-            ChartAppearnceStyle is TriColor
+            ChartAppearnceStyle is TriColor.
             </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles.#ctor">
+             <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles"/> class.
+             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartAppearanceStyles.ApplyFormat(Syncfusion.Windows.Forms.Chart.ChartControl,System.String)">
             <summary>
@@ -482,29 +491,10 @@
             </summary>
             <internalonly/>
         </member>
-        <member name="F:Syncfusion.Windows.Forms.Chart.ChartControl.m_localize">
+        <member name="F:Syncfusion.Windows.Forms.Chart.ChartControl.m_seriesHighlightIndex">
             <summary>
-            Gets or sets the localize.
+              Specifies the series's index when mouse hovering on the legend item and the correspnding series will be highlighted.
             </summary>
-            <value>The localize.</value>
-            <example>
-            The following example shows how to use the <b>Localize </b>property
-            <para></para>
-            <code lang="C#">GridGroupinControl grid = new GridGroupingControl();
-             grid.TableDescriptor.Localize="fr-FR";</code>
-            </example>
-        </member>
-        <member name="F:Syncfusion.Windows.Forms.Chart.ChartControl.m_localizePath">
-            <summary>
-            Gets or sets the resource location.
-            </summary>
-            <value>The resource location.</value>
-            <example>
-            The following example shows how to use the <b>LocalizationPath </b>property
-            <para></para>
-            <code lang="C#">GridGroupinControl grid = new GridGroupingControl();
-             grid.TableDescriptor.LocalizationPath="~/App_LocalResources";</code>
-            </example>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.Syncfusion#Windows#Forms#Chart#IChartAreaHost#GetChartArea">
             <summary>
@@ -913,18 +903,21 @@
             Method is called for drawing of area. Calling in the method _Paint.
             </summary>
             <param name="e">The <see cref="T:System.Windows.Forms.PaintEventArgs"/> instance containing the event data.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnPreChartAreaPaint(System.Windows.Forms.PaintEventArgs)">
             <summary>
             Method is called for drawing of area. Calling in the method _Paint.
             </summary>
             <param name="e">The <see cref="T:System.Windows.Forms.PaintEventArgs"/> instance containing the event data.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnChartAreaImage(Syncfusion.Windows.Forms.Chart.ChartAreaImageEventArgs)">
             <summary>
             Raises the <see cref="E:ChartAreaImage"/> event.
             </summary>
             <param name="e">The <see cref="T:Syncfusion.Windows.Forms.Chart.ChartAreaImageEventArgs"/> instance containing the event data.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnChartRegionClick(Syncfusion.Windows.Forms.Chart.ChartRegionMouseEventArgs)">
             <summary>
@@ -936,6 +929,7 @@
                 Argument.
                 </para>
             </param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnChartRegionDoubleClick(Syncfusion.Windows.Forms.Chart.ChartRegionMouseEventArgs)">
             <summary>
@@ -946,6 +940,7 @@
             <para>
             Argument.
             </para></param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnChartRegionMouseDown(Syncfusion.Windows.Forms.Chart.ChartRegionMouseEventArgs)">
             <summary>
@@ -953,6 +948,7 @@
             <seealso cref="E:Syncfusion.Windows.Forms.Chart.ChartControl.ChartRegionMouseDown"/>
             </summary>
             <param name="e">Argument.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnChartRegionMouseEnter(Syncfusion.Windows.Forms.Chart.ChartRegionMouseEventArgs)">
             <summary>
@@ -960,6 +956,7 @@
             <seealso cref="E:Syncfusion.Windows.Forms.Chart.ChartControl.ChartRegionMouseEnter"/>
             </summary>
             <param name="e">Argument.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnChartRegionMouseHover(Syncfusion.Windows.Forms.Chart.ChartRegionMouseEventArgs)">
             <summary>
@@ -967,6 +964,7 @@
             <seealso cref="E:Syncfusion.Windows.Forms.Chart.ChartControl.ChartRegionMouseHover"/>
             </summary>
             <param name="e">Argument.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnChartRegionMouseLeave(Syncfusion.Windows.Forms.Chart.ChartRegionMouseEventArgs)">
             <summary>
@@ -974,24 +972,28 @@
             <seealso cref="E:Syncfusion.Windows.Forms.Chart.ChartControl.ChartRegionMouseLeave"/>
             </summary>
             <param name="e">Argument.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnChartRegionMouseMove(Syncfusion.Windows.Forms.Chart.ChartRegionMouseEventArgs)">
             <summary>
             Method called when the mouse is moved over a chart region.
             </summary>
             <param name="e">Argument.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnChartRegionMouseUp(Syncfusion.Windows.Forms.Chart.ChartRegionMouseEventArgs)">
             <summary>
             Method called when the mouse is released over a chart region.
             </summary>
             <param name="e">Argument.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnCreateChartModel">
             <summary>
             Override this method to instantiate a derived chart model if needed.
             </summary>
             <returns>Returns ChartModel.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnVisibleRangeChanged(System.EventArgs)">
             <summary>
@@ -999,6 +1001,7 @@
             <seealso cref="E:Syncfusion.Windows.Forms.Chart.ChartControl.VisibleRangeChanged"/>
             </summary>
             <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.ExecuteCommand(Syncfusion.Windows.Forms.Chart.ChartCommand,System.String)">
             <summary>
@@ -1061,44 +1064,52 @@
             Used by the designer to persist the current value of the Font property.
             </summary>
             <returns>True if the value is to be persisted, otherwise false.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.ResetChartAreaMargins">
             <summary>
             Used by the designer to reset the current value of the BackFont property.
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.ShouldSerializeShadowColor">
             <summary>
             Used by the designer to persist the current value of the Font property.
             </summary>
             <returns>true if the value is to be persisted.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.ResetShadowColor">
             <summary>
             Used by the designer to reset the current value of the BackFont property.
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.ShouldSerializeBackInterior">
             <summary>
             Used by the designer to persist the current value of the BackInterior property.
             </summary>
             <returns>true if the value is to be persisted.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.ResetBackInterior">
             <summary>
             Used by the designer to reset the current value of the BackInterior property.
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.ResetChartInterior">
             <summary>
             Used by the designer to reset the current value of the ChartInterior property.
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.ShouldSerializeChartInterior">
             <summary>
             Used by the designer to persist the current value of the ChartInterior property.
             </summary>
             <returns>true if the value is to be persisted.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.ResetText">
             <summary>
@@ -1146,6 +1157,7 @@
             </summary>
             <param name="sender">The sender of event.</param>
             <param name="e">Argument.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnScrollBarZoomButtonClick(System.Object,Syncfusion.Windows.Forms.Chart.Scrolling.ChartScrollBarZoomButtonClickedEventArgs)">
             <summary>
@@ -1424,12 +1436,14 @@
             Overrides the <see cref="E:System.Windows.Forms.Control.Paint"/> event.
             </summary>
             <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs"/> that contains the event data.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
             <summary>
             Paints the background of the control.
             </summary>
             <param name="pevent">A <see cref="T:System.Windows.Forms.PaintEventArgs"></see> that contains information about the control to paint.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnSizeChanged(System.EventArgs)">
             <summary>
@@ -1446,6 +1460,7 @@
             <returns>
             true if the character was processed by the control; otherwise, false.
             </returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControl.OnBorderAppearanceChanged(System.Object,System.EventArgs)">
             <summary>
@@ -1606,6 +1621,30 @@
             Gets or sets the background image displayed in the control.
             </summary>
         </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartControl.Localize">
+            <summary>
+            Gets or sets the localize.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartControl.LocalizationPath">
+            <summary>
+            Gets or sets the resource location.
+            </summary>
+            <value>The resource location.</value>
+            <example>
+            The following example shows how to use the LocalizationPath property.
+            <code language="C#">
+            GridGroupinControl grid = new GridGroupingControl();
+            grid.TableDescriptor.LocalizationPath="~/App_LocalResources";
+            </code>
+            </example>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartControl.Localization">
+            <summary>
+            Used to Localize the strings.
+            </summary>
+            <exclude/>
+        </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartControl.IsWindowLess">
             <summary>
             Gets or sets a value indicating whether the chart control is working as simple object.
@@ -1693,6 +1732,11 @@
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartControl.ColumnDrawMode">
             <summary>
             Gets or sets the mode of drawing the column chart. See also <see cref="P:Syncfusion.Windows.Forms.Chart.ChartControl.ColumnWidthMode"/>.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartControl.Skins">
+            <summary>
+            Gets or sets the skin wich describes the appearance of the ChartControl.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartControl.ColumnWidthMode">
@@ -2375,6 +2419,11 @@
             Event that will be raised when Chart has completed laying out of axes, legend
             </summary>
         </member>
+        <member name="E:Syncfusion.Windows.Forms.Chart.ChartControl.ChartAxisLabelClick">
+            <summary>
+            Event that will be raised when the mouse is clicked on an axis label.
+            </summary>
+        </member>
         <member name="E:Syncfusion.Windows.Forms.Chart.ChartControl.ChartRegionClick">
             <summary>
             Event that will be raised when the mouse is clicked within a chart region.
@@ -2429,6 +2478,7 @@
             <summary>
             Gets  default value for ChartMargins property (Used only by VS designer).
             </summary>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartControl.Syncfusion#Windows#Forms#Chart#IChartAreaHost#IsDesignTime">
             <summary>
@@ -2465,15 +2515,23 @@
             <summary>
             Initializes the GESTURECONFIG
             </summary>
+            <exclude/>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Chart.ChartControl.GESTUREINFO">
             <summary>
             Initializes the GESTUREINFO.
             </summary>
+            <exclude/>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Chart.ChartControl.POINTS">
             <summary>
             Variable for Points
+            </summary>
+            <exclude/>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Chart.NamespaceDoc">
+            <summary>
+            The Syncfusion.Windows.Forms.Chart namespace contains Syncfusion chart control and helper classes.
             </summary>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Chart.ChartPrintDocument">
@@ -2564,35 +2622,41 @@
             Should the serialize location.
             </summary>
             <returns>Returns true if the element should be serialized otherwise false.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartLegend.ShouldSerializeItemsShadowOffset">
             <summary>
             Should the serialize items shadow offset.
             </summary>
             <returns>Returns true if the element should be serialized otherwise false.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartLegend.ShouldSerializeItemsShadowColor">
             <summary>
             Should the color of the serialize items shadow.
             </summary>
             <returns>Returns true if the element should be serialized otherwise false.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartLegend.ShouldSerializeItemsSize">
             <summary>
             Should the size of the serialize items.
             </summary>
             <returns>Returns true if the element should be serialized otherwise false.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartLegend.ShouldSerializeBackInterior">
             <summary>
             Should the serialize back interior.
             </summary>
             <returns>Returns true if the element should be serialized otherwise false.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartLegend.ResetBackInterior">
             <summary>
             Resets the back interior.
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartLegend.#ctor(Syncfusion.Windows.Forms.Chart.ChartControl,System.Boolean)">
             <summary>
@@ -2662,6 +2726,7 @@
             Chooses the necessary <see cref="T:System.Drawing.Graphics"/> object.
             </summary>
             <returns>Returns the Graphics object.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartLegend.SetRepresentationType(Syncfusion.Windows.Forms.Chart.ChartLegendRepresentationType)">
             <summary>
@@ -2801,6 +2866,7 @@
             This method is called when the series item in the legend is double clicked.
             </summary>
             <returns>Returns true when the item is clicked otherwise false.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartLegend.AddCheckBox(System.Drawing.Point,Syncfusion.Windows.Forms.Chart.ChartLegendItem)">
             <summary>
@@ -3000,6 +3066,7 @@
             <returns>
             The default <see cref="T:System.Drawing.Size"/> of the control.
             </returns>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartLegend.Alignment">
             <summary>
@@ -4413,6 +4480,11 @@
              </summary>
             <internalonly/>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartSeriesContextMenu.#ctor">
+             <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartSeriesContextMenu"/> class.
+             </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartSeriesContextMenu.Show(System.Windows.Forms.Control,System.Drawing.Point,Syncfusion.Windows.Forms.Chart.ChartSeries)">
             <summary>
             Displays the shortcut menu at the specified position.
@@ -4452,6 +4524,14 @@
             </summary>
             <param name="sender">A sender of the event.</param>
             <param name="e">Argument.</param>
+        </member>
+        <member name="T:Syncfusion.Windows.Forms.Chart.ChartBindingSourceWizard">
+            <exclude/>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartBindingSourceWizard.#ctor">
+             <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartBindingSourceWizard"/> class.
+             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartBindingSourceWizard.components">
             <summary>
@@ -4537,11 +4617,13 @@
             <summary>
             Initializes the action list.
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControlActionList.RefreshActions">
             <summary>
             Refreshes the actions.
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartControlActionList.ResetTemplate">
             <summary>
@@ -4697,40 +4779,47 @@
             <summary>
             Designer verb for showing the wizard.
             </summary>
+            <exclude/>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.Design.ChartControlDesigner.m_dvSaveTemplate">
             <summary>
             Designer verb for saving the template.
             </summary>
+            <exclude/>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.Design.ChartControlDesigner.m_dvResetTemplate">
             <summary>
             Designer verb for resetting the template.
             </summary>
+            <exclude/>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.Design.ChartControlDesigner.m_dvLoadTemplate">
             <summary>
             Designer verb for loading the template.
             </summary>
+            <exclude/>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.Design.ChartControlDesigner.m_dvApplyClassicStyle">
             <summary>
             Designer verb for reverting the old settings.
             </summary>
+            <exclude/>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.Design.ChartControlDesigner.m_dvRevertDefaultStyle">
             <summary>
             Designer verb for reverting the default settings.
             </summary>
+            <exclude/>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.Design.ChartControlDesigner.m_dvcVerbs">
             <summary>
             The collection of designer verbs
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.Design.ChartControlDesigner.#ctor">
             <summary>
-            Initializes a new instance of the ChartControlDesigner class.
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.Design.ChartControlDesigner"/> class.
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.Design.ChartControlDesigner.OnSetComponentDefaults">
@@ -4752,6 +4841,7 @@
             Adjusts the set of properties the component exposes through a TypeDescriptor.
             </summary>
             <param name="properties">An IDictionary that contains the properties for the class of the component.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.Design.ChartControlDesigner.HandleSaveTemplate(System.Object,System.EventArgs)">
             <summary>
@@ -6195,6 +6285,12 @@
             Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartTabControl"/> class.
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartTabControl.WndProc(System.Windows.Forms.Message@)">
+            <summary>
+            WndProc method to handle painting at high Dpi
+            </summary>
+            <param name="m">window message</param>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartTabControl.ShouldSerializeNoneImage">
             <summary>
             Should the serialize none image.
@@ -6541,6 +6637,138 @@
             <returns>An <see cref="T:System.Drawing.Image"></see> displayed on the <see cref="T:System.Windows.Forms.Label"></see>. The default is null.</returns>
             <PermissionSet><IPermission class="System.Security.Permissions.EnvironmentPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/><IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/><IPermission class="System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Flags="UnmanagedCode, ControlEvidence"/><IPermission class="System.Diagnostics.PerformanceCounterPermission, System, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true"/></PermissionSet>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.LocalizationBase.#ctor(System.String,System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.LocalizationBase"/> class.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.LocalizationBase.GetLocalizedString(System.String)">
+            <summary>
+            Returns either resource or key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+            <exclude/>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.LocalizationBase.GetAllValues">
+            <summary>
+            Used to return Localization resources.
+            </summary>
+            <returns></returns>
+            <exclude/>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.LocalizationBase.IsDefaultResource">
+            <summary>
+            Retunrs true or False value based on the DefaultResource.
+            </summary>
+            exclude/>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.LocalizationBase.Resources">
+            <summary>
+            Returns the ResourcesCollection.       
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.LocalizationBase.DefaultPath">
+            <summary>
+            Gets or sets the DefaultPath.
+            </summary>
+            <exclude/>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.IsDefault">
+            <summary>
+            Gets the Localized value of DefaultResource.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.Series">
+            <summary>
+            Gets the Localized value of Series.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.AllowAlignment">
+            <summary>
+            Gets the Localized value of AllowAlignment.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.Area">
+            <summary>
+            Gets the Localized value of Area.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.Zooming">
+            <summary>
+            Gets the Localized value of Zooming.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.EnableXZooming">
+            <summary>
+            Gets the Localized value of EnableXZooming.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.EnableYZooming">
+            <summary>
+            Gets the Localized value of EnableYZooming.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.ResetZoom">
+            <summary>
+            Gets the Localized value of ResetZoom.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.AutoHighlight">
+            <summary>
+            Gets the Localized value of AutoHighlight.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.Mode">
+            <summary>
+            Gets the Localized value of Mode.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.TwoD">
+            <summary>
+            Gets the Localized value of TwoD.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.ThreeD">
+            <summary>
+            Gets the Localized value of ThreeD.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.Real3D">
+            <summary>
+            Gets the Localized value of Real3D.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.EditStyle">
+            <summary>
+            Gets the Localized value of EditStyle.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.Types">
+            <summary>
+            Gets the Localized value of Types.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.Palettes">
+            <summary>
+            Gets the Localized value of Palettes.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.EditPalette">
+            <summary>
+            Gets the Localized value of EditPalette.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.UnknownAppearanceStyleException">
+            <summary>
+            Gets the Localized value of UnknownAppearanceStyleException.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartLocalizationStrings.ChartNullException">
+            <summary>
+            Gets the Localized value of ChartNullException.
+            </summary>
+        </member>
         <member name="T:Syncfusion.Windows.Forms.Chart.Resources.ChartControl">
             <summary>
               A strongly-typed resource class, for looking up localized strings, etc.
@@ -6647,6 +6875,31 @@
               Looks up a localized string similar to Zooming.
             </summary>
         </member>
+        <member name="F:Syncfusion.Windows.Forms.Chart.SparkLineType.Line">
+            <summary>
+            LineSparkline is used for identifying patterns and trends in the data such as seasonal effects, large changes and turning points over a period of time.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Chart.SparkLineType.Column">
+            <summary>
+            ColumnSparkline is very similar to a line sparkline in the sense that it is designed to show different values of two or more subjects but instead of using lines it is using horizontal and vertical bars that represent a different value.
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Chart.SparkLineType.WinLoss">
+            <summary>
+            WinLossSparkline is used to show whether each value is positive or negative visualizing a Win/Loss scenario. 
+            </summary>
+        </member>
+        <member name="F:Syncfusion.Windows.Forms.Chart.SparkLine.m_sparkLineType">
+            <summary>
+            Gets or sets the series type of the sparkline control.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.SparkLine.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.SparkLine"/> class.
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.SparkLine.OnListChanged(System.Object,System.ComponentModel.ListChangedEventArgs)">
             <summary>
             Event that is raised when the source list changed.
@@ -6665,6 +6918,11 @@
             Renderer the SparklLine control
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.SparkLine.ResetPoints">
+            <summary>
+            Used to refresh the SparkLine points.  
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.SparkLine.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
@@ -6679,12 +6937,67 @@
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.SparkLine.Source">
             <summary>
-            Gets or sets the data source of the sparkline control.
+            Gets or sets the data source of the Sparkline control.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.SparkLine.ControlWidth">
+            <summary>
+            Used to change Width of Sparkline control.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.SparkLine.ControlHeight">
+            <summary>
+            Used to change Height of Sparkline control.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.SparkLine.StartPoint">
+            <summary>
+            Gets or sets the StartPoint of Sparkline control.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.SparkLine.EndPoint">
+            <summary>
+            Gets or sets the EndPoint of Sparkline control.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.SparkLine.LowPoint">
+            <summary>
+            Gets or sets the LowPoint of Sparkline control.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.SparkLine.HighPoint">
+            <summary>
+            Gets or sets the HighPoint of Sparkline control.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.SparkLine.NegativeItem">
+            <summary>
+            Gets or sets the NegativeItem of Sparkline control.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.SparkLine.BackInterior">
+            <summary>
+            Customizes the background color of the control. By default, it is set to White color.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.SparkLine.Type">
             <summary>
-            Gets or sets the series type of the sparkline control.
+            Gets or sets the series type of Sparkline control.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.SparkLine.LineStyle">
+            <summary>
+            Customizes the styles of Line sparkline.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.SparkLine.ColumnStyle">
+            <summary>
+            Customizes the styles of Column and WinLoss sparklines.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.SparkLine.Markers">
+            <summary>
+            Enables the markers support to sparkline.
             </summary>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Chart.ChartToolBar">
@@ -6946,18 +7259,21 @@
             Arranges the specified rect.
             </summary>
             <param name="rect">The rect.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarItemBase.Draw(System.Drawing.Graphics)">
             <summary>
             Draws the specified g.
             </summary>
             <param name="g">The g.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarItemBase.Click">
             <summary>
             Called when it is clicked.
             </summary>
             <returns>Return true if clicked otherwise false.</returns>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarItemBase.Tag">
             <summary>
@@ -6982,30 +7298,35 @@
             Gets the default tool tip.
             </summary>
             <value>The default tool tip.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarItemBase.DefaultName">
             <summary>
             Gets the name of the default.
             </summary>
             <value>The name of the default.</value>
+            exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarItemBase.ToolBar">
             <summary>
             Gets the tool bar.
             </summary>
             <value>The tool bar.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarItemBase.Bounds">
             <summary>
             Gets the bounds.
             </summary>
             <value>The bounds.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarItemBase.DesiredSize">
             <summary>
             Gets the size of the desired.
             </summary>
             <value>The size of the desired.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarItemBase.IsFocused">
             <summary>
@@ -7014,6 +7335,7 @@
             <value>
             	<c>true</c> if this instance is focused; otherwise, <c>false</c>.
             </value>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarItem.#ctor">
             <summary>
@@ -7024,11 +7346,13 @@
             <summary>
             Called when  <see cref="P:Syncfusion.Windows.Forms.Chart.ChartToolBarItem.Checked"/> property is changed.
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarItem.OnClick">
             <summary>
             Called when the item is clicked.
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarItem.ShouldSerializeImage">
             <summary>
@@ -7046,6 +7370,7 @@
             Arranges the specified rect.
             </summary>
             <param name="rect">The rect.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarItem.DrawBackground(System.Drawing.Graphics,System.Drawing.Rectangle,System.Boolean,System.Boolean)">
             <summary>
@@ -7055,6 +7380,7 @@
             <param name="rect">The bounds of element.</param>
             <param name="focused">if set to <c>true</c> is item focused.</param>
             <param name="clicked">if set to <c>true</c> is item clicked.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarItem.DrawIcon(System.Drawing.Graphics,System.Drawing.Rectangle)">
             <summary>
@@ -7062,17 +7388,20 @@
             </summary>
             <param name="g">The g.</param>
             <param name="rect">The rect.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarItem.Draw(System.Drawing.Graphics)">
             <summary>
             Draws the item.
             </summary>
             <param name="g">The <see cref="T:System.Drawing.Graphics"/> instance.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarItem.Click">
             <summary>
             Clicks this instance.
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarItem.GetBackColor(System.Boolean,System.Boolean)">
             <summary>
@@ -7081,6 +7410,7 @@
             <param name="focused">if set to <c>true</c> [focused].</param>
             <param name="clicked">if set to <c>true</c> [clicked].</param>
             <returns>Returns the Back Color.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarItem.GetForeColor(System.Boolean)">
             <summary>
@@ -7088,6 +7418,7 @@
             </summary>
             <param name="focused">if set to <c>true</c> item is focused.</param>
             <returns>Returns the Fore color.</returns>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarItem.Checked">
             <summary>
@@ -7114,6 +7445,7 @@
             Gets the default image.
             </summary>
             <value>The default image.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarItem.IsClicked">
             <summary>
@@ -7122,16 +7454,23 @@
             <value>
             	<c>true</c> if this instance is clicked; otherwise, <c>false</c>.
             </value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarItem.Chart">
             <summary>
             Gets <see cref="T:Syncfusion.Windows.Forms.Chart.ChartControl"/> instance.
             </summary>
             <value>The chart.</value>
+            <exclude/>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarSaveItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartToolBarSaveItem"/> class.
+            </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarSaveItem.Equals(System.Object)">
             <summary>
-            Override for the equals method
+            Override for the equals method.
             </summary>
             <param name="obj">Object to be compared</param>
             <returns>Returns true or false based on the DefaultName property</returns>
@@ -7140,6 +7479,7 @@
             <summary>
             Called when the item is clicked.
             </summary>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarSaveItem.Checked">
             <summary>
@@ -7160,27 +7500,35 @@
             Gets the default image.
             </summary>
             <value>The default image.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarSaveItem.DefaultToolTip">
             <summary>
             Gets the default tool tip.
             </summary>
             <value>The default tool tip.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarSaveItem.DefaultName">
             <summary>
             Gets the name of the default.
             </summary>
             <value>The name of the default.</value>
+            <exclude/>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Chart.ChartToolBarCopyItem">
             <summary>
             Represents default toolbar item. This item provides the copying feature.
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarCopyItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartToolBarCopyItem"/> class.
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarCopyItem.Equals(System.Object)">
             <summary>
-            Override for the equals method
+            Override for the equals method.
             </summary>
             <param name="obj">Object to be compared</param>
             <returns>Returns true or false based on the DefaultName property</returns>
@@ -7189,24 +7537,28 @@
             <summary>
             Called when the item is clicked.
             </summary>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarCopyItem.DefaultImage">
             <summary>
             Gets the default image.
             </summary>
             <value>The default image.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarCopyItem.DefaultToolTip">
             <summary>
             Gets the default tool tip.
             </summary>
             <value>The default tool tip.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarCopyItem.DefaultName">
             <summary>
             Gets the name of the default.
             </summary>
             <value>The name of the default.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarCopyItem.Checked">
             <summary>
@@ -7227,9 +7579,14 @@
             Represents default toolbar item. This item provides the printing feature.
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarPrintItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartToolBarPrintItem"/> class.
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarPrintItem.Equals(System.Object)">
             <summary>
-            Override for the equals method
+            Override for the equals method.
             </summary>
             <param name="obj">Object to be compared</param>
             <returns>Returns true or false based on the DefaultName property</returns>
@@ -7238,24 +7595,28 @@
             <summary>
             Called when the item is clicked.
             </summary>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarPrintItem.DefaultImage">
             <summary>
             Gets the default image.
             </summary>
             <value>The default image.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarPrintItem.DefaultToolTip">
             <summary>
             Gets the default tool tip.
             </summary>
             <value>The default tool tip.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarPrintItem.DefaultName">
             <summary>
             Gets the name of the default.
             </summary>
             <value>The name of the default.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarPrintItem.Checked">
             <summary>
@@ -7276,9 +7637,14 @@
             Represents default toolbar item. This item provides the print preview feature.
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarPrintPreviewItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartToolBarPrintPreviewItem"/> class.
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarPrintPreviewItem.Equals(System.Object)">
             <summary>
-            Override for the equals method
+            Override for the equals method.
             </summary>
             <param name="obj">Object to be compared</param>
             <returns>Returns true or false based on the DefaultName property</returns>
@@ -7287,24 +7653,28 @@
             <summary>
             Called when the item is clicked.
             </summary>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarPrintPreviewItem.DefaultImage">
             <summary>
             Gets the default image.
             </summary>
             <value>The default image.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarPrintPreviewItem.DefaultToolTip">
             <summary>
             Gets the default tool tip.
             </summary>
             <value>The default tool tip.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarPrintPreviewItem.DefaultName">
             <summary>
             Gets the name of the default.
             </summary>
             <value>The name of the default.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarPrintPreviewItem.Checked">
             <summary>
@@ -7330,21 +7700,29 @@
             Specifies the toolbar item with the drop-down menu.
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarDropDown.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartToolBarDropDown"/> class.
+            </summary>
+        </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.ChartToolBarDropDown.m_menu">
             <summary>
-            The menu to drop-down;
+            The menu to drop-down.
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarDropDown.OnClick">
             <summary>
             Called when the item is clicked.
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarDropDown.Draw(System.Drawing.Graphics)">
             <summary>
             Draws the item.
             </summary>
             <param name="g">The <see cref="T:System.Drawing.Graphics"/> instance.</param>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarDropDown.DrawDropDownIcon(System.Drawing.Graphics,System.Drawing.Rectangle)">
             <summary>
@@ -7352,6 +7730,7 @@
             </summary>
             <param name="g">The g.</param>
             <param name="rect">The rect.</param>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarDropDown.Menu">
             <summary>
@@ -7364,10 +7743,16 @@
             Gets the size of the desired.
             </summary>
             <value>The size of the desired.</value>
+            <exclude/>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarPaletteItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartToolBarPaletteItem"/> class.
+            </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarPaletteItem.Equals(System.Object)">
             <summary>
-            Override for the equals method
+            Override for the equals method.
             </summary>
             <param name="obj">Object to be compared</param>
             <returns>Returns true or false based on the DefaultName property</returns>
@@ -7396,18 +7781,21 @@
             Gets the default image.
             </summary>
             <value>The default image.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarPaletteItem.DefaultToolTip">
             <summary>
             Gets the default tool tip.
             </summary>
             <value>The default tool tip.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarPaletteItem.DefaultName">
             <summary>
             Gets the name of the default.
             </summary>
             <value>The name of the default.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarPaletteItem.Checked">
             <summary>
@@ -7428,6 +7816,11 @@
             Represents default toolbar item. This item provides the styles editing feature.
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarStyleItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartToolBarStyleItem"/> class.
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarStyleItem.Equals(System.Object)">
             <summary>
             Override for the equals method
@@ -7439,6 +7832,7 @@
             <summary>
             Called when the item is clicked.
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarStyleItem.OnMenuClick(System.Object,System.EventArgs)">
             <summary>
@@ -7452,18 +7846,21 @@
             Gets the default image.
             </summary>
             <value>The default image.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarStyleItem.DefaultToolTip">
             <summary>
             Gets the default tool tip.
             </summary>
             <value>The default tool tip.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarStyleItem.DefaultName">
             <summary>
             Gets the name of the default.
             </summary>
             <value>The name of the default.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarStyleItem.Checked">
             <summary>
@@ -7484,9 +7881,14 @@
             Represents default toolbar item. This item provides the type choosing feature.
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarTypeItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartToolBarTypeItem"/> class.
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarTypeItem.Equals(System.Object)">
             <summary>
-            Override for the equals method
+            Override for the equals method.
             </summary>
             <param name="obj">Object to be compared</param>
             <returns>Returns true or false based on the DefaultName property</returns>
@@ -7495,6 +7897,7 @@
             <summary>
             Called when the item is clicked.
             </summary>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarTypeItem.OnTypeMenuClick(System.Object,System.EventArgs)">
             <summary>
@@ -7508,18 +7911,21 @@
             Gets the default image.
             </summary>
             <value>The default image.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarTypeItem.DefaultToolTip">
             <summary>
             Gets the default tool tip.
             </summary>
             <value>The default tool tip.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarTypeItem.DefaultName">
             <summary>
             Gets the name of the default.
             </summary>
             <value>The name of the default.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarTypeItem.Checked">
             <summary>
@@ -7540,9 +7946,14 @@
             Represents default toolbar item. This item provides the drawing mode changing feature.
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarSeries3DItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartToolBarSeries3DItem"/> class.
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarSeries3DItem.Equals(System.Object)">
             <summary>
-            Override for the equals method
+            Override for the equals method.
             </summary>
             <param name="obj">Object to be compared</param>
             <returns>Returns true or false based on the DefaultName property</returns>
@@ -7552,6 +7963,7 @@
             Gets the default tool tip.
             </summary>
             <value>The default tool tip.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarSeries3DItem.Checked">
             <summary>
@@ -7572,21 +7984,28 @@
             Gets the default image.
             </summary>
             <value>The default image.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarSeries3DItem.DefaultName">
             <summary>
             Gets the name of the default.
             </summary>
             <value>The name of the default.</value>
+            <exclude/>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Chart.ChartToolBarShowLegendItem">
             <summary>
             Represents default toolbar item. This item provides the legend showing feature.
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarShowLegendItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartToolBarShowLegendItem"/> class.
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarShowLegendItem.Equals(System.Object)">
             <summary>
-            Override for the equals method
+            Override for the equals method.
             </summary>
             <param name="obj">Object to be compared</param>
             <returns>Returns true or false based on the DefaultName property</returns>
@@ -7596,6 +8015,7 @@
             Gets the default tool tip.
             </summary>
             <value>The default tool tip.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarShowLegendItem.Checked">
             <summary>
@@ -7616,12 +8036,14 @@
             Gets the default image.
             </summary>
             <value>The default image.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarShowLegendItem.DefaultName">
             <summary>
             Gets the name of the default.
             </summary>
             <value>The name of the default.</value>
+            <exclude/>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Chart.ChartToolBarInfo">
             <summary>
@@ -7649,42 +8071,49 @@
             Indicates that Border property was changed.
             </summary>
             <returns>True if property was changed, otherwise false.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarInfo.ShouldSerializeButtonBackColor">
             <summary>
             Indicates if ButtonBackColor is set to default.
             </summary>
             <returns>Returns true if the element should serialize otherwise false.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarInfo.ShouldSerializeBackColor">
             <summary>
             Indicates if BackInterior of toolbar is set as parent.
             </summary>
             <returns>Returns true if the element should serialize otherwise false.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarInfo.ShouldSerializeButtonForeColor">
             <summary>
             Indicates if ButtonForeColor is set to default.
             </summary>
             <returns>Returns true if the element should serialize otherwise false.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarInfo.ShouldSerializeButtonSize">
             <summary>
             Indicates if button size is set to default.
             </summary>
             <returns>Returns true if the element should serialize otherwise false.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarInfo.ShouldSerializeSize">
             <summary>
             Indicates if autosize is set to default.
             </summary>
             <returns>Returns true if the element should serialize otherwise false.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarInfo.ShouldSerializeLocation">
             <summary>
             Indicates if the location of the toolbar is set to default.
             </summary>
             <returns>Returns true if the element should serialize otherwise false.</returns>
+            <exclude/>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarInfo.ShouldSerializeItems">
             <summary>
@@ -7717,7 +8146,7 @@
         </member>
         <member name="E:Syncfusion.Windows.Forms.Chart.ChartToolBarInfo.ItemClick">
             <summary>
-            Occurs when item is clicked.
+            An event that is triggered when item is clicked.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarInfo.EnableDefaultItems">
@@ -7742,6 +8171,11 @@
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarInfo.Spacing">
+            <summary>
+            Gets or sets the spacing between items.
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarInfo.IncludeInExportedChart">
             <summary>
             Gets or sets the spacing between items.
             </summary>
@@ -7856,15 +8290,21 @@
             <summary>
             Gets default location.
             </summary>
+            <exclude/>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Chart.ChartToolBarSplitter">
             <summary>
             Specifies the toolbar splitter.
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarSplitter.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartToolBarSplitter"/> class.
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarSplitter.Equals(System.Object)">
             <summary>
-            Override for the equals method
+            Override for the equals method.
             </summary>
             <param name="obj">Object to be compared</param>
             <returns>Returns true or false based on the DefaultName property</returns>
@@ -7874,18 +8314,21 @@
             Draws the specified g.
             </summary>
             <param name="g">The g.</param>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarSplitter.DesiredSize">
             <summary>
             Gets the size of the desired.
             </summary>
             <value>The size of the desired.</value>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarSplitter.DefaultName">
             <summary>
             Gets the name of the default.
             </summary>
             <value>The name of the default.</value>
+            <exclude/>
         </member>
         <member name="T:Syncfusion.Windows.Forms.Chart.ChartToolBarCommandItem">
             <summary>
@@ -7893,10 +8336,16 @@
             </summary>
             <seealso cref="T:Syncfusion.Windows.Forms.Chart.ChartCommand"/>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarCommandItem.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartToolBarCommandItem"/> class.
+            </summary>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarCommandItem.OnClick">
             <summary>
             Called when the item is clicked.
             </summary>
+            <exclude/>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartToolBarCommandItem.Command">
             <summary>
@@ -7965,6 +8414,11 @@
         <member name="T:Syncfusion.Windows.Forms.Chart.ChartToolBarItemCollection">
             <summary>
             Specifies the collection of <see cref="T:Syncfusion.Windows.Forms.Chart.ChartToolBarItemBase"/> objects.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarItemCollection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartToolBarItemCollection"/> class.
             </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.ChartToolBarItemCollection.Add(Syncfusion.Windows.Forms.Chart.ChartToolBarItemBase)">
@@ -8266,6 +8720,16 @@
             <param name="sender">ChartControl</param>
             <param name="args">Options to customize trackball tooltip</param>
         </member>
+        <member name="T:Syncfusion.Windows.Forms.Chart.ChartTooltip">
+            <summary>
+            Class to customize the tooltip
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartCrosshair.#ctor">
+             <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartCrosshair"/> class.
+             </summary>
+        </member>
         <member name="E:Syncfusion.Windows.Forms.Chart.ChartCrosshair.AxisTooltipRendering">
             <summary>
             This event is triggered once for each axis.
@@ -8274,12 +8738,12 @@
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartCrosshair.AxisTooltip">
             <summary>
-            Gets or sets the options to customize axis tooltip
+            Gets or sets the options to customize axis tooltip.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartCrosshair.Visible">
             <summary>
-            Gets or sets the visibility of Trackball
+            Gets or sets the visibility of Trackball.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.ChartCrosshair.Line">
@@ -8289,7 +8753,12 @@
         </member>
         <member name="T:Syncfusion.Windows.Forms.Chart.ChartTrackball">
             <summary>
-            This class provides option to customize the line, tooltip and highlighting symbol of trackball
+            This class provides option to customize the line, tooltip and highlighting symbol of trackball.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.ChartTrackball.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.ChartTrackball"/> class.
             </summary>
         </member>
         <member name="E:Syncfusion.Windows.Forms.Chart.ChartTrackball.TrackballTooltipRendering">
@@ -8319,24 +8788,29 @@
             Gets or sets the Symbol options used to highlight the data point. You can customize the shape, interior and border color of the symbol to be highlighted using this instance.
             </summary>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.AxisTooltipEventArgs.#ctor(System.Int32)">
+             <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.AxisTooltipEventArgs"/> class.
+             </summary>
+        </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.AxisTooltipEventArgs.AxisIndex">
             <summary>
-            Gets the index of axis
+            Gets the index of axis.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.AxisTooltipEventArgs.Border">
             <summary>
-            Gets or sets the border color of the tooltip
+            Gets or sets the border color of the tooltip.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.AxisTooltipEventArgs.Text">
             <summary>
-            Gets or sets the text displayed in tooltip
+            Gets or sets the text displayed in tooltip.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.AxisTooltipEventArgs.ForeColor">
             <summary>
-            Gets or sets the text color
+            Gets or sets the text color.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.AxisTooltipEventArgs.Interior">
@@ -8346,22 +8820,29 @@
         </member>
         <member name="T:Syncfusion.Windows.Forms.Chart.TrackballTooltipEventArgs">
             <summary>
-            Event argument for tooltip formatting event
+            Event argument for tooltip formatting event.
             </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.TrackballTooltipEventArgs.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.TrackballTooltipEventArgs"/> class.
+            </summary>      
+            <param name="pointIndex">current point index of TrackballTooltip. </param>
+            <param name="seriesIndex">series index of TrackballToooltip</param>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.TrackballTooltipEventArgs.Border">
             <summary>
-            Gets or sets the border color of the tooltip
+            Gets or sets the border color of the tooltip.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.TrackballTooltipEventArgs.Text">
             <summary>
-            Gets or sets the text displayed in tooltip
+            Gets or sets the text displayed in tooltip.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.TrackballTooltipEventArgs.ForeColor">
             <summary>
-            Gets or sets the text color
+            Gets or sets the text color.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.TrackballTooltipEventArgs.Interior">
@@ -8371,7 +8852,7 @@
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.TrackballTooltipEventArgs.SeriesIndex">
             <summary>
-            Gets the series index of data point
+            Gets the series index of data point.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.TrackballTooltipEventArgs.pointIndex">
@@ -8381,7 +8862,12 @@
         </member>
         <member name="T:Syncfusion.Windows.Forms.Chart.TrackballTooltip">
             <summary>
-            This class holds information such as border, background, text format, text color, etc., of the Trackball tooltip
+            This class holds information such as border, background, text format, text color, etc., of the Trackball tooltip.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.TrackballTooltip.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.Chart.TrackballTooltip"/> class.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.TrackballTooltip.Visible">
@@ -8391,7 +8877,7 @@
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.TrackballTooltip.Margin">
             <summary>
-            Gets or sets the margin of tracker tooltip. Space between tooltip text and border is controlled by this property
+            Gets or sets the margin of tracker tooltip. Space between tooltip text and border is controlled by this property.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.TrackballTooltip.CornerRadius">
@@ -8401,22 +8887,22 @@
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.TrackballTooltip.Offset">
             <summary>
-            Gets or sets the padding between highlighted symbol and tracker tooltip
+            Gets or sets the padding between highlighted symbol and tracker tooltip.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.TrackballTooltip.Font">
             <summary>
-            Gets or sets the font used for tracker tooltip
+            Gets or sets the font used for tracker tooltip.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.TrackballTooltip.Interior">
             <summary>
-            Gets or sets the brush for the background of tracker tooltip
+            Gets or sets the brush for the background of tracker tooltip.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.TrackballTooltip.Border">
             <summary>
-            Gets or sets the option to customize border of tooltip like boder width, color, style
+            Gets or sets the option to customize border of tooltip like boder width, color, style.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Chart.TrackballTooltip.TextColor">
@@ -8446,12 +8932,12 @@
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.TrackballTooltipDisplayMode.Group">
             <summary>
-            Trackball tooltip for all series will be grouped
+            Trackball tooltip for all series will be grouped.
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.TrackballTooltipDisplayMode.Float">
             <summary>
-            Trackball tooltip will be displayed individualy for closest data point in each series
+            Trackball tooltip will be displayed individualy for closest data point in each series.
             </summary>
         </member>
         <member name="F:Syncfusion.Windows.Forms.Chart.Native.PRF_CHECKVISIBLE">
@@ -8563,6 +9049,14 @@
             <summary>
             Utility class for different static methods.
             </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Chart.Utils.WinUtilities.GetDpiSize(System.Int32,System.Int32)">
+            <summary>
+            Calculates the dpi aware size for specified width and height
+            </summary>
+            <param name="width">width</param>
+            <param name="height">height</param>
+            <returns>Size corresponding to current DPI</returns>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Chart.Utils.WinUtilities.PrintControl(System.Windows.Forms.Control)">
             <summary>

@@ -31,11 +31,11 @@ namespace BudgetExecution
         /// <returns> </returns>
         DataRow GetRecord();
 
-        /// <summary> Gets the data. </summary>
+        /// <summary> Gets the Data. </summary>
         /// <returns> </returns>
         IEnumerable<DataRow> GetData();
 
-        /// <summary> Gets the data table. </summary>
+        /// <summary> Gets the Data table. </summary>
         /// <returns> </returns>
         DataTable GetDataTable();
 
@@ -53,16 +53,16 @@ namespace BudgetExecution
         DataTable GetSchemaTable( DataTable datatable );
 
         /// <summary> Gets the primary indexes. </summary>
-        /// <param name = "data" > The data. </param>
+        /// <param name = "data" > The Data. </param>
         /// <returns> </returns>
         IEnumerable<int> GetPrimaryIndexes( IEnumerable<DataRow> data );
 
         /// <summary> Gets the column ordinals. </summary>
-        /// <param name = "data" > The data. </param>
+        /// <param name = "data" > The Data. </param>
         /// <returns> </returns>
         IEnumerable<int> GetColumnOrdinals( IEnumerable<DataColumn> data );
 
-        /// <summary> Gets the data set. </summary>
+        /// <summary> Gets the Data set. </summary>
         /// <returns> </returns>
         DataSet GetDataSet();
     }

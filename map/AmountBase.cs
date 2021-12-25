@@ -17,22 +17,22 @@ namespace BudgetExecution
         /// <summary>
         /// The funding
         /// </summary>
-        public double Funding { get; set; }
+        public  double Funding { get; set; }
 
         /// <summary>
         /// The initial
         /// </summary>
-        public double Initial { get; set; }
+        public  double Initial { get; set; }
 
         /// <summary>
         /// The delta
         /// </summary>
-        public double Delta { get; set; }
+        public  double Delta { get; set; }
 
         /// <summary>
         /// The numeric
         /// </summary>
-        public Numeric Numeric = Numeric.Amount;
+        public  Numeric Numeric { get; set; } = Numeric.Amount;
 
         /// <summary>
         /// Gets the columnName.
@@ -59,9 +59,9 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the name.
         /// </summary>
-        /// <param name="dataRow">The data row.</param>
+        /// <param name="dataRow">The Data row.</param>
         /// <param name="columnName">Name of the column.</param>
-        public void SetName( DataRow dataRow, string columnName )
+        public  void SetName( DataRow dataRow, string columnName )
         {
             if( Verify.Row( dataRow )
                 && Verify.Input( columnName )
@@ -87,7 +87,7 @@ namespace BudgetExecution
         /// Sets the name.
         /// </summary>
         /// <param name="numeric">The numeric.</param>
-        public void SetName( Numeric numeric )
+        public  void SetName( Numeric numeric )
         {
             if( Validate.Numeric( numeric ) )
             {
@@ -107,9 +107,9 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the name.
         /// </summary>
-        /// <param name="dataRow">The data row.</param>
+        /// <param name="dataRow">The Data row.</param>
         /// <param name="numeric">The numeric.</param>
-        public void SetName( DataRow dataRow, Numeric numeric )
+        private protected void SetName( DataRow dataRow, Numeric numeric )
         {
             if( dataRow != null
                 && Validate.Numeric( numeric ) )
@@ -157,7 +157,7 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the numeric.
         /// </summary>
-        /// <param name="dataRow">The data row.</param>
+        /// <param name="dataRow">The Data row.</param>
         /// <param name="columnName">Name of the column.</param>
         public void SetNumeric( DataRow dataRow, string columnName )
         {
@@ -189,7 +189,7 @@ namespace BudgetExecution
         /// Sets the numeric.
         /// </summary>
         /// <param name="numeric">The numeric.</param>
-        public void SetNumeric( Numeric numeric )
+        public  void SetNumeric( Numeric numeric )
         {
             try
             {
@@ -206,9 +206,9 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the numeric.
         /// </summary>
-        /// <param name="dataRow">The data row.</param>
+        /// <param name="dataRow">The Data row.</param>
         /// <param name="numeric">The numeric.</param>
-        public void SetNumeric( DataRow dataRow, Numeric numeric )
+        public  void SetNumeric( DataRow dataRow, Numeric numeric )
         {
             if( dataRow != null
                 && Validate.Numeric( numeric ) )
@@ -236,7 +236,7 @@ namespace BudgetExecution
         /// Sets the value.
         /// </summary>
         /// <param name="value">The value.</param>
-        public void SetValue( string value )
+        public  void SetValue( string value )
         {
             try
             {
@@ -255,9 +255,9 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the value.
         /// </summary>
-        /// <param name="dataRow">The data row.</param>
+        /// <param name="dataRow">The Data row.</param>
         /// <param name="columnName">Name of the column.</param>
-        public void SetValue( DataRow dataRow, string columnName )
+        public  void SetValue( DataRow dataRow, string columnName )
         {
             if( dataRow != null
                 && Verify.Input( columnName )
@@ -282,9 +282,9 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the value.
         /// </summary>
-        /// <param name="dataRow">The data row.</param>
+        /// <param name="dataRow">The Data row.</param>
         /// <param name="numeric">The numeric.</param>
-        public void SetValue( DataRow dataRow, Numeric numeric )
+        public  void SetValue( DataRow dataRow, Numeric numeric )
         {
             if( dataRow != null
                 && Validate.Numeric( numeric ) )
@@ -312,7 +312,7 @@ namespace BudgetExecution
         /// Gets the funding.
         /// </summary>
         /// <returns></returns>
-        public double GetFunding()
+        public virtual double GetFunding()
         {
             try
             {
@@ -329,7 +329,7 @@ namespace BudgetExecution
         /// Gets the amount.
         /// </summary>
         /// <returns></returns>
-        public IAmount GetAmount()
+        public virtual IAmount GetAmount()
         {
             try
             {
@@ -350,10 +350,10 @@ namespace BudgetExecution
         /// Fails the specified ex.
         /// </summary>
         /// <param name="ex">The ex.</param>
-        public static new void Fail( Exception ex )
+        private protected static new void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error.SetText();
+            _error?.SetText( ex.Message );
             _error.ShowDialog();
         }
     }

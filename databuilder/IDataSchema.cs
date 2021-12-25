@@ -52,7 +52,7 @@ namespace BudgetExecution
         /// <returns> </returns>
         DataTable GetSchemaTable();
 
-        /// <summary> Gets the data Table. </summary>
+        /// <summary> Gets the Data Table. </summary>
         /// <returns> </returns>
         DataTable GetDataTable();
 
@@ -60,7 +60,7 @@ namespace BudgetExecution
         /// <returns> </returns>
         string GetTableName();
 
-        /// <summary> Gets the data. </summary>
+        /// <summary> Gets the Data. </summary>
         /// <returns> </returns>
         IEnumerable<DataRow> GetData();
     }

@@ -181,7 +181,7 @@
   </Dictionary>
   <Dictionary>
     <Key>ChangingDataError</Key>
-    <Value>Error changing the data</Value>
+    <Value>Error changing the Data</Value>
   </Dictionary>
   <Dictionary>
     <Key>Rows</Key>
@@ -389,7 +389,7 @@
   </Dictionary>
   <Dictionary>
     <Key>OnlyData</Key>
-    <Value>Only data</Value>
+    <Value>Only Data</Value>
   </Dictionary>
   <Dictionary>
     <Key>UsedAsAForeignKey</Key>
@@ -413,7 +413,7 @@
   </Dictionary>
   <Dictionary>
     <Key>ErrorImportingTablesData</Key>
-    <Value>Error importing sql data. Missing some table in which data should be imported</Value>
+    <Value>Error importing sql Data. Missing some table in which Data should be imported</Value>
   </Dictionary>
   <Dictionary>
     <Key>ImportOk</Key>

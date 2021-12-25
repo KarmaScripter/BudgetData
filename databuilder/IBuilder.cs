@@ -52,19 +52,19 @@ namespace BudgetExecution
         IQuery GetQuery();
 
         /// <summary>
-        /// Gets the data.
+        /// Gets the Data.
         /// </summary>
         /// <returns></returns>
         IEnumerable<DataRow> GetData();
 
         /// <summary>
-        /// Gets the data table.
+        /// Gets the Data table.
         /// </summary>
         /// <returns></returns>
         DataTable GetDataTable();
 
         /// <summary>
-        /// Gets the data set.
+        /// Gets the Data set.
         /// </summary>
         /// <returns></returns>
         DataSet GetDataSet();
@@ -78,14 +78,14 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the primary indexes.
         /// </summary>
-        /// <param name="data">The data.</param>
+        /// <param name="data">The Data.</param>
         /// <returns></returns>
         IEnumerable<int> GetPrimaryIndexes( IEnumerable<DataRow> data );
 
         /// <summary>
         /// Gets the column ordinals.
         /// </summary>
-        /// <param name="data">The data.</param>
+        /// <param name="data">The Data.</param>
         /// <returns></returns>
         IEnumerable<int> GetColumnOrdinals( IEnumerable<DataColumn> data );
     }
