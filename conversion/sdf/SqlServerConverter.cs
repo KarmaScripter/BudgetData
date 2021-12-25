@@ -232,7 +232,7 @@ namespace BudgetExecution
                             for( var j = 0; j < schema[ i ].Columns.Count; j++ )
                             {
                                 var pname = "@"
-                                    + GetNormalizedName( schema[ i ].Columns[ j ].columnName,
+                                    + GetNormalizedName( schema[ i ].Columns[ j ].ColumnName,
                                         pnames );
 
                                 insert.Parameters[ pname ].Value =
@@ -517,7 +517,7 @@ namespace BudgetExecution
 
             for( var i = 0; i < ts.Columns.Count; i++ )
             {
-                sb.Append( "[" + ts.Columns[ i ].columnName + "]" );
+                sb.Append( "[" + ts.Columns[ i ].ColumnName + "]" );
 
                 if( i < ts.Columns.Count - 1 )
                 {
@@ -530,7 +530,7 @@ namespace BudgetExecution
 
             for( var i = 0; i < ts.Columns.Count; i++ )
             {
-                var pname = "@" + GetNormalizedName( ts.Columns[ i ].columnName, pnames );
+                var pname = "@" + GetNormalizedName( ts.Columns[ i ].ColumnName, pnames );
                 sb.Append( pname );
 
                 if( i < ts.Columns.Count - 1 )
@@ -539,7 +539,7 @@ namespace BudgetExecution
                 }
 
                 var dbtype = GetDbTypeOfColumn( ts.Columns[ i ] );
-                var prm = new SQLiteParameter( pname, dbtype, ts.Columns[ i ].columnName );
+                var prm = new SQLiteParameter( pname, dbtype, ts.Columns[ i ].ColumnName );
                 res.Parameters.Add( prm );
 
                 // Remember the dicteter name in order to avoid duplicates
@@ -589,7 +589,7 @@ namespace BudgetExecution
         /// cs.ColumnType + ")</exception>
         private DbType GetDbTypeOfColumn( ColumnSchema cs )
         {
-            switch( cs.columnType )
+            switch( cs.ColumnType )
             {
                 case "tinyint":
                     return DbType.Byte;
@@ -651,7 +651,7 @@ namespace BudgetExecution
                 default:
                     _log.Error( "illegal db type found" );
 
-                    throw new ApplicationException( "Illegal DB type found (" + cs.columnType + ")" );
+                    throw new ApplicationException( "Illegal DB type found (" + cs.ColumnType + ")" );
             }
         }
 
@@ -667,7 +667,7 @@ namespace BudgetExecution
 
             for( var i = 0; i < ts.Columns.Count; i++ )
             {
-                sb.Append( "[" + ts.Columns[ i ].columnName + "]" );
+                sb.Append( "[" + ts.Columns[ i ].ColumnName + "]" );
 
                 if( i < ts.Columns.Count - 1 )
                 {
@@ -892,7 +892,7 @@ namespace BudgetExecution
                     var foreignkey = schema.ForeignKeys[ i ];
 
                     var stmt =
-                        $"    FOREIGN KEY ([{foreignkey.columnName}])\n        REFERENCES [{foreignkey.foreignTableName}]([{foreignkey.foreignColumnName}])";
+                        $"    FOREIGN KEY ([{foreignkey.ColumnName}])\n        REFERENCES [{foreignkey.ForeignTableName}]([{foreignkey.ForeignColumnName}])";
 
                     builder.Append( stmt );
 
@@ -971,17 +971,17 @@ namespace BudgetExecution
         private string BuildColumnStatement( ColumnSchema col, TableSchema ts, ref bool pkey )
         {
             var sb = new StringBuilder();
-            sb.Append( "\t[" + col.columnName + "]\t" );
+            sb.Append( "\t[" + col.ColumnName + "]\t" );
 
             // Special treatment for IDENTITY columns
-            if( col.isIdentity )
+            if( col.IsIdentity )
             {
                 if( ts.PrimaryKey.Count == 1
-                    && ( col.columnType == "tinyint"
-                        || col.columnType == "int"
-                        || col.columnType == "smallint"
-                        || col.columnType == "bigint"
-                        || col.columnType == "integer" ) )
+                    && ( col.ColumnType == "tinyint"
+                        || col.ColumnType == "int"
+                        || col.ColumnType == "smallint"
+                        || col.ColumnType == "bigint"
+                        || col.ColumnType == "integer" ) )
                 {
                     sb.Append( "integer PRIMARY KEY AUTOINCREMENT" );
                     pkey = true;
@@ -993,42 +993,42 @@ namespace BudgetExecution
             }
             else
             {
-                switch( col.columnType )
+                switch( col.ColumnType )
                 {
                     case "int":
                         sb.Append( "integer" );
                         break;
 
                     default:
-                        sb.Append( col.columnType );
+                        sb.Append( col.ColumnType );
                         break;
                 }
 
-                if( col.length > 0 )
+                if( col.Length > 0 )
                 {
-                    sb.Append( "(" + col.length + ")" );
+                    sb.Append( "(" + col.Length + ")" );
                 }
             }
 
-            if( !col.isNullable )
+            if( !col.IsNullable )
             {
                 sb.Append( " NOT NULL" );
             }
 
-            if( col.isCaseSensitivite == false )
+            if( col.IsCaseSensitivite == false )
             {
                 sb.Append( " COLLATE NOCASE" );
             }
 
-            var defval = StripParens( col.defaultValue );
+            var defval = StripParens( col.DefaultValue );
             defval = DiscardNational( defval );
-            _log.Debug( "DEFAULT VALUE BEFORE [" + col.defaultValue + "] AFTER [" + defval + "]" );
+            _log.Debug( "DEFAULT VALUE BEFORE [" + col.DefaultValue + "] AFTER [" + defval + "]" );
 
             if( Verify.Input( defval )
                 && defval.ToUpper().Contains( "GETDATE" ) )
             {
                 _log.Debug( "converted SQL Server GETDATE() to CURRENTTIMESTAMP for column ["
-                    + col.columnName
+                    + col.ColumnName
                     + "]" );
 
                 sb.Append( " DEFAULT (CURRENTTIMESTAMP)" );
@@ -1395,12 +1395,12 @@ namespace BudgetExecution
 
                     var col = new ColumnSchema
                     {
-                        columnName = colname,
-                        columnType = datatype,
-                        length = length,
-                        isNullable = isnullable,
-                        isIdentity = isidentity,
-                        defaultValue = AdjustDefaultValue( coldefault )
+                        ColumnName = colname,
+                        ColumnType = datatype,
+                        Length = length,
+                        IsNullable = isnullable,
+                        IsIdentity = isidentity,
+                        DefaultValue = AdjustDefaultValue( coldefault )
                     };
 
                     res.Columns.Add( col );
@@ -1443,9 +1443,9 @@ namespace BudgetExecution
                         // Update the corresponding column schema.
                         foreach( var csc in res.Columns )
                         {
-                            if( csc.columnName == colname )
+                            if( csc.ColumnName == colname )
                             {
-                                csc.isCaseSensitivite = iscasesensitive;
+                                csc.IsCaseSensitivite = iscasesensitive;
                                 break;
                             }
                         }// foreach
@@ -1603,12 +1603,12 @@ namespace BudgetExecution
             {
                 var fkc = new ForeignKeySchema
                 {
-                    columnName = (string)reader[ "ColumnName" ],
-                    foreignTableName = (string)reader[ "ForeignTableName" ],
-                    foreignColumnName = (string)reader[ "ForeignColumnName" ],
-                    cascadeOnDelete = (string)reader[ "DeleteRule" ] == "CASCADE",
-                    isNullable = (string)reader[ "IsNullable" ] == "YES",
-                    tableName = ts.TableName
+                    ColumnName = (string)reader[ "ColumnName" ],
+                    ForeignTableName = (string)reader[ "ForeignTableName" ],
+                    ForeignColumnName = (string)reader[ "ForeignColumnName" ],
+                    CascadeOnDelete = (string)reader[ "DeleteRule" ] == "CASCADE",
+                    IsNullable = (string)reader[ "IsNullable" ] == "YES",
+                    TableName = ts.TableName
                 };
 
                 ts.ForeignKeys.Add( fkc );

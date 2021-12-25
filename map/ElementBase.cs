@@ -22,7 +22,7 @@ namespace BudgetExecution
         public Field Field { get; protected internal set; }
 
         /// <summary>
-        /// Sets the columnName.
+        /// Sets the ColumnName.
         /// </summary>
         /// <param name = "columnName" > </param>
         public override void SetName( string columnName )
@@ -41,7 +41,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Sets the columnName.
+        /// Sets the ColumnName.
         /// </summary>
         /// <param name = "dataRow" > </param>
         /// <param name = "columnName" > </param>
@@ -68,7 +68,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Sets the columnName.
+        /// Sets the ColumnName.
         /// </summary>
         /// <param name = "field" > </param>
         private protected void SetName( Field field )
@@ -89,7 +89,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Sets the columnName.
+        /// Sets the ColumnName.
         /// </summary>
         /// <param name = "dataRow" > </param>
         /// <param name = "field" > </param>

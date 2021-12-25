@@ -35,7 +35,7 @@ namespace BudgetExecution
         public  Numeric Numeric { get; set; } = Numeric.Amount;
 
         /// <summary>
-        /// Gets the columnName.
+        /// Gets the ColumnName.
         /// </summary>
         /// <param name="columnName"></param>
         public override void SetName( string columnName )

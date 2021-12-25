@@ -28,13 +28,13 @@ namespace BudgetExecution
         {
             return prefix
                 + ""
-                + fks.tableName
+                + fks.TableName
                 + ""
-                + fks.columnName
+                + fks.ColumnName
                 + ""
-                + fks.foreignTableName
+                + fks.ForeignTableName
                 + ""
-                + fks.foreignColumnName;
+                + fks.ForeignColumnName;
         }
 
         public static TriggerSchema GenerateInsertTrigger( ForeignKeySchema fks )
@@ -42,31 +42,31 @@ namespace BudgetExecution
             var trigger = new TriggerSchema
             {
                 name = MakeTriggerName( fks, "fki" ), type = TriggerType.Before,
-                @event = TriggerEvent.Insert, table = fks.tableName
+                @event = TriggerEvent.Insert, table = fks.TableName
             };
 
             var nullstring = string.Empty;
 
-            if( fks.isNullable )
+            if( fks.IsNullable )
             {
-                nullstring = " NEW." + fks.columnName + " IS NOT NULL AND";
+                nullstring = " NEW." + fks.ColumnName + " IS NOT NULL AND";
             }
 
             trigger.body = "SELECT RAISE(ROLLBACK, 'insert on table "
-                + fks.tableName
+                + fks.TableName
                 + " violates foreign key constraint "
                 + trigger.name
                 + "')"
                 + " WHERE"
                 + nullstring
                 + " (SELECT "
-                + fks.foreignColumnName
+                + fks.ForeignColumnName
                 + " FROM "
-                + fks.foreignTableName
+                + fks.ForeignTableName
                 + " WHERE "
-                + fks.foreignColumnName
+                + fks.ForeignColumnName
                 + " = NEW."
-                + fks.columnName
+                + fks.ColumnName
                 + ") IS NULL; ";
 
             return trigger;
@@ -77,32 +77,32 @@ namespace BudgetExecution
             var trigger = new TriggerSchema
             {
                 name = MakeTriggerName( fks, "fku" ), type = TriggerType.Before,
-                @event = TriggerEvent.Update, table = fks.tableName
+                @event = TriggerEvent.Update, table = fks.TableName
             };
 
             var triggername = trigger.name;
             var nullstring = string.Empty;
 
-            if( fks.isNullable )
+            if( fks.IsNullable )
             {
-                nullstring = " NEW." + fks.columnName + " IS NOT NULL AND";
+                nullstring = " NEW." + fks.ColumnName + " IS NOT NULL AND";
             }
 
             trigger.body = "SELECT RAISE(ROLLBACK, 'update on table "
-                + fks.tableName
+                + fks.TableName
                 + " violates foreign key constraint "
                 + triggername
                 + "')"
                 + " WHERE"
                 + nullstring
                 + " (SELECT "
-                + fks.foreignColumnName
+                + fks.ForeignColumnName
                 + " FROM "
-                + fks.foreignTableName
+                + fks.ForeignTableName
                 + " WHERE "
-                + fks.foreignColumnName
+                + fks.ForeignColumnName
                 + " = NEW."
-                + fks.columnName
+                + fks.ColumnName
                 + ") IS NULL; ";
 
             return trigger;
@@ -113,32 +113,32 @@ namespace BudgetExecution
             var trigger = new TriggerSchema
             {
                 name = MakeTriggerName( fks, "fkd" ), type = TriggerType.Before,
-                @event = TriggerEvent.Delete, table = fks.foreignTableName
+                @event = TriggerEvent.Delete, table = fks.ForeignTableName
             };
 
             var triggername = trigger.name;
 
-            trigger.body = !fks.cascadeOnDelete
+            trigger.body = !fks.CascadeOnDelete
                 ? "SELECT RAISE(ROLLBACK, 'delete on table "
-                + fks.foreignTableName
+                + fks.ForeignTableName
                 + " violates foreign key constraint "
                 + triggername
                 + "')"
                 + " WHERE (SELECT "
-                + fks.columnName
+                + fks.ColumnName
                 + " FROM "
-                + fks.tableName
+                + fks.TableName
                 + " WHERE "
-                + fks.columnName
+                + fks.ColumnName
                 + " = OLD."
-                + fks.foreignColumnName
+                + fks.ForeignColumnName
                 + ") IS NOT NULL; "
                 : "DELETE FROM ["
-                + fks.tableName
+                + fks.TableName
                 + "] WHERE "
-                + fks.columnName
+                + fks.ColumnName
                 + " = OLD."
-                + fks.foreignColumnName
+                + fks.ForeignColumnName
                 + "; ";
 
             return trigger;

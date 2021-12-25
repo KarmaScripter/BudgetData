@@ -6,16 +6,34 @@ namespace BudgetExecution
 {
     public class ForeignKeySchema
     {
-        public bool cascadeOnDelete;
+        /// <summary>
+        /// The cascade on delete
+        /// </summary>
+        public bool CascadeOnDelete;
 
-        public string columnName;
+        /// <summary>
+        /// The column name
+        /// </summary>
+        public string ColumnName;
 
-        public string foreignColumnName;
+        /// <summary>
+        /// The foreign column name
+        /// </summary>
+        public string ForeignColumnName;
 
-        public string foreignTableName;
+        /// <summary>
+        /// The foreign table name
+        /// </summary>
+        public string ForeignTableName;
 
-        public bool isNullable;
+        /// <summary>
+        /// The is nullable
+        /// </summary>
+        public bool IsNullable;
 
-        public string tableName;
+        /// <summary>
+        /// The table name
+        /// </summary>
+        public string TableName;
     }
 }
