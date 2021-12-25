@@ -4,6 +4,9 @@
 
 namespace BudgetExecution
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ForeignKeySchema
     {
         /// <summary>

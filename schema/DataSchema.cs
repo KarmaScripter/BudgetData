@@ -24,7 +24,7 @@ namespace BudgetExecution
         /// <value>
         /// The name of the Table.
         /// </value>
-        public string Name { get;  }
+        public string Name { get; }
 
         /// <summary>
         /// Gets the Data.
@@ -32,7 +32,7 @@ namespace BudgetExecution
         /// <value>
         /// The Data.
         /// </value>
-        public IEnumerable<DataRow> Data { get;  }
+        public IEnumerable<DataRow> Data { get; }
 
         /// <summary>
         /// Gets a value indicating whether this instance is source.
@@ -258,7 +258,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Gets the primary key columns.
+        /// Gets the primary key Columns.
         /// </summary>
         /// <returns>
         /// </returns>

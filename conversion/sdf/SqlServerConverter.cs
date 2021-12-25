@@ -931,25 +931,25 @@ namespace BudgetExecution
             var sb = new StringBuilder();
             sb.Append( "CREATE " );
 
-            if( schema.isUnique )
+            if( schema.IsUnique )
             {
                 sb.Append( "UNIQUE " );
             }
 
-            sb.Append( "INDEX [" + tablename + "" + schema.indexName + "]\n" );
+            sb.Append( "INDEX [" + tablename + "" + schema.IndexName + "]\n" );
             sb.Append( "ON [" + tablename + "]\n" );
             sb.Append( "(" );
 
-            for( var i = 0; i < schema.columns.Count; i++ )
+            for( var i = 0; i < schema.Columns.Count; i++ )
             {
-                sb.Append( "[" + schema.columns[ i ] + "]" );
+                sb.Append( "[" + schema.Columns[ i ] + "]" );
 
-                if( schema.columns[ i ] != null )
+                if( schema.Columns[ i ] != null )
                 {
                     sb.Append( " DESC" );
                 }
 
-                if( i < schema.columns.Count - 1 )
+                if( i < schema.Columns.Count - 1 )
                 {
                     sb.Append( ", " );
                 }
@@ -973,7 +973,7 @@ namespace BudgetExecution
             var sb = new StringBuilder();
             sb.Append( "\t[" + col.ColumnName + "]\t" );
 
-            // Special treatment for IDENTITY columns
+            // Special treatment for IDENTITY Columns
             if( col.IsIdentity )
             {
                 if( ts.PrimaryKey.Count == 1
@@ -1420,7 +1420,7 @@ namespace BudgetExecution
                 }// while
             }
 
-            // Find COLLATE information for all columns in the table
+            // Find COLLATE information for all Columns in the table
             using( var cmd4 =
                 new SqlCommand( @"EXEC sptablecollations '" + tschma + "." + tablename + "'",
                     conn ) )
@@ -1626,7 +1626,7 @@ namespace BudgetExecution
         /// index [" + indexname + "]</exception>
         private IndexSchema BuildIndexSchema( string indexname, string desc, string keys )
         {
-            var res = new IndexSchema { indexName = indexname };
+            var res = new IndexSchema { IndexName = indexname };
 
             // Determine if this is a unique index or not.
             var descparts = desc.Split( ',' );
@@ -1637,13 +1637,13 @@ namespace BudgetExecution
 
                 if( p.Trim().Contains( "unique" ) )
                 {
-                    res.isUnique = true;
+                    res.IsUnique = true;
                     break;
                 }
             }
 
             // Get all key names and check if they are ASCENDING or DESCENDING
-            res.columns = new List<IndexColumn>();
+            res.Columns = new List<IndexColumn>();
             var keysparts = keys.Split( ',' );
 
             foreach( var p in keysparts )
@@ -1660,7 +1660,7 @@ namespace BudgetExecution
                 }
 
                 var ic = new IndexColumn();
-                res.columns.Add( ic );
+                res.Columns.Add( ic );
             }// foreach
 
             return res;

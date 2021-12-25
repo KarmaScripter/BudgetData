@@ -304,7 +304,7 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the column ordinals.
         /// </summary>
-        /// <param name="dataColumns">The Data columns.</param>
+        /// <param name="dataColumns">The Data Columns.</param>
         /// <returns></returns>
         public IEnumerable<int> GetColumnOrdinals( IEnumerable<DataColumn> dataColumns )
         {

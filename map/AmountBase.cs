@@ -1,12 +1,14 @@
-﻿// <copyright file=" <File Name> .cs" company="Terry D. Eppler">
-// Copyright (c) Terry Eppler. All rights reserved.
-// </copyright>
+﻿// // <copyright file = "AmountBase.cs" company = "Terry D. Eppler">
+// // Copyright (c) Terry D. Eppler. All rights reserved.
+// // </copyright>
 
 namespace BudgetExecution
 {
     using System;
     using System.Data;
     using System.Linq;
+    using System.Text;
+    using System.Threading;
 
     /// <summary>
     /// 
@@ -17,22 +19,22 @@ namespace BudgetExecution
         /// <summary>
         /// The funding
         /// </summary>
-        public  double Funding { get; set; }
+        public double Funding { get; set; }
 
         /// <summary>
         /// The initial
         /// </summary>
-        public  double Initial { get; set; }
+        public double Initial { get; set; }
 
         /// <summary>
         /// The delta
         /// </summary>
-        public  double Delta { get; set; }
+        public double Delta { get; set; }
 
         /// <summary>
         /// The numeric
         /// </summary>
-        public  Numeric Numeric { get; set; } = Numeric.Amount;
+        public Numeric Numeric { get; set; } = Numeric.Amount;
 
         /// <summary>
         /// Gets the ColumnName.
@@ -51,7 +53,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    AmountBase.Fail( ex );
                 }
             }
         }
@@ -61,7 +63,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="dataRow">The Data row.</param>
         /// <param name="columnName">Name of the column.</param>
-        public  void SetName( DataRow dataRow, string columnName )
+        public void SetName( DataRow dataRow, string columnName )
         {
             if( Verify.Row( dataRow )
                 && Verify.Input( columnName )
@@ -69,8 +71,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _names = dataRow?.Table
-                        ?.GetColumnNames();
+                    var _names = dataRow?.Table?.GetColumnNames();
 
                     Name = _names?.Contains( columnName ) == true
                         ? columnName
@@ -78,7 +79,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    AmountBase.Fail( ex );
                 }
             }
         }
@@ -87,7 +88,7 @@ namespace BudgetExecution
         /// Sets the name.
         /// </summary>
         /// <param name="numeric">The numeric.</param>
-        public  void SetName( Numeric numeric )
+        public void SetName( Numeric numeric )
         {
             if( Validate.Numeric( numeric ) )
             {
@@ -99,7 +100,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    AmountBase.Fail( ex );
                 }
             }
         }
@@ -116,8 +117,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _columnNames = dataRow?.Table
-                        ?.GetColumnNames();
+                    var _columnNames = dataRow?.Table?.GetColumnNames();
 
                     Name = _columnNames?.Contains( numeric.ToString() ) == true
                         ? numeric.ToString()
@@ -125,7 +125,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    AmountBase.Fail( ex );
                 }
             }
         }
@@ -149,7 +149,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    AmountBase.Fail( ex );
                 }
             }
         }
@@ -168,8 +168,7 @@ namespace BudgetExecution
                 {
                     var _columnValue = (Numeric)Enum.Parse( typeof( Numeric ), columnName );
 
-                    var _names = dataRow?.Table
-                        ?.GetColumnNames();
+                    var _names = dataRow?.Table?.GetColumnNames();
 
                     if( _names?.Any() == true )
                     {
@@ -180,7 +179,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    AmountBase.Fail( ex );
                 }
             }
         }
@@ -189,7 +188,7 @@ namespace BudgetExecution
         /// Sets the numeric.
         /// </summary>
         /// <param name="numeric">The numeric.</param>
-        public  void SetNumeric( Numeric numeric )
+        public void SetNumeric( Numeric numeric )
         {
             try
             {
@@ -199,7 +198,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                AmountBase.Fail( ex );
             }
         }
 
@@ -208,15 +207,14 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="dataRow">The Data row.</param>
         /// <param name="numeric">The numeric.</param>
-        public  void SetNumeric( DataRow dataRow, Numeric numeric )
+        public void SetNumeric( DataRow dataRow, Numeric numeric )
         {
             if( dataRow != null
                 && Validate.Numeric( numeric ) )
             {
                 try
                 {
-                    var _names = dataRow.Table
-                        ?.GetColumnNames();
+                    var _names = dataRow.Table?.GetColumnNames();
 
                     if( _names?.Any() == true )
                     {
@@ -227,7 +225,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    AmountBase.Fail( ex );
                 }
             }
         }
@@ -236,7 +234,7 @@ namespace BudgetExecution
         /// Sets the value.
         /// </summary>
         /// <param name="value">The value.</param>
-        public  void SetValue( string value )
+        public void SetValue( string value )
         {
             try
             {
@@ -248,7 +246,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                AmountBase.Fail( ex );
             }
         }
 
@@ -257,7 +255,7 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="dataRow">The Data row.</param>
         /// <param name="columnName">Name of the column.</param>
-        public  void SetValue( DataRow dataRow, string columnName )
+        public void SetValue( DataRow dataRow, string columnName )
         {
             if( dataRow != null
                 && Verify.Input( columnName )
@@ -265,8 +263,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _names = dataRow.Table
-                        ?.GetColumnNames();
+                    var _names = dataRow.Table?.GetColumnNames();
 
                     Value = _names.Contains( columnName )
                         ? dataRow[ columnName ].ToString()
@@ -274,7 +271,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    AmountBase.Fail( ex );
                 }
             }
         }
@@ -284,15 +281,14 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="dataRow">The Data row.</param>
         /// <param name="numeric">The numeric.</param>
-        public  void SetValue( DataRow dataRow, Numeric numeric )
+        public void SetValue( DataRow dataRow, Numeric numeric )
         {
             if( dataRow != null
                 && Validate.Numeric( numeric ) )
             {
                 try
                 {
-                    var _names = dataRow.Table
-                        ?.GetColumnNames();
+                    var _names = dataRow.Table?.GetColumnNames();
 
                     if( _names?.Any() == true )
                     {
@@ -303,7 +299,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    Fail( ex );
+                    AmountBase.Fail( ex );
                 }
             }
         }
@@ -320,7 +316,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                AmountBase.Fail( ex );
                 return 0.0;
             }
         }
@@ -341,7 +337,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                Fail( ex );
+                AmountBase.Fail( ex );
                 return Amount.Default;
             }
         }

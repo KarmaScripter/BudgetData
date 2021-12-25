@@ -6,19 +6,40 @@ namespace BudgetExecution
 {
     using System.Collections.Generic;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class IndexSchema
     {
-        public List<IndexColumn> columns;
+        /// <summary>
+        /// The columns
+        /// </summary>
+        public List<IndexColumn> Columns;
 
-        public string indexName;
+        /// <summary>
+        /// The index name
+        /// </summary>
+        public string IndexName;
 
-        public bool isUnique;
+        /// <summary>
+        /// The is unique
+        /// </summary>
+        public bool IsUnique;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class IndexColumn
     {
-        public string columnName;
+        /// <summary>
+        /// The column name
+        /// </summary>
+        public string ColumnName;
 
-        public bool isAscending;
+        /// <summary>
+        /// The is ascending
+        /// </summary>
+        public bool IsAscending;
     }
 }
