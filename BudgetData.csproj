@@ -217,7 +217,7 @@
       <HintPath>..\BudgetEnumerations\bin\Debug\BudgetEnumerations.dll</HintPath>
     </Reference>
     <Reference Include="BudgetExtensions">
-      <HintPath>..\BudgetStatic\bin\Debug\BudgetExtensions.dll</HintPath>
+      <HintPath>..\Ninja\bin\Debug\BudgetExtensions.dll</HintPath>
     </Reference>
     <Reference Include="BudgetNinja, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

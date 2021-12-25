@@ -42,18 +42,18 @@ namespace BudgetExecution
         /// <param name="columnName"></param>
         public override void SetName( string columnName )
         {
-            if( Verify.Input( columnName )
+            if( Verify.IsInput( columnName )
                 && Enum.GetNames( typeof( Numeric ) )?.Contains( columnName ) == true )
             {
                 try
                 {
-                    Name = Verify.Input( columnName )
+                    Name = Verify.IsInput( columnName )
                         ? columnName
                         : default( string );
                 }
                 catch( Exception ex )
                 {
-                    AmountBase.Fail( ex );
+                    Fail( ex );
                 }
             }
         }
@@ -65,13 +65,13 @@ namespace BudgetExecution
         /// <param name="columnName">Name of the column.</param>
         public void SetName( DataRow dataRow, string columnName )
         {
-            if( Verify.Row( dataRow )
-                && Verify.Input( columnName )
+            if( Verify.IsRow( dataRow )
+                && Verify.IsInput( columnName )
                 && Enum.GetNames( typeof( Numeric ) )?.Contains( columnName ) == true )
             {
                 try
                 {
-                    var _names = dataRow?.Table?.GetColumnNames();
+                    var _names = dataRow?.Table?.Columns;
 
                     Name = _names?.Contains( columnName ) == true
                         ? columnName
@@ -79,7 +79,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    AmountBase.Fail( ex );
+                    Fail( ex );
                 }
             }
         }
@@ -100,7 +100,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    AmountBase.Fail( ex );
+                    Fail( ex );
                 }
             }
         }
@@ -117,7 +117,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _columnNames = dataRow?.Table?.GetColumnNames();
+                    var _columnNames = dataRow?.Table?.Columns;
 
                     Name = _columnNames?.Contains( numeric.ToString() ) == true
                         ? numeric.ToString()
@@ -125,7 +125,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    AmountBase.Fail( ex );
+                    Fail( ex );
                 }
             }
         }
@@ -136,7 +136,7 @@ namespace BudgetExecution
         /// <param name="columnName">Name of the column.</param>
         public void SetNumeric( string columnName )
         {
-            if( Verify.Input( columnName )
+            if( Verify.IsInput( columnName )
                 && Enum.GetNames( typeof( Numeric ) )?.Contains( columnName ) == true )
             {
                 try
@@ -149,7 +149,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    AmountBase.Fail( ex );
+                    Fail( ex );
                 }
             }
         }
@@ -161,8 +161,8 @@ namespace BudgetExecution
         /// <param name="columnName">Name of the column.</param>
         public void SetNumeric( DataRow dataRow, string columnName )
         {
-            if( Verify.Row( dataRow )
-                && Verify.Input( columnName ) )
+            if( Verify.IsRow( dataRow )
+                && Verify.IsInput( columnName ) )
             {
                 try
                 {
@@ -179,7 +179,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    AmountBase.Fail( ex );
+                    Fail( ex );
                 }
             }
         }
@@ -198,7 +198,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                AmountBase.Fail( ex );
+                Fail( ex );
             }
         }
 
@@ -225,7 +225,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    AmountBase.Fail( ex );
+                    Fail( ex );
                 }
             }
         }
@@ -238,7 +238,7 @@ namespace BudgetExecution
         {
             try
             {
-                if( Verify.Input( value )
+                if( Verify.IsInput( value )
                     && Enum.GetNames( typeof( Numeric ) ).Contains( value ) )
                 {
                     Value = value;
@@ -246,7 +246,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                AmountBase.Fail( ex );
+                Fail( ex );
             }
         }
 
@@ -258,12 +258,12 @@ namespace BudgetExecution
         public void SetValue( DataRow dataRow, string columnName )
         {
             if( dataRow != null
-                && Verify.Input( columnName )
+                && Verify.IsInput( columnName )
                 && Enum.GetNames( typeof( Numeric ) ).Contains( columnName ) )
             {
                 try
                 {
-                    var _names = dataRow.Table?.GetColumnNames();
+                    var _names = dataRow.Table?.Columns;
 
                     Value = _names.Contains( columnName )
                         ? dataRow[ columnName ].ToString()
@@ -271,7 +271,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    AmountBase.Fail( ex );
+                    Fail( ex );
                 }
             }
         }
@@ -299,7 +299,7 @@ namespace BudgetExecution
                 }
                 catch( Exception ex )
                 {
-                    AmountBase.Fail( ex );
+                    Fail( ex );
                 }
             }
         }
@@ -316,7 +316,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                AmountBase.Fail( ex );
+                Fail( ex );
                 return 0.0;
             }
         }
@@ -337,7 +337,7 @@ namespace BudgetExecution
             }
             catch( Exception ex )
             {
-                AmountBase.Fail( ex );
+                Fail( ex );
                 return Amount.Default;
             }
         }

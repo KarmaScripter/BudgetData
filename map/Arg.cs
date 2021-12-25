@@ -46,7 +46,7 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         private protected void SetInput( IDictionary<string, object> dict )
         {
-            if( Verify.Map( dict ) )
+            if( Verify.IsMap( dict ) )
             {
                 try
                 {
@@ -55,7 +55,7 @@ namespace BudgetExecution
 
                     foreach( var kvp in dict )
                     {
-                        if( Verify.Input( kvp.Key )
+                        if( Verify.IsInput( kvp.Key )
                             && _fields?.Contains( kvp.Key ) == true )
                         {
                             _dictionary?.Add( kvp.Key, kvp.Value );
@@ -79,7 +79,7 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         private protected void SetOutput( IDictionary<string, object> dict )
         {
-            if( Verify.Map( dict ) )
+            if( Verify.IsMap( dict ) )
             {
                 try
                 {
@@ -132,7 +132,7 @@ namespace BudgetExecution
                     {
                         foreach( var value in _enumerable )
                         {
-                            if( Verify.Input( value )
+                            if( Verify.IsInput( value )
                                 && _fields.Contains( value ) )
                             {
                                 _list.Add( value );
@@ -172,7 +172,7 @@ namespace BudgetExecution
                     {
                         foreach( var key in _keys )
                         {
-                            if( Verify.Input( key )
+                            if( Verify.IsInput( key )
                                 && _fields.Contains( key ) )
                             {
                                 _list.Add( key );

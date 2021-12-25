@@ -96,7 +96,7 @@ namespace BudgetExecution
                     var _table = ConnectionBuilder?.GetTableName();
                     CommandText = $"{SQL.SELECT} * FROM {_table} WHERE {_values};";
 
-                    return Verify.Input( CommandText )
+                    return Verify.IsInput( CommandText )
                         ? CommandText
                         : default( string );
                 }
@@ -134,7 +134,7 @@ namespace BudgetExecution
                     var _values = _update.TrimEnd( " AND".ToCharArray() );
                     CommandText = $"{SQL.UPDATE} {ConnectionBuilder?.GetTableName()} SET {_values};";
 
-                    return Verify.Input( CommandText )
+                    return Verify.IsInput( CommandText )
                         ? CommandText
                         : default( string );
                 }
@@ -171,7 +171,7 @@ namespace BudgetExecution
 
                 CommandText = $"{SQL.INSERT} INTO {_table} {values};";
 
-                return Verify.Input( CommandText )
+                return Verify.IsInput( CommandText )
                     ? CommandText
                     : default( string );
             }
@@ -190,7 +190,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Map( Args ) && Verify.Input( CommandText )
+                return Verify.IsMap( Args ) && Verify.IsInput( CommandText )
                     ? CommandText
                     : string.Empty;
             }

@@ -116,8 +116,8 @@ namespace BudgetExecution
         /// <param name="filePath">The file path.</param>
         public void WriteExcelFile( DataTable table, string filePath )
         {
-            if( Verify.Table( table )
-                && Verify.Input( filePath ) )
+            if( Verify.IsTable( table )
+                && Verify.IsInput( filePath ) )
             {
                 try
                 {
@@ -154,7 +154,7 @@ namespace BudgetExecution
         /// <returns></returns>
         private static ExcelPackage ReadExcelFile( string filePath )
         {
-            if( Verify.Input( filePath ) )
+            if( Verify.IsInput( filePath ) )
             {
                 try
                 {
@@ -211,7 +211,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public DataTable ImportData( ref string sheetName )
         {
-            if( Verify.Input( sheetName ) )
+            if( Verify.IsInput( sheetName ) )
             {
                 try
                 {
@@ -257,8 +257,8 @@ namespace BudgetExecution
         /// <returns></returns>
         public DataTable CsvImport( string fileName, ref string sheetName )
         {
-            if( Verify.Input( fileName )
-                && Verify.Input( sheetName ) )
+            if( Verify.IsInput( fileName )
+                && Verify.IsInput( sheetName ) )
             {
                 try
                 {
@@ -272,7 +272,7 @@ namespace BudgetExecution
                     using var _connection = new OleDbConnection( _connectionString );
                     var _schema = _connection.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
 
-                    if( Verify.Input( sheetName ) )
+                    if( Verify.IsInput( sheetName ) )
                     {
                         if( !SheetExists( sheetName, _schema ) )
                         {
@@ -347,7 +347,7 @@ namespace BudgetExecution
         /// <returns></returns>
         private bool SheetExists( string sheetName, DataTable dataTable )
         {
-            if( Verify.Input( sheetName )
+            if( Verify.IsInput( sheetName )
                 && dataTable?.Columns.Count > 0
                 && dataTable.Rows.Count     > 0 )
             {

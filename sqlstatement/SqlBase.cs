@@ -102,7 +102,7 @@ namespace BudgetExecution
         {
             try
             {
-                CommandText = Verify.Input( ConnectionBuilder?.GetConnectionString() )
+                CommandText = Verify.IsInput( ConnectionBuilder?.GetConnectionString() )
                     ? $"{SQL.SELECT} * FROM {ConnectionBuilder?.GetTableName()};"
                     : string.Empty;
             }
@@ -118,7 +118,7 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         private protected void SetSelectStatement( IDictionary<string, object> dict )
         {
-            if( Verify.Map( dict ) )
+            if( Verify.IsMap( dict ) )
             {
                 try
                 {
@@ -150,7 +150,7 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         private protected void SetUpdateStatement( IDictionary<string, object> dict )
         {
-            if( Verify.Map( dict ) )
+            if( Verify.IsMap( dict ) )
             {
                 try
                 {
@@ -177,7 +177,7 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         private protected void SetInsertStatement( IDictionary<string, object> dict )
         {
-            if( Verify.Map( dict ) )
+            if( Verify.IsMap( dict ) )
             {
                 try
                 {
@@ -209,7 +209,7 @@ namespace BudgetExecution
         /// <param name="dict">The dictionary.</param>
         private protected void SetDeleteStatement( IDictionary<string, object> dict )
         {
-            if( Verify.Map( dict ) )
+            if( Verify.IsMap( dict ) )
             {
                 try
                 {
@@ -243,7 +243,7 @@ namespace BudgetExecution
         {
             try
             {
-                CommandText = Verify.Input( sql )
+                CommandText = Verify.IsInput( sql )
                     ? sql
                     : string.Empty;
             }
@@ -261,11 +261,11 @@ namespace BudgetExecution
         public void SetCommandText( IDictionary<string, object> dict, SQL commandType = SQL.SELECT )
         {
             if( dict == null
-                && Verify.Input( ConnectionBuilder?.GetConnectionString() ) )
+                && Verify.IsInput( ConnectionBuilder?.GetConnectionString() ) )
             {
                 SetSelectStatement();
             }
-            else if( Verify.Map( dict ) )
+            else if( Verify.IsMap( dict ) )
             {
                 try
                 {
@@ -324,7 +324,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( CommandText )
+                return Verify.IsInput( CommandText )
                     ? CommandText
                     : string.Empty;
             }

@@ -140,7 +140,7 @@ namespace BudgetExecution
             {
                 return !Validate.PrimaryKey( PrimaryKey )
                     && Index > -1
-                    && Verify.Input( Name )
+                    && Verify.IsInput( Name )
                         ? Name + " = " + Index
                         : string.Empty;
             }

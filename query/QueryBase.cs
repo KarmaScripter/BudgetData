@@ -162,7 +162,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Map( Args )
+                return Verify.IsMap( Args )
                     ? Args
                     : default( IDictionary<string, object> );
             }
@@ -210,7 +210,7 @@ namespace BudgetExecution
         /// </returns>
         private protected void SetConnectionBuilder( string fullpath )
         {
-            if( Verify.Input( fullpath )
+            if( Verify.IsInput( fullpath )
                 && File.Exists( fullpath ) )
             {
                 try

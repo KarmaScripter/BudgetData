@@ -129,11 +129,11 @@ namespace BudgetExecution
                 {
                     foreach( DataColumn caption in _schema )
                     {
-                        if( Verify.Input( caption.Caption ) )
+                        if( Verify.IsInput( caption.Caption ) )
                         {
                             _list.Add( caption.Caption );
                         }
-                        else if( Verify.Input( caption.ColumnName ) )
+                        else if( Verify.IsInput( caption.ColumnName ) )
                         {
                             _list.Add( caption.ColumnName.SplitPascal() );
                         }
@@ -288,7 +288,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Rows( Data )
+                return Verify.IsRows( Data )
                     ? Data?.CopyToDataTable()?.Columns
                     : default( DataColumnCollection );
             }
@@ -327,7 +327,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Rows( Data )
+                return Verify.IsRows( Data )
                     ? Data?.CopyToDataTable()
                     : default( DataTable );
             }
@@ -347,7 +347,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( Name )
+                return Verify.IsInput( Name )
                     ? Name
                     : string.Empty;
             }
@@ -367,7 +367,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Rows( Data )
+                return Verify.IsRows( Data )
                     ? Data
                     : default( IEnumerable<DataRow> );
             }
@@ -387,7 +387,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( Name ) && IsSource
+                return Verify.IsInput( Name ) && IsSource
                     ? (Source)Enum.Parse( typeof( Source ), Name )
                     : Source.NS;
             }

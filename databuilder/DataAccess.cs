@@ -46,14 +46,14 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<DataRow> GetData()
         {
-            if( Verify.Table( Table ) )
+            if( Verify.IsTable( Table ) )
             {
                 try
                 {
                     var _data = Table
                         ?.AsEnumerable();
 
-                    return Verify.Rows( _data )
+                    return Verify.IsRows( _data )
                         ? _data
                         : default( EnumerableRowCollection<DataRow> );
                 }
@@ -73,7 +73,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public DataTable GetDataTable()
         {
-            if( Verify.Table( Table ) )
+            if( Verify.IsTable( Table ) )
             {
                 try
                 {
@@ -190,7 +190,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Row( Record )
+                return Verify.IsRow( Record )
                     ? Record
                     : default( DataRow );
             }
@@ -207,7 +207,7 @@ namespace BudgetExecution
         /// <param name="dataTable">The Data table.</param>
         public void SetColumnCaptions( DataTable dataTable )
         {
-            if( Verify.Table( dataTable ) )
+            if( Verify.IsTable( dataTable ) )
             {
                 try
                 {
@@ -279,7 +279,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<int> GetPrimaryIndexes( IEnumerable<DataRow> dataRows )
         {
-            if( Verify.Input( dataRows )
+            if( Verify.IsInput( dataRows )
                 && dataRows?.HasPrimaryKey() == true )
             {
                 try
@@ -308,7 +308,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<int> GetColumnOrdinals( IEnumerable<DataColumn> dataColumns )
         {
-            if( Verify.Sequence( dataColumns ) )
+            if( Verify.IsSequence( dataColumns ) )
             {
                 try
                 {

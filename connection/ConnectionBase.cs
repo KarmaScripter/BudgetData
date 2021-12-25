@@ -90,7 +90,7 @@ namespace BudgetExecution
         /// <param name="fileName">Name of the file.</param>
         private protected void SetSource( string fileName )
         {
-            if( Verify.Input( fileName )
+            if( Verify.IsInput( fileName )
                 && File.Exists( fileName )
                 && Resource.Sources?.Contains( fileName ) == true )
             {
@@ -104,7 +104,7 @@ namespace BudgetExecution
                 }
             }
 
-            if( !Verify.Input( fileName )
+            if( !Verify.IsInput( fileName )
                 || !File.Exists( fileName )
                 || !Resource.Sources?.Contains( fileName ) != true )
             {
@@ -210,7 +210,7 @@ namespace BudgetExecution
         {
             try
             {
-                FilePath = Verify.Input( filePath ) 
+                FilePath = Verify.IsInput( filePath ) 
                     && File.Exists( filePath )
                         ? Path.GetFullPath( filePath )
                         : default( string );
@@ -227,7 +227,7 @@ namespace BudgetExecution
         /// <param name="filePath">The filePath.</param>
         private protected void SetFileExtension( string filePath )
         {
-            if( Verify.Input( filePath ) )
+            if( Verify.IsInput( filePath ) )
             {
                 try
                 {
@@ -252,13 +252,13 @@ namespace BudgetExecution
         /// <param name="filePath">The file path.</param>
         private protected void SetFileName( string filePath )
         {
-            if( Verify.Input( filePath ) )
+            if( Verify.IsInput( filePath ) )
             {
                 try
                 {
                     var _filename = Path.GetFileNameWithoutExtension( filePath );
 
-                    FileName = Verify.Input( filePath )
+                    FileName = Verify.IsInput( filePath )
                         ? _filename
                         : string.Empty;
                 }
@@ -275,7 +275,7 @@ namespace BudgetExecution
         /// <param name="filePath">The file path.</param>
         private protected void SetProviderPath( string filePath )
         {
-            if( Verify.Input( filePath )
+            if( Verify.IsInput( filePath )
                 && File.Exists( filePath )
                 && Path.HasExtension( filePath ) )
             {
@@ -329,7 +329,7 @@ namespace BudgetExecution
                                               .ConnectionStrings[ provider.ToString() ]
                                               ?.ConnectionString;
 
-                            ConnectionString = Verify.Input( _connection )
+                            ConnectionString = Verify.IsInput( _connection )
                                 ? _connection?.Replace( "{FilePath}", FilePath )
                                 : string.Empty;
 
@@ -345,7 +345,7 @@ namespace BudgetExecution
                                               .ConnectionStrings[ provider.ToString() ]
                                               ?.ConnectionString;
 
-                            ConnectionString = Verify.Input( _connection )
+                            ConnectionString = Verify.IsInput( _connection )
                                 ? _connection
                                 : string.Empty;
 

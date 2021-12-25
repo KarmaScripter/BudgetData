@@ -137,8 +137,8 @@ namespace BudgetExecution
         /// </returns>
         public DataTable CsvImport( ref string sheetName )
         {
-            if( Verify.Input( sheetName )
-                && Verify.Input( sheetName ) )
+            if( Verify.IsInput( sheetName )
+                && Verify.IsInput( sheetName ) )
             {
                 try
                 {
@@ -152,7 +152,7 @@ namespace BudgetExecution
                     using var _connection = new OleDbConnection( _connectionString );
                     var _schema = _connection.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
 
-                    if( Verify.Input( sheetName ) )
+                    if( Verify.IsInput( sheetName ) )
                     {
                         if( !SheetExists( sheetName, _schema ) )
                         {
@@ -193,8 +193,8 @@ namespace BudgetExecution
         /// </returns>
         public DataTable CsvImport( string fileName, ref string sheetName )
         {
-            if( Verify.Input( fileName )
-                && Verify.Input( sheetName ) )
+            if( Verify.IsInput( fileName )
+                && Verify.IsInput( sheetName ) )
             {
                 try
                 {
@@ -207,7 +207,7 @@ namespace BudgetExecution
                     using var _connection = new OleDbConnection( _connectionString );
                     var _schema = _connection.GetOleDbSchemaTable( OleDbSchemaGuid.Tables, null );
 
-                    if( Verify.Input( sheetName ) )
+                    if( Verify.IsInput( sheetName ) )
                     {
                         if( !SheetExists( sheetName, _schema ) )
                         {
@@ -248,7 +248,7 @@ namespace BudgetExecution
         {
             if( table?.Columns.Count > 0 
                 && table.Rows.Count > 0 
-                && Verify.Input( filePath ) )
+                && Verify.IsInput( filePath ) )
             {
                 try
                 {
@@ -329,7 +329,7 @@ namespace BudgetExecution
         /// </returns>
         public ExcelPackage CreateCsvFile( string filePath )
         {
-            if( Verify.Input( filePath ) )
+            if( Verify.IsInput( filePath ) )
             {
                 try
                 {
@@ -393,7 +393,7 @@ namespace BudgetExecution
         /// </returns>
         private bool SheetExists( string sheetName, DataTable dataTable )
         {
-            if( Verify.Input( sheetName ) 
+            if( Verify.IsInput( sheetName ) 
                 && dataTable?.Columns.Count > 0 
                 && dataTable.Rows.Count > 0 )
             {

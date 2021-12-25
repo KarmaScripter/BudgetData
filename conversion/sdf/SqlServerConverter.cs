@@ -1024,7 +1024,7 @@ namespace BudgetExecution
             defval = DiscardNational( defval );
             _log.Debug( "DEFAULT VALUE BEFORE [" + col.DefaultValue + "] AFTER [" + defval + "]" );
 
-            if( Verify.Input( defval )
+            if( Verify.IsInput( defval )
                 && defval.ToUpper().Contains( "GETDATE" ) )
             {
                 _log.Debug( "converted SQL Server GETDATE() to CURRENTTIMESTAMP for column ["
@@ -1033,7 +1033,7 @@ namespace BudgetExecution
 
                 sb.Append( " DEFAULT (CURRENTTIMESTAMP)" );
             }
-            else if( Verify.Input( defval )
+            else if( Verify.IsInput( defval )
                 && IsValidDefaultValue( defval ) )
             {
                 sb.Append( " DEFAULT " + defval );

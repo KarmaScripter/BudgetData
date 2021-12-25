@@ -192,7 +192,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( Data?.ToString() )
+                return Verify.IsInput( Data?.ToString() )
                     ? Data?.ToString()
                     : string.Empty;
             }

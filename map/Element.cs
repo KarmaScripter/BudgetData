@@ -139,8 +139,8 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( Name )
-                    && Verify.Input( Value )
+                return Verify.IsInput( Name )
+                    && Verify.IsInput( Value )
                         ? $"{Name} = {Value}"
                         : string.Empty;
             }
@@ -160,7 +160,7 @@ namespace BudgetExecution
         /// </returns>
         public bool IsMatch( IElement element )
         {
-            if( Verify.Ref( element ) )
+            if( Verify.IsRef( element ) )
             {
                 try
                 {
@@ -190,9 +190,9 @@ namespace BudgetExecution
         /// </returns>
         public static bool IsMatch( IElement primary, IElement secondary )
         {
-            if( Verify.Element( primary )
+            if( Verify.IsElement( primary )
                 && primary != Default
-                && Verify.Element( secondary )
+                && Verify.IsElement( secondary )
                 && secondary != Default )
             {
                 try

@@ -95,35 +95,35 @@ namespace BudgetExecution
         /// <returns></returns>
         public DbCommand GetCreateTableCommand( string tableName, IEnumerable<DataColumn> dataColumns )
         {
-            if( Verify.Input( tableName )
-                && Verify.Sequence( dataColumns ) )
+            if( Verify.IsInput( tableName )
+                && Verify.IsSequence( dataColumns ) )
             {
                 try
                 {
                     var _sql = $"CREATE TABLE {tableName}";
 
                     if( Validate.Provider( Provider )
-                        && Verify.Input( _sql ) )
+                        && Verify.IsInput( _sql ) )
                     {
                         switch( Provider )
                         {
                             case Provider.SQLite:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
@@ -133,7 +133,7 @@ namespace BudgetExecution
                             case Provider.Access:
                             case Provider.OleDb:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new OleDbCommand( _sql )
                                     : default( OleDbCommand );
                             }
@@ -158,7 +158,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public DbCommand GetCreateViewCommand( string viewName, IEnumerable<DataColumn> dataColumns )
         {
-            if( Verify.Input( viewName )
+            if( Verify.IsInput( viewName )
                 && dataColumns?.Any() == true
                 && ConnectionBuilder != null
                 && ConnectionBuilder.GetProvider() != Provider.SqlCe )
@@ -171,14 +171,14 @@ namespace BudgetExecution
                     {
                         case Provider.SQLite:
                         {
-                            return Verify.Input( _sql )
+                            return Verify.IsInput( _sql )
                                 ? new SQLiteCommand( _sql )
                                 : default( SQLiteCommand );
                         }
 
                         case Provider.SqlServer:
                         {
-                            return Verify.Input( _sql )
+                            return Verify.IsInput( _sql )
                                 ? new SqlCommand( _sql )
                                 : default( SqlCommand );
                         }
@@ -188,7 +188,7 @@ namespace BudgetExecution
                         case Provider.Access:
                         case Provider.OleDb:
                         {
-                            return Verify.Input( _sql )
+                            return Verify.IsInput( _sql )
                                 ? new OleDbCommand( _sql )
                                 : default( OleDbCommand );
                         }
@@ -218,28 +218,28 @@ namespace BudgetExecution
                 {
                     var _sql = $"DROP {dataTable.TableName};";
 
-                    if( Verify.Input( _sql )
+                    if( Verify.IsInput( _sql )
                         && Enum.IsDefined( typeof( Provider ), Provider ) )
                     {
                         switch( Provider )
                         {
                             case Provider.SQLite:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
@@ -249,7 +249,7 @@ namespace BudgetExecution
                             case Provider.Access:
                             case Provider.OleDb:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new OleDbCommand( _sql )
                                     : default( OleDbCommand );
                             }
@@ -283,28 +283,28 @@ namespace BudgetExecution
                     var _sql =
                         $"ALTER TABLE {dataTable.TableName} ADD COLUMN {dataColumn.ColumnName};";
 
-                    if( Verify.Input( _sql )
+                    if( Verify.IsInput( _sql )
                         && Enum.IsDefined( typeof( Provider ), Provider ) )
                     {
                         switch( Provider )
                         {
                             case Provider.SQLite:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
@@ -314,7 +314,7 @@ namespace BudgetExecution
                             case Provider.Access:
                             case Provider.OleDb:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new OleDbCommand( _sql )
                                     : default( OleDbCommand );
                             }
@@ -340,7 +340,7 @@ namespace BudgetExecution
         public DbCommand GetAlterCommand( DataTable dataTable, string name )
         {
             if( dataTable != null
-                && Verify.Input( name )
+                && Verify.IsInput( name )
                 && CommandBuilder != null )
             {
                 try
@@ -348,27 +348,27 @@ namespace BudgetExecution
                     var _sql = $"ALTER TABLE {dataTable.TableName} RENAME {name};";
 
                     if( Enum.IsDefined( typeof( Provider ), Provider )
-                        && Verify.Input( _sql ) )
+                        && Verify.IsInput( _sql ) )
                     {
                         switch( Provider )
                         {
                             case Provider.SQLite:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new SQLiteCommand( _sql )
                                     : default( SQLiteCommand );
                             }
 
                             case Provider.SqlCe:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new SqlCeCommand( _sql )
                                     : default( SqlCeCommand );
                             }
 
                             case Provider.SqlServer:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new SqlCommand( _sql )
                                     : default( SqlCommand );
                             }
@@ -378,7 +378,7 @@ namespace BudgetExecution
                             case Provider.Access:
                             case Provider.OleDb:
                             {
-                                return Verify.Input( _sql )
+                                return Verify.IsInput( _sql )
                                     ? new OleDbCommand( _sql )
                                     : default( OleDbCommand );
                             }

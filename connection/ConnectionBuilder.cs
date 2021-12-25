@@ -91,7 +91,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( FilePath ) 
+                return Verify.IsInput( FilePath ) 
                     && File.Exists( FilePath )
                         ? Path.GetFullPath( FilePath )
                         : default( string );
@@ -130,7 +130,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( FilePath ) 
+                return Verify.IsInput( FilePath ) 
                     && File.Exists( FilePath )
                         ? Path.GetFullPath( FilePath )
                         : default( string );
@@ -150,7 +150,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( FilePath )
+                return Verify.IsInput( FilePath )
                     ? Path.GetFullPath( FilePath )
                     : default( string );
             }
@@ -169,7 +169,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( ConnectionString )
+                return Verify.IsInput( ConnectionString )
                     ? ConnectionString
                     : default( string );
             }
@@ -188,7 +188,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Input( TableName )
+                return Verify.IsInput( TableName )
                     ? TableName
                     : default( string );
             }

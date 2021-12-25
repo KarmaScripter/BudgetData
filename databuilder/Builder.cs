@@ -113,8 +113,8 @@ namespace BudgetExecution
         /// <returns></returns>
         public static IEnumerable<string> GetValues( IEnumerable<DataRow> dataRows, string column )
         {
-            if( Verify.Sequence( dataRows )
-                && Verify.Input( column ) )
+            if( Verify.IsSequence( dataRows )
+                && Verify.IsInput( column ) )
             {
                 try
                 {
@@ -145,9 +145,9 @@ namespace BudgetExecution
         /// <returns></returns>
         public static IEnumerable<string> GetValues( IEnumerable<DataRow> dataRows, Field field, string filter )
         {
-            if( Verify.Sequence( dataRows )
+            if( Verify.IsSequence( dataRows )
                 && Validate.Field( field )
-                && Verify.Input( filter ) )
+                && Verify.IsInput( filter ) )
             {
                 try
                 {
@@ -177,7 +177,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public static DataTable GetSchemaTable( DataTable dataTable )
         {
-            if( Verify.Table( dataTable ) )
+            if( Verify.IsTable( dataTable ) )
             {
                 try
                 {
@@ -205,7 +205,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public static DataTable CreateTableFromExcel( string filePath )
         {
-            if( Verify.Input( filePath )
+            if( Verify.IsInput( filePath )
                 && File.Exists( filePath ) )
             {
                 try
@@ -260,7 +260,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public static DataTable CreateTableFromExcel( string filePath, bool header = true )
         {
-            if( Verify.Input( filePath )
+            if( Verify.IsInput( filePath )
                 && File.Exists( filePath ) )
             {
                 try
@@ -319,9 +319,9 @@ namespace BudgetExecution
         /// <returns></returns>
         public static IDictionary<string, IEnumerable<string>> GetSeries( IEnumerable<DataRow> dataRows, Field field, string filter )
         {
-            if( Verify.Input( dataRows )
+            if( Verify.IsInput( dataRows )
                 && Validate.Field( field )
-                && Verify.Input( filter ) )
+                && Verify.IsInput( filter ) )
             {
                 try
                 {
@@ -336,7 +336,7 @@ namespace BudgetExecution
                         {
                             var _columnName = _columns[ i ].ColumnName;
 
-                            if( Verify.Input( _columnName )
+                            if( Verify.IsInput( _columnName )
                                 && _columns[ i ]?.DataType == typeof( string ) )
                             {
                                 _dict.Add( _columns[ i ].ColumnName, _values );
@@ -388,8 +388,8 @@ namespace BudgetExecution
         /// <returns></returns>
         public static IEnumerable<DataRow> FilterData( IEnumerable<DataRow> dataRows, Field field, string filter )
         {
-            if( Verify.Sequence( dataRows )
-                && Verify.Input( filter )
+            if( Verify.IsSequence( dataRows )
+                && Verify.IsInput( filter )
                 && Validate.Field( field ) )
             {
                 try
@@ -419,7 +419,7 @@ namespace BudgetExecution
         /// <returns></returns>
         private static IDictionary<string, IEnumerable<string>> GetSeries( DataTable dataTable )
         {
-            if( Verify.Table( dataTable ) )
+            if( Verify.IsTable( dataTable ) )
             {
                 try
                 {
@@ -428,7 +428,7 @@ namespace BudgetExecution
 
                     for( var i = 0; i < _columns?.Count; i++ )
                     {
-                        if( Verify.Input( _columns[ i ]?.ColumnName )
+                        if( Verify.IsInput( _columns[ i ]?.ColumnName )
                             && _columns[ i ]?.DataType == typeof( string ) )
                         {
                             _dict?.Add( _columns[ i ]?.ColumnName,

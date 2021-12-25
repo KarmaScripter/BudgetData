@@ -95,9 +95,6 @@ C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.Core.WinForms.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.SfListView.WinForms.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.SpellChecker.Base.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\EnvDTE.dll
-C:\Users\terry\source\repos\BudgetData\bin\Debug\DocumentFormat.OpenXml.dll
-C:\Users\terry\source\repos\BudgetData\bin\Debug\Expander.dll
-C:\Users\terry\source\repos\BudgetData\bin\Debug\MetroSet UI.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.DataSource.WinForms.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.GridCommon.WinForms.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\stdole.dll
@@ -105,7 +102,6 @@ C:\Users\terry\source\repos\BudgetData\bin\Debug\Azure.Core.xml
 C:\Users\terry\source\repos\BudgetData\bin\Debug\Azure.Identity.xml
 C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetEnumerations.pdb
 C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetEnumerations.dll.config
-C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetExtensions.pdb
 C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetNinja.pdb
 C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetNinja.xml
 C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetNinja.dll.config
@@ -191,3 +187,4 @@ C:\Users\terry\source\repos\BudgetData\bin\Debug\zh-Hant\Microsoft.Data.SqlClien
 C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.csproj.CopyComplete
 C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.dll
 C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.pdb
+C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.csproj.AssemblyReference.cache

@@ -38,7 +38,7 @@ namespace BudgetExecution
         {
             try
             {
-                Name = Verify.Input( columnName )
+                Name = Verify.IsInput( columnName )
                     ? columnName
                     : string.Empty;
             }
@@ -56,7 +56,7 @@ namespace BudgetExecution
         {
             try
             {
-                Data = Verify.Input( data?.ToString() )
+                Data = Verify.IsInput( data?.ToString() )
                     ? data
                     : default( object );
             }
@@ -74,7 +74,7 @@ namespace BudgetExecution
         {
             try
             {
-                Value = Verify.Input( data?.ToString() )
+                Value = Verify.IsInput( data?.ToString() )
                     ? data?.ToString()
                     : string.Empty;
             }
@@ -93,7 +93,7 @@ namespace BudgetExecution
         /// </returns>
         public virtual bool IsMatch( IUnit unit )
         {
-            if( Verify.Ref( unit ) )
+            if( Verify.IsRef( unit ) )
             {
                 try
                 {

@@ -172,7 +172,7 @@ namespace BudgetExecution
             CommandBehavior behavior = CommandBehavior.CloseConnection )
         {
             if( Command?.Connection != null
-                && Verify.Input( command?.CommandText )
+                && Verify.IsInput( command?.CommandText )
                 && Enum.IsDefined( typeof( CommandBehavior ), behavior ) )
             {
                 try

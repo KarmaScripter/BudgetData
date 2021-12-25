@@ -34,7 +34,7 @@ namespace BudgetExecution
         {
             try
             {
-                Name = Verify.Input( columnName )
+                Name = Verify.IsInput( columnName )
                     ? columnName
                     : default( string );
             }
@@ -57,7 +57,7 @@ namespace BudgetExecution
                     var _colName = dataRow[ 0 ].ToString();
                     var _names = dataRow?.Table?.GetColumnNames();
 
-                    Name = Verify.Input( _colName ) 
+                    Name = Verify.IsInput( _colName ) 
                         && _names?.Contains( _colName ) == true
                             ? _colName
                             : PrimaryKey.NS.ToString();
@@ -97,7 +97,7 @@ namespace BudgetExecution
         /// <param name="index">The index.</param>
         private protected void SetName( DataRow dataRow, PrimaryKey index )
         {
-            if( Verify.Input( dataRow?.ItemArray )
+            if( Verify.IsInput( dataRow?.ItemArray )
                 && Validate.Field( index ) )
             {
                 try
@@ -141,7 +141,7 @@ namespace BudgetExecution
         /// <param name="dataRow">The Data row.</param>
         private protected void SetPrimaryKey( DataRow dataRow )
         {
-            if( Verify.Row( dataRow ) )
+            if( Verify.IsRow( dataRow ) )
             {
                 try
                 {
@@ -195,7 +195,7 @@ namespace BudgetExecution
         /// <param name="keyName">Name of the key.</param>
         private protected void SetPrimaryKey( DataRow dataRow, PrimaryKey keyName )
         {
-            if( Verify.Input( dataRow?.ItemArray )
+            if( Verify.IsInput( dataRow?.ItemArray )
                 && Validate.Field( keyName ) )
             {
                 try
@@ -239,7 +239,7 @@ namespace BudgetExecution
         /// <param name="key">The key.</param>
         private protected void SetIndex( DataRow dataRow, PrimaryKey key )
         {
-            if( Verify.Input( dataRow?.ItemArray )
+            if( Verify.IsInput( dataRow?.ItemArray )
                 && Validate.PrimaryKey( key ) )
             {
                 try
