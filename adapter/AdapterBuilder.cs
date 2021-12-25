@@ -78,8 +78,8 @@ namespace BudgetExecution
         public AdapterBuilder( ICommandBuilder commandBuilder )
             : this()
         {
-            ConnectionBuilder = commandbuilder.ConnectionBuilder;
-            SqlStatement = commandbuilder.SqlStatement;
+            ConnectionBuilder = commandBuilder.ConnectionBuilder;
+            SqlStatement = commandBuilder.SqlStatement;
             Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             CommandFactory = new CommandFactory( CommandBuilder );
@@ -96,7 +96,7 @@ namespace BudgetExecution
         {
             ConnectionBuilder = connectionBuilder;
             Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
-            SqlStatement = sqlstatement;
+            SqlStatement = sqlStatement;
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             CommandFactory = new CommandFactory( CommandBuilder );
             SelectCommand = CommandFactory.GetSelectCommand();
