@@ -244,14 +244,13 @@ namespace BudgetExecution
         public static bool IsEqual( IAmount first, IAmount second )
         {
             if( first != null
-                && first  != Default
-                && first  != null
+                && first != Default
                 && second != Default )
             {
                 try
                 {
                     if( first?.GetFunding().Equals( second?.GetFunding() ) == true
-                        && first?.GetName()?.Equals( second?.GetName() )   == true )
+                        && first?.GetName()?.Equals( second?.GetName() ) == true )
                     {
                         return true;
                     }

@@ -19,7 +19,7 @@ namespace BudgetExecution
         /// <summary>
         /// The field
         /// </summary>
-        public Field Field { get; set; }
+        public Field Field { get; protected internal set; }
 
         /// <summary>
         /// Sets the columnName.
@@ -30,7 +30,7 @@ namespace BudgetExecution
             try
             {
                 Name = Verify.Input( columnName )
-                    && ( Enum.GetNames( typeof( Field ) )?.Contains( columnName ) == true )
+                    && Enum.GetNames( typeof( Field ) ).Contains( columnName )
                         ? columnName
                         : default( string );
             }

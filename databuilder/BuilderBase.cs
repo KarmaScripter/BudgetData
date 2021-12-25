@@ -28,9 +28,9 @@ namespace BudgetExecution
 
                 if( _columns?.Count > 0 )
                 {
-                    foreach( DataColumn column in _columns )
+                    foreach( DataColumn _column in _columns )
                     {
-                        _values?.Add( column.Ordinal );
+                        _values?.Add( _column.Ordinal );
                     }
                 }
 
@@ -88,17 +88,21 @@ namespace BudgetExecution
             try
             {
                 var _elements = new List<IElement>();
-                var _columns = Record?.Table?.Columns;
+
+                var _columns = Record
+                    ?.Table
+                    ?.Columns;
+
                 var _fields = Enum.GetNames( typeof( Field ) );
 
                 if( _columns?.Count > 0 )
                 {
-                    foreach( DataColumn column in _columns )
+                    foreach( DataColumn _column in _columns )
                     {
-                        if( column?.DataType == typeof( string )
-                            && _fields?.Contains( column?.ColumnName ) == true )
+                        if( _column?.DataType == typeof( string )
+                            && _fields?.Contains( _column?.ColumnName ) == true )
                         {
-                            _elements?.Add( new Element( Record, column?.ColumnName ) );
+                            _elements?.Add( new Element( Record, _column?.ColumnName ) );
                         }
                     }
 

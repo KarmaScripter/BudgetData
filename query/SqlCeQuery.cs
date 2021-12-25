@@ -16,7 +16,7 @@ namespace BudgetExecution
     /// <seealso cref = "T:BudgetExecution.Query"/>
     public class SqlCeQuery : Query
     {
-        private readonly Provider _provider = Provider.SqlCe;
+        public readonly Provider Provider = Provider.SqlCe;
         
         /// <inheritdoc/>
         /// <summary>

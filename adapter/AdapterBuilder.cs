@@ -14,24 +14,33 @@ namespace BudgetExecution
     /// 
     /// </summary>
     /// <seealso cref="System.Data.Common.DbDataAdapter" />
-    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class AdapterBuilder : DbDataAdapter
     {
         /// <summary>
-        /// The connection
+        /// Gets or sets the connection.
         /// </summary>
-        public DbConnection Connection { get;  }
+        /// <value>
+        /// The connection.
+        /// </value>
+        public DbConnection Connection { get; protected internal set; }
 
         /// <summary>
-        /// The SQL statement
+        /// Gets or sets the SQL statement.
         /// </summary>
-        public ISqlStatement SqlStatement { get;  }
+        /// <value>
+        /// The SQL statement.
+        /// </value>
+        public ISqlStatement SqlStatement { get; protected internal set; }
 
         /// <summary>
-        /// The connection builder
+        /// Gets or sets the connection builder.
         /// </summary>
-        public IConnectionBuilder ConnectionBuilder { get;  }
+        /// <value>
+        /// The connection builder.
+        /// </value>
+        public IConnectionBuilder ConnectionBuilder { get; protected internal set; }
 
         /// <summary>
         /// Gets the command builder.
@@ -65,8 +74,8 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
         /// </summary>
-        /// <param name="commandbuilder">The commandbuilder.</param>
-        public AdapterBuilder( ICommandBuilder commandbuilder )
+        /// <param name="commandBuilder">The commandBuilder.</param>
+        public AdapterBuilder( ICommandBuilder commandBuilder )
             : this()
         {
             ConnectionBuilder = commandbuilder.ConnectionBuilder;
@@ -80,12 +89,12 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
         /// </summary>
-        /// <param name="connectionbuilder">The connectionbuilder.</param>
-        /// <param name="sqlstatement">The sqlstatement.</param>
-        public AdapterBuilder( IConnectionBuilder connectionbuilder, ISqlStatement sqlstatement )
+        /// <param name="connectionBuilder">The connectionBuilder.</param>
+        /// <param name="sqlStatement">The sqlStatement.</param>
+        public AdapterBuilder( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
             : this()
         {
-            ConnectionBuilder = connectionbuilder;
+            ConnectionBuilder = connectionBuilder;
             Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
             SqlStatement = sqlstatement;
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );

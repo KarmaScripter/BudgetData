@@ -16,6 +16,7 @@ namespace BudgetExecution
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     public abstract class ConnectionBase
     {
         /// <summary>
@@ -32,27 +33,27 @@ namespace BudgetExecution
         /// <summary>
         /// The source
         /// </summary>
-        public Source Source { get; set; }
+        public Source Source { get; protected internal set; }
 
         /// <summary>
         /// The provider
         /// </summary>
-        public Provider Provider { get; set; }
+        public Provider Provider { get; protected internal set; }
 
         /// <summary>
         /// The file extension
         /// </summary>
-        public EXT FileExtension { get; set; }
+        public EXT FileExtension { get; protected internal set; }
 
         /// <summary>
         /// The file path
         /// </summary>
-        public string FilePath { get; set; }
+        public string FilePath { get; protected internal set; }
 
         /// <summary>
         /// The file name
         /// </summary>
-        public string FileName { get; set; }
+        public string FileName { get; protected internal set; }
 
         /// <summary>
         /// The table name
