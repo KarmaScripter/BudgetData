@@ -1,6 +1,3 @@
-C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetExecution.ConversionForm.resources
-C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.csproj.GenerateResource.cache
-C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.csproj.CoreCompileInputs.cache
 C:\Users\terry\source\repos\BudgetData\bin\Debug\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\runtimes\win-arm\native\e_sqlite3.dll
@@ -91,12 +88,7 @@ C:\Users\terry\source\repos\BudgetData\bin\Debug\System.ValueTuple.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\VisualPlus.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetBadger.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\LinqStatistics.dll
-C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.Core.WinForms.dll
-C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.SfListView.WinForms.dll
-C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.SpellChecker.Base.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\EnvDTE.dll
-C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.DataSource.WinForms.dll
-C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.GridCommon.WinForms.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\stdole.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\Azure.Core.xml
 C:\Users\terry\source\repos\BudgetData\bin\Debug\Azure.Identity.xml
@@ -168,11 +160,6 @@ C:\Users\terry\source\repos\BudgetData\bin\Debug\System.Text.Encodings.Web.xml
 C:\Users\terry\source\repos\BudgetData\bin\Debug\System.Text.Json.xml
 C:\Users\terry\source\repos\BudgetData\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\terry\source\repos\BudgetData\bin\Debug\System.ValueTuple.xml
-C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.Core.WinForms.xml
-C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.SfListView.WinForms.xml
-C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.SpellChecker.Base.xml
-C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.DataSource.WinForms.xml
-C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.GridCommon.WinForms.xml
 C:\Users\terry\source\repos\BudgetData\bin\Debug\de-DE\FluentMigrator.Abstractions.resources.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\de\Microsoft.Data.SqlClient.resources.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\es\Microsoft.Data.SqlClient.resources.dll
@@ -184,7 +171,12 @@ C:\Users\terry\source\repos\BudgetData\bin\Debug\pt-BR\Microsoft.Data.SqlClient.
 C:\Users\terry\source\repos\BudgetData\bin\Debug\ru\Microsoft.Data.SqlClient.resources.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\zh-Hans\Microsoft.Data.SqlClient.resources.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\zh-Hant\Microsoft.Data.SqlClient.resources.dll
+C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.csproj.AssemblyReference.cache
+C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetExecution.ConversionForm.resources
+C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetExecution.Error.resources
+C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetExecution.Message.resources
+C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.csproj.GenerateResource.cache
+C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.csproj.CoreCompileInputs.cache
 C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.csproj.CopyComplete
 C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.dll
 C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.pdb
-C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.csproj.AssemblyReference.cache

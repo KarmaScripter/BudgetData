@@ -8,13 +8,12 @@ namespace BudgetExecution
     using System.Data;
     using System.Data.Common;
     using System.Diagnostics.CodeAnalysis;
-    using Microsoft.Office.Interop.Excel;
 
     /// <summary>
     /// 
     /// </summary>
     /// <seealso cref="System.Data.Common.DbDataAdapter" />
-    [SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
+    [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class AdapterBuilder : DbDataAdapter
     {

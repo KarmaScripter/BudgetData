@@ -223,7 +223,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Ninja\bin\Debug\BudgetNinja.dll</HintPath>
     </Reference>
-    <Reference Include="BudgetStatic">
+    <Reference Include="BudgetStatic, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\BudgetStatic\bin\Debug\BudgetStatic.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -1497,6 +1498,12 @@
     <Compile Include="databuilder\IDataAccess.cs" />
     <Compile Include="databuilder\IDataBuilder.cs" />
     <Compile Include="databuilder\IDataSchema.cs" />
+    <Compile Include="Error.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Error.designer.cs">
+      <DependentUpon>Error.cs</DependentUpon>
+    </Compile>
     <Compile Include="map\Amount.cs" />
     <Compile Include="map\AmountBase.cs" />
     <Compile Include="map\Arg.cs" />
@@ -1512,6 +1519,12 @@
     <Compile Include="map\Map.cs" />
     <Compile Include="map\Unit.cs" />
     <Compile Include="map\UnitBase.cs" />
+    <Compile Include="Message.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Message.designer.cs">
+      <DependentUpon>Message.cs</DependentUpon>
+    </Compile>
     <Compile Include="query\AccessQuery.cs" />
     <Compile Include="query\CsvQuery.cs" />
     <Compile Include="query\ExcelQuery.cs" />
@@ -1546,6 +1559,12 @@
   <ItemGroup>
     <EmbeddedResource Include="conversion\mdb\ConversionForm.resx">
       <DependentUpon>ConversionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Error.resx">
+      <DependentUpon>Error.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Message.resx">
+      <DependentUpon>Message.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
