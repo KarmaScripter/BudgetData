@@ -19,7 +19,6 @@ C:\Users\terry\source\repos\BudgetData\bin\Debug\Azure.Core.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\Azure.Identity.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetEnumerations.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetExtensions.dll
-C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetNinja.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetStatic.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\EntityFramework.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\EntityFramework.SqlServer.dll
@@ -86,17 +85,14 @@ C:\Users\terry\source\repos\BudgetData\bin\Debug\System.Text.Json.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\System.Threading.Tasks.Extensions.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\System.ValueTuple.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\VisualPlus.dll
-C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetBadger.dll
-C:\Users\terry\source\repos\BudgetData\bin\Debug\LinqStatistics.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\EnvDTE.dll
+C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.Licensing.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\stdole.dll
 C:\Users\terry\source\repos\BudgetData\bin\Debug\Azure.Core.xml
 C:\Users\terry\source\repos\BudgetData\bin\Debug\Azure.Identity.xml
 C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetEnumerations.pdb
 C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetEnumerations.dll.config
-C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetNinja.pdb
-C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetNinja.xml
-C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetNinja.dll.config
+C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetExtensions.pdb
 C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetStatic.pdb
 C:\Users\terry\source\repos\BudgetData\bin\Debug\BudgetStatic.dll.config
 C:\Users\terry\source\repos\BudgetData\bin\Debug\EntityFramework.xml

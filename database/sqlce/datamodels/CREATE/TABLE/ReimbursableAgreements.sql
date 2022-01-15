@@ -1,6 +1,8 @@
-CREATE TABLE [ReimbursableAgreements](
-	[ReimbursableAgreementId] [int] NOT NULL UNIQUE IDENTITY(1,1),
-	[RPIO] [nvarchar](255) NULL,
+CREATE TABLE [ReimbursableAgreements]
+(
+	[ReimbursableAgreementsId] [int] NOT NULL IDENTITY(1,1),
+	[RpioCode] [nvarchar](255) NULL,
+	[RpioName] [nvarchar](255) NULL,
 	[BFY] [nvarchar](255) NULL,
 	[FundCode] [nvarchar](255) NULL,
 	[AgreementNumber] [nvarchar](255) NULL,
@@ -17,5 +19,7 @@ CREATE TABLE [ReimbursableAgreements](
 	[OpenCommitments] [money] NULL,
 	[Obligations] [money] NULL,
 	[ULO] [money] NULL,
-	[Available] [money] NULL
+	[Available] [money] NULL,
+		CONSTRAINT PK_ReimbursableAgreements 
+		PRIMARY KEY (ReimbursableAgreementsId)
 );

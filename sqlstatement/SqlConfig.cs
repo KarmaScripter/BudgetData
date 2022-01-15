@@ -29,7 +29,7 @@ namespace BudgetExecution
         /// <summary>
         /// The provider path
         /// </summary>
-        public readonly NameValueCollection ProviderPath = ConfigurationManager.AppSettings;
+        public NameValueCollection ProviderPath { get; set; } = ConfigurationManager.AppSettings;
 
         /// <summary>
         /// The source
@@ -86,7 +86,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.IsInput( ConnectionBuilder?.GetConnectionString() )
+                return Verify.IsInput( ConnectionBuilder?.ConnectionString )
                     ? ConnectionBuilder
                     : default( ConnectionBuilder );
             }
@@ -103,7 +103,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<string> GetScriptFiles()
         {
-            if( Validate.Provider( Provider )
+            if( Verify.Provider( Provider )
                 && Enum.IsDefined( typeof( SQL ), CommandType ) )
             {
                 try

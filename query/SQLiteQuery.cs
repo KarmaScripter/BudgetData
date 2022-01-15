@@ -86,29 +86,14 @@ namespace BudgetExecution
             /// </summary>
             Default,
 
-            /// <summary>
-            /// 
-            /// </summary>
             Text,
 
-            /// <summary>
-            /// 
-            /// </summary>
             DateTime,
 
-            /// <summary>
-            /// 
-            /// </summary>
             Integer,
 
-            /// <summary>
-            /// 
-            /// </summary>
             Decimal,
 
-            /// <summary>
-            /// 
-            /// </summary>
             Blob
         }
 

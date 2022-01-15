@@ -6,16 +6,9 @@ namespace BudgetExecution
 {
     using System.Collections.Generic;
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <seealso cref="BudgetExecution.Query" />
     public class AccessQuery : Query
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        public readonly Provider Provider = Provider.Access;
+        private protected Provider _provider = Provider.Access;
 
         /// <summary>
         /// Initializes a new instance of the <see cref = "AccessQuery"/> class.

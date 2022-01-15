@@ -10,20 +10,36 @@
             </summary>
             <seealso cref="T:System.Data.Common.DbDataAdapter" />
         </member>
-        <member name="F:BudgetExecution.AdapterBuilder._connection">
+        <member name="P:BudgetExecution.AdapterBuilder.Connection">
             <summary>
             The connection
             </summary>
         </member>
-        <member name="F:BudgetExecution.AdapterBuilder._sqlStatement">
+        <member name="P:BudgetExecution.AdapterBuilder.SqlStatement">
             <summary>
             The SQL statement
             </summary>
         </member>
-        <member name="F:BudgetExecution.AdapterBuilder._connectionBuilder">
+        <member name="P:BudgetExecution.AdapterBuilder.ConnectionBuilder">
             <summary>
             The connection builder
             </summary>
+        </member>
+        <member name="P:BudgetExecution.AdapterBuilder.CommandBuilder">
+            <summary>
+            Gets the command builder.
+            </summary>
+            <value>
+            The command builder.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.AdapterBuilder.CommandFactory">
+            <summary>
+            Gets the command factory.
+            </summary>
+            <value>
+            The command factory.
+            </value>
         </member>
         <member name="M:BudgetExecution.AdapterBuilder.#ctor">
             <summary>
@@ -67,30 +83,45 @@
             </summary>
             <seealso cref="T:System.IDisposable" />
         </member>
-        <member name="F:BudgetExecution.AdapterFactory._dataConnection">
+        <member name="P:BudgetExecution.AdapterFactory.Connection">
             <summary>
-            The data connection
+            Gets or sets the connection.
             </summary>
+            <value>
+            The connection.
+            </value>
         </member>
-        <member name="F:BudgetExecution.AdapterFactory._sqlStatement">
+        <member name="P:BudgetExecution.AdapterFactory.SqlStatement">
             <summary>
-            The SQL statement
+            Gets or sets the SQL statement.
             </summary>
+            <value>
+            The SQL statement.
+            </value>
         </member>
-        <member name="F:BudgetExecution.AdapterFactory._commandBuilder">
+        <member name="P:BudgetExecution.AdapterFactory.CommandBuilder">
             <summary>
-            The command builder
+            Gets or sets the command builder.
             </summary>
+            <value>
+            The command builder.
+            </value>
         </member>
-        <member name="F:BudgetExecution.AdapterFactory._connectionBuilder">
+        <member name="P:BudgetExecution.AdapterFactory.ConnectionBuilder">
             <summary>
-            The connection builder
+            Gets or sets the connection builder.
             </summary>
+            <value>
+            The connection builder.
+            </value>
         </member>
-        <member name="F:BudgetExecution.AdapterFactory._adapterBuilder">
+        <member name="P:BudgetExecution.AdapterFactory.AdapterBuilder">
             <summary>
-            The adapter builder
+            Gets or sets the adapter builder.
             </summary>
+            <value>
+            The adapter builder.
+            </value>
         </member>
         <member name="M:BudgetExecution.AdapterFactory.#ctor(BudgetExecution.AdapterBuilder)">
             <summary>
@@ -146,12 +177,7 @@
             <summary>
             Releases unmanaged and - optionally - managed resources.
             </summary>
-            <param name="disposing">
-            <c>true</c>
-            to release both managed and unmanaged resources;
-            <c>false</c>
-            to release only unmanaged resources.
-            </param>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         </member>
         <member name="M:BudgetExecution.AdapterFactory.Dispose">
             <summary>
@@ -184,156 +210,156 @@
             <summary> Gets the delete command. </summary>
             <returns> </returns>
         </member>
-        <member name="T:BudgetExecution.CommandBase">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:BudgetExecution.ISource" />
-            <seealso cref="T:BudgetExecution.IProvider" />
-        </member>
-        <member name="F:BudgetExecution.CommandBase._command">
-            <summary>
-            The command
-            </summary>
-        </member>
-        <member name="F:BudgetExecution.CommandBase._connectionBuilder">
-            <summary>
-            The connection builder
-            </summary>
-        </member>
-        <member name="F:BudgetExecution.CommandBase._provider">
-            <summary>
-            The provider
-            </summary>
-        </member>
-        <member name="F:BudgetExecution.CommandBase._source">
-            <summary>
-            The source
-            </summary>
-        </member>
-        <member name="F:BudgetExecution.CommandBase._sqlStatement">
-            <summary>
-            The SQL statement
-            </summary>
-        </member>
-        <member name="M:BudgetExecution.CommandBase.GetProvider">
-            <summary>
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.CommandBase.GetSource">
-            <summary>
-            Gets the source.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.CommandBase.GetConnectionBuilder">
-            <summary>
-            Gets the connection builder.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.CommandBase.GetSqlStatement">
-            <summary>
-            Gets the SQL statement.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.CommandBase.GetSQLiteCommand(BudgetExecution.ISqlStatement)">
-            <summary>
-            Gets the sq lite command.
-            </summary>
-            <param name="sqlStatement">The SQL statement.</param>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.CommandBase.GetSqlCeCommand(BudgetExecution.ISqlStatement)">
-            <summary>
-            Gets the SQL ce command.
-            </summary>
-            <param name="sqlStatement">The SQL statement.</param>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.CommandBase.GetSqlCommand(BudgetExecution.ISqlStatement)">
-            <summary>
-            Gets the SQL command.
-            </summary>
-            <param name="sqlStatement">The SQL statement.</param>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.CommandBase.GetOleDbCommand(BudgetExecution.ISqlStatement)">
-            <summary>
-            Gets the OLE database command.
-            </summary>
-            <param name="sqlStatement">The SQL statement.</param>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.CommandBase.SetConnectionBuilder(BudgetExecution.Source,BudgetExecution.Provider)">
-            <summary>
-            Sets the connection builder.
-            </summary>
-            <param name="source">The source.</param>
-            <param name="provider">The provider.</param>
-        </member>
-        <member name="M:BudgetExecution.CommandBase.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
-        </member>
         <member name="T:BudgetExecution.CommandBuilder">
             <summary>
             
             </summary>
-            <seealso cref="T:BudgetExecution.CommandBase" />
             <seealso cref="T:BudgetExecution.ICommandBuilder" />
+        </member>
+        <member name="P:BudgetExecution.CommandBuilder.Command">
+            <summary>
+            The command
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.CommandBuilder.ConnectionBuilder">
+            <summary>
+            The connection builder
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.CommandBuilder.Provider">
+            <summary>
+            The provider
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.CommandBuilder.Source">
+            <summary>
+            The source
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.CommandBuilder.SqlStatement">
+            <summary>
+            The SQL statement
+            </summary>
         </member>
         <member name="M:BudgetExecution.CommandBuilder.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.CommandBuilder"/> class.
             </summary>
         </member>
-        <member name="M:BudgetExecution.CommandBuilder.#ctor(BudgetExecution.ISqlStatement)">
+        <member name="M:BudgetExecution.CommandBuilder.#ctor(BudgetExecution.Source,BudgetExecution.Provider,System.Collections.Generic.IDictionary{System.String,System.Object})">
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.CommandBuilder"/> class.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="provider">The provider.</param>
+            <param name="dict">The dictionary.</param>
+        </member>
+        <member name="M:BudgetExecution.CommandBuilder.#ctor(BudgetExecution.ISqlStatement)">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:BudgetExecution.CommandBuilder"/> class.
             </summary>
             <param name="sqlStatement">The SQL statement.</param>
         </member>
         <member name="M:BudgetExecution.CommandBuilder.#ctor(BudgetExecution.IConnectionBuilder,BudgetExecution.ISqlStatement)">
             <summary>
-            Initializes a new instance of the <see cref="T:BudgetExecution.CommandBuilder"/> class.
+            Initializes a new instance of the
+            <see cref="T:BudgetExecution.CommandBuilder"/> class.
             </summary>
             <param name="connectionBuilder">The connection builder.</param>
             <param name="sqlStatement">The SQL statement.</param>
         </member>
-        <member name="M:BudgetExecution.CommandBuilder.SetCommand(BudgetExecution.ISqlStatement)">
+        <member name="M:BudgetExecution.CommandBuilder.GetCommand(BudgetExecution.ISqlStatement)">
             <summary>
             Sets the command.
             </summary>
             <param name="sqlStatement">The SQL statement.</param>
             <returns></returns>
         </member>
-        <member name="M:BudgetExecution.CommandBuilder.GetCommand">
+        <member name="M:BudgetExecution.CommandBuilder.GetSQLiteCommand(BudgetExecution.ISqlStatement)">
             <summary>
-            Gets the command.
+            Gets the sq lite command.
             </summary>
+            <param name="sqlStatement">The SQL statement.</param>
             <returns></returns>
+        </member>
+        <member name="M:BudgetExecution.CommandBuilder.GetSqlCeCommand(BudgetExecution.ISqlStatement)">
+            <summary>
+            Gets the SQL ce command.
+            </summary>
+            <param name="sqlStatement">The SQL statement.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BudgetExecution.CommandBuilder.GetSqlCommand(BudgetExecution.ISqlStatement)">
+            <summary>
+            Gets the SQL command.
+            </summary>
+            <param name="sqlStatement">The SQL statement.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BudgetExecution.CommandBuilder.GetOleDbCommand(BudgetExecution.ISqlStatement)">
+            <summary>
+            Gets the OLE database command.
+            </summary>
+            <param name="sqlStatement">The SQL statement.</param>
+            <returns></returns>
+        </member>
+        <member name="M:BudgetExecution.CommandBuilder.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:BudgetExecution.CommandFactory">
             <summary>
             
             </summary>
-            <seealso cref="T:BudgetExecution.CommandBase" />
             <seealso cref="T:BudgetExecution.ICommandFactory" />
         </member>
-        <member name="F:BudgetExecution.CommandFactory._commandBuilder">
+        <member name="P:BudgetExecution.CommandFactory.CommandBuilder">
             <summary>
             The command builder
             </summary>
         </member>
-        <member name="F:BudgetExecution.CommandFactory._connectionFactory">
+        <member name="P:BudgetExecution.CommandFactory.ConnectionBuilder">
             <summary>
-            The connection factory
+            Gets the connection builder.
             </summary>
+            <value>
+            The connection builder.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.CommandFactory.SqlStatement">
+            <summary>
+            Gets the SQL statement.
+            </summary>
+            <value>
+            The SQL statement.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.CommandFactory.Source">
+            <summary>
+            Gets the source.
+            </summary>
+            <value>
+            The source.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.CommandFactory.Provider">
+            <summary>
+            Gets the provider.
+            </summary>
+            <value>
+            The provider.
+            </value>
+        </member>
+        <member name="M:BudgetExecution.CommandFactory.#ctor(BudgetExecution.Source,BudgetExecution.Provider,System.Collections.Generic.IDictionary{System.String,System.Object})">
+            <summary>
+            Initializes a new instance of the <see cref="T:BudgetExecution.CommandFactory"/> class.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="provider">The provider.</param>
+            <param name="dict">The dictionary.</param>
         </member>
         <member name="M:BudgetExecution.CommandFactory.#ctor(BudgetExecution.ICommandBuilder)">
             <summary>
@@ -346,7 +372,7 @@
             Gets the create table command.
             </summary>
             <param name="tableName">Name of the table.</param>
-            <param name="dataColumns">The data columns.</param>
+            <param name="dataColumns">The Data columns.</param>
             <returns></returns>
         </member>
         <member name="M:BudgetExecution.CommandFactory.GetCreateViewCommand(System.String,System.Collections.Generic.IEnumerable{System.Data.DataColumn})">
@@ -354,29 +380,29 @@
             Gets the create view command.
             </summary>
             <param name="viewName">Name of the view.</param>
-            <param name="dataColumns">The data columns.</param>
+            <param name="dataColumns">The Data columns.</param>
             <returns></returns>
         </member>
         <member name="M:BudgetExecution.CommandFactory.GetDropTableCommand(System.Data.DataTable)">
             <summary>
             Gets the drop table command.
             </summary>
-            <param name="dataTable">The data table.</param>
+            <param name="dataTable">The Data table.</param>
             <returns></returns>
         </member>
         <member name="M:BudgetExecution.CommandFactory.GetAlterCommand(System.Data.DataTable,System.Data.DataColumn)">
             <summary>
             Gets the alter command.
             </summary>
-            <param name="dataTable">The data table.</param>
-            <param name="dataColumn">The data column.</param>
+            <param name="dataTable">The Data table.</param>
+            <param name="dataColumn">The Data column.</param>
             <returns></returns>
         </member>
         <member name="M:BudgetExecution.CommandFactory.GetAlterCommand(System.Data.DataTable,System.String)">
             <summary>
             Gets the alter command.
             </summary>
-            <param name="dataTable">The data table.</param>
+            <param name="dataTable">The Data table.</param>
             <param name="name">The name.</param>
             <returns></returns>
         </member>
@@ -394,7 +420,7 @@
         </member>
         <member name="M:BudgetExecution.CommandFactory.GetUpdateCommand">
             <summary>
-            Gets the update command.
+            Gets the update commande.
             </summary>
             <returns></returns>
         </member>
@@ -404,46 +430,47 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:BudgetExecution.CommandFactory.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:BudgetExecution.ICommandBuilder">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BudgetExecution.ICommandBuilder.SetCommand(BudgetExecution.ISqlStatement)">
+        <member name="P:BudgetExecution.ICommandBuilder.Command">
+            <summary>
+            The command
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.ICommandBuilder.ConnectionBuilder">
+            <summary>
+            The connection builder
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.ICommandBuilder.Provider">
+            <summary>
+            The provider
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.ICommandBuilder.Source">
+            <summary>
+            The source
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.ICommandBuilder.SqlStatement">
+            <summary>
+            The SQL statement
+            </summary>
+        </member>
+        <member name="M:BudgetExecution.ICommandBuilder.GetCommand(BudgetExecution.ISqlStatement)">
             <summary>
             Sets the command.
             </summary>
             <param name="sqlStatement">The SQL statement.</param>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ICommandBuilder.GetCommand">
-            <summary>
-            Gets the command.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ICommandBuilder.GetSource">
-            <summary>
-            Gets the source.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ICommandBuilder.GetProvider">
-            <summary>
-            Gets the provider.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ICommandBuilder.GetConnectionBuilder">
-            <summary>
-            Gets the connection builder.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ICommandBuilder.GetSqlStatement">
-            <summary>
-            Gets the SQL statement.
-            </summary>
             <returns></returns>
         </member>
         <member name="M:BudgetExecution.ICommandBuilder.GetSQLiteCommand(BudgetExecution.ISqlStatement)">
@@ -479,12 +506,49 @@
             
             </summary>
         </member>
+        <member name="P:BudgetExecution.ICommandFactory.CommandBuilder">
+            <summary>
+            The command builder
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.ICommandFactory.ConnectionBuilder">
+            <summary>
+            Gets the connection builder.
+            </summary>
+            <value>
+            The connection builder.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.ICommandFactory.SqlStatement">
+            <summary>
+            Gets the SQL statement.
+            </summary>
+            <value>
+            The SQL statement.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.ICommandFactory.Source">
+            <summary>
+            Gets the source.
+            </summary>
+            <value>
+            The source.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.ICommandFactory.Provider">
+            <summary>
+            Gets the provider.
+            </summary>
+            <value>
+            The provider.
+            </value>
+        </member>
         <member name="M:BudgetExecution.ICommandFactory.GetCreateTableCommand(System.String,System.Collections.Generic.IEnumerable{System.Data.DataColumn})">
             <summary>
             Gets the create table command.
             </summary>
             <param name="tableName">Name of the table.</param>
-            <param name="dataColumns">The data columns.</param>
+            <param name="dataColumns">The Data columns.</param>
             <returns></returns>
         </member>
         <member name="M:BudgetExecution.ICommandFactory.GetCreateViewCommand(System.String,System.Collections.Generic.IEnumerable{System.Data.DataColumn})">
@@ -492,29 +556,29 @@
             Gets the create view command.
             </summary>
             <param name="viewName">Name of the view.</param>
-            <param name="dataColumns">The data columns.</param>
+            <param name="dataColumns">The Data columns.</param>
             <returns></returns>
         </member>
         <member name="M:BudgetExecution.ICommandFactory.GetDropTableCommand(System.Data.DataTable)">
             <summary>
             Gets the drop table command.
             </summary>
-            <param name="dataTable">The data table.</param>
+            <param name="dataTable">The Data table.</param>
             <returns></returns>
         </member>
         <member name="M:BudgetExecution.ICommandFactory.GetAlterCommand(System.Data.DataTable,System.Data.DataColumn)">
             <summary>
             Gets the alter command.
             </summary>
-            <param name="dataTable">The data table.</param>
-            <param name="dataColumn">The data column.</param>
+            <param name="dataTable">The Data table.</param>
+            <param name="dataColumn">The Data column.</param>
             <returns></returns>
         </member>
         <member name="M:BudgetExecution.ICommandFactory.GetAlterCommand(System.Data.DataTable,System.String)">
             <summary>
             Gets the alter command.
             </summary>
-            <param name="dataTable">The data table.</param>
+            <param name="dataTable">The Data table.</param>
             <param name="name">The name.</param>
             <returns></returns>
         </member>
@@ -542,104 +606,52 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BudgetExecution.ICommandFactory.GetSource">
-            <summary>
-            Gets the source.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ICommandFactory.GetProvider">
-            <summary>
-            Gets the provider.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ICommandFactory.GetConnectionBuilder">
-            <summary>
-            Gets the connection builder.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ICommandFactory.GetSqlStatement">
-            <summary>
-            Gets the SQL statement.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ICommandFactory.GetSQLiteCommand(BudgetExecution.ISqlStatement)">
-            <summary>
-            Gets the sq lite command.
-            </summary>
-            <param name="sqlStatement">The SQL statement.</param>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ICommandFactory.GetSqlCeCommand(BudgetExecution.ISqlStatement)">
-            <summary>
-            Gets the SQL ce command.
-            </summary>
-            <param name="sqlStatement">The SQL statement.</param>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ICommandFactory.GetSqlCommand(BudgetExecution.ISqlStatement)">
-            <summary>
-            Gets the SQL command.
-            </summary>
-            <param name="sqlStatement">The SQL statement.</param>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ICommandFactory.GetOleDbCommand(BudgetExecution.ISqlStatement)">
-            <summary>
-            Gets the OLE database command.
-            </summary>
-            <param name="sqlStatement">The SQL statement.</param>
-            <returns></returns>
-        </member>
         <member name="T:BudgetExecution.ConnectionBase">
             <summary>
             
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._connector">
+        <member name="P:BudgetExecution.ConnectionBase.Connectors">
             <summary>
             The connector
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._providerPath">
+        <member name="P:BudgetExecution.ConnectionBase.ProviderPath">
             <summary>
             The provider path
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._source">
+        <member name="P:BudgetExecution.ConnectionBase.Source">
             <summary>
             The source
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._provider">
+        <member name="P:BudgetExecution.ConnectionBase.Provider">
             <summary>
             The provider
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._fileExtension">
+        <member name="P:BudgetExecution.ConnectionBase.FileExtension">
             <summary>
             The file extension
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._filePath">
+        <member name="P:BudgetExecution.ConnectionBase.FilePath">
             <summary>
             The file path
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._fileName">
+        <member name="P:BudgetExecution.ConnectionBase.FileName">
             <summary>
             The file name
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._tableName">
+        <member name="P:BudgetExecution.ConnectionBase.TableName">
             <summary>
             The table name
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConnectionBase._connectionString">
+        <member name="P:BudgetExecution.ConnectionBase.ConnectionString">
             <summary>
             The connection string
             </summary>
@@ -669,37 +681,37 @@
             </summary>
             <param name="extension">The extension.</param>
         </member>
-        <member name="M:BudgetExecution.ConnectionBase.SetFilePath(BudgetExecution.Provider)">
+        <member name="M:BudgetExecution.ConnectionBase.GetFilePath(BudgetExecution.Provider)">
             <summary>
             Sets the file path.
             </summary>
             <param name="provider">The provider.</param>
         </member>
-        <member name="M:BudgetExecution.ConnectionBase.SetFilePath(System.String)">
+        <member name="M:BudgetExecution.ConnectionBase.GetFilePath(System.String)">
             <summary>
             Sets the file path.
             </summary>
             <param name="filePath">The filePath.</param>
         </member>
-        <member name="M:BudgetExecution.ConnectionBase.SetFileExtension(System.String)">
+        <member name="M:BudgetExecution.ConnectionBase.GetFileExtension(System.String)">
             <summary>
             Sets the file extension.
             </summary>
             <param name="filePath">The filePath.</param>
         </member>
-        <member name="M:BudgetExecution.ConnectionBase.SetFileName(System.String)">
+        <member name="M:BudgetExecution.ConnectionBase.GetFileName(System.String)">
             <summary>
             Sets the name of the file.
             </summary>
             <param name="filePath">The file path.</param>
         </member>
-        <member name="M:BudgetExecution.ConnectionBase.SetProviderPath(System.String)">
+        <member name="M:BudgetExecution.ConnectionBase.GetProviderPath(System.String)">
             <summary>
             Sets the provider path.
             </summary>
             <param name="filePath">The file path.</param>
         </member>
-        <member name="M:BudgetExecution.ConnectionBase.SetConnectionString(BudgetExecution.Provider)">
+        <member name="M:BudgetExecution.ConnectionBase.GetConnectionString(BudgetExecution.Provider)">
             <summary>
             Sets the connection string.
             </summary>
@@ -719,6 +731,11 @@
             <seealso cref="T:BudgetExecution.ISource" />
             <seealso cref="T:BudgetExecution.IProvider" />
             <seealso cref="T:BudgetExecution.IConnectionBuilder" />
+        </member>
+        <member name="P:BudgetExecution.ConnectionBuilder.ProviderPath">
+            <summary>
+            The provider path
+            </summary>
         </member>
         <member name="M:BudgetExecution.ConnectionBuilder.#ctor">
             <summary>
@@ -753,42 +770,6 @@
             <param name="fullPath">The fullPath.</param>
             <param name="provider">The provider.</param>
         </member>
-        <member name="M:BudgetExecution.ConnectionBuilder.GetFilePath">
-            <summary>
-            Gets the file path.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ConnectionBuilder.GetFileExtension">
-            <summary>
-            Gets the file extension.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ConnectionBuilder.GetFileName">
-            <summary>
-            Gets the name of the file.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ConnectionBuilder.GetProviderPath">
-            <summary>
-            Gets the provider path.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ConnectionBuilder.GetConnectionString">
-            <summary>
-            Gets the connection string.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ConnectionBuilder.GetTableName">
-            <summary>
-            Gets the name of the table.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:BudgetExecution.ConnectionBuilder.GetProvider">
             <summary>
             Gets the provider.
@@ -809,7 +790,15 @@
             <seealso cref = "T:BudgetExecution.IProvider"/>
             <seealso/>
         </member>
-        <member name="F:BudgetExecution.ConnectionFactory._connection">
+        <member name="P:BudgetExecution.ConnectionFactory.ConnectionBuilder">
+            <summary>
+            Gets or sets the connection builder.
+            </summary>
+            <value>
+            The connection builder.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.ConnectionFactory.Connection">
             <summary>
             Gets the connection.
             </summary>
@@ -906,56 +895,42 @@
             <summary>
             </summary>
         </member>
-        <member name="M:BudgetExecution.IConnectionBuilder.GetSource">
+        <member name="P:BudgetExecution.IConnectionBuilder.Source">
             <summary>
             Gets the source.
             </summary>
             <returns>
             </returns>
         </member>
-        <member name="M:BudgetExecution.IConnectionBuilder.GetProvider">
+        <member name="P:BudgetExecution.IConnectionBuilder.Provider">
             <summary>
             Gets the provider.
             </summary>
             <returns>
             </returns>
         </member>
-        <member name="M:BudgetExecution.IConnectionBuilder.GetFilePath">
-            <summary>
-            Gets the file path.
-            </summary>
-            <returns>
-            </returns>
-        </member>
-        <member name="M:BudgetExecution.IConnectionBuilder.GetFileExtension">
-            <summary>
-            Gets the file extension.
-            </summary>
-            <returns>
-            </returns>
-        </member>
-        <member name="M:BudgetExecution.IConnectionBuilder.GetFileName">
+        <member name="P:BudgetExecution.IConnectionBuilder.FileName">
             <summary>
             Gets the name of the file.
             </summary>
             <returns>
             </returns>
         </member>
-        <member name="M:BudgetExecution.IConnectionBuilder.GetProviderPath">
+        <member name="P:BudgetExecution.IConnectionBuilder.ProviderPath">
             <summary>
             Gets the provider path.
             </summary>
             <returns>
             </returns>
         </member>
-        <member name="M:BudgetExecution.IConnectionBuilder.GetConnectionString">
+        <member name="P:BudgetExecution.IConnectionBuilder.ConnectionString">
             <summary>
             Gets the connection string.
             </summary>
             <returns>
             </returns>
         </member>
-        <member name="M:BudgetExecution.IConnectionBuilder.GetTableName">
+        <member name="P:BudgetExecution.IConnectionBuilder.TableName">
             <summary>
             Gets the name of the table.
             </summary>
@@ -1076,17 +1051,17 @@
             </summary>
             <seealso cref="T:System.Windows.Forms.Form" />
         </member>
-        <member name="F:BudgetExecution.ConversionForm._accessConnect">
+        <member name="F:BudgetExecution.ConversionForm.AccessConnect">
             <summary>
             The access connect
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConversionForm._count">
+        <member name="F:BudgetExecution.ConversionForm.Count">
             <summary>
             The count
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConversionForm._selected">
+        <member name="F:BudgetExecution.ConversionForm.Selected">
             <summary>
             The selected
             </summary>
@@ -1096,12 +1071,12 @@
             
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConversionForm._updater">
+        <member name="F:BudgetExecution.ConversionForm.Updater">
             <summary>
             The updater
             </summary>
         </member>
-        <member name="F:BudgetExecution.ConversionForm._worker">
+        <member name="F:BudgetExecution.ConversionForm.Worker">
             <summary>
             The worker
             </summary>
@@ -1289,7 +1264,7 @@
         </member>
         <member name="M:BudgetExecution.SqlServerConverter.CopyDataRows(System.String,System.String,System.Collections.Generic.IReadOnlyList{BudgetExecution.TableSchema},System.String,BudgetExecution.SqlConversionHandler)">
             <summary>
-            Copies the data rows.
+            Copies the Data rows.
             </summary>
             <param name="sqlconnstring">The sqlconnstring.</param>
             <param name="path">The path.</param>
@@ -1470,10 +1445,10 @@
         </member>
         <member name="M:BudgetExecution.SqlServerConverter.ValidateDataType(System.String)">
             <summary>
-            Validates the type of the data.
+            Validates the type of the Data.
             </summary>
             <param name="datatype">The datatype.</param>
-            <exception cref="T:System.ApplicationException">Validation failed for data type [" +
+            <exception cref="T:System.ApplicationException">Validation failed for Data type [" +
             datatype + "]</exception>
         </member>
         <member name="M:BudgetExecution.SqlServerConverter.FixDefaultValueString(System.String)">
@@ -1553,7 +1528,7 @@
             <seealso cref="T:BudgetExecution.BuilderBase" />
             <seealso cref="T:BudgetExecution.IBuilder" />
         </member>
-        <member name="F:BudgetExecution.Builder._programElements">
+        <member name="P:BudgetExecution.Builder.ProgramElements">
             <summary>
             The program elements
             </summary>
@@ -1701,19 +1676,19 @@
         </member>
         <member name="M:BudgetExecution.DataAccess.GetData">
             <summary>
-            Gets the data.
+            Gets the Data.
             </summary>
             <returns></returns>
         </member>
         <member name="M:BudgetExecution.DataAccess.GetDataTable">
             <summary>
-            Gets the data table.
+            Gets the Data table.
             </summary>
             <returns></returns>
         </member>
         <member name="M:BudgetExecution.DataAccess.GetDataSet">
             <summary>
-            Gets the data set.
+            Gets the Data set.
             </summary>
             <returns></returns>
         </member>
@@ -1738,7 +1713,7 @@
             <summary>
             Sets the column captions.
             </summary>
-            <param name="dataTable">The data table.</param>
+            <param name="dataTable">The Data table.</param>
         </member>
         <member name="M:BudgetExecution.DataAccess.GetColumnSchema">
             <summary>
@@ -1750,156 +1725,134 @@
             <summary>
             Gets the primary indexes.
             </summary>
-            <param name="dataRows">The data rows.</param>
+            <param name="dataRows">The Data rows.</param>
             <returns></returns>
         </member>
         <member name="M:BudgetExecution.DataAccess.GetColumnOrdinals(System.Collections.Generic.IEnumerable{System.Data.DataColumn})">
             <summary>
             Gets the column ordinals.
             </summary>
-            <param name="dataColumns">The data columns.</param>
+            <param name="dataColumns">The Data columns.</param>
             <returns></returns>
         </member>
         <member name="T:BudgetExecution.DataBuilder">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:BudgetExecution.Builder" />
+            <summary> </summary>
+            <seealso cref = "T:BudgetExecution.Builder" />
         </member>
         <member name="M:BudgetExecution.DataBuilder.#ctor">
             <summary>
-            Initializes a new instance of the <see cref="T:BudgetExecution.DataBuilder"/> class.
+            Initializes a new instance of the
+            <see cref = "T:BudgetExecution.DataBuilder" />
+            class.
             </summary>
         </member>
         <member name="M:BudgetExecution.DataBuilder.#ctor(BudgetExecution.Source,BudgetExecution.Provider)">
             <summary>
-            Initializes a new instance of the <see cref="T:BudgetExecution.DataBuilder"/> class.
+            Initializes a new instance of the
+            <see cref = "T:BudgetExecution.DataBuilder" />
+            class.
             </summary>
-            <param name="source">The source.</param>
-            <param name="provider">The provider.</param>
+            <param name = "source" > The source. </param>
+            <param name = "provider" > The provider. </param>
         </member>
         <member name="M:BudgetExecution.DataBuilder.#ctor(BudgetExecution.Source,BudgetExecution.Provider,System.Collections.Generic.IDictionary{System.String,System.Object})">
             <summary>
-            Initializes a new instance of the <see cref="T:BudgetExecution.DataBuilder"/> class.
+            Initializes a new instance of the
+            <see cref = "T:BudgetExecution.DataBuilder" />
+            class.
             </summary>
-            <param name="source">The source.</param>
-            <param name="provider">The provider.</param>
-            <param name="args">The arguments.</param>
+            <param name = "source" > The source. </param>
+            <param name = "provider" > The provider. </param>
+            <param name = "args" > The arguments. </param>
         </member>
         <member name="M:BudgetExecution.DataBuilder.#ctor(BudgetExecution.Source,System.Collections.Generic.IDictionary{System.String,System.Object})">
             <summary>
-            Initializes a new instance of the <see cref="T:BudgetExecution.DataBuilder"/> class.
+            Initializes a new instance of the
+            <see cref = "T:BudgetExecution.DataBuilder" />
+            class.
             </summary>
-            <param name="source">The source.</param>
-            <param name="dict">The dictionary.</param>
+            <param name = "source" > The source. </param>
+            <param name = "dict" > The dictionary. </param>
         </member>
         <member name="M:BudgetExecution.DataBuilder.#ctor(BudgetExecution.IQuery)">
             <summary>
-            Initializes a new instance of the <see cref="T:BudgetExecution.DataBuilder"/> class.
+            Initializes a new instance of the
+            <see cref = "T:BudgetExecution.DataBuilder" />
+            class.
             </summary>
-            <param name="query">The query.</param>
+            <param name = "query" > The query. </param>
         </member>
         <member name="M:BudgetExecution.DataBuilder.#ctor(System.Data.DataRow)">
             <summary>
-            Initializes a new instance of the <see cref="T:BudgetExecution.DataBuilder"/> class.
+            Initializes a new instance of the
+            <see cref = "T:BudgetExecution.DataBuilder" />
+            class.
             </summary>
-            <param name="dataRow">The data row.</param>
+            <param name = "row" > The row. </param>
         </member>
         <member name="M:BudgetExecution.DataBuilder.GetDate(BudgetExecution.Field)">
-            <summary>
-            Gets the date.
-            </summary>
-            <param name="field">The field.</param>
-            <returns></returns>
+            <summary> Gets the date. </summary>
+            <param name = "field" > The field. </param>
+            <returns> </returns>
         </member>
         <member name="M:BudgetExecution.DataBuilder.FilterData(BudgetExecution.Field,System.String)">
-            <summary>
-            Filters the data.
-            </summary>
-            <param name="field">The field.</param>
-            <param name="filter">The filter.</param>
-            <returns></returns>
+            <summary> Filters the Data. </summary>
+            <param name = "field" > The field. </param>
+            <param name = "filter" > The filter. </param>
+            <returns> </returns>
         </member>
         <member name="T:BudgetExecution.DataConfig">
             <summary>
             
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._source">
+        <member name="P:BudgetExecution.DataConfig.Source">
             <summary>
             The source
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._provider">
+        <member name="P:BudgetExecution.DataConfig.Provider">
             <summary>
             The provider
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._connectionBuilder">
+        <member name="P:BudgetExecution.DataConfig.ConnectionBuilder">
             <summary>
             The connection builder
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._args">
+        <member name="P:BudgetExecution.DataConfig.Args">
             <summary>
             The arguments
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._sqlStatement">
+        <member name="P:BudgetExecution.DataConfig.SqlStatement">
             <summary>
             The SQL statement
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._query">
+        <member name="P:BudgetExecution.DataConfig.Query">
             <summary>
             The query
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._record">
+        <member name="P:BudgetExecution.DataConfig.Record">
             <summary>
             The record
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._dataTable">
+        <member name="P:BudgetExecution.DataConfig.Table">
             <summary>
-            The data table
+            The Data table
             </summary>
         </member>
-        <member name="F:BudgetExecution.DataConfig._dataSet">
+        <member name="P:BudgetExecution.DataConfig.DataSet">
             <summary>
-            The data set
+            Gets or sets the Data set.
             </summary>
-        </member>
-        <member name="M:BudgetExecution.DataConfig.SetSource(BudgetExecution.Source)">
-            <summary>
-            Sets the source.
-            </summary>
-            <param name="source">The source.</param>
-        </member>
-        <member name="M:BudgetExecution.DataConfig.SetProvider(BudgetExecution.Provider)">
-            <summary>
-            Sets the provider.
-            </summary>
-            <param name="provider">The provider.</param>
-        </member>
-        <member name="M:BudgetExecution.DataConfig.SetQuery(BudgetExecution.IConnectionBuilder)">
-            <summary>
-            Sets the query.
-            </summary>
-            <param name="connectionBuilder">The connection builder.</param>
-        </member>
-        <member name="M:BudgetExecution.DataConfig.SetQuery(BudgetExecution.IConnectionBuilder,BudgetExecution.ISqlStatement)">
-            <summary>
-            Sets the query.
-            </summary>
-            <param name="connectionBuilder">The connection builder.</param>
-            <param name="sqlStatement">The SQL statement.</param>
-        </member>
-        <member name="M:BudgetExecution.DataConfig.SetData(System.String)">
-            <summary>
-            Sets the data.
-            </summary>
-            <param name="name">The name.</param>
+            <value>
+            The Data set.
+            </value>
         </member>
         <member name="M:BudgetExecution.DataConfig.Fail(System.Exception)">
             <summary>
@@ -1951,19 +1904,19 @@
         </member>
         <member name="M:BudgetExecution.IBuilder.GetData">
             <summary>
-            Gets the data.
+            Gets the Data.
             </summary>
             <returns></returns>
         </member>
         <member name="M:BudgetExecution.IBuilder.GetDataTable">
             <summary>
-            Gets the data table.
+            Gets the Data table.
             </summary>
             <returns></returns>
         </member>
         <member name="M:BudgetExecution.IBuilder.GetDataSet">
             <summary>
-            Gets the data set.
+            Gets the Data set.
             </summary>
             <returns></returns>
         </member>
@@ -1977,14 +1930,14 @@
             <summary>
             Gets the primary indexes.
             </summary>
-            <param name="data">The data.</param>
+            <param name="data">The Data.</param>
             <returns></returns>
         </member>
         <member name="M:BudgetExecution.IBuilder.GetColumnOrdinals(System.Collections.Generic.IEnumerable{System.Data.DataColumn})">
             <summary>
             Gets the column ordinals.
             </summary>
-            <param name="data">The data.</param>
+            <param name="data">The Data.</param>
             <returns></returns>
         </member>
         <member name="T:BudgetExecution.IDataAccess">
@@ -1996,8 +1949,8 @@
         </member>
         <member name="M:BudgetExecution.IDataAccess.GetQuery(BudgetExecution.IConnectionBuilder,BudgetExecution.ISqlStatement)">
             <summary> Gets the query. </summary>
-            <param name = "connectionbuilder" > The connectionbuilder. </param>
-            <param name = "sqlstatement" > The sqlstatement. </param>
+            <param name = "connectionBuilder" > The connectionBuilder. </param>
+            <param name = "sqlStatement" > The sqlStatement. </param>
             <returns> </returns>
         </member>
         <member name="M:BudgetExecution.IDataAccess.GetRecord">
@@ -2005,16 +1958,16 @@
             <returns> </returns>
         </member>
         <member name="M:BudgetExecution.IDataAccess.GetData">
-            <summary> Gets the data. </summary>
+            <summary> Gets the Data. </summary>
             <returns> </returns>
         </member>
         <member name="M:BudgetExecution.IDataAccess.GetDataTable">
-            <summary> Gets the data table. </summary>
+            <summary> Gets the Data table. </summary>
             <returns> </returns>
         </member>
         <member name="M:BudgetExecution.IDataAccess.SetColumnCaptions(System.Data.DataTable)">
             <summary> Sets the column captions. </summary>
-            <param name = "datatable" > The datatable. </param>
+            <param name = "dataTable" > The dataTable. </param>
         </member>
         <member name="M:BudgetExecution.IDataAccess.GetColumnSchema">
             <summary> Gets the column schema. </summary>
@@ -2022,22 +1975,33 @@
         </member>
         <member name="M:BudgetExecution.IDataAccess.GetSchemaTable(System.Data.DataTable)">
             <summary> Gets the schema table. </summary>
-            <param name = "datatable" > The datatable. </param>
+            <param name = "dataTable" > The dataTable. </param>
             <returns> </returns>
         </member>
         <member name="M:BudgetExecution.IDataAccess.GetPrimaryIndexes(System.Collections.Generic.IEnumerable{System.Data.DataRow})">
             <summary> Gets the primary indexes. </summary>
-            <param name = "data" > The data. </param>
+            <param name = "data" > The Data. </param>
             <returns> </returns>
         </member>
         <member name="M:BudgetExecution.IDataAccess.GetColumnOrdinals(System.Collections.Generic.IEnumerable{System.Data.DataColumn})">
             <summary> Gets the column ordinals. </summary>
-            <param name = "data" > The data. </param>
+            <param name = "data" > The Data. </param>
             <returns> </returns>
         </member>
         <member name="M:BudgetExecution.IDataAccess.GetDataSet">
-            <summary> Gets the data set. </summary>
+            <summary> Gets the Data set. </summary>
             <returns> </returns>
+        </member>
+        <member name="T:BudgetExecution.IDataBuilder">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BudgetExecution.IDataBuilder.GetBuilder">
+            <summary>
+            Gets the builder.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.IDataSchema.GetColumnNames">
             <summary> Sets the column names. </summary>
@@ -2072,7 +2036,7 @@
             <returns> </returns>
         </member>
         <member name="M:BudgetExecution.IDataSchema.GetDataTable">
-            <summary> Gets the data Table. </summary>
+            <summary> Gets the Data Table. </summary>
             <returns> </returns>
         </member>
         <member name="M:BudgetExecution.IDataSchema.GetTableName">
@@ -2080,19 +2044,92 @@
             <returns> </returns>
         </member>
         <member name="M:BudgetExecution.IDataSchema.GetData">
-            <summary> Gets the data. </summary>
+            <summary> Gets the Data. </summary>
             <returns> </returns>
+        </member>
+        <member name="M:BudgetExecution.Error.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BudgetExecution.Error"/> class.
+            </summary>
+            <param name="ext">The ext.</param>
+        </member>
+        <member name="M:BudgetExecution.Error.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BudgetExecution.Error"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="P:BudgetExecution.Error.Exception">
+            <summary>
+            Gets the exception.
+            </summary>
+            <value>
+            The exception.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.Error.Text">
+            <summary>
+            Gets or sets the text associated with this control.
+            </summary>
+        </member>
+        <member name="M:BudgetExecution.Error.SetText(System.String)">
+            <summary>
+            Sets the text.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
+        <member name="M:BudgetExecution.Error.SetText(System.Exception)">
+            <summary>
+            Sets the text.
+            </summary>
+            <param name="ex">The message.</param>
+        </member>
+        <member name="F:BudgetExecution.Error.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:BudgetExecution.Error.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:BudgetExecution.Error.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
         </member>
         <member name="T:BudgetExecution.Amount">
             <summary>
             
             </summary>
-            <seealso cref="T:BudgetExecution.AmountBase" />
             <seealso cref="T:BudgetExecution.IAmount" />
         </member>
         <member name="F:BudgetExecution.Amount.Default">
             <summary>
             The default
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.Amount.Funding">
+            <summary>
+            The funding
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.Amount.Initial">
+            <summary>
+            The initial
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.Amount.Delta">
+            <summary>
+            The delta
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.Amount.Numeric">
+            <summary>
+            The numeric
             </summary>
         </member>
         <member name="M:BudgetExecution.Amount.#ctor">
@@ -2118,7 +2155,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.Amount"/> class.
             </summary>
-            <param name="dataRow">The data row.</param>
+            <param name="dataRow">The Data row.</param>
             <param name="numeric">The numeric.</param>
         </member>
         <member name="M:BudgetExecution.Amount.GetNumeric">
@@ -2151,14 +2188,6 @@
             </summary>
             <param name="amount">The amount.</param>
         </member>
-        <member name="M:BudgetExecution.Amount.ToString">
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" /> that represents this instance.
-            </returns>
-        </member>
         <member name="M:BudgetExecution.Amount.IsEqual(BudgetExecution.IAmount)">
             <summary>
             Determines whether the specified amount is equal.
@@ -2183,146 +2212,29 @@
             Called when [changed].
             </summary>
             <param name="sender">The sender.</param>
-            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
-        </member>
-        <member name="T:BudgetExecution.AmountBase">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:BudgetExecution.Unit" />
-        </member>
-        <member name="F:BudgetExecution.AmountBase._funding">
-            <summary>
-            The funding
-            </summary>
-        </member>
-        <member name="F:BudgetExecution.AmountBase._initial">
-            <summary>
-            The initial
-            </summary>
-        </member>
-        <member name="F:BudgetExecution.AmountBase._delta">
-            <summary>
-            The delta
-            </summary>
-        </member>
-        <member name="F:BudgetExecution.AmountBase._numeric">
-            <summary>
-            The numeric
-            </summary>
-        </member>
-        <member name="M:BudgetExecution.AmountBase.SetName(System.String)">
-            <summary>
-            Gets the columnName.
-            </summary>
-            <param name="columnName"></param>
-        </member>
-        <member name="M:BudgetExecution.AmountBase.SetName(System.Data.DataRow,System.String)">
-            <summary>
-            Sets the name.
-            </summary>
-            <param name="dataRow">The data row.</param>
-            <param name="columnName">Name of the column.</param>
-        </member>
-        <member name="M:BudgetExecution.AmountBase.SetName(BudgetExecution.Numeric)">
-            <summary>
-            Sets the name.
-            </summary>
-            <param name="numeric">The numeric.</param>
-        </member>
-        <member name="M:BudgetExecution.AmountBase.SetName(System.Data.DataRow,BudgetExecution.Numeric)">
-            <summary>
-            Sets the name.
-            </summary>
-            <param name="dataRow">The data row.</param>
-            <param name="numeric">The numeric.</param>
-        </member>
-        <member name="M:BudgetExecution.AmountBase.SetNumeric(System.String)">
-            <summary>
-            Sets the numeric.
-            </summary>
-            <param name="columnName">Name of the column.</param>
-        </member>
-        <member name="M:BudgetExecution.AmountBase.SetNumeric(System.Data.DataRow,System.String)">
-            <summary>
-            Sets the numeric.
-            </summary>
-            <param name="dataRow">The data row.</param>
-            <param name="columnName">Name of the column.</param>
-        </member>
-        <member name="M:BudgetExecution.AmountBase.SetNumeric(BudgetExecution.Numeric)">
-            <summary>
-            Sets the numeric.
-            </summary>
-            <param name="numeric">The numeric.</param>
-        </member>
-        <member name="M:BudgetExecution.AmountBase.SetNumeric(System.Data.DataRow,BudgetExecution.Numeric)">
-            <summary>
-            Sets the numeric.
-            </summary>
-            <param name="dataRow">The data row.</param>
-            <param name="numeric">The numeric.</param>
-        </member>
-        <member name="M:BudgetExecution.AmountBase.SetValue(System.String)">
-            <summary>
-            Sets the value.
-            </summary>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:BudgetExecution.AmountBase.SetValue(System.Data.DataRow,System.String)">
-            <summary>
-            Sets the value.
-            </summary>
-            <param name="dataRow">The data row.</param>
-            <param name="columnName">Name of the column.</param>
-        </member>
-        <member name="M:BudgetExecution.AmountBase.SetValue(System.Data.DataRow,BudgetExecution.Numeric)">
-            <summary>
-            Sets the value.
-            </summary>
-            <param name="dataRow">The data row.</param>
-            <param name="numeric">The numeric.</param>
-        </member>
-        <member name="M:BudgetExecution.AmountBase.GetFunding">
-            <summary>
-            Gets the funding.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.AmountBase.GetAmount">
-            <summary>
-            Gets the amount.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.AmountBase.Fail(System.Exception)">
-            <summary>
-            Fails the specified ex.
-            </summary>
-            <param name="ex">The ex.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event Data.</param>
         </member>
         <member name="T:BudgetExecution.Arg">
             <summary>
             
             </summary>
-            <seealso cref="T:BudgetExecution.UnitBase" />
         </member>
-        <member name="F:BudgetExecution.Arg._values">
+        <member name="P:BudgetExecution.Arg.Values">
             <summary>
             The values
             </summary>
         </member>
-        <member name="F:BudgetExecution.Arg._names">
+        <member name="P:BudgetExecution.Arg.Names">
             <summary>
             The names
             </summary>
         </member>
-        <member name="F:BudgetExecution.Arg._input">
+        <member name="P:BudgetExecution.Arg.Input">
             <summary>
             The input
             </summary>
         </member>
-        <member name="F:BudgetExecution.Arg._output">
+        <member name="P:BudgetExecution.Arg.Output">
             <summary>
             The output
             </summary>
@@ -2351,14 +2263,66 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:BudgetExecution.DataUnit">
+            <summary>
+            
+            </summary>
+            <seealso cref="T:BudgetExecution.IDataUnit" />
+        </member>
+        <member name="P:BudgetExecution.DataUnit.Value">
+            <summary>
+            The value
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.DataUnit.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.DataUnit.Field">
+            <summary>
+            Gets the field.
+            </summary>
+        </member>
+        <member name="M:BudgetExecution.DataUnit.IsMatch(BudgetExecution.IDataUnit)">
+            <summary>
+            Determines whether the specified dataUnit is match.
+            </summary>
+            <param name="dataUnit">The dataUnit.</param>
+            <returns>
+              <c>true</c> if the specified dataUnit is match; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:BudgetExecution.DataUnit.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
+        </member>
         <member name="T:BudgetExecution.Element">
             <summary>
             
             </summary>
-            <seealso cref="T:BudgetExecution.ElementBase" />
             <seealso cref="T:BudgetExecution.IElement" />
         </member>
-        <member name="F:BudgetExecution.Element._initial">
+        <member name="P:BudgetExecution.Element.ID">
+            <summary>
+            Gets the identifier.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="P:BudgetExecution.Element.Code">
+            <summary>
+            Gets the code.
+            </summary>
+            <returns>
+            </returns>
+        </member>
+        <member name="P:BudgetExecution.Element.Initial">
             <summary>
             The initial
             </summary>
@@ -2390,7 +2354,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.Element"/> class.
             </summary>
-            <param name="dataRow">The data row.</param>
+            <param name="dataRow">The Data row.</param>
             <param name="field">The field.</param>
         </member>
         <member name="M:BudgetExecution.Element.#ctor(BudgetExecution.Field,System.String)">
@@ -2404,35 +2368,21 @@
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.Element"/> class.
             </summary>
-            <param name="dataRow">The data row.</param>
+            <param name="dataRow">The Data row.</param>
             <param name="value">The value.</param>
         </member>
         <member name="M:BudgetExecution.Element.#ctor(System.Data.DataRow,System.Data.DataColumn)">
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.Element"/> class.
             </summary>
-            <param name="dataRow">The data row.</param>
-            <param name="dataColumn">The data column.</param>
+            <param name="dataRow">The Data row.</param>
+            <param name="dataColumn">The Data column.</param>
         </member>
-        <member name="M:BudgetExecution.Element.GetField">
-            <summary>
-            Gets the field.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.Element.ToString">
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" /> that represents this instance.
-            </returns>
-        </member>
-        <member name="M:BudgetExecution.Element.IsMatch(BudgetExecution.IElement)">
+        <member name="M:BudgetExecution.Element.IsMatch(BudgetExecution.IDataUnit)">
             <summary>
             Determines whether the specified element is match.
             </summary>
-            <param name="element">The element.</param>
+            <param name="dataUnit">The element.</param>
             <returns>
               <c>true</c> if the specified element is match; otherwise, <c>false</c>.
             </returns>
@@ -2447,157 +2397,129 @@
               <c>true</c> if the specified primary is match; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="T:BudgetExecution.ElementBase">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:BudgetExecution.Unit" />
-        </member>
-        <member name="F:BudgetExecution.ElementBase._field">
-            <summary>
-            The field
-            </summary>
-        </member>
-        <member name="M:BudgetExecution.ElementBase.SetName(System.String)">
-            <summary>
-            Sets the columnName.
-            </summary>
-            <param name = "columnName" > </param>
-        </member>
-        <member name="M:BudgetExecution.ElementBase.SetName(System.Data.DataRow,System.String)">
+        <member name="M:BudgetExecution.Element.SetName(System.Data.DataRow,System.String)">
             <summary>
             Sets the columnName.
             </summary>
             <param name = "dataRow" > </param>
             <param name = "columnName" > </param>
         </member>
-        <member name="M:BudgetExecution.ElementBase.SetName(BudgetExecution.Field)">
+        <member name="M:BudgetExecution.Element.SetName(BudgetExecution.Field)">
             <summary>
             Sets the columnName.
             </summary>
             <param name = "field" > </param>
         </member>
-        <member name="M:BudgetExecution.ElementBase.SetName(System.Data.DataRow,BudgetExecution.Field)">
+        <member name="M:BudgetExecution.Element.SetName(System.Data.DataRow,BudgetExecution.Field)">
             <summary>
             Sets the columnName.
             </summary>
             <param name = "dataRow" > </param>
             <param name = "field" > </param>
         </member>
-        <member name="M:BudgetExecution.ElementBase.SetField(System.String)">
+        <member name="M:BudgetExecution.Element.SetField(System.String)">
             <summary>
             Sets the field.
             </summary>
             <param name = "fieldName" > </param>
         </member>
-        <member name="M:BudgetExecution.ElementBase.SetField(System.Data.DataRow,System.String)">
+        <member name="M:BudgetExecution.Element.SetField(System.Data.DataRow,System.String)">
             <summary>
             Sets the field.
             </summary>
             <param name = "dataRow" > </param>
             <param name = "fieldName" > </param>
         </member>
-        <member name="M:BudgetExecution.ElementBase.SetField(BudgetExecution.Field)">
+        <member name="M:BudgetExecution.Element.SetField(BudgetExecution.Field)">
             <summary>
             Sets the field.
             </summary>
             <param name = "field" > </param>
         </member>
-        <member name="M:BudgetExecution.ElementBase.SetField(System.Data.DataRow,BudgetExecution.Field)">
+        <member name="M:BudgetExecution.Element.SetField(System.Data.DataRow,BudgetExecution.Field)">
             <summary>
             Sets the field.
             </summary>
             <param name = "dataRow" > </param>
             <param name = "field" > </param>
         </member>
-        <member name="M:BudgetExecution.ElementBase.SetValue(System.String)">
+        <member name="M:BudgetExecution.Element.SetValue(System.Object)">
             <summary>
             Sets the value.
             </summary>
             <param name = "value" > </param>
         </member>
-        <member name="M:BudgetExecution.ElementBase.SetValue(System.Data.DataRow,System.String)">
+        <member name="M:BudgetExecution.Element.SetValue(System.Data.DataRow,System.String)">
             <summary>
             Sets the value.
             </summary>
             <param name = "dataRow" > </param>
             <param name = "columnName" > </param>
         </member>
-        <member name="M:BudgetExecution.ElementBase.SetValue(System.Data.DataRow,BudgetExecution.Field)">
+        <member name="M:BudgetExecution.Element.SetValue(System.Data.DataRow,BudgetExecution.Field)">
             <summary>
             Sets the value.
             </summary>
             <param name = "dataRow" > </param>
             <param name = "field" > </param>
-        </member>
-        <member name="M:BudgetExecution.ElementBase.SetData(System.Data.DataRow,BudgetExecution.Field)">
-            <summary>
-            Sets the dataRow.
-            </summary>
-            <param name = "dataRow" > </param>
-            <param name = "field" > </param>
-        </member>
-        <member name="M:BudgetExecution.ElementBase.SetData(System.Data.DataRow,System.String)">
-            <summary>
-            Sets the dataRow.
-            </summary>
-            <param name = "dataRow" > </param>
-            <param name = "columnName" > </param>
-        </member>
-        <member name="M:BudgetExecution.ElementBase.SetData(System.Data.DataRow,System.Data.DataColumn)">
-            <summary>
-            Sets the dataRow.
-            </summary>
-            <param name = "dataRow" > </param>
-            <param name = "dataColumn" > </param>
         </member>
         <member name="T:BudgetExecution.IAmount">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BudgetExecution.IAmount.GetFunding">
+        <member name="P:BudgetExecution.IAmount.Funding">
             <summary>
             Gets the funding.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BudgetExecution.IAmount.GetName">
-            <summary>
-            Gets the name.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.IAmount.GetNumeric">
+        <member name="P:BudgetExecution.IAmount.Numeric">
             <summary>
             Gets the numeric.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BudgetExecution.IAmount.GetAmount">
+        <member name="P:BudgetExecution.IDataUnit.Name">
             <summary>
-            Gets the amount.
+            Gets or sets the name.
             </summary>
-            <returns></returns>
+            <value>
+            The name.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.IDataUnit.Value">
+            <summary>
+            Gets or sets the value.
+            </summary>
+            <value>
+            The value.
+            </value>
+        </member>
+        <member name="M:BudgetExecution.IDataUnit.IsMatch(BudgetExecution.IDataUnit)">
+            <summary> Determines whether the specified dataUnit is equal. </summary>
+            <param name = "dataUnit" > The dataUnit. </param>
+            <returns>
+            <c> true </c>
+            if the specified dataUnit is equal; otherwise,
+            <c> false </c>
+            .
+            </returns>
         </member>
         <member name="T:BudgetExecution.IElement">
             <summary>
             
             </summary>
         </member>
-        <member name="M:BudgetExecution.IElement.GetName">
+        <member name="P:BudgetExecution.IElement.Name">
             <summary>
-            Gets the name.
+            Gets or sets the name.
             </summary>
-            <returns></returns>
+            <value>
+            The name.
+            </value>
         </member>
-        <member name="M:BudgetExecution.IElement.GetValue">
-            <summary>
-            Gets the value.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.IElement.GetField">
+        <member name="P:BudgetExecution.IElement.Field">
             <summary>
             Gets the field.
             </summary>
@@ -2608,21 +2530,15 @@
             
             </summary>
         </member>
-        <member name="M:BudgetExecution.IKey.GetName">
-            <summary>
-            Gets the name.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.IKey.GetIndex">
+        <member name="P:BudgetExecution.IKey.Index">
             <summary>
             Gets the index.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BudgetExecution.IKey.GetPrimaryKey">
+        <member name="P:BudgetExecution.IKey.Name">
             <summary>
-            Gets the primary key.
+            Gets the name.
             </summary>
             <returns></returns>
         </member>
@@ -2655,46 +2571,36 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BudgetExecution.IUnit.GetName">
-            <summary> Gets the name. </summary>
-            <returns> </returns>
-        </member>
-        <member name="M:BudgetExecution.IUnit.GetValue">
-            <summary> Gets the value. </summary>
-            <returns> </returns>
-        </member>
-        <member name="M:BudgetExecution.IUnit.GetData">
-            <summary> Gets the data. </summary>
-            <returns> </returns>
-        </member>
-        <member name="M:BudgetExecution.IUnit.IsMatch(BudgetExecution.IUnit)">
-            <summary> Determines whether the specified unit is equal. </summary>
-            <param name = "unit" > The unit. </param>
-            <returns>
-            <c> true </c>
-            if the specified unit is equal; otherwise,
-            <c> false </c>
-            .
-            </returns>
-        </member>
-        <member name="M:BudgetExecution.IUnit.ToString">
-            <summary> Converts to string. </summary>
-            <returns>
-            A
-            <see cref = "T:System.String"/>
-            that represents this instance.
-            </returns>
-        </member>
         <member name="T:BudgetExecution.Key">
             <summary>
             
             </summary>
-            <seealso cref="T:BudgetExecution.KeyBase" />
             <seealso cref="T:BudgetExecution.IKey" />
         </member>
-        <member name="F:BudgetExecution.Key.Default">
+        <member name="P:BudgetExecution.Key.Default">
             <summary>
-            The default
+            Gets the default.
+            </summary>
+            <value>
+            The default.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.Key.PrimaryKey">
+            <summary>
+            Gets or sets the primary key.
+            </summary>
+            <value>
+            The primary key.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.Key.Index">
+            <summary>
+            Gets the index.
+            </summary>
+        </member>
+        <member name="P:BudgetExecution.Key.Name">
+            <summary>
+            Gets the name.
             </summary>
         </member>
         <member name="M:BudgetExecution.Key.#ctor">
@@ -2735,18 +2641,6 @@
             </summary>
             <param name="dataRow">The data row.</param>
         </member>
-        <member name="M:BudgetExecution.Key.GetIndex">
-            <summary>
-            Gets the index.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.Key.GetPrimaryKey">
-            <summary>
-            Gets the primary key.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:BudgetExecution.Key.ToString">
             <summary>
             Converts to string.
@@ -2774,71 +2668,49 @@
               <c>true</c> if the specified primary is match; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="T:BudgetExecution.KeyBase">
-            <summary> </summary>
-            <seealso cref = "T:BudgetExecution.UnitBase"/>
-            <seealso cref = "T:BudgetExecution.IUnit"/>
+        <member name="M:BudgetExecution.Key.SetPrimaryKey(System.String)">
+            <summary>
+            Sets the primary key.
+            </summary>
+            <param name="keyName">Name of the key.</param>
         </member>
-        <member name="F:BudgetExecution.KeyBase._primaryKey">
-            <summary> Gets or sets the field. </summary>
-            <value> The field. </value>
+        <member name="M:BudgetExecution.Key.SetPrimaryKey(System.Data.DataRow)">
+            <summary>
+            Sets the primary key.
+            </summary>
+            <param name="dataRow">The data row.</param>
         </member>
-        <member name="F:BudgetExecution.KeyBase._index">
-            <summary> Gets or sets the value. </summary>
-            <value> The value. </value>
+        <member name="M:BudgetExecution.Key.SetPrimaryKey(BudgetExecution.PrimaryKey)">
+            <summary>
+            Sets the primary key.
+            </summary>
+            <param name="keyName">Name of the key.</param>
         </member>
-        <member name="M:BudgetExecution.KeyBase.SetName(System.String)">
-            <summary> Sets the columnName. </summary>
-            <param name = "columnName" > </param>
-            <returns> </returns>
+        <member name="M:BudgetExecution.Key.SetPrimaryKey(System.Data.DataRow,BudgetExecution.PrimaryKey)">
+            <summary>
+            Sets the primary key.
+            </summary>
+            <param name="dataRow">The data row.</param>
+            <param name="keyName">Name of the key.</param>
         </member>
-        <member name="M:BudgetExecution.KeyBase.SetName(System.Data.DataRow)">
-            <summary> Sets the columnName. </summary>
-            <param name = "dataRow" > </param>
-            <returns> </returns>
+        <member name="M:BudgetExecution.Key.SetIndex(System.Int32)">
+            <summary>
+            Sets the index.
+            </summary>
+            <param name="value">The value.</param>
         </member>
-        <member name="M:BudgetExecution.KeyBase.SetName(BudgetExecution.PrimaryKey)">
-            <summary> Sets the columnName. </summary>
-            <param name = "field" > </param>
-            <returns> </returns>
+        <member name="M:BudgetExecution.Key.SetIndex(System.Data.DataRow,BudgetExecution.PrimaryKey)">
+            <summary>
+            Sets the index.
+            </summary>
+            <param name="dataRow">The data row.</param>
+            <param name="key">The key.</param>
         </member>
-        <member name="M:BudgetExecution.KeyBase.SetName(System.Data.DataRow,BudgetExecution.PrimaryKey)">
-            <summary> Sets the columnName. </summary>
-            <param name = "dataRow" > </param>
-            <param name = "index" > </param>
-            <returns> </returns>
-        </member>
-        <member name="M:BudgetExecution.KeyBase.SetPrimaryKey(System.String)">
-            <summary> Sets the field. </summary>
-            <param name = "keyName" > </param>
-            <returns> </returns>
-        </member>
-        <member name="M:BudgetExecution.KeyBase.SetPrimaryKey(System.Data.DataRow)">
-            <summary> Sets the field. </summary>
-            <param name = "dataRow" > </param>
-            <returns> </returns>
-        </member>
-        <member name="M:BudgetExecution.KeyBase.SetPrimaryKey(BudgetExecution.PrimaryKey)">
-            <summary> Sets the field. </summary>
-            <param name = "keyName" > </param>
-            <returns> </returns>
-        </member>
-        <member name="M:BudgetExecution.KeyBase.SetPrimaryKey(System.Data.DataRow,BudgetExecution.PrimaryKey)">
-            <summary> Sets the field. </summary>
-            <param name = "dataRow" > </param>
-            <param name = "keyName" > </param>
-            <returns> </returns>
-        </member>
-        <member name="M:BudgetExecution.KeyBase.SetIndex(System.Int32)">
-            <summary> Sets the value. </summary>
-            <param name = "value" > </param>
-            <returns> </returns>
-        </member>
-        <member name="M:BudgetExecution.KeyBase.SetIndex(System.Data.DataRow,BudgetExecution.PrimaryKey)">
-            <summary> Sets the value. </summary>
-            <param name = "dataRow" > </param>
-            <param name = "key" > </param>
-            <returns> </returns>
+        <member name="M:BudgetExecution.Key.Fail(System.Exception)">
+            <summary>
+            Fails the specified ex.
+            </summary>
+            <param name="ex">The ex.</param>
         </member>
         <member name="T:BudgetExecution.Map">
             <summary>
@@ -2846,6 +2718,14 @@
             </summary>
             <seealso cref="T:BudgetExecution.Arg" />
             <seealso cref="T:BudgetExecution.IMap" />
+        </member>
+        <member name="P:BudgetExecution.Map.Count">
+            <summary>
+            Gets the count.
+            </summary>
+            <value>
+            The count.
+            </value>
         </member>
         <member name="M:BudgetExecution.Map.#ctor">
             <summary>
@@ -2862,15 +2742,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.Map"/> class.
             </summary>
-            <param name="data">The data.</param>
-        </member>
-        <member name="P:BudgetExecution.Map.Count">
-            <summary>
-            Gets the count.
-            </summary>
-            <value>
-            The count.
-            </value>
+            <param name="data">The Data.</param>
         </member>
         <member name="M:BudgetExecution.Map.GetInput">
             <summary>
@@ -2912,89 +2784,27 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:BudgetExecution.Unit">
-            <summary>
-            
-            </summary>
-            <seealso cref="T:BudgetExecution.UnitBase" />
-            <seealso cref="T:BudgetExecution.IUnit" />
-        </member>
-        <member name="M:BudgetExecution.Unit.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:BudgetExecution.Unit"/> class.
-            </summary>
-        </member>
-        <member name="M:BudgetExecution.Unit.#ctor(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
-            <summary>
-            Initializes a new instance of the <see cref="T:BudgetExecution.Unit"/> class.
-            </summary>
-            <param name="kvp">The KVP.</param>
-        </member>
-        <member name="M:BudgetExecution.Unit.GetName">
-            <summary>
-            Gets the name.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.Unit.GetValue">
-            <summary>
-            Gets the value.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.Unit.GetData">
-            <summary>
-            Gets the data.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.Unit.ToString">
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" /> that represents this instance.
-            </returns>
-        </member>
         <member name="T:BudgetExecution.UnitBase">
             <summary>
             
             </summary>
         </member>
-        <member name="F:BudgetExecution.UnitBase._data">
+        <member name="P:BudgetExecution.UnitBase.Data">
             <summary>
-            The data
+            The Data
             </summary>
         </member>
-        <member name="F:BudgetExecution.UnitBase._name">
+        <member name="P:BudgetExecution.UnitBase.Name">
             <summary>
             The name
             </summary>
         </member>
-        <member name="F:BudgetExecution.UnitBase._value">
+        <member name="P:BudgetExecution.UnitBase.Value">
             <summary>
             The value
             </summary>
         </member>
-        <member name="M:BudgetExecution.UnitBase.SetName(System.String)">
-            <summary>
-            Sets the name.
-            </summary>
-            <param name="columnName">Name of the column.</param>
-        </member>
-        <member name="M:BudgetExecution.UnitBase.SetData(System.Object)">
-            <summary>
-            Sets the data.
-            </summary>
-            <param name="data">The data.</param>
-        </member>
-        <member name="M:BudgetExecution.UnitBase.SetValue(System.Object)">
-            <summary>
-            Sets the value.
-            </summary>
-            <param name="data">The data.</param>
-        </member>
-        <member name="M:BudgetExecution.UnitBase.IsMatch(BudgetExecution.IUnit)">
+        <member name="M:BudgetExecution.UnitBase.IsMatch(BudgetExecution.IDataUnit)">
             <summary>
             Determines whether the specified unit is match.
             </summary>
@@ -3008,6 +2818,102 @@
             Fails the specified ex.
             </summary>
             <param name="ex">The ex.</param>
+        </member>
+        <member name="M:BudgetExecution.Message.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref = "T:BudgetExecution.Message"/> class.
+            </summary>
+            <param name = "message" >
+            The message.
+            </param>
+        </member>
+        <member name="P:BudgetExecution.Message.Stack">
+            <summary>
+            Gets the stack.
+            </summary>
+            <value>
+            The stack.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.Message.Target">
+            <summary>
+            Gets the target.
+            </summary>
+            <value>
+            The target.
+            </value>
+        </member>
+        <member name="M:BudgetExecution.Message.OnOkButtonClicked(System.Object,System.EventArgs)">
+            <summary>
+            Called when [ok button clicked].
+            </summary>
+            <param name = "sender" >
+            The sender.
+            </param>
+            <param name = "e" >
+            The <see cref = "T:System.EventArgs"/> instance containing the event data.
+            </param>
+        </member>
+        <member name="M:BudgetExecution.Message.OnStackButtonClicked(System.Object,System.EventArgs)">
+            <summary>
+            Called when [stack button clicked].
+            </summary>
+            <param name = "sender" >
+            The sender.
+            </param>
+            <param name = "e" >
+            The <see cref = "T:System.EventArgs"/> instance containing the event data.
+            </param>
+        </member>
+        <member name="M:BudgetExecution.Message.OnTargetButtonClicked(System.Object,System.EventArgs)">
+            <summary>
+            Called when [target button clicked].
+            </summary>
+            <param name = "sender" >
+            The sender.
+            </param>
+            <param name = "e" >
+            The <see cref = "T:System.EventArgs"/> instance containing the event data.
+            </param>
+        </member>
+        <member name="M:BudgetExecution.Message.OnClosing(System.Object,System.EventArgs)">
+            <summary>
+            Called when [closing].
+            </summary>
+            <param name = "sender" >
+            The sender.
+            </param>
+            <param name = "e" >
+            The <see cref = "T:System.EventArgs"/> instance containing the event data.
+            </param>
+        </member>
+        <member name="M:BudgetExecution.Message.OnLoad(System.Object,System.EventArgs)">
+            <summary>
+            Handles the Load event of the Message control.
+            </summary>
+            <param name = "sender" >
+            The source of the event.
+            </param>
+            <param name = "e" >
+            The <see cref = "T:System.EventArgs"/> instance containing the event data.
+            </param>
+        </member>
+        <member name="F:BudgetExecution.Message.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:BudgetExecution.Message.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:BudgetExecution.Message.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
         </member>
         <member name="M:BudgetExecution.AccessQuery.#ctor">
             <summary>
@@ -3054,7 +2960,7 @@
             </summary>
             <seealso cref = "T:BudgetExecution.Query"/>
         </member>
-        <member name="F:BudgetExecution.CsvQuery._provider">
+        <member name="P:BudgetExecution.CsvQuery.Provider">
             <summary>
             Gets the provider.
             </summary>
@@ -3113,30 +3019,6 @@
             <param name = "sqlStatement" >
             The sqlStatement.
             </param>
-        </member>
-        <member name="F:BudgetExecution.CsvQuery._dataSet">
-            <summary>
-            Gets or sets the data set.
-            </summary>
-            <value>
-            The data set.
-            </value>
-        </member>
-        <member name="F:BudgetExecution.CsvQuery._table">
-            <summary>
-            Gets or sets the table.
-            </summary>
-            <value>
-            The table.
-            </value>
-        </member>
-        <member name="F:BudgetExecution.CsvQuery._excel">
-            <summary>
-            Gets or sets the excel.
-            </summary>
-            <value>
-            The excel.
-            </value>
         </member>
         <member name="M:BudgetExecution.CsvQuery.SaveFile(OfficeOpenXml.ExcelPackage)">
             <summary>
@@ -3219,11 +3101,18 @@
             </returns>
         </member>
         <member name="T:BudgetExecution.ExcelQuery">
-            <inheritdoc/>
             <summary>
+            
             </summary>
-            <seealso cref = "T:BudgetExecution.Query"/>
-            <seealso cref = "T:BudgetExecution.IQueryBase"/>
+            <seealso cref="T:BudgetExecution.Query" />
+        </member>
+        <member name="P:BudgetExecution.ExcelQuery.Provider">
+            <summary>
+            Gets the provider.
+            </summary>
+            <value>
+            The provider.
+            </value>
         </member>
         <member name="M:BudgetExecution.ExcelQuery.#ctor">
             <summary>
@@ -3234,14 +3123,14 @@
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.ExcelQuery"/> class.
             </summary>
-            <param name="filePath">The filePath.</param>
+            <param name="filePath">The file path.</param>
             <param name="command">The command.</param>
         </member>
         <member name="M:BudgetExecution.ExcelQuery.#ctor(System.String,BudgetExecution.SQL,System.Collections.Generic.IDictionary{System.String,System.Object})">
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.ExcelQuery"/> class.
             </summary>
-            <param name="filePath">The filePath.</param>
+            <param name="filePath">The file path.</param>
             <param name="command">The command.</param>
             <param name="dict">The dictionary.</param>
         </member>
@@ -3249,7 +3138,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.ExcelQuery"/> class.
             </summary>
-            <param name="filePath">The filePath.</param>
+            <param name="filePath">The file path.</param>
             <param name="dict">The dictionary.</param>
         </member>
         <member name="M:BudgetExecution.ExcelQuery.#ctor(BudgetExecution.IConnectionBuilder,BudgetExecution.ISqlStatement)">
@@ -3259,129 +3148,90 @@
             <param name="connectionBuilder">The connectionBuilder.</param>
             <param name="sqlStatement">The sqlStatement.</param>
         </member>
-        <member name="F:BudgetExecution.ExcelQuery._dataSet">
-            <summary>
-            Gets or sets the r6.
-            </summary>
-            <value>
-            The r6.
-            </value>
-        </member>
-        <member name="F:BudgetExecution.ExcelQuery._table">
-            <summary>
-            Gets or sets the dataTable.
-            </summary>
-            <value>
-            The dataTable.
-            </value>
-        </member>
-        <member name="F:BudgetExecution.ExcelQuery._excel">
-            <summary>
-            Gets or sets the excel.
-            </summary>
-            <value>
-            The excel.
-            </value>
-        </member>
         <member name="M:BudgetExecution.ExcelQuery.SaveFile(Microsoft.Office.Interop.Excel.Workbook)">
             <summary>
             Saves the file.
             </summary>
-            <dict name = "workBook" >
-            The workBook.
-            </dict>
+            <param name="workBook">The work book.</param>
         </member>
         <member name="M:BudgetExecution.ExcelQuery.WriteExcelFile(System.Data.DataTable,System.String)">
             <summary>
-            Exports to excel.
+            Writes the excel file.
             </summary>
-            <dict name = "table" >
-            The dataTable.
-            </dict>
+            <param name="table">The table.</param>
+            <param name="filePath">The file path.</param>
         </member>
         <member name="M:BudgetExecution.ExcelQuery.ReadExcelFile(System.String)">
             <summary>
-            Creates the excel file.
+            Reads the excel file.
             </summary>
-            <param name = "filePath" >
-            The filePath.
-            </param>
-            <returns>
-            </returns>
+            <param name="filePath">The file path.</param>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.ExcelQuery.GetExcelFile">
             <summary>
-            Gets the file path.
+            Gets the excel file.
             </summary>
-            <returns>
-            </returns>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.ExcelQuery.ImportData(System.String@)">
             <summary>
-            Gets the data dataTable from excel file.
+            Imports the Data.
             </summary>
-            <dict name = "sheetName" >
-            The sheetName.
-            </dict>
-            <returns>
-            </returns>
+            <param name="sheetName">Name of the sheet.</param>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.ExcelQuery.CsvImport(System.String,System.String@)">
             <summary>
-            Gets the data dataTable from CSV file.
+            CSVs the import.
             </summary>
-            <dict name = "fileName" >
-            The fileName.
-            </dict>
-            <dict name = "sheetName" >
-            The sheetName.
-            </dict>
-            <returns>
-            </returns>
+            <param name="fileName">Name of the file.</param>
+            <param name="sheetName">Name of the sheet.</param>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.ExcelQuery.ExportToDataGrid(System.Windows.Forms.DataGridView)">
             <summary>
-            Imports to data grid view.
+            Exports to Data grid.
             </summary>
-            <dict name = "dataGrid" >
-            The dataGrid.
-            </dict>
+            <param name="dataGrid">The Data grid.</param>
         </member>
         <member name="M:BudgetExecution.ExcelQuery.SheetExists(System.String,System.Data.DataTable)">
             <summary>
-            Checks if sheet name exists.
+            Sheets the exists.
             </summary>
-            <dict name = "sheetName" >
-            _name of the sheet.
-            </dict>
-            <dict name = "dataTable" >
-            The dt dataTable.
-            </dict>
-            <returns>
-            </returns>
+            <param name="sheetName">Name of the sheet.</param>
+            <param name="dataTable">The Data table.</param>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.ExcelQuery.Release(Microsoft.Office.Interop.Excel.Range,Microsoft.Office.Interop.Excel.Worksheet,Microsoft.Office.Interop.Excel.Workbook,Microsoft.Office.Interop.Excel.Application)">
             <summary>
-            Disposes the excel objects.
+            Releases the specified range.
             </summary>
-            <param name = "range" >
-            The range.
-            </param>
-            <param name = "workSheet" >
-            The workSheet.
-            </param>
-            <param name = "workBook" >
-            The workBook.
-            </param>
-            <param name = "excel" >
-            The excel.
-            </param>
+            <param name="range">The range.</param>
+            <param name="workSheet">The work sheet.</param>
+            <param name="workBook">The work book.</param>
+            <param name="excel">The excel.</param>
         </member>
         <member name="M:BudgetExecution.ExcelQuery.Dispose(System.Boolean)">
-            <inheritdoc/>
             <summary>
-            The Dispose
+            Releases unmanaged and - optionally - managed resources.
             </summary>
+            <param name="disposing"><c>
+            true
+            </c>
+            to release both managed and unmanaged resources;
+            <c>
+            false
+            </c>
+            to release only unmanaged resources.</param>
+        </member>
+        <member name="P:BudgetExecution.IQuery.IsDisposed">
+            <summary>
+            Gets or sets a value indicating whether this instance is disposed.
+            </summary>
+            <value>
+              <c>true</c> if this instance is disposed; otherwise, <c>false</c>.
+            </value>
         </member>
         <member name="M:BudgetExecution.IQuery.GetArgs">
             <summary>
@@ -3427,7 +3277,7 @@
         </member>
         <member name="M:BudgetExecution.IQuery.GetDataReader(System.Data.Common.DbCommand,System.Data.CommandBehavior)">
             <summary>
-            Sets the data reader.
+            Sets the Data reader.
             </summary>
             <param name = "command" >
             The command.
@@ -3467,7 +3317,7 @@
             Initializes a new instance of the <see cref = "T:BudgetExecution.Query"/> class.
             </summary>
             <param name = "source" >
-            The source data.
+            The source Data.
             </param>
             <param name = "provider" >
             The provider used.
@@ -3532,7 +3382,7 @@
         <member name="M:BudgetExecution.Query.GetDataReader(System.Data.Common.DbCommand,System.Data.CommandBehavior)">
             <inheritdoc/>
             <summary>
-            Sets the data reader.
+            Sets the Data reader.
             </summary>
             <param name = "command" >
             The command.
@@ -3563,6 +3413,11 @@
             <summary>
             Performs application-defined tasks associated with freeing, releasing, or
             resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:BudgetExecution.QueryBase">
+            <summary>
+            
             </summary>
         </member>
         <member name="P:BudgetExecution.QueryBase.Args">
@@ -3638,10 +3493,10 @@
         </member>
         <member name="P:BudgetExecution.QueryBase.DataReader">
             <summary>
-            Gets or sets the data reader.
+            Gets or sets the Data reader.
             </summary>
             <value>
-            The data reader.
+            The Data reader.
             </value>
         </member>
         <member name="M:BudgetExecution.QueryBase.GetSource">
@@ -3693,8 +3548,8 @@
             <summary>
             Sets the connection manager.
             </summary>
-            <param name = "fullpath" >
-            The fullpath.
+            <param name = "fullPath" >
+            The fullPath.
             </param>
             <returns>
             </returns>
@@ -3909,7 +3764,7 @@
         </member>
         <member name="M:BudgetExecution.SQLiteQuery.GetDataAdapter(System.Data.SQLite.SQLiteCommand)">
             <summary>
-            Gets the data adapter.
+            Gets the Data adapter.
             </summary>
             <param name = "command" >
             The command.
@@ -3919,7 +3774,7 @@
         </member>
         <member name="M:BudgetExecution.SQLiteQuery.GetDataReader(System.Data.SQLite.SQLiteCommand)">
             <summary>
-            Gets the data reader.
+            Gets the Data reader.
             </summary>
             <param name = "command" >
             The command.
@@ -4019,9 +3874,9 @@
             </summary>
             <seealso cref="T:BudgetExecution.Query" />
         </member>
-        <member name="F:BudgetExecution.SqlServerQuery._provider">
+        <member name="P:BudgetExecution.SqlServerQuery.Provider">
             <summary>
-            Gets or sets the _provider
+            Gets or sets the Provider
             </summary>
             <value>
             The provider.
@@ -4072,6 +3927,37 @@
             <seealso cref = "T:BudgetExecution.ISource"/>
             <seealso cref = "T:BudgetExecution.IDataSchema"/>
         </member>
+        <member name="P:BudgetExecution.DataSchema.Name">
+            <summary>
+            Gets the name of the Table.
+            </summary>
+            <value>
+            The name of the Table.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.DataSchema.Data">
+            <summary>
+            Gets the Data.
+            </summary>
+            <value>
+            The Data.
+            </value>
+        </member>
+        <member name="P:BudgetExecution.DataSchema.IsSource">
+            <summary>
+            Gets a value indicating whether this instance is source.
+            </summary>
+            <value>
+            <c>
+            true
+            </c>
+            if this instance is source; otherwise,
+            <c>
+            false
+            </c>
+            .
+            </value>
+        </member>
         <member name="M:BudgetExecution.DataSchema.#ctor">
             <summary>
             Initializes a new instance of the <see cref = "T:BudgetExecution.DataSchema"/> class.
@@ -4090,46 +3976,14 @@
             Initializes a new instance of the <see cref = "T:BudgetExecution.DataSchema"/> class.
             </summary>
             <param name = "data" >
-            The data.
+            The Data.
             </param>
-        </member>
-        <member name="F:BudgetExecution.DataSchema._name">
-            <summary>
-            Gets the name of the Table.
-            </summary>
-            <value>
-            The name of the Table.
-            </value>
-        </member>
-        <member name="F:BudgetExecution.DataSchema._data">
-            <summary>
-            Gets the data.
-            </summary>
-            <value>
-            The data.
-            </value>
-        </member>
-        <member name="P:BudgetExecution.DataSchema.IsSource">
-            <summary>
-            Gets a value indicating whether this instance is source.
-            </summary>
-            <value>
-            <c>
-            true
-            </c>
-            if this instance is source; otherwise,
-            <c>
-            false
-            </c>
-            .
-            </value>
         </member>
         <member name="M:BudgetExecution.DataSchema.GetColumnNames">
             <summary>
             Sets the column names.
             </summary>
-            <returns>
-            </returns>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.DataSchema.GetColumnCaptions">
             <summary>
@@ -4182,7 +4036,7 @@
         </member>
         <member name="M:BudgetExecution.DataSchema.GetDataTable">
             <summary>
-            Gets the data Table.
+            Gets the Data Table.
             </summary>
             <returns>
             </returns>
@@ -4196,7 +4050,7 @@
         </member>
         <member name="M:BudgetExecution.DataSchema.GetData">
             <summary>
-            Gets the data.
+            Gets the Data.
             </summary>
             <returns>
             </returns>
@@ -4218,16 +4072,19 @@
             <summary> </summary>
         </member>
         <member name="M:BudgetExecution.ISqlStatement.GetCommandType">
-            <summary> Gets the type of the command. </summary>
-            <returns> SQL </returns>
-        </member>
-        <member name="M:BudgetExecution.ISqlStatement.GetConnectionBuilder">
-            <summary> Gets the connection manager. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the type of the command.
+            </summary>
+            <returns>
+            SQL
+            </returns>
         </member>
         <member name="M:BudgetExecution.ISqlStatement.GetSelectStatement">
-            <summary> Gets the select statement. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the select statement.
+            </summary>
+            <returns>
+            </returns>
         </member>
         <member name="M:BudgetExecution.ISqlStatement.GetUpdateStatement">
             <summary> Gets the update statement. </summary>
@@ -4241,31 +4098,27 @@
             <summary> Gets the delete statement. </summary>
             <returns> </returns>
         </member>
-        <member name="M:BudgetExecution.ISqlStatement.GetArgs">
-            <summary> Gets the arguments. </summary>
-            <returns> </returns>
-        </member>
         <member name="T:BudgetExecution.SqlBase">
             <summary>
             
             </summary>
         </member>
-        <member name="F:BudgetExecution.SqlBase._connectionBuilder">
+        <member name="P:BudgetExecution.SqlBase.ConnectionBuilder">
             <summary>
             The connection builder
             </summary>
         </member>
-        <member name="F:BudgetExecution.SqlBase._commandType">
+        <member name="P:BudgetExecution.SqlBase.CommandType">
             <summary>
             The command type
             </summary>
         </member>
-        <member name="F:BudgetExecution.SqlBase._args">
+        <member name="P:BudgetExecution.SqlBase.Args">
             <summary>
             The arguments
             </summary>
         </member>
-        <member name="F:BudgetExecution.SqlBase._commandText">
+        <member name="P:BudgetExecution.SqlBase.CommandText">
             <summary>
             The command text
             </summary>
@@ -4353,58 +4206,40 @@
             <seealso cref="T:BudgetExecution.IProvider" />
             <seealso cref="T:BudgetExecution.ISource" />
         </member>
-        <member name="F:BudgetExecution.SqlConfig._extension">
+        <member name="F:BudgetExecution.SqlConfig.Extension">
             <summary>
             The extension
             </summary>
         </member>
-        <member name="F:BudgetExecution.SqlConfig._providerPath">
+        <member name="P:BudgetExecution.SqlConfig.ProviderPath">
             <summary>
             The provider path
             </summary>
         </member>
-        <member name="F:BudgetExecution.SqlConfig._source">
+        <member name="P:BudgetExecution.SqlConfig.Source">
             <summary>
             The source
             </summary>
         </member>
-        <member name="F:BudgetExecution.SqlConfig._provider">
+        <member name="P:BudgetExecution.SqlConfig.Provider">
             <summary>
             The provider
             </summary>
         </member>
-        <member name="F:BudgetExecution.SqlConfig._sqlStatement">
+        <member name="P:BudgetExecution.SqlConfig.SqlStatement">
             <summary>
             The SQL statement
             </summary>
         </member>
-        <member name="F:BudgetExecution.SqlConfig._filePath">
+        <member name="P:BudgetExecution.SqlConfig.FilePath">
             <summary>
             The file path
             </summary>
         </member>
-        <member name="F:BudgetExecution.SqlConfig._fileName">
+        <member name="P:BudgetExecution.SqlConfig.FileName">
             <summary>
             The file name
             </summary>
-        </member>
-        <member name="M:BudgetExecution.SqlConfig.GetSource">
-            <summary>
-            Gets the source.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.SqlConfig.GetProvider">
-            <summary>
-            Gets the provider.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.SqlConfig.GetCommandType">
-            <summary>
-            Gets the type of the command.
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:BudgetExecution.SqlConfig.GetArgs">
             <summary>
@@ -4415,12 +4250,6 @@
         <member name="M:BudgetExecution.SqlConfig.GetConnectionBuilder">
             <summary>
             Gets the connection builder.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.SqlConfig.GetCommandText">
-            <summary>
-            Gets the command text.
             </summary>
             <returns></returns>
         </member>
@@ -4440,7 +4269,7 @@
             <see cref = "T:BudgetExecution.SqlFactory"/>
             class.
             </summary>
-            <param name = "builder" > </param>
+            <param name = "conectionBuilder" > </param>
             <param name = "command" > The command. </param>
         </member>
         <member name="M:BudgetExecution.SqlFactory.#ctor(System.String,BudgetExecution.SQL)">
@@ -4485,6 +4314,14 @@
             <param name="connectionBuilder">The connectionBuilder.</param>
             <param name="dict">The dictionary.</param>
             <param name="commandType">Type of the commandType.</param>
+        </member>
+        <member name="M:BudgetExecution.SqlStatement.GetCommandType">
+            <summary>
+            Gets the type of the command.
+            </summary>
+            <returns>
+            SQL
+            </returns>
         </member>
         <member name="M:BudgetExecution.SqlStatement.GetSelectStatement">
             <summary>

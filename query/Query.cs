@@ -118,17 +118,17 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "Query"/> class.
         /// </summary>
-        /// <param name = "fullPath" >
-        /// The fullPath.
+        /// <param name = "fullpath" >
+        /// The fullpath.
         /// </param>
-        /// <param name = "commandType" >
+        /// <param name = "commandtype" >
         /// The commandType.
         /// </param>
-        public Query( string fullPath, SQL commandType = SQL.SELECT )
+        public Query( string fullpath, SQL commandtype = SQL.SELECT )
         {
-            SetConnectionBuilder( fullPath );
+            SetConnectionBuilder( fullpath );
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
-            SqlStatement = new SqlStatement( ConnectionBuilder, commandType );
+            SqlStatement = new SqlStatement( ConnectionBuilder, commandtype );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
@@ -137,25 +137,25 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref = "Query"/> class.
         /// </summary>
-        /// <param name = "fullPath" >
-        /// The fullPath.
+        /// <param name = "fullpath" >
+        /// The fullpath.
         /// </param>
-        /// <param name = "commandType" >
+        /// <param name = "commandtype" >
         /// The commandType.
         /// </param>
         /// <param name = "dict" >
         /// The dictionary.
         /// </param>
-        public Query( string fullPath, SQL commandType, IDictionary<string, object> dict )
+        public Query( string fullpath, SQL commandtype, IDictionary<string, object> dict )
         {
-            SetConnectionBuilder( fullPath );
+            SetConnectionBuilder( fullpath );
             ConnectionFactory = new ConnectionFactory( ConnectionBuilder );
-            SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandType );
+            SqlStatement = new SqlStatement( ConnectionBuilder, dict, commandtype );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             Adapter = new AdapterFactory( ConnectionBuilder, SqlStatement )?.GetAdapter();
             IsDisposed = false;
         }
-        
+
         /// <inheritdoc/>
         /// <summary>
         /// Sets the Data reader.
@@ -216,6 +216,7 @@ namespace BudgetExecution
         /// </c>
         /// to release only unmanaged resources.
         /// </param>
+        [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
         protected virtual void Dispose( bool disposing )
         {
             if( ConnectionFactory?.GetConnection() != null )

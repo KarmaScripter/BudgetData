@@ -58,7 +58,8 @@
     <StartupObject />
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>BudgetNinja.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
@@ -212,19 +213,13 @@
     <Reference Include="Azure.Identity, Version=1.4.1.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
       <HintPath>packages\Azure.Identity.1.4.1\lib\netstandard2.0\Azure.Identity.dll</HintPath>
     </Reference>
-    <Reference Include="BudgetEnumerations, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="BudgetEnumerations">
       <HintPath>..\BudgetEnumerations\bin\Debug\BudgetEnumerations.dll</HintPath>
     </Reference>
     <Reference Include="BudgetExtensions">
-      <HintPath>..\Ninja\bin\Debug\BudgetExtensions.dll</HintPath>
+      <HintPath>..\BudgetExtensions\bin\Debug\BudgetExtensions.dll</HintPath>
     </Reference>
-    <Reference Include="BudgetNinja, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Ninja\bin\Debug\BudgetNinja.dll</HintPath>
-    </Reference>
-    <Reference Include="BudgetStatic, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="BudgetStatic">
       <HintPath>..\BudgetStatic\bin\Debug\BudgetStatic.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -468,7 +463,6 @@
   <ItemGroup>
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
-    <Content Include="BudgetNinja.ico" />
     <Content Include="database\access\datamodels\CREATE\TABLE\AgencyTransfers.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\Allocations.sql" />
     <Content Include="database\access\datamodels\CREATE\TABLE\AllowanceHolders.sql" />
@@ -1498,31 +1492,28 @@
     <Compile Include="databuilder\IDataAccess.cs" />
     <Compile Include="databuilder\IDataBuilder.cs" />
     <Compile Include="databuilder\IDataSchema.cs" />
-    <Compile Include="Error.cs">
+    <Compile Include="Error\Error.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Error.designer.cs">
+    <Compile Include="Error\Error.designer.cs">
       <DependentUpon>Error.cs</DependentUpon>
     </Compile>
     <Compile Include="map\Amount.cs" />
-    <Compile Include="map\AmountBase.cs" />
     <Compile Include="map\Arg.cs" />
+    <Compile Include="map\DataUnit.cs" />
     <Compile Include="map\Element.cs" />
-    <Compile Include="map\ElementBase.cs" />
     <Compile Include="map\IAmount.cs" />
+    <Compile Include="map\IDataUnit.cs" />
     <Compile Include="map\IElement.cs" />
     <Compile Include="map\IKey.cs" />
     <Compile Include="map\IMap.cs" />
-    <Compile Include="map\IUnit.cs" />
     <Compile Include="map\Key.cs" />
-    <Compile Include="map\KeyBase.cs" />
     <Compile Include="map\Map.cs" />
-    <Compile Include="map\Unit.cs" />
     <Compile Include="map\UnitBase.cs" />
-    <Compile Include="Message.cs">
+    <Compile Include="Error\Message.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Message.designer.cs">
+    <Compile Include="Error\Message.designer.cs">
       <DependentUpon>Message.cs</DependentUpon>
     </Compile>
     <Compile Include="query\AccessQuery.cs" />
@@ -1560,10 +1551,10 @@
     <EmbeddedResource Include="conversion\mdb\ConversionForm.resx">
       <DependentUpon>ConversionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Error.resx">
+    <EmbeddedResource Include="Error\Error.resx">
       <DependentUpon>Error.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Message.resx">
+    <EmbeddedResource Include="Error\Message.resx">
       <DependentUpon>Message.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

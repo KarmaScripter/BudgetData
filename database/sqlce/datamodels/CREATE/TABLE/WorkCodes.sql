@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [WorkCodes]
 (
-   [WorkCodeId] INT NOT NULL IDENTITY (1,1),
+   [WorkCodesId] INT NOT NULL IDENTITY (1,1),
    [RpioCode] NVARCHAR(255) DEFAULT ('NS'),
    [WorkCode] NVARCHAR(255) DEFAULT ('NS'),
    [WorkCodeName] NVARCHAR(255) DEFAULT ('NS'),
@@ -20,5 +20,7 @@
    [AccountCode] NVARCHAR(255) DEFAULT ('NS'),
    [WorkProjectCode] NVARCHAR(255) DEFAULT ('NS'),
    [WorkProjectName] NVARCHAR(255) DEFAULT ('NS'),
-   [Percentage] FLOAT NOT NULL DEFAULT (0.0)
+   [Percentage] FLOAT NOT NULL DEFAULT (0.0),
+		CONSTRAINT PK_WorkCodes
+		PRIMARY KEY (WorkCodesId)
 );

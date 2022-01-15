@@ -290,7 +290,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _filePath = GetConnectionBuilder().GetFilePath();
+                    var _filePath = GetConnectionBuilder().ProviderPath[ Provider.ToString() ];
                     using var _excelPackage = new ExcelPackage( new FileInfo( _filePath ) );
                     var _excelWorkbook = _excelPackage.Workbook;
                     var _excelWorksheet = _excelWorkbook.Worksheets[ 1 ];

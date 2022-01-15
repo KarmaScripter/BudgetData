@@ -308,7 +308,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _filePath = GetConnectionBuilder()?.GetFilePath();
+                var _filePath = GetConnectionBuilder().ProviderPath[ Provider.ToString() ];
                 var _application = new App();
                 var _workbook = _application.Workbooks.Open( _filePath );
                 Worksheet worksheet = _workbook.Sheets[ 1 ];
@@ -322,7 +322,7 @@ namespace BudgetExecution
                 {
                     for( var j = 1; j <= _columns; j++ )
                     {
-                        if( _range.Cells[ i, j ] != null
+                        if( _range.Cells[ i, j ]           != null
                             && _range.Cells[ i, j ].Value2 != null )
                         {
                             dataGrid.Rows[ i - 1 ].Cells[ j - 1 ].Value =

@@ -89,15 +89,15 @@ namespace BudgetExecution
         public DateTime GetDate( Field field )
         {
             if( Verify.IsRow( Record )
-                && Validate.Field( field ) )
+                && Verify.Field( field ) )
             {
                 try
                 {
-                    var _columns = Record.Table?.Columns;
+                    var _columns = Record.Table?.GetColumnNames();
 
                     if( _columns?.Contains( $"{field}" ) == true )
                     {
-                        var _date = (DateTime)Record[ field.ToString() ];
+                        var _date = Record.GetDate( field );
 
                         return Verify.IsDateTime( _date )
                             ? _date
@@ -126,14 +126,14 @@ namespace BudgetExecution
         /// <returns> </returns>
         public IEnumerable<DataRow> FilterData( Field field, string filter )
         {
-            if( Validate.Field( field )
+            if( Verify.Field( field )
                 && Verify.IsInput( filter ) )
             {
                 try
                 {
                     var _dataRows = GetData()
-                        ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
-                        ?.Select( p => p );
+                                    ?.Where( p => p.Field<string>( $"{field}" ).Equals( filter ) )
+                                    ?.Select( p => p );
 
                     return _dataRows?.Any() == true
                         ? _dataRows.ToArray()

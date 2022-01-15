@@ -22,28 +22,43 @@ namespace BudgetExecution
     public class AdapterFactory : IDisposable
     {
         /// <summary>
-        /// The Data connection
+        /// Gets or sets the connection.
         /// </summary>
+        /// <value>
+        /// The connection.
+        /// </value>
         public DbConnection Connection { get; set; }
 
         /// <summary>
         /// Gets or sets the SQL statement.
         /// </summary>
+        /// <value>
+        /// The SQL statement.
+        /// </value>
         public ISqlStatement SqlStatement { get; set; }
 
         /// <summary>
         /// Gets or sets the command builder.
         /// </summary>
+        /// <value>
+        /// The command builder.
+        /// </value>
         public ICommandBuilder CommandBuilder { get; set; }
 
         /// <summary>
         /// Gets or sets the connection builder.
         /// </summary>
+        /// <value>
+        /// The connection builder.
+        /// </value>
         public IConnectionBuilder ConnectionBuilder { get; set; }
 
         /// <summary>
         /// Gets or sets the adapter builder.
         /// </summary>
+        /// <value>
+        /// The adapter builder.
+        /// </value>
         public AdapterBuilder AdapterBuilder { get; set; }
 
         /// <summary>
@@ -93,14 +108,14 @@ namespace BudgetExecution
         /// <returns></returns>
         public DbDataAdapter GetAdapter()
         {
-            if( Verify.IsInput( ConnectionBuilder.GetConnectionString() )
+            if( Verify.IsInput( ConnectionBuilder.ConnectionString )
                 && Verify.IsInput( SqlStatement.GetSelectStatement() ) )
             {
                 try
                 {
-                    var _provider = ConnectionBuilder.GetProvider();
+                    var _provider = ConnectionBuilder.Provider;
 
-                    if( Validate.Provider( _provider ) )
+                    if( Verify.Provider( _provider ) )
                     {
                         switch( _provider )
                         {
@@ -139,7 +154,7 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Gets the OLE database Data adapter.
+        /// Gets the OLE database data adapter.
         /// </summary>
         /// <returns></returns>
         private OleDbDataAdapter GetOleDbDataAdapter()
@@ -148,7 +163,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _connectionString = ConnectionBuilder?.GetConnectionString();
+                    var _connectionString = ConnectionBuilder?.ConnectionString;
 
                     return Verify.IsInput( _connectionString )
                         ? new OleDbDataAdapter( SqlStatement.GetSelectStatement(), _connectionString )
@@ -174,7 +189,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _connectionString = ConnectionBuilder?.GetConnectionString();
+                    var _connectionString = ConnectionBuilder?.ConnectionString;
 
                     return Verify.IsInput( _connectionString )
                         ? new SqlDataAdapter( SqlStatement.GetSelectStatement(), _connectionString )
@@ -284,7 +299,7 @@ namespace BudgetExecution
         private protected static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error?.SetText( ex.Message );
+            _error.SetText();
             _error.ShowDialog();
         }
     }

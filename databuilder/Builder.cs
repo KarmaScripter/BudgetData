@@ -96,8 +96,8 @@ namespace BudgetExecution
         public Builder( IQuery query )
         {
             Query = query;
-            Source = ConnectionBuilder.GetSource();
-            Provider = ConnectionBuilder.GetProvider();
+            Source = ConnectionBuilder.Source;
+            Provider = ConnectionBuilder.Provider;
             ConnectionBuilder = Query.GetConnectionBuilder();
             SqlStatement = Query.GetSqlStatement();
             ProgramElements = GetSeries( GetDataTable() );
@@ -146,7 +146,7 @@ namespace BudgetExecution
         public static IEnumerable<string> GetValues( IEnumerable<DataRow> dataRows, Field field, string filter )
         {
             if( Verify.IsSequence( dataRows )
-                && Validate.Field( field )
+                && Verify.Field( field )
                 && Verify.IsInput( filter ) )
             {
                 try
@@ -320,7 +320,7 @@ namespace BudgetExecution
         public static IDictionary<string, IEnumerable<string>> GetSeries( IEnumerable<DataRow> dataRows, Field field, string filter )
         {
             if( Verify.IsInput( dataRows )
-                && Validate.Field( field )
+                && Verify.Field( field )
                 && Verify.IsInput( filter ) )
             {
                 try
@@ -390,7 +390,7 @@ namespace BudgetExecution
         {
             if( Verify.IsSequence( dataRows )
                 && Verify.IsInput( filter )
-                && Validate.Field( field ) )
+                && Verify.Field( field ) )
             {
                 try
                 {

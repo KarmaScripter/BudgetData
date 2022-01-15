@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [Transfers]
 (
-   [TransferId] INT NOT NULL IDENTITY (713,1),
+   [TransfersId] INT NOT NULL IDENTITY (1,1),
    [BudgetLevel] NVARCHAR(255),
    [DocType] NVARCHAR(255),
    [BFY] NVARCHAR(255),
@@ -26,5 +26,7 @@
    [BocCode] NVARCHAR(255),
    [BocName] NVARCHAR(255),
    [Amount] FLOAT NOT NULL,
-   [Purpose] NTEXT
+   [Purpose] NTEXT,
+      CONSTRAINT PK_Transfers
+      PRIMARY KEY (TransfersId)
 );

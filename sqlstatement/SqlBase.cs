@@ -29,7 +29,7 @@ namespace BudgetExecution
         /// <summary>
         /// The arguments
         /// </summary>
-        public IDictionary<string, object> Args { get; set; }
+        public IDictionary<string, object> Args { get; set; } 
 
         /// <summary>
         /// The command text
@@ -45,9 +45,10 @@ namespace BudgetExecution
         {
             try
             {
-                ConnectionBuilder = Validate.Source( source ) && Validate.Provider( provider )
-                    ? new ConnectionBuilder( source, provider )
-                    : default( ConnectionBuilder );
+                ConnectionBuilder = Verify.Source( source ) 
+                    && Verify.Provider( provider )
+                        ? new ConnectionBuilder( source, provider )
+                        : default( ConnectionBuilder );
             }
             catch( Exception ex )
             {
@@ -102,8 +103,8 @@ namespace BudgetExecution
         {
             try
             {
-                CommandText = Verify.IsInput( ConnectionBuilder?.GetConnectionString() )
-                    ? $"{SQL.SELECT} * FROM {ConnectionBuilder?.GetTableName()};"
+                CommandText = Verify.IsInput( ConnectionBuilder?.ConnectionString )
+                    ? $"{SQL.SELECT} * FROM {ConnectionBuilder?.TableName};"
                     : string.Empty;
             }
             catch( Exception ex )
@@ -124,13 +125,13 @@ namespace BudgetExecution
                 {
                     var _empty = string.Empty;
 
-                    foreach( var kvp in dict )
+                    foreach( var _kvp in dict )
                     {
-                        _empty += $"{kvp.Key} = '{kvp.Value}' AND";
+                        _empty += $" {_kvp.Key} = '{_kvp.Value}' AND";
                     }
 
                     var _values = _empty.TrimEnd( " AND".ToCharArray() );
-                    var _tableName = ConnectionBuilder?.GetTableName();
+                    var _tableName = ConnectionBuilder?.TableName;
                     CommandText = $"{SQL.SELECT} * FROM {_tableName} WHERE {_values};";
                 }
                 catch( Exception ex )
@@ -140,7 +141,7 @@ namespace BudgetExecution
             }
             else if( dict == null )
             {
-                CommandText = $"{SQL.SELECT} * FROM {ConnectionBuilder?.GetTableName()};";
+                CommandText = $"{SQL.SELECT} * FROM {ConnectionBuilder?.TableName};";
             }
         }
 
@@ -162,7 +163,7 @@ namespace BudgetExecution
                     }
 
                     var _vals = _update.TrimEnd( " AND".ToCharArray() );
-                    CommandText = $"{SQL.UPDATE} {ConnectionBuilder?.GetTableName()} SET {_vals};";
+                    CommandText = $"{SQL.UPDATE} {ConnectionBuilder?.TableName} SET {_vals};";
                 }
                 catch( Exception ex )
                 {
@@ -181,7 +182,7 @@ namespace BudgetExecution
             {
                 try
                 {
-                    var _table = ConnectionBuilder?.GetTableName();
+                    var _table = ConnectionBuilder?.TableName;
                     var _column = string.Empty;
                     var _values = string.Empty;
 
@@ -217,11 +218,11 @@ namespace BudgetExecution
 
                     foreach( var kvp in dict )
                     {
-                        _columns += $"{kvp.Key} = '{kvp.Value}' AND ";
+                        _columns += $" {kvp.Key} = '{kvp.Value}' AND";
                     }
 
                     var _values = _columns.TrimEnd( " AND".ToCharArray() );
-                    var _table = ConnectionBuilder?.GetTableName();
+                    var _table = ConnectionBuilder?.TableName;
                     CommandText = $"{SQL.DELETE} FROM {_table} WHERE {_values};";
                 }
                 catch( Exception ex )
@@ -231,7 +232,7 @@ namespace BudgetExecution
             }
             else if( dict == null )
             {
-                CommandText = $"{SQL.DELETE} * FROM {ConnectionBuilder?.GetTableName()};";
+                CommandText = $"{SQL.DELETE} * FROM {ConnectionBuilder?.TableName};";
             }
         }
 
@@ -261,7 +262,7 @@ namespace BudgetExecution
         public void SetCommandText( IDictionary<string, object> dict, SQL commandType = SQL.SELECT )
         {
             if( dict == null
-                && Verify.IsInput( ConnectionBuilder?.GetConnectionString() ) )
+                && Verify.IsInput( ConnectionBuilder?.ConnectionString ) )
             {
                 SetSelectStatement();
             }
@@ -310,7 +311,7 @@ namespace BudgetExecution
         private protected static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error?.SetText( ex.Message );
+            _error?.SetText( );
             _error?.ShowDialog();
         }
 

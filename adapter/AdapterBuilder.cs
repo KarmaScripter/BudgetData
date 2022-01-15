@@ -18,28 +18,19 @@ namespace BudgetExecution
     public class AdapterBuilder : DbDataAdapter
     {
         /// <summary>
-        /// Gets or sets the connection.
+        /// The connection
         /// </summary>
-        /// <value>
-        /// The connection.
-        /// </value>
-        public DbConnection Connection { get; protected internal set; }
+        public DbConnection Connection { get;  }
 
         /// <summary>
-        /// Gets or sets the SQL statement.
+        /// The SQL statement
         /// </summary>
-        /// <value>
-        /// The SQL statement.
-        /// </value>
-        public ISqlStatement SqlStatement { get; protected internal set; }
+        public ISqlStatement SqlStatement { get;  }
 
         /// <summary>
-        /// Gets or sets the connection builder.
+        /// The connection builder
         /// </summary>
-        /// <value>
-        /// The connection builder.
-        /// </value>
-        public IConnectionBuilder ConnectionBuilder { get; protected internal set; }
+        public IConnectionBuilder ConnectionBuilder { get;  }
 
         /// <summary>
         /// Gets the command builder.
@@ -73,12 +64,12 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
         /// </summary>
-        /// <param name="commandBuilder">The commandBuilder.</param>
-        public AdapterBuilder( ICommandBuilder commandBuilder )
+        /// <param name="commandbuilder">The commandbuilder.</param>
+        public AdapterBuilder( ICommandBuilder commandbuilder )
             : this()
         {
-            ConnectionBuilder = commandBuilder.ConnectionBuilder;
-            SqlStatement = commandBuilder.SqlStatement;
+            ConnectionBuilder = commandbuilder.ConnectionBuilder;
+            SqlStatement = commandbuilder.SqlStatement;
             Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             CommandFactory = new CommandFactory( CommandBuilder );
@@ -88,14 +79,14 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
         /// </summary>
-        /// <param name="connectionBuilder">The connectionBuilder.</param>
-        /// <param name="sqlStatement">The sqlStatement.</param>
-        public AdapterBuilder( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
+        /// <param name="connectionbuilder">The connectionbuilder.</param>
+        /// <param name="sqlstatement">The sqlstatement.</param>
+        public AdapterBuilder( IConnectionBuilder connectionbuilder, ISqlStatement sqlstatement )
             : this()
         {
-            ConnectionBuilder = connectionBuilder;
+            ConnectionBuilder = connectionbuilder;
             Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
-            SqlStatement = sqlStatement;
+            SqlStatement = sqlstatement;
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             CommandFactory = new CommandFactory( CommandBuilder );
             SelectCommand = CommandFactory.GetSelectCommand();
@@ -146,7 +137,7 @@ namespace BudgetExecution
         private protected static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error?.SetText( ex.Message );
+            _error?.SetText( );
             _error?.ShowDialog();
         }
     }

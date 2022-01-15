@@ -16,6 +16,7 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
+    /// <seealso cref="BudgetExecution.ICommandBuilder" />
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     public class CommandBuilder : ICommandBuilder
@@ -28,22 +29,22 @@ namespace BudgetExecution
         /// <summary>
         /// The connection builder
         /// </summary>
-        public IConnectionBuilder ConnectionBuilder { get;  }
+        public IConnectionBuilder ConnectionBuilder { get; set; }
 
         /// <summary>
         /// The provider
         /// </summary>
-        public Provider Provider { get; }
+        public Provider Provider { get; set; }
 
         /// <summary>
         /// The source
         /// </summary>
-        public Source Source { get;  }
+        public Source Source { get; set; }
 
         /// <summary>
         /// The SQL statement
         /// </summary>
-        public ISqlStatement SqlStatement { get;  }
+        public ISqlStatement SqlStatement { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandBuilder"/> class.
@@ -53,11 +54,11 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// 
+        /// Initializes a new instance of the <see cref="CommandBuilder"/> class.
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="provider"></param>
-        /// <param name="dict"></param>
+        /// <param name="source">The source.</param>
+        /// <param name="provider">The provider.</param>
+        /// <param name="dict">The dictionary.</param>
         public CommandBuilder( Source source, Provider provider, IDictionary<string, object> dict )
         {
             Source = source;
@@ -67,19 +68,21 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommandBuilder"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="CommandBuilder"/> class.
         /// </summary>
         /// <param name="sqlStatement">The SQL statement.</param>
         public CommandBuilder( ISqlStatement sqlStatement )
         {
             SqlStatement = sqlStatement;
             ConnectionBuilder = SqlStatement.ConnectionBuilder;
-            Provider = ConnectionBuilder.GetProvider();
-            Source = ConnectionBuilder.GetSource();
+            Provider = ConnectionBuilder.Provider;
+            Source = ConnectionBuilder.Source;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CommandBuilder"/> class.
+        /// Initializes a new instance of the
+        /// <see cref="CommandBuilder"/> class.
         /// </summary>
         /// <param name="connectionBuilder">The connection builder.</param>
         /// <param name="sqlStatement">The SQL statement.</param>
@@ -87,27 +90,8 @@ namespace BudgetExecution
         {
             SqlStatement = sqlStatement;
             ConnectionBuilder = connectionBuilder;
-            Provider = ConnectionBuilder.GetProvider();
-            Source = ConnectionBuilder.GetSource();
-        }
-
-        /// <summary>
-        /// Gets the SQL statement.
-        /// </summary>
-        /// <returns></returns>
-        public ISqlStatement GetSqlStatement()
-        {
-            try
-            {
-                return Verify.IsRef( SqlStatement )
-                    ? SqlStatement
-                    : default( ISqlStatement );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( ISqlStatement );
-            }
+            Provider = ConnectionBuilder.Provider;
+            Source = ConnectionBuilder.Source;
         }
 
         /// <summary>
@@ -118,7 +102,7 @@ namespace BudgetExecution
         public DbCommand GetCommand( ISqlStatement sqlStatement )
         {
             if( Verify.IsRef( sqlStatement )
-                && Enum.IsDefined( typeof( Provider ), ConnectionBuilder.GetProvider() ) )
+               && Enum.IsDefined( typeof( Provider ), ConnectionBuilder.Provider ) )
             {
                 try
                 {
@@ -166,7 +150,7 @@ namespace BudgetExecution
 
             return default( DbCommand );
         }
-        
+
         /// <summary>
         /// Gets the sq lite command.
         /// </summary>
@@ -461,7 +445,7 @@ namespace BudgetExecution
         private protected static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error?.SetText( ex.Message );
+            _error?.SetText();
             _error?.ShowDialog();
         }
     }

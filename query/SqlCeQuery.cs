@@ -16,7 +16,7 @@ namespace BudgetExecution
     /// <seealso cref = "T:BudgetExecution.Query"/>
     public class SqlCeQuery : Query
     {
-        public readonly Provider Provider = Provider.SqlCe;
+        private readonly Provider _provider = Provider.SqlCe;
         
         /// <inheritdoc/>
         /// <summary>
@@ -173,7 +173,7 @@ namespace BudgetExecution
                 {
                     using var _dataSet = new DataSet();
                     using var _dataTable = new DataTable();
-                    var _fileName = GetConnectionBuilder().GetFileName();
+                    var _fileName = GetConnectionBuilder().FileName;
                     _dataSet.DataSetName = _fileName;
                     _dataTable.TableName = sheetName;
                     _dataSet.Tables.Add( _dataTable );

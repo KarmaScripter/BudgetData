@@ -1,6 +1,9 @@
-CREATE TABLE [ExecutionTables](
-	[ExecutionTableId] [int] NOT NULL IDENTITY (1,1),
-	[TableName] [nvarchar](255) NULL,
-	[Type] [nvarchar](255) NULL
+CREATE TABLE [ExecutionTables]
+(
+	[ExecutionTablesId] INT NOT NULL IDENTITY (1,1),
+	[TableName] NVARCHAR(255) NULL,
+	[Type] NVARCHAR(255) NULL,
+    CONSTRAINT PK_ExecutionTables
+    PRIMARY KEY (ExecutionTablesId) 
 );
 

@@ -7,24 +7,20 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    public interface IElement
+    public interface IElement : IDataUnit
     {
         /// <summary>
-        /// Gets the name.
+        /// Gets or sets the name.
         /// </summary>
-        /// <returns></returns>
-        string GetName();
-
-        /// <summary>
-        /// Gets the value.
-        /// </summary>
-        /// <returns></returns>
-        string GetValue();
-
+        /// <value>
+        /// The name.
+        /// </value>
+        string Name { get; set; }
+        
         /// <summary>
         /// Gets the field.
         /// </summary>
         /// <returns></returns>
-        Field GetField();
+        Field Field { get; set; }
     }
 }
