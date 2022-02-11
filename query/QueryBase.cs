@@ -11,6 +11,9 @@ namespace BudgetExecution
     using System.IO;
     using System.Linq;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class QueryBase
     {
         /// <summary>
@@ -357,9 +360,9 @@ namespace BudgetExecution
         /// <param name="ex">The ex.</param>
         private protected static void Fail( Exception ex )
         {
-            using var _error = new Error( ex );
-            _error?.SetText( ex.Message );
-            _error?.ShowDialog();
+            using var error = new Error( ex );
+            error?.SetText( ex );
+            error?.ShowDialog();
         }
     }
 }
