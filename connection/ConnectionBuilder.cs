@@ -21,7 +21,7 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "MemberCanBeInternal" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
-    public class ConnectionBuilder : ConnectionBase, ISource, IProvider, IConnectionBuilder
+    public class ConnectionBuilder : ConnectionBase, IConnectionBuilder
     {
         /// <summary>
         /// The provider path
@@ -91,44 +91,6 @@ namespace BudgetExecution
             FileExtension = (EXT)Enum.Parse( typeof( EXT ), Path.GetExtension( fullPath ) ?? string.Empty );
             TableName = Source.ToString();
             ConnectionString = GetConnectionString( Provider );
-        }
-
-        /// <summary>
-        /// Gets the provider.
-        /// </summary>
-        /// <returns></returns>
-        public Provider GetProvider()
-        {
-            try
-            {
-                return Verify.Provider( Provider )
-                    ? Provider
-                    : default( Provider );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( Provider );
-            }
-        }
-
-        /// <summary>
-        /// Gets the source.
-        /// </summary>
-        /// <returns></returns>
-        public Source GetSource()
-        {
-            try
-            {
-                return Verify.Source( Source )
-                    ? Source
-                    : Source.NS;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return Source.NS;
-            }
         }
     }
 }

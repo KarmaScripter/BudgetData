@@ -176,3 +176,14 @@ C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.csproj.CoreCompileIn
 C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.csproj.CopyComplete
 C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.dll
 C:\Users\terry\source\repos\BudgetData\obj\Debug\BudgetData.pdb
+C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.Core.WinForms.dll
+C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.SfListView.WinForms.dll
+C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.SpellChecker.Base.dll
+C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.DataSource.WinForms.dll
+C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.GridCommon.WinForms.dll
+C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.Core.WinForms.xml
+C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.SfListView.WinForms.xml
+C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.SpellChecker.Base.xml
+C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.DataSource.WinForms.xml
+C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.GridCommon.WinForms.xml
+C:\Users\terry\source\repos\BudgetData\bin\Debug\Syncfusion.Grid.Windows.XmlSerializers.dll

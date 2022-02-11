@@ -770,18 +770,6 @@
             <param name="fullPath">The fullPath.</param>
             <param name="provider">The provider.</param>
         </member>
-        <member name="M:BudgetExecution.ConnectionBuilder.GetProvider">
-            <summary>
-            Gets the provider.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.ConnectionBuilder.GetSource">
-            <summary>
-            Gets the source.
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:BudgetExecution.ConnectionFactory">
             <inheritdoc/>
             <summary>
@@ -2003,49 +1991,76 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:BudgetExecution.IDataSchema">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:BudgetExecution.IDataSchema.GetColumnNames">
-            <summary> Sets the column names. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the column names.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.IDataSchema.GetColumnCaptions">
-            <summary> Gets the column captions. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the column captions.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.IDataSchema.GetColumnOrdinals">
-            <summary> Gets the column ordinals. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the column ordinals.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.IDataSchema.GetColumnTypes">
-            <summary> Sets the column types. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the column types.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.IDataSchema.GetIndexes">
-            <summary> Sets the primary keys. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the indexes.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.IDataSchema.GetPrimaryKeyColumn">
-            <summary> Gets the primary key columns. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the primary key column.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.IDataSchema.GetColumnSchema">
-            <summary> Gets the column schema. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the column schema.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.IDataSchema.GetSchemaTable">
-            <summary> Gets the schema table. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the schema table.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.IDataSchema.GetDataTable">
-            <summary> Gets the Data Table. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the data table.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.IDataSchema.GetTableName">
-            <summary> Gets the name of the Table. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the name of the table.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.IDataSchema.GetData">
-            <summary> Gets the Data. </summary>
-            <returns> </returns>
+            <summary>
+            Gets the data.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:BudgetExecution.Error.#ctor(System.Exception)">
             <summary>

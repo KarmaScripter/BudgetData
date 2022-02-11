@@ -1447,91 +1447,91 @@
     <Content Include="database\sqlite\ui\SQLiteDatabaseBrowserPortable.exe" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="adapter\AdapterBuilder.cs">
+    <Compile Include="Adapter\AdapterBuilder.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="adapter\AdapterFactory.cs" />
-    <Compile Include="adapter\IAdapter.cs" />
-    <Compile Include="command\CommandBuilder.cs" />
-    <Compile Include="command\CommandFactory.cs" />
-    <Compile Include="command\ICommandBuilder.cs" />
-    <Compile Include="command\ICommandFactory.cs" />
-    <Compile Include="connection\ConnectionBase.cs" />
-    <Compile Include="connection\ConnectionBuilder.cs" />
-    <Compile Include="connection\ConnectionFactory.cs" />
-    <Compile Include="connection\IConnectionBuilder.cs" />
-    <Compile Include="connection\IConnectionFactory.cs" />
-    <Compile Include="connection\IProvider.cs" />
-    <Compile Include="connection\ISource.cs" />
-    <Compile Include="conversion\mdb\AccessConnect.cs" />
-    <Compile Include="conversion\mdb\AccessConversion.cs" />
-    <Compile Include="conversion\mdb\ConversionForm.cs">
+    <Compile Include="Adapter\AdapterFactory.cs" />
+    <Compile Include="Adapter\IAdapter.cs" />
+    <Compile Include="Command\CommandBuilder.cs" />
+    <Compile Include="Command\CommandFactory.cs" />
+    <Compile Include="Command\ICommandBuilder.cs" />
+    <Compile Include="Command\ICommandFactory.cs" />
+    <Compile Include="Connection\ConnectionBase.cs" />
+    <Compile Include="Connection\ConnectionBuilder.cs" />
+    <Compile Include="Connection\ConnectionFactory.cs" />
+    <Compile Include="Connection\IConnectionBuilder.cs" />
+    <Compile Include="Connection\IConnectionFactory.cs" />
+    <Compile Include="Connection\IProvider.cs" />
+    <Compile Include="Connection\ISource.cs" />
+    <Compile Include="Conversion\mdb\AccessConnect.cs" />
+    <Compile Include="Conversion\mdb\AccessConversion.cs" />
+    <Compile Include="Conversion\mdb\ConversionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="conversion\mdb\ConversionForm.Designer.cs">
+    <Compile Include="Conversion\mdb\ConversionForm.Designer.cs">
       <DependentUpon>ConversionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="conversion\sdf\ColumnSchema.cs" />
-    <Compile Include="conversion\sdf\DatabaseSchema.cs" />
-    <Compile Include="conversion\sdf\FailedViewDefinitionHandler.cs" />
-    <Compile Include="conversion\sdf\ForeignKeySchema.cs" />
-    <Compile Include="conversion\sdf\IndexSchema.cs" />
-    <Compile Include="conversion\sdf\SqlConversionHandler.cs" />
-    <Compile Include="conversion\sdf\SqlServerConverter.cs" />
-    <Compile Include="conversion\sdf\SqlTableSelectionHandler.cs" />
-    <Compile Include="conversion\sdf\TableSchema.cs" />
-    <Compile Include="conversion\sdf\TriggerBuilder.cs" />
-    <Compile Include="conversion\sdf\TriggerSchema.cs" />
-    <Compile Include="conversion\sdf\ViewSchema.cs" />
-    <Compile Include="databuilder\Builder.cs" />
-    <Compile Include="databuilder\BuilderBase.cs" />
-    <Compile Include="databuilder\DataAccess.cs" />
-    <Compile Include="databuilder\DataBuilder.cs" />
-    <Compile Include="databuilder\DataConfig.cs" />
-    <Compile Include="databuilder\IBuilder.cs" />
-    <Compile Include="databuilder\IDataAccess.cs" />
-    <Compile Include="databuilder\IDataBuilder.cs" />
-    <Compile Include="databuilder\IDataSchema.cs" />
+    <Compile Include="Conversion\sdf\ColumnSchema.cs" />
+    <Compile Include="Conversion\sdf\DatabaseSchema.cs" />
+    <Compile Include="Conversion\sdf\FailedViewDefinitionHandler.cs" />
+    <Compile Include="Conversion\sdf\ForeignKeySchema.cs" />
+    <Compile Include="Conversion\sdf\IndexSchema.cs" />
+    <Compile Include="Conversion\sdf\SqlConversionHandler.cs" />
+    <Compile Include="Conversion\sdf\SqlServerConverter.cs" />
+    <Compile Include="Conversion\sdf\SqlTableSelectionHandler.cs" />
+    <Compile Include="Conversion\sdf\TableSchema.cs" />
+    <Compile Include="Conversion\sdf\TriggerBuilder.cs" />
+    <Compile Include="Conversion\sdf\TriggerSchema.cs" />
+    <Compile Include="Conversion\sdf\ViewSchema.cs" />
+    <Compile Include="Databuilder\Builder.cs" />
+    <Compile Include="Databuilder\BuilderBase.cs" />
+    <Compile Include="Databuilder\DataAccess.cs" />
+    <Compile Include="Databuilder\DataBuilder.cs" />
+    <Compile Include="Databuilder\DataConfig.cs" />
+    <Compile Include="Databuilder\IBuilder.cs" />
+    <Compile Include="Databuilder\IDataAccess.cs" />
+    <Compile Include="Databuilder\IDataBuilder.cs" />
+    <Compile Include="Databuilder\IDataSchema.cs" />
     <Compile Include="Error\Error.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Error\Error.designer.cs">
       <DependentUpon>Error.cs</DependentUpon>
     </Compile>
-    <Compile Include="map\Amount.cs" />
-    <Compile Include="map\Arg.cs" />
-    <Compile Include="map\DataUnit.cs" />
-    <Compile Include="map\Element.cs" />
-    <Compile Include="map\IAmount.cs" />
-    <Compile Include="map\IDataUnit.cs" />
-    <Compile Include="map\IElement.cs" />
-    <Compile Include="map\IKey.cs" />
-    <Compile Include="map\IMap.cs" />
-    <Compile Include="map\Key.cs" />
-    <Compile Include="map\Map.cs" />
-    <Compile Include="map\UnitBase.cs" />
+    <Compile Include="Map\Amount.cs" />
+    <Compile Include="Map\Arg.cs" />
+    <Compile Include="Map\DataUnit.cs" />
+    <Compile Include="Map\Element.cs" />
+    <Compile Include="Map\IAmount.cs" />
+    <Compile Include="Map\IDataUnit.cs" />
+    <Compile Include="Map\IElement.cs" />
+    <Compile Include="Map\IKey.cs" />
+    <Compile Include="Map\IMap.cs" />
+    <Compile Include="Map\Key.cs" />
+    <Compile Include="Map\Map.cs" />
+    <Compile Include="Map\UnitBase.cs" />
     <Compile Include="Error\Message.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Error\Message.designer.cs">
       <DependentUpon>Message.cs</DependentUpon>
     </Compile>
-    <Compile Include="query\AccessQuery.cs" />
-    <Compile Include="query\CsvQuery.cs" />
-    <Compile Include="query\ExcelQuery.cs" />
-    <Compile Include="query\IQuery.cs" />
-    <Compile Include="query\Query.cs" />
-    <Compile Include="query\QueryBase.cs" />
-    <Compile Include="query\SqlCeQuery.cs" />
-    <Compile Include="query\SQLiteQuery.cs" />
-    <Compile Include="query\SqlServerQuery.cs" />
-    <Compile Include="schema\DataSchema.cs" />
-    <Compile Include="sqlstatement\ISqlStatement.cs" />
-    <Compile Include="sqlstatement\SqlBase.cs" />
-    <Compile Include="sqlstatement\SqlConfig.cs" />
-    <Compile Include="sqlstatement\SqlFactory.cs" />
-    <Compile Include="sqlstatement\SqlStatement.cs" />
-    <Compile Include="worker\DataWorker.cs">
+    <Compile Include="Query\AccessQuery.cs" />
+    <Compile Include="Query\CsvQuery.cs" />
+    <Compile Include="Query\ExcelQuery.cs" />
+    <Compile Include="Query\IQuery.cs" />
+    <Compile Include="Query\Query.cs" />
+    <Compile Include="Query\QueryBase.cs" />
+    <Compile Include="Query\SqlCeQuery.cs" />
+    <Compile Include="Query\SQLiteQuery.cs" />
+    <Compile Include="Query\SqlServerQuery.cs" />
+    <Compile Include="Schema\DataSchema.cs" />
+    <Compile Include="Sqlstatement\ISqlStatement.cs" />
+    <Compile Include="Sqlstatement\SqlBase.cs" />
+    <Compile Include="Sqlstatement\SqlConfig.cs" />
+    <Compile Include="Sqlstatement\SqlFactory.cs" />
+    <Compile Include="Sqlstatement\SqlStatement.cs" />
+    <Compile Include="Worker\DataWorker.cs">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
@@ -1548,7 +1548,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="conversion\mdb\ConversionForm.resx">
+    <EmbeddedResource Include="Conversion\mdb\ConversionForm.resx">
       <DependentUpon>ConversionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Error\Error.resx">

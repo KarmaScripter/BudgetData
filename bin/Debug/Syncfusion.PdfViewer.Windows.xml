@@ -20321,11 +20321,6 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="P:Syncfusion.Windows.Forms.PdfViewer.NotificationBar.Viewer">
-            <summary>
-            Get and set PdfViewerControl in which notification bar is to be added
-            </summary>
-        </member>
         <member name="P:Syncfusion.Windows.Forms.PdfViewer.NotificationBar.Visibility">
             <summary>
             Get and set the visibility of the notification bar
