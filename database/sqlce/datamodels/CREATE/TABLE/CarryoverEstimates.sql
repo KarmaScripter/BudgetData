@@ -1,6 +1,6 @@
 CREATE TABLE CarryoverEstimates
 (
-	CarryoverEstimateId INT NOT NULL IDENTITY (1,1),
+	CarryoverEstimatesId INT NOT NULL IDENTITY (1,1),
     BudgetLevel NVARCHAR(255), 
 	BFY NVARCHAR(255),
     AhCode NVARCHAR(255),
@@ -12,7 +12,9 @@ CREATE TABLE CarryoverEstimates
     DivisionName NVARCHAR(255),
     BocCode NVARCHAR(255),
     BocName NVARCHAR(255),
-	Balance REAL,
-    OpenCommitment REAL,
-    Estimate REAL
+	Balance FLOAT,
+    OpenCommitment FLOAT,
+    Estimate FLOAT,
+        CONSTRAINT PK_CarryoverEstimates
+        PRIMARY KEY (CarryoverEstimatesId) 
 );

@@ -153,7 +153,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Source( Source )
+                return Validate.IsSource( Source )
                     ? Source
                     : Source.NS;
             }
@@ -171,7 +171,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Provider( Provider )
+                return Validate.IsProvider( Provider )
                     ? Provider
                     : Provider.NS;
             }
@@ -304,7 +304,7 @@ namespace BudgetExecution
         /// <summary>
         /// Gets the column ordinals.
         /// </summary>
-        /// <param name="dataColumns">The Data Columns.</param>
+        /// <param name="dataColumns">The Data columns.</param>
         /// <returns></returns>
         public IEnumerable<int> GetColumnOrdinals( IEnumerable<DataColumn> dataColumns )
         {

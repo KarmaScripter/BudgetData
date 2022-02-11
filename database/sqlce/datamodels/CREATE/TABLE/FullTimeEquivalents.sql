@@ -1,7 +1,7 @@
 CREATE TABLE FullTimeEquivalents
 (
-    FullTimeEquivalentId INTEGER NOT NULL UNIQUE IDENTITY(1,1),
-	PrcId INTEGER NOT NULL UNIQUE,
+    FullTimeEquivalentsId INTEGER NOT NULL UNIQUE IDENTITY(1,1),
+	AllocationsId INTEGER NOT NULL UNIQUE,
 	BudgetLevel NVARCHAR(255) NULL,
 	RPIO NVARCHAR(255) NULL,
 	BFY NVARCHAR(255) NULL,
@@ -29,7 +29,9 @@ CREATE TABLE FullTimeEquivalents
 	ObjectiveName NVARCHAR(255) NULL,
 	AllocationRatio FLOAT NULL,
 	ChangeDate DATETIME NULL,
-    CONSTRAINT FK_FullTimeEquivalents
-    FOREIGN KEY (PrcId) 
-    REFERENCES Allocations
+    CONSTRAINT PK_FullTimeEquivalents
+    PRIMARY KEY (FullTimeEquivalentsId),
+	CONSTRAINT FK_FullTimeEquivalents
+	FOREIGN KEY (AllocationsId) 
+	REFERENCES Allocations
 );

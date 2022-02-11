@@ -12,18 +12,17 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="BudgetExecution.UnitBase" />
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Global" ) ]
     [ SuppressMessage( "ReSharper", "UnassignedGetOnlyAutoProperty" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeProtected.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
-    public abstract class Arg : UnitBase
+    public abstract class Arg : DataUnit
     {
         /// <summary>
         /// The values
         /// </summary>
-        public IEnumerable<string> Values { get; set; }
+        public IEnumerable<object> Values { get; set; }
 
         /// <summary>
         /// The names
@@ -93,7 +92,7 @@ namespace BudgetExecution
                         {
                             for( var i = 0; i < data.Length; i++ )
                             {
-                                if( kvp.Key.Contains( data[ i ] ) )
+                                if( kvp.Key.Contains( data[ i ].ToString() ) )
                                 {
                                     _dictionary?.Add( kvp.Key, kvp.Value );
                                 }

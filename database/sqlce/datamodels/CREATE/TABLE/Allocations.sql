@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [Allocations]
 (
-   [PrcId] INT NOT NULL IDENTITY (1,1),
+   [AllocationsId] INT NOT NULL IDENTITY (1,1),
    [BudgetLevel] NVARCHAR(50) NOT NULL DEFAULT ('NS'),
    [RPIO] NVARCHAR(50) NOT NULL DEFAULT ('NS'),
    [BFY] NVARCHAR(50) NOT NULL DEFAULT ('NS'),
@@ -24,7 +24,7 @@
    [AhName] NVARCHAR(50) NOT NULL DEFAULT ('NS'),
    [OrgName] NVARCHAR(50) NOT NULL DEFAULT ('NS'),
    [GoalName] NVARCHAR(50) NOT NULL DEFAULT ('NS'),
-   [ObjectiveName] NVARCHAR(50) NOT NULL DEFAULT ('NS')
+   [ObjectiveName] NVARCHAR(50) NOT NULL DEFAULT ('NS'),
+    CONSTRAINT PK_Allocations
+    PRIMARY KEY (AllocationsId) 
 );
-
-ALTER TABLE [Allocations] ADD CONSTRAINT [PK_Allocations] PRIMARY KEY ([PrcId]);

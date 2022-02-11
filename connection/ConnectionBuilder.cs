@@ -5,6 +5,8 @@
 namespace BudgetExecution
 {
     using System;
+    using System.Collections.Specialized;
+    using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
 
@@ -21,6 +23,11 @@ namespace BudgetExecution
     [ SuppressMessage( "ReSharper", "InconsistentNaming" ) ]
     public class ConnectionBuilder : ConnectionBase, ISource, IProvider, IConnectionBuilder
     {
+        /// <summary>
+        /// The provider path
+        /// </summary>
+        public NameValueCollection ProviderPath { get; set; }
+
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="ConnectionBuilder" />
@@ -41,11 +48,12 @@ namespace BudgetExecution
         {
             Source = source;
             Provider = provider;
-            SetFilePath( Provider );
-            SetFileName( FilePath );
-            SetFileExtension( FilePath );
-            TableName = source.ToString();
-            SetConnectionString( provider );
+            FilePath = GetFilePath( Provider );
+            FileName = Path.GetFileNameWithoutExtension( FilePath );
+            ProviderPath = ConfigurationManager.AppSettings;
+            FileExtension = (EXT)Enum.Parse( typeof( EXT ), Path.GetExtension( FilePath ) ?? string.Empty );
+            TableName = Source.ToString(); 
+            ConnectionString = GetConnectionString( Provider );
         }
 
         /// <summary>
@@ -57,12 +65,13 @@ namespace BudgetExecution
         public ConnectionBuilder( string fullPath )
         {
             Source = Source.External;
-            SetFilePath( fullPath );
-            SetFileName( fullPath );
-            SetFileExtension( fullPath );
-            SetProvider( FileExtension );
+            FilePath = fullPath;
+            FileName = Path.GetFileNameWithoutExtension( FilePath );
+            FileExtension = (EXT)Enum.Parse( typeof( EXT ), Path.GetExtension( FilePath ) ?? string.Empty );
+            Provider = (Provider)Enum.Parse( typeof( Provider ), GetProviderPath( FilePath ) );
+            ProviderPath = ConfigurationManager.AppSettings;
             TableName = FileName;
-            SetConnectionString( Provider );
+            ConnectionString = GetConnectionString( Provider );
         }
 
         /// <summary>
@@ -75,128 +84,13 @@ namespace BudgetExecution
         public ConnectionBuilder( string fullPath, Provider provider = Provider.SQLite )
         {
             Source = Source.External;
-            SetFilePath( fullPath );
-            SetFileName( fullPath );
-            SetFileExtension( fullPath );
-            SetProvider( provider );
-            TableName = FileName;
-            SetConnectionString( provider );
-        }
-
-        /// <summary>
-        /// Gets the file path.
-        /// </summary>
-        /// <returns></returns>
-        public string GetFilePath()
-        {
-            try
-            {
-                return Verify.IsInput( FilePath ) 
-                    && File.Exists( FilePath )
-                        ? Path.GetFullPath( FilePath )
-                        : default( string );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( string );
-            }
-        }
-
-        /// <summary>
-        /// Gets the file extension.
-        /// </summary>
-        /// <returns></returns>
-        public EXT GetFileExtension()
-        {
-            try
-            {
-                return Validate.EXT( FileExtension )
-                    ? FileExtension
-                    : EXT.NS;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return EXT.NS;
-            }
-        }
-
-        /// <summary>
-        /// Gets the name of the file.
-        /// </summary>
-        /// <returns></returns>
-        public string GetFileName()
-        {
-            try
-            {
-                return Verify.IsInput( FilePath ) 
-                    && File.Exists( FilePath )
-                        ? Path.GetFullPath( FilePath )
-                        : default( string );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( string );
-            }
-        }
-
-        /// <summary>
-        /// Gets the provider path.
-        /// </summary>
-        /// <returns></returns>
-        public string GetProviderPath()
-        {
-            try
-            {
-                return Verify.IsInput( FilePath )
-                    ? Path.GetFullPath( FilePath )
-                    : default( string );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( string );
-            }
-        }
-
-        /// <summary>
-        /// Gets the connection string.
-        /// </summary>
-        /// <returns></returns>
-        public string GetConnectionString()
-        {
-            try
-            {
-                return Verify.IsInput( ConnectionString )
-                    ? ConnectionString
-                    : default( string );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( string );
-            }
-        }
-
-        /// <summary>
-        /// Gets the name of the table.
-        /// </summary>
-        /// <returns></returns>
-        public string GetTableName()
-        {
-            try
-            {
-                return Verify.IsInput( TableName )
-                    ? TableName
-                    : default( string );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( string );
-            }
+            Provider = provider;
+            FilePath = fullPath;
+            FileName = Path.GetFileNameWithoutExtension( fullPath );
+            ProviderPath = ConfigurationManager.AppSettings;
+            FileExtension = (EXT)Enum.Parse( typeof( EXT ), Path.GetExtension( fullPath ) ?? string.Empty );
+            TableName = Source.ToString();
+            ConnectionString = GetConnectionString( Provider );
         }
 
         /// <summary>
@@ -207,7 +101,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Provider( Provider )
+                return Validate.IsProvider( Provider )
                     ? Provider
                     : default( Provider );
             }
@@ -226,7 +120,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Validate.Source( Source )
+                return Validate.IsSource( Source )
                     ? Source
                     : Source.NS;
             }

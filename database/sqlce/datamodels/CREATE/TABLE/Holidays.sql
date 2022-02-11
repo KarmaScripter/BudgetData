@@ -1,6 +1,6 @@
 CREATE TABLE Holidays
 (
-	HolidayId INTEGER NOT NULL UNIQUE IDENTITY(1,1),
+	HolidaysId INTEGER NOT NULL UNIQUE IDENTITY(1,1),
 	ColumbusDay DATETIME NULL,
 	ThanksgivingDay DATETIME NULL,
 	ChristmasDay DATETIME NULL,
@@ -9,6 +9,8 @@ CREATE TABLE Holidays
 	PresidentsDay DATETIME NULL,
 	MemorialDay DATETIME NULL,
 	VeteransDay DATETIME NULL,
-	LaborDay DATETIME NULL
+	LaborDay DATETIME NULL,
+        CONSTRAINT PK_Holidays
+        PRIMARY KEY (HolidaysId) 
 );
 

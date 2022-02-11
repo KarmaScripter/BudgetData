@@ -4,6 +4,8 @@
 
 namespace BudgetExecution
 {
+    using System.Collections.Specialized;
+
     /// <summary>
     /// </summary>
     public interface IConnectionBuilder
@@ -13,55 +15,41 @@ namespace BudgetExecution
         /// </summary>
         /// <returns>
         /// </returns>
-        Source GetSource();
+        Source Source { get; set; }
 
         /// <summary>
         /// Gets the provider.
         /// </summary>
         /// <returns>
         /// </returns>
-        Provider GetProvider();
-
-        /// <summary>
-        /// Gets the file path.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        string GetFilePath();
-
-        /// <summary>
-        /// Gets the file extension.
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        EXT GetFileExtension();
+        Provider Provider { get; set; }
 
         /// <summary>
         /// Gets the name of the file.
         /// </summary>
         /// <returns>
         /// </returns>
-        string GetFileName();
+        string FileName { get; set; }
 
         /// <summary>
         /// Gets the provider path.
         /// </summary>
         /// <returns>
         /// </returns>
-        string GetProviderPath();
+        NameValueCollection ProviderPath { get; set; }
 
         /// <summary>
         /// Gets the connection string.
         /// </summary>
         /// <returns>
         /// </returns>
-        string GetConnectionString();
+        string ConnectionString { get; set; }
 
         /// <summary>
         /// Gets the name of the table.
         /// </summary>
         /// <returns>
         /// </returns>
-        string GetTableName();
+        string TableName { get; set; }
     }
 }

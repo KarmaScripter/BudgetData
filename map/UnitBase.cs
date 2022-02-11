@@ -6,6 +6,7 @@ namespace BudgetExecution
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using VisualPlus.Extensibility;
 
     /// <summary>
     /// 
@@ -18,71 +19,17 @@ namespace BudgetExecution
         /// <summary>
         /// The Data
         /// </summary>
-        public object Data { get; protected internal set; }
+        public object Data { get; set; }
 
         /// <summary>
         /// The name
         /// </summary>
-        public string Name { get; protected internal set; }
+        public string Name { get; set; }
 
         /// <summary>
         /// The value
         /// </summary>
-        public string Value { get; protected internal set; }
-
-        /// <summary>
-        /// Sets the name.
-        /// </summary>
-        /// <param name="columnName">Name of the column.</param>
-        public virtual void SetName( string columnName )
-        {
-            try
-            {
-                Name = Verify.IsInput( columnName )
-                    ? columnName
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the Data.
-        /// </summary>
-        /// <param name="data">The Data.</param>
-        public virtual void SetData( object data )
-        {
-            try
-            {
-                Data = Verify.IsInput( data?.ToString() )
-                    ? data
-                    : default( object );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the value.
-        /// </summary>
-        /// <param name="data">The Data.</param>
-        public virtual void SetValue( object data )
-        {
-            try
-            {
-                Value = Verify.IsInput( data?.ToString() )
-                    ? data?.ToString()
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
+        public string Value { get; set; }
 
         /// <summary>
         /// Determines whether the specified unit is match.
@@ -91,14 +38,14 @@ namespace BudgetExecution
         /// <returns>
         ///   <c>true</c> if the specified unit is match; otherwise, <c>false</c>.
         /// </returns>
-        public virtual bool IsMatch( IUnit unit )
+        public virtual bool IsMatch( IDataUnit unit )
         {
             if( Verify.IsRef( unit ) )
             {
                 try
                 {
-                    return unit.GetName()?.Equals( Name ) == true
-                        && unit.GetValue()?.Equals( Value ) == true;
+                    return unit.GetName()?.Equals( Name )   == true
+                        && unit.Value.Equals( Value ) == true;
                 }
                 catch( Exception ex )
                 {

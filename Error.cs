@@ -6,6 +6,9 @@ namespace BudgetExecution
 {
     using System;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class Error
     {
         /// <summary>

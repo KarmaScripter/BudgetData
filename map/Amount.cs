@@ -11,20 +11,39 @@ namespace BudgetExecution
     /// <summary>
     /// 
     /// </summary>
-    /// <seealso cref="BudgetExecution.AmountBase" />
     /// <seealso cref="BudgetExecution.IAmount" />
     [ SuppressMessage( "ReSharper", "AutoPropertyCanBeMadeGetOnly.Local" ) ]
     [ SuppressMessage( "ReSharper", "UnusedParameter.Global" ) ]
     [ SuppressMessage( "ReSharper", "AssignNullToNotNullAttribute" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
     [ SuppressMessage( "ReSharper", "ArrangeModifiersOrder" ) ]
-    public class Amount : AmountBase, IAmount
+    public class Amount : DataUnit, IAmount
     {
         /// <summary>
         /// The default
         /// </summary>
         public static readonly IAmount Default = new Amount( Numeric.NS, 0.0 );
+        
+        /// <summary>
+        /// The funding
+        /// </summary>
+        public double Funding { get; set; }
+        
+        /// <summary>
+        /// The initial
+        /// </summary>
+        public double Initial { get; set; }
 
+        /// <summary>
+        /// The delta
+        /// </summary>
+        public double Delta { get; set; }
+
+        /// <summary>
+        /// The numeric
+        /// </summary>
+        public Numeric Numeric { get; set; } = Numeric.Amount;
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount"/> class.
         /// </summary>
@@ -39,10 +58,8 @@ namespace BudgetExecution
         /// <param name="value">The value.</param>
         public Amount( Numeric numeric = Numeric.Amount, double value = 0.0 )
         {
-            Data = value;
             Funding = value;
             Numeric = numeric;
-            Name = Numeric.ToString();
             Initial = Funding;
             Delta = Initial - Funding;
         }
@@ -54,10 +71,8 @@ namespace BudgetExecution
         /// <param name="numeric">The numeric.</param>
         public Amount( double value = 0, Numeric numeric = Numeric.Amount )
         {
-            Data = value;
             Funding = value;
             Numeric = numeric;
-            Name = Numeric.ToString();
             Initial = Funding;
             Delta = Initial - Funding;
         }
@@ -70,9 +85,7 @@ namespace BudgetExecution
         public Amount( DataRow dataRow, Numeric numeric = Numeric.Amount )
         {
             Funding = double.Parse( dataRow[ $"{numeric}" ].ToString() );
-            Data = Funding.ToString();
             Numeric = numeric;
-            Name = Numeric.ToString();
             Initial = Funding;
             Delta = Initial - Funding;
         }
@@ -106,7 +119,7 @@ namespace BudgetExecution
             {
                 return Initial > 0
                     ? Initial
-                    : Default.GetFunding();
+                    : Default.Funding;
             }
             catch( Exception ex )
             {
@@ -125,12 +138,12 @@ namespace BudgetExecution
             {
                 return Delta != 0
                     ? Delta
-                    : Default.GetFunding();
+                    : Default.Funding;
             }
             catch( Exception ex )
             {
                 Fail( ex );
-                return Default.GetFunding();
+                return Default.Funding;
             }
         }
 
@@ -183,27 +196,6 @@ namespace BudgetExecution
         }
 
         /// <summary>
-        /// Converts to string.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="System.String" /> that represents this instance.
-        /// </returns>
-        public override string ToString()
-        {
-            try
-            {
-                return Verify.IsInput( Data?.ToString() )
-                    ? Data?.ToString()
-                    : string.Empty;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return string.Empty;
-            }
-        }
-
-        /// <summary>
         /// Determines whether the specified amount is equal.
         /// </summary>
         /// <param name="amount">The amount.</param>
@@ -212,13 +204,12 @@ namespace BudgetExecution
         /// </returns>
         public bool IsEqual( IAmount amount )
         {
-            if( amount != null
-                && amount.GetFunding() != Default.GetFunding() )
+            if( amount?.Funding != Default.Funding )
             {
                 try
                 {
-                    if( amount?.GetFunding() == Funding
-                        && amount?.GetName()?.Equals( Name ) == true )
+                    if( amount?.Funding == Funding
+                        && amount?.Numeric.ToString()?.Equals( Numeric.ToString() ) == true )
                     {
                         return true;
                     }
@@ -243,14 +234,13 @@ namespace BudgetExecution
         /// </returns>
         public static bool IsEqual( IAmount first, IAmount second )
         {
-            if( first != null
-                && first != Default
-                && second != Default )
+            if( first?.Funding != Default.Funding
+                && second?.Funding != Default.Funding )
             {
                 try
                 {
-                    if( first?.GetFunding().Equals( second?.GetFunding() ) == true
-                        && first?.GetName()?.Equals( second?.GetName() ) == true )
+                    if( first?.Funding.Equals( second?.Funding ) == true
+                        && first?.Numeric.ToString().Equals( second?.Numeric.ToString() )   == true )
                     {
                         return true;
                     }

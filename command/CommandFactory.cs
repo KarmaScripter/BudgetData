@@ -25,7 +25,7 @@ namespace BudgetExecution
         /// <summary>
         /// The command builder
         /// </summary>
-        public ICommandBuilder CommandBuilder { get; }
+        public ICommandBuilder CommandBuilder { get;  }
 
         /// <summary>
         /// Gets the connection builder.
@@ -91,7 +91,7 @@ namespace BudgetExecution
         /// Gets the create table command.
         /// </summary>
         /// <param name="tableName">Name of the table.</param>
-        /// <param name="dataColumns">The Data Columns.</param>
+        /// <param name="dataColumns">The Data columns.</param>
         /// <returns></returns>
         public DbCommand GetCreateTableCommand( string tableName, IEnumerable<DataColumn> dataColumns )
         {
@@ -102,7 +102,7 @@ namespace BudgetExecution
                 {
                     var _sql = $"CREATE TABLE {tableName}";
 
-                    if( Validate.Provider( Provider )
+                    if( Validate.IsProvider( Provider )
                         && Verify.IsInput( _sql ) )
                     {
                         switch( Provider )
@@ -154,14 +154,14 @@ namespace BudgetExecution
         /// Gets the create view command.
         /// </summary>
         /// <param name="viewName">Name of the view.</param>
-        /// <param name="dataColumns">The Data Columns.</param>
+        /// <param name="dataColumns">The Data columns.</param>
         /// <returns></returns>
         public DbCommand GetCreateViewCommand( string viewName, IEnumerable<DataColumn> dataColumns )
         {
             if( Verify.IsInput( viewName )
                 && dataColumns?.Any() == true
                 && ConnectionBuilder != null
-                && ConnectionBuilder.GetProvider() != Provider.SqlCe )
+                && ConnectionBuilder.Provider != Provider.SqlCe )
             {
                 try
                 {

@@ -16215,6 +16215,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ScrollAxisBase.GetVisibleLinesAtNonRTL">
+            <summary>
+            Get the VisibleLines when RTL is False
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ScrollAxisBase.GetVisibleLinesAtRTL">
+            <summary>
+            Get the VisibleLines when RTL is True
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ScrollAxisBase.ResetVisibleLines">
             <summary>
             Resets the visible lines collection.
@@ -16245,12 +16257,14 @@
             It is used to calculate the scroll columns based on the right to left mode.</param>
             <returns>Returns the visible line.</returns>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ScrollAxisBase.GetVisibleLineAtPoint(System.Double,System.Boolean)">
+        <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ScrollAxisBase.GetVisibleLineAtPoint(System.Double,System.Boolean,System.Boolean)">
             <summary>
-            Gets the visibles line for a point in the display.
+            Gets the visible line for a point in the display.
             </summary>
-            <param name="point">The point.</param>
-            <returns></returns>
+            <param name="point">The point in the display for which the visible line is to be obtained.</param>
+            <param name="allowOutSideLines">boolean value</param>
+            <param name="isRightToLeft">The boolean value used to calculate visible columns in right to left mode.</param>
+            <returns>The visible line for a point in the display.</returns>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ScrollAxisBase.GetVisibleLineAtLineIndex(System.Int32)">
             <summary>
@@ -16402,10 +16416,11 @@
             <param name="lastIndex">The last index.</param>
             <returns></returns>
         </member>
-        <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ScrollAxisBase.GetClipPoints(Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ScrollAxisRegion)">
+        <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ScrollAxisBase.GetClipPoints(Syncfusion.Windows.Forms.CellGrid.ScrollAxis.ScrollAxisRegion,System.Boolean)">
             <summary>
             Gets the clip points for a region.
             </summary>
+            <param name="isRightToLeft">The boolean value used to calculate visible columns in right to left mode.</param>
             <param name="region">The region.</param>
             <returns></returns>
         </member>
@@ -16637,6 +16652,7 @@
             </summary>
             <param name="scrollLindeIndex">Index of the scroll linde.</param>
             <param name="scrollLineDelta">The scroll line delta.</param>
+            <param name="isRightToLeft">The boolean value used to calculate visible columns in right to left mode.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.LineScrollAxis.SetScrollLineIndex(System.Int32,System.Double)">
             <summary>
@@ -17140,7 +17156,7 @@
             <summary>
             Gets the index of the scroll line.
             </summary>
-            <param name="scrollLindeIndex">Index of the scroll linde.</param>
+            <param name="scrollLineIndex">Index of the scroll linde.</param>
             <param name="scrollLineDelta">The scroll line offset.</param>
             <param name="isRightToLeft">The boolean value indicates the right to left mode.
             And this boolean value considered only for the visible columns calculations.</param>
@@ -17149,14 +17165,28 @@
             <summary>
             Gets the index of the scroll line.
             </summary>
-            <param name="scrollLindeIndex">Index of the scroll linde.</param>
+            <param name="scrollLineIndex">Index of the scroll linde.</param>
+            <param name="scrollLineDelta">The scroll line delta.</param>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.PixelScrollAxis.GetScrollLineIndexAtNonRTL(System.Int32@,System.Double@)">
+            <summary>
+            Gets the index of the scroll line when RTL is False
+            </summary>
+            <param name="scrollLineIndex">Index of the scroll linde.</param>
+            <param name="scrollLineDelta">The scroll line delta.</param>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.PixelScrollAxis.GetScrollLineIndexAtRTL(System.Int32@,System.Double@)">
+            <summary>
+            Gets the index of the scroll line when RTL is True
+            </summary>
+            <param name="scrollLineIndex">Index of the scroll linde.</param>
             <param name="scrollLineDelta">The scroll line delta.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.PixelScrollAxis.SetScrollLineIndex(System.Int32,System.Double)">
             <summary>
             Sets the index of the scroll line.
             </summary>
-            <param name="scrollLindeIndex">Index of the scroll linde.</param>
+            <param name="scrollLineIndex">Index of the scroll linde.</param>
             <param name="scrollLineDelta">The scroll line delta.</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.PixelScrollAxis.GetPreviousScrollLineIndex(System.Int32)">
@@ -17463,6 +17493,9 @@
             <summary>
             Holds the coordinates for a cell. 
             </summary>
+            <remarks>
+            Maintains zero-based index of the rows and columns.
+            </remarks>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.RowColumnIndex.#ctor(System.Int32,System.Int32)">
             <summary>
@@ -17790,6 +17823,11 @@
             Initializes a new instance of the <see cref="T:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.SortedRangeValueList`1"/> class.
             </summary>
             <param name="defaultValue">The default value used for filling gaps.</param>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.SortedRangeValueList`1.Clear">
+            <summary>
+            Clears the stored ranges.
+            </summary>
         </member>
         <member name="M:Syncfusion.Windows.Forms.CellGrid.ScrollAxis.SortedRangeValueList`1.GetRange(System.Int32,System.Int32@)">
             <summary>
@@ -18433,6 +18471,11 @@
         <member name="P:Syncfusion.Windows.Forms.Spreadsheet.Commands.Commands.DecreaseIndent">
             <summary>
             Command used for Decreasing indent for the cells
+            </summary>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Spreadsheet.Commands.Commands.Orientation">
+            <summary>
+            Gets or sets a value that indicates the command to rotate the text for the cells.
             </summary>
         </member>
         <member name="P:Syncfusion.Windows.Forms.Spreadsheet.Commands.Commands.GrowFontSize">
@@ -25707,6 +25750,29 @@
             Holds the number format for memory transaction
             </summary>
         </member>
+        <member name="T:Syncfusion.Windows.Forms.Spreadsheet.History.HistoryOrientationCommand">
+            <summary>
+             Represents a class that holds the memory transaction history of orientation changes.
+             </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Spreadsheet.History.HistoryOrientationCommand.#ctor(Syncfusion.XlsIO.IRange,Syncfusion.Windows.Forms.Spreadsheet.Spreadsheet)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syncfusion.UI.Xaml.Spreadsheet.History.HistoryOrientationCommand">HistoryOrientationCommand</see> class. 
+            </summary>
+            <param name="range">Specified excel range.</param>
+            <param name="sfSpreadsheet">An instance of spreadhsheet control.</param>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Spreadsheet.History.HistoryOrientationCommand.Execute(Syncfusion.Windows.Forms.Spreadsheet.History.CommandMode)">
+            <summary>
+             Executes the transaction command in <see cref="!: Syncfusion.UI.Xaml.Spreadsheet.SfSpreadsheet"/>.
+            </summary>
+            <param name="mode">Holds the current process in SfSpreadsheet(either undo or redo).</param>
+        </member>
+        <member name="P:Syncfusion.Windows.Forms.Spreadsheet.History.HistoryOrientationCommand.RotationAngle">
+            <summary>
+            Holds the angle of the rotation for memory transaction.
+            </summary>
+        </member>
         <member name="T:Syncfusion.Windows.Forms.Spreadsheet.History.HistoryOutlinesCommand">
             <summary>
             Class which holds the memory transaction history of Outlines command.
@@ -31274,6 +31340,31 @@
             </summary>
             <param name="parameter"></param>
         </member>
+        <member name="T:Syncfusion.Windows.Forms.Spreadsheet.Commands.OrientationCommand">
+            <summary>
+            Represents a class that defines the command to change the orientation for the text in the cells.
+            </summary>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Commands.OrientationCommand.#ctor(Syncfusion.Windows.Forms.Spreadsheet.Spreadsheet,System.String)">
+            <summary>
+            Initializes a instance of the <see cref="T:Syncfusion.Windows.Forms.Spreadsheet.Commands.OrientationCommand"/> class.
+            </summary>
+            <param name="spreadsheetControl">The Spreadsheet Control</param>
+            <param name="commandName">The command name</param>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Commands.OrientationCommand.OnCanExecute(System.Object)">
+            <summary>
+            returns true if Orientation command can be executed else false
+            </summary>
+            <param name="parameter">true or false</param>
+            <returns>returns true or false</returns>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Commands.OrientationCommand.OnExecute(System.Object)">
+            <summary>
+            Used to execute the Orientation Command
+            </summary>
+            <param name="parameter">true if change the orientation else false not</param>
+        </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Commands.InsertCutCopiedCellsCommand.OnCanExecute(System.Object)">
             <summary>
             Returns true if InsertCells Command can be executed else false
@@ -33719,6 +33810,15 @@
             <param name="rect">Rectangle area</param>
             <param name="clipRect">Clipped rectangle area</param>
             <param name="column"><see cref="T:Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetColumn"/></param>
+        </member>
+        <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetPaint.DrawText(System.Drawing.Rectangle,System.Drawing.Rectangle,Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetColumn,Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetPaint)">
+            <summary>
+            Draw the Rotated text.
+            </summary>
+            <param name="rect">Rectangle area</param>
+            <param name="clipRect">Clipped rectangle area</param>
+            <param name="column"><see cref="T:Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetColumn"/></param>
+            <param name="paint">drawingcontext</param>
         </member>
         <member name="M:Syncfusion.Windows.Forms.Spreadsheet.Helpers.SpreadsheetPaint.DrawRichText(System.Drawing.Rectangle,System.Drawing.Rectangle,Syncfusion.Windows.Forms.Spreadsheet.SpreadsheetColumn)">
             <summary>

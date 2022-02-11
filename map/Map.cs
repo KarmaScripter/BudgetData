@@ -15,6 +15,14 @@
     public class Map : Arg, IMap
     {
         /// <summary>
+        /// Gets the count.
+        /// </summary>
+        /// <value>
+        /// The count.
+        /// </value>
+        public int Count { get; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Map"/> class.
         /// </summary>
         public Map()
@@ -27,11 +35,10 @@
         /// <param name="dict">The dictionary.</param>
         public Map( IDictionary<string, object> dict )
         {
-            SetInput( dict );
-            SetOutput( Input );
-            SetData( dict );
-            Names = GetNames();
-            Values = GetValues();
+            Input = dict;
+            Output = Input;
+            Names = dict.Keys;
+            Values = dict.Values;
             Count = Output.Count;
         }
 
@@ -41,21 +48,12 @@
         /// <param name="data">The Data.</param>
         public Map( DataRow data )
         {
-            SetInput( data?.ToDictionary() );
-            SetOutput( Input );
-            SetData( data );
+            Input = data?.ToDictionary();
+            Output = Input;
             Names = GetNames();
             Values = GetValues();
             Count = Output.Count;
         }
-
-        /// <summary>
-        /// Gets the count.
-        /// </summary>
-        /// <value>
-        /// The count.
-        /// </value>
-        public int Count { get; }
 
         /// <summary>
         /// Gets the input.

@@ -96,8 +96,8 @@ namespace BudgetExecution
         public Builder( IQuery query )
         {
             Query = query;
-            Source = ConnectionBuilder.GetSource();
-            Provider = ConnectionBuilder.GetProvider();
+            Source = ConnectionBuilder.Source;
+            Provider = ConnectionBuilder.Provider;
             ConnectionBuilder = Query.GetConnectionBuilder();
             SqlStatement = Query.GetSqlStatement();
             ProgramElements = GetSeries( GetDataTable() );
@@ -146,7 +146,7 @@ namespace BudgetExecution
         public static IEnumerable<string> GetValues( IEnumerable<DataRow> dataRows, Field field, string filter )
         {
             if( Verify.IsSequence( dataRows )
-                && Validate.Field( field )
+                && Validate.IsField( field )
                 && Verify.IsInput( filter ) )
             {
                 try
@@ -273,11 +273,11 @@ namespace BudgetExecution
 
                     if( _worksheet?.Cells != null )
                     {
-                        foreach( var firstrowcell in _worksheet?.Cells[ 1, 1, 1, _worksheet.Dimension.End.Column ] )
+                        foreach( var _firstRowCell in _worksheet?.Cells[ 1, 1, 1, _worksheet.Dimension.End.Column ] )
                         {
                             _table?.Columns?.Add( header
-                                ? firstrowcell.Text
-                                : $"Column {firstrowcell.Start.Column}" );
+                                ? _firstRowCell.Text
+                                : $"Column {_firstRowCell.Start.Column}" );
                         }
 
                         var _start = header
@@ -317,10 +317,11 @@ namespace BudgetExecution
         /// <param name="field">The field.</param>
         /// <param name="filter">The filter.</param>
         /// <returns></returns>
-        public static IDictionary<string, IEnumerable<string>> GetSeries( IEnumerable<DataRow> dataRows, Field field, string filter )
+        public static IDictionary<string, IEnumerable<string>> GetSeries( IEnumerable<DataRow> dataRows, 
+            Field field, string filter )
         {
             if( Verify.IsInput( dataRows )
-                && Validate.Field( field )
+                && Validate.IsField( field )
                 && Verify.IsInput( filter ) )
             {
                 try
@@ -390,7 +391,7 @@ namespace BudgetExecution
         {
             if( Verify.IsSequence( dataRows )
                 && Verify.IsInput( filter )
-                && Validate.Field( field ) )
+                && Validate.IsField( field ) )
             {
                 try
                 {

@@ -93,7 +93,7 @@ namespace BudgetExecution
                     }
 
                     _values = _values.TrimEnd( " AND".ToCharArray() );
-                    var _table = ConnectionBuilder?.GetTableName();
+                    var _table = ConnectionBuilder?.TableName;
                     CommandText = $"{SQL.SELECT} * FROM {_table} WHERE {_values};";
 
                     return Verify.IsInput( CommandText )
@@ -108,7 +108,7 @@ namespace BudgetExecution
             }
             else if( Args == null )
             {
-                return $"{SQL.SELECT} * FROM {ConnectionBuilder?.GetTableName()};";
+                return $"{SQL.SELECT} * FROM {ConnectionBuilder?.TableName};";
             }
 
             return default( string );
@@ -132,7 +132,7 @@ namespace BudgetExecution
                     }
 
                     var _values = _update.TrimEnd( " AND".ToCharArray() );
-                    CommandText = $"{SQL.UPDATE} {ConnectionBuilder?.GetTableName()} SET {_values};";
+                    CommandText = $"{SQL.UPDATE} {ConnectionBuilder?.TableName} SET {_values};";
 
                     return Verify.IsInput( CommandText )
                         ? CommandText
@@ -156,7 +156,7 @@ namespace BudgetExecution
         {
             try
             {
-                var _table = ConnectionBuilder?.GetTableName();
+                var _table = ConnectionBuilder?.TableName;
                 var _columnName = string.Empty;
                 var _values = string.Empty;
 

@@ -18,28 +18,19 @@ namespace BudgetExecution
     public class AdapterBuilder : DbDataAdapter
     {
         /// <summary>
-        /// Gets or sets the connection.
+        /// The connection
         /// </summary>
-        /// <value>
-        /// The connection.
-        /// </value>
-        public DbConnection Connection { get; protected internal set; }
+        public DbConnection Connection { get; set; }
 
         /// <summary>
-        /// Gets or sets the SQL statement.
+        /// The SQL statement
         /// </summary>
-        /// <value>
-        /// The SQL statement.
-        /// </value>
-        public ISqlStatement SqlStatement { get; protected internal set; }
+        public ISqlStatement SqlStatement { get;  set; }
 
         /// <summary>
-        /// Gets or sets the connection builder.
+        /// The connection builder
         /// </summary>
-        /// <value>
-        /// The connection builder.
-        /// </value>
-        public IConnectionBuilder ConnectionBuilder { get; protected internal set; }
+        public IConnectionBuilder ConnectionBuilder { get;  set; }
 
         /// <summary>
         /// Gets the command builder.
@@ -47,7 +38,7 @@ namespace BudgetExecution
         /// <value>
         /// The command builder.
         /// </value>
-        public ICommandBuilder CommandBuilder { get; }
+        public ICommandBuilder CommandBuilder { get; set; }
 
         /// <summary>
         /// Gets the command factory.
@@ -55,7 +46,7 @@ namespace BudgetExecution
         /// <value>
         /// The command factory.
         /// </value>
-        public ICommandFactory CommandFactory { get; }
+        public ICommandFactory CommandFactory { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
@@ -73,7 +64,7 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
         /// </summary>
-        /// <param name="commandBuilder">The commandBuilder.</param>
+        /// <param name="commandBuilder">The commandbuilder.</param>
         public AdapterBuilder( ICommandBuilder commandBuilder )
             : this()
         {
@@ -88,8 +79,8 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
         /// </summary>
-        /// <param name="connectionBuilder">The connectionBuilder.</param>
-        /// <param name="sqlStatement">The sqlStatement.</param>
+        /// <param name="connectionBuilder">The connectionbuilder.</param>
+        /// <param name="sqlStatement">The sqlstatement.</param>
         public AdapterBuilder( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
             : this()
         {
@@ -100,45 +91,7 @@ namespace BudgetExecution
             CommandFactory = new CommandFactory( CommandBuilder );
             SelectCommand = CommandFactory.GetSelectCommand();
         }
-
-        /// <summary>
-        /// Gets the connection.
-        /// </summary>
-        /// <returns></returns>
-        public DbConnection GetConnection()
-        {
-            try
-            {
-                return Verify.IsRef( Connection )
-                    ? Connection
-                    : default( DbConnection );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( DbConnection );
-            }
-        }
-
-        /// <summary>
-        /// Gets the connection builder.
-        /// </summary>
-        /// <returns></returns>
-        public IConnectionBuilder GetConnectionBuilder()
-        {
-            try
-            {
-                return Verify.IsRef( ConnectionBuilder )
-                    ? ConnectionBuilder
-                    : default( IConnectionBuilder );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IConnectionBuilder );
-            }
-        }
-
+        
         /// <summary>
         /// Fails the specified ex.
         /// </summary>

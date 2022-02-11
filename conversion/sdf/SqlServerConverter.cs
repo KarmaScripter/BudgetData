@@ -232,7 +232,7 @@ namespace BudgetExecution
                             for( var j = 0; j < schema[ i ].Columns.Count; j++ )
                             {
                                 var pname = "@"
-                                    + GetNormalizedName( schema[ i ].Columns[ j ].ColumnName,
+                                    + GetNormalizedName( schema[ i ].Columns[ j ].columnName,
                                         pnames );
 
                                 insert.Parameters[ pname ].Value =
@@ -517,7 +517,7 @@ namespace BudgetExecution
 
             for( var i = 0; i < ts.Columns.Count; i++ )
             {
-                sb.Append( "[" + ts.Columns[ i ].ColumnName + "]" );
+                sb.Append( "[" + ts.Columns[ i ].columnName + "]" );
 
                 if( i < ts.Columns.Count - 1 )
                 {
@@ -530,7 +530,7 @@ namespace BudgetExecution
 
             for( var i = 0; i < ts.Columns.Count; i++ )
             {
-                var pname = "@" + GetNormalizedName( ts.Columns[ i ].ColumnName, pnames );
+                var pname = "@" + GetNormalizedName( ts.Columns[ i ].columnName, pnames );
                 sb.Append( pname );
 
                 if( i < ts.Columns.Count - 1 )
@@ -539,7 +539,7 @@ namespace BudgetExecution
                 }
 
                 var dbtype = GetDbTypeOfColumn( ts.Columns[ i ] );
-                var prm = new SQLiteParameter( pname, dbtype, ts.Columns[ i ].ColumnName );
+                var prm = new SQLiteParameter( pname, dbtype, ts.Columns[ i ].columnName );
                 res.Parameters.Add( prm );
 
                 // Remember the dicteter name in order to avoid duplicates
@@ -589,7 +589,7 @@ namespace BudgetExecution
         /// cs.ColumnType + ")</exception>
         private DbType GetDbTypeOfColumn( ColumnSchema cs )
         {
-            switch( cs.ColumnType )
+            switch( cs.columnType )
             {
                 case "tinyint":
                     return DbType.Byte;
@@ -651,7 +651,7 @@ namespace BudgetExecution
                 default:
                     _log.Error( "illegal db type found" );
 
-                    throw new ApplicationException( "Illegal DB type found (" + cs.ColumnType + ")" );
+                    throw new ApplicationException( "Illegal DB type found (" + cs.columnType + ")" );
             }
         }
 
@@ -667,7 +667,7 @@ namespace BudgetExecution
 
             for( var i = 0; i < ts.Columns.Count; i++ )
             {
-                sb.Append( "[" + ts.Columns[ i ].ColumnName + "]" );
+                sb.Append( "[" + ts.Columns[ i ].columnName + "]" );
 
                 if( i < ts.Columns.Count - 1 )
                 {
@@ -892,7 +892,7 @@ namespace BudgetExecution
                     var foreignkey = schema.ForeignKeys[ i ];
 
                     var stmt =
-                        $"    FOREIGN KEY ([{foreignkey.ColumnName}])\n        REFERENCES [{foreignkey.ForeignTableName}]([{foreignkey.ForeignColumnName}])";
+                        $"    FOREIGN KEY ([{foreignkey.columnName}])\n        REFERENCES [{foreignkey.foreignTableName}]([{foreignkey.foreignColumnName}])";
 
                     builder.Append( stmt );
 
@@ -931,25 +931,25 @@ namespace BudgetExecution
             var sb = new StringBuilder();
             sb.Append( "CREATE " );
 
-            if( schema.IsUnique )
+            if( schema.isUnique )
             {
                 sb.Append( "UNIQUE " );
             }
 
-            sb.Append( "INDEX [" + tablename + "" + schema.IndexName + "]\n" );
+            sb.Append( "INDEX [" + tablename + "" + schema.indexName + "]\n" );
             sb.Append( "ON [" + tablename + "]\n" );
             sb.Append( "(" );
 
-            for( var i = 0; i < schema.Columns.Count; i++ )
+            for( var i = 0; i < schema.columns.Count; i++ )
             {
-                sb.Append( "[" + schema.Columns[ i ] + "]" );
+                sb.Append( "[" + schema.columns[ i ] + "]" );
 
-                if( schema.Columns[ i ] != null )
+                if( schema.columns[ i ] != null )
                 {
                     sb.Append( " DESC" );
                 }
 
-                if( i < schema.Columns.Count - 1 )
+                if( i < schema.columns.Count - 1 )
                 {
                     sb.Append( ", " );
                 }
@@ -971,17 +971,17 @@ namespace BudgetExecution
         private string BuildColumnStatement( ColumnSchema col, TableSchema ts, ref bool pkey )
         {
             var sb = new StringBuilder();
-            sb.Append( "\t[" + col.ColumnName + "]\t" );
+            sb.Append( "\t[" + col.columnName + "]\t" );
 
-            // Special treatment for IDENTITY Columns
-            if( col.IsIdentity )
+            // Special treatment for IDENTITY columns
+            if( col.isIdentity )
             {
                 if( ts.PrimaryKey.Count == 1
-                    && ( col.ColumnType == "tinyint"
-                        || col.ColumnType == "int"
-                        || col.ColumnType == "smallint"
-                        || col.ColumnType == "bigint"
-                        || col.ColumnType == "integer" ) )
+                    && ( col.columnType == "tinyint"
+                        || col.columnType == "int"
+                        || col.columnType == "smallint"
+                        || col.columnType == "bigint"
+                        || col.columnType == "integer" ) )
                 {
                     sb.Append( "integer PRIMARY KEY AUTOINCREMENT" );
                     pkey = true;
@@ -993,42 +993,42 @@ namespace BudgetExecution
             }
             else
             {
-                switch( col.ColumnType )
+                switch( col.columnType )
                 {
                     case "int":
                         sb.Append( "integer" );
                         break;
 
                     default:
-                        sb.Append( col.ColumnType );
+                        sb.Append( col.columnType );
                         break;
                 }
 
-                if( col.Length > 0 )
+                if( col.length > 0 )
                 {
-                    sb.Append( "(" + col.Length + ")" );
+                    sb.Append( "(" + col.length + ")" );
                 }
             }
 
-            if( !col.IsNullable )
+            if( !col.isNullable )
             {
                 sb.Append( " NOT NULL" );
             }
 
-            if( col.IsCaseSensitivite == false )
+            if( col.isCaseSensitivite == false )
             {
                 sb.Append( " COLLATE NOCASE" );
             }
 
-            var defval = StripParens( col.DefaultValue );
+            var defval = StripParens( col.defaultValue );
             defval = DiscardNational( defval );
-            _log.Debug( "DEFAULT VALUE BEFORE [" + col.DefaultValue + "] AFTER [" + defval + "]" );
+            _log.Debug( "DEFAULT VALUE BEFORE [" + col.defaultValue + "] AFTER [" + defval + "]" );
 
             if( Verify.IsInput( defval )
                 && defval.ToUpper().Contains( "GETDATE" ) )
             {
                 _log.Debug( "converted SQL Server GETDATE() to CURRENTTIMESTAMP for column ["
-                    + col.ColumnName
+                    + col.columnName
                     + "]" );
 
                 sb.Append( " DEFAULT (CURRENTTIMESTAMP)" );
@@ -1395,12 +1395,12 @@ namespace BudgetExecution
 
                     var col = new ColumnSchema
                     {
-                        ColumnName = colname,
-                        ColumnType = datatype,
-                        Length = length,
-                        IsNullable = isnullable,
-                        IsIdentity = isidentity,
-                        DefaultValue = AdjustDefaultValue( coldefault )
+                        columnName = colname,
+                        columnType = datatype,
+                        length = length,
+                        isNullable = isnullable,
+                        isIdentity = isidentity,
+                        defaultValue = AdjustDefaultValue( coldefault )
                     };
 
                     res.Columns.Add( col );
@@ -1420,7 +1420,7 @@ namespace BudgetExecution
                 }// while
             }
 
-            // Find COLLATE information for all Columns in the table
+            // Find COLLATE information for all columns in the table
             using( var cmd4 =
                 new SqlCommand( @"EXEC sptablecollations '" + tschma + "." + tablename + "'",
                     conn ) )
@@ -1443,9 +1443,9 @@ namespace BudgetExecution
                         // Update the corresponding column schema.
                         foreach( var csc in res.Columns )
                         {
-                            if( csc.ColumnName == colname )
+                            if( csc.columnName == colname )
                             {
-                                csc.IsCaseSensitivite = iscasesensitive;
+                                csc.isCaseSensitivite = iscasesensitive;
                                 break;
                             }
                         }// foreach
@@ -1603,12 +1603,12 @@ namespace BudgetExecution
             {
                 var fkc = new ForeignKeySchema
                 {
-                    ColumnName = (string)reader[ "ColumnName" ],
-                    ForeignTableName = (string)reader[ "ForeignTableName" ],
-                    ForeignColumnName = (string)reader[ "ForeignColumnName" ],
-                    CascadeOnDelete = (string)reader[ "DeleteRule" ] == "CASCADE",
-                    IsNullable = (string)reader[ "IsNullable" ] == "YES",
-                    TableName = ts.TableName
+                    columnName = (string)reader[ "ColumnName" ],
+                    foreignTableName = (string)reader[ "ForeignTableName" ],
+                    foreignColumnName = (string)reader[ "ForeignColumnName" ],
+                    cascadeOnDelete = (string)reader[ "DeleteRule" ] == "CASCADE",
+                    isNullable = (string)reader[ "IsNullable" ] == "YES",
+                    tableName = ts.TableName
                 };
 
                 ts.ForeignKeys.Add( fkc );
@@ -1626,7 +1626,7 @@ namespace BudgetExecution
         /// index [" + indexname + "]</exception>
         private IndexSchema BuildIndexSchema( string indexname, string desc, string keys )
         {
-            var res = new IndexSchema { IndexName = indexname };
+            var res = new IndexSchema { indexName = indexname };
 
             // Determine if this is a unique index or not.
             var descparts = desc.Split( ',' );
@@ -1637,13 +1637,13 @@ namespace BudgetExecution
 
                 if( p.Trim().Contains( "unique" ) )
                 {
-                    res.IsUnique = true;
+                    res.isUnique = true;
                     break;
                 }
             }
 
             // Get all key names and check if they are ASCENDING or DESCENDING
-            res.Columns = new List<IndexColumn>();
+            res.columns = new List<IndexColumn>();
             var keysparts = keys.Split( ',' );
 
             foreach( var p in keysparts )
@@ -1660,7 +1660,7 @@ namespace BudgetExecution
                 }
 
                 var ic = new IndexColumn();
-                res.Columns.Add( ic );
+                res.columns.Add( ic );
             }// foreach
 
             return res;

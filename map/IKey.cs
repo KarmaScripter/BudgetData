@@ -10,21 +10,15 @@ namespace BudgetExecution
     public interface IKey
     {
         /// <summary>
-        /// Gets the name.
-        /// </summary>
-        /// <returns></returns>
-        string GetName();
-
-        /// <summary>
         /// Gets the index.
         /// </summary>
         /// <returns></returns>
-        int GetIndex();
+        int Index { get; set; }
 
         /// <summary>
-        /// Gets the primary key.
+        /// Gets the name.
         /// </summary>
         /// <returns></returns>
-        PrimaryKey GetPrimaryKey();
+        string Name { get; set; }
     }
 }

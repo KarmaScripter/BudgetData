@@ -102,7 +102,7 @@ namespace BudgetExecution
         {
             try
             {
-                return ConnectionBuilder?.GetSource() ?? default( Source );
+                return ConnectionBuilder?.Source ?? default( Source );
             }
             catch( Exception ex )
             {
@@ -120,7 +120,7 @@ namespace BudgetExecution
         {
             try
             {
-                return ConnectionBuilder?.GetProvider() ?? Provider.SQLite;
+                return ConnectionBuilder?.Provider ?? Provider.SQLite;
             }
             catch( Exception ex )
             {
@@ -203,19 +203,19 @@ namespace BudgetExecution
         /// <summary>
         /// Sets the connection manager.
         /// </summary>
-        /// <param name = "fullpath" >
-        /// The fullpath.
+        /// <param name = "fullPath" >
+        /// The fullPath.
         /// </param>
         /// <returns>
         /// </returns>
-        private protected void SetConnectionBuilder( string fullpath )
+        private protected void SetConnectionBuilder( string fullPath )
         {
-            if( Verify.IsInput( fullpath )
-                && File.Exists( fullpath ) )
+            if( Verify.IsInput( fullPath )
+                && File.Exists( fullPath ) )
             {
                 try
                 {
-                    ConnectionBuilder = new ConnectionBuilder( fullpath );
+                    ConnectionBuilder = new ConnectionBuilder( fullPath );
                 }
                 catch( Exception ex )
                 {

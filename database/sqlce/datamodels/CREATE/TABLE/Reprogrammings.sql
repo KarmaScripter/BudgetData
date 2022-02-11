@@ -1,6 +1,7 @@
 CREATE TABLE Reprogrammings 
 (
-	ReprogrammingId INT NOT NULL IDENTITY (1,1),
+	ReprogrammingsId INT NOT NULL IDENTITY (1,1),
+	TransfersId INT NOT NULL, 
 	ReprogrammingNumber NVARCHAR(255),
 	ProcessedDate NVARCHAR(255),
 	RPIO NVARCHAR(255),
@@ -27,5 +28,10 @@ CREATE TABLE Reprogrammings
 	DocPrefix NVARCHAR(255),
 	NpmCode NVARCHAR(255),
 	Line NVARCHAR(255),
-	Subline NVARCHAR(255)
+	Subline NVARCHAR(255),
+		CONSTRAINT PK_Reprogrammings 
+		PRIMARY KEY (ReprogrammingsId),
+		CONSTRAINT FK_Reprogrammings 
+		FOREIGN KEY (TransfersId) 
+		REFERENCES Transfers
 );

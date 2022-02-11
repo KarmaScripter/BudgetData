@@ -13,24 +13,12 @@ namespace BudgetExecution
         /// Gets the funding.
         /// </summary>
         /// <returns></returns>
-        double GetFunding();
-
-        /// <summary>
-        /// Gets the name.
-        /// </summary>
-        /// <returns></returns>
-        string GetName();
-
+        double Funding { get; set; }
+        
         /// <summary>
         /// Gets the numeric.
         /// </summary>
         /// <returns></returns>
-        Numeric GetNumeric();
-
-        /// <summary>
-        /// Gets the amount.
-        /// </summary>
-        /// <returns></returns>
-        IAmount GetAmount();
+        Numeric Numeric { get; set; }
     }
 }

@@ -214,10 +214,11 @@
     </Reference>
     <Reference Include="BudgetEnumerations, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\BudgetEnumerations\bin\Debug\BudgetEnumerations.dll</HintPath>
+      <HintPath>lib\BudgetEnumerations.dll</HintPath>
     </Reference>
-    <Reference Include="BudgetExtensions">
-      <HintPath>..\Ninja\bin\Debug\BudgetExtensions.dll</HintPath>
+    <Reference Include="BudgetExtensions, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\BudgetExtensions.dll</HintPath>
     </Reference>
     <Reference Include="BudgetNinja, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -225,7 +226,7 @@
     </Reference>
     <Reference Include="BudgetStatic, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\BudgetStatic\bin\Debug\BudgetStatic.dll</HintPath>
+      <HintPath>lib\BudgetStatic.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -1505,19 +1506,16 @@
       <DependentUpon>Error.cs</DependentUpon>
     </Compile>
     <Compile Include="map\Amount.cs" />
-    <Compile Include="map\AmountBase.cs" />
     <Compile Include="map\Arg.cs" />
+    <Compile Include="map\DataUnit.cs" />
     <Compile Include="map\Element.cs" />
-    <Compile Include="map\ElementBase.cs" />
     <Compile Include="map\IAmount.cs" />
+    <Compile Include="map\IDataUnit.cs" />
     <Compile Include="map\IElement.cs" />
     <Compile Include="map\IKey.cs" />
     <Compile Include="map\IMap.cs" />
-    <Compile Include="map\IUnit.cs" />
     <Compile Include="map\Key.cs" />
-    <Compile Include="map\KeyBase.cs" />
     <Compile Include="map\Map.cs" />
-    <Compile Include="map\Unit.cs" />
     <Compile Include="map\UnitBase.cs" />
     <Compile Include="Message.cs">
       <SubType>Form</SubType>

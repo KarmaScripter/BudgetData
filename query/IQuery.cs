@@ -9,11 +9,16 @@ namespace BudgetExecution
     using System.Data;
     using System.Data.Common;
 
-    /// <summary>
-    /// 
-    /// </summary>
     public interface IQuery : IDisposable, ISource, IProvider
     {
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is disposed.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is disposed; otherwise, <c>false</c>.
+        /// </value>
+        bool IsDisposed { get; set; }
+        
         /// <summary>
         /// Gets the arguments.
         /// </summary>
