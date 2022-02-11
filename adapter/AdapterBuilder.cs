@@ -20,17 +20,17 @@ namespace BudgetExecution
         /// <summary>
         /// The connection
         /// </summary>
-        public DbConnection Connection { get;  }
+        public DbConnection Connection { get; set; }
 
         /// <summary>
         /// The SQL statement
         /// </summary>
-        public ISqlStatement SqlStatement { get;  }
+        public ISqlStatement SqlStatement { get;  set; }
 
         /// <summary>
         /// The connection builder
         /// </summary>
-        public IConnectionBuilder ConnectionBuilder { get;  }
+        public IConnectionBuilder ConnectionBuilder { get;  set; }
 
         /// <summary>
         /// Gets the command builder.
@@ -38,7 +38,7 @@ namespace BudgetExecution
         /// <value>
         /// The command builder.
         /// </value>
-        public ICommandBuilder CommandBuilder { get; }
+        public ICommandBuilder CommandBuilder { get; set; }
 
         /// <summary>
         /// Gets the command factory.
@@ -46,7 +46,7 @@ namespace BudgetExecution
         /// <value>
         /// The command factory.
         /// </value>
-        public ICommandFactory CommandFactory { get; }
+        public ICommandFactory CommandFactory { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
@@ -64,12 +64,12 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
         /// </summary>
-        /// <param name="commandbuilder">The commandbuilder.</param>
-        public AdapterBuilder( ICommandBuilder commandbuilder )
+        /// <param name="commandBuilder">The commandbuilder.</param>
+        public AdapterBuilder( ICommandBuilder commandBuilder )
             : this()
         {
-            ConnectionBuilder = commandbuilder.ConnectionBuilder;
-            SqlStatement = commandbuilder.SqlStatement;
+            ConnectionBuilder = commandBuilder.ConnectionBuilder;
+            SqlStatement = commandBuilder.SqlStatement;
             Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             CommandFactory = new CommandFactory( CommandBuilder );
@@ -79,57 +79,19 @@ namespace BudgetExecution
         /// <summary>
         /// Initializes a new instance of the <see cref="AdapterBuilder"/> class.
         /// </summary>
-        /// <param name="connectionbuilder">The connectionbuilder.</param>
-        /// <param name="sqlstatement">The sqlstatement.</param>
-        public AdapterBuilder( IConnectionBuilder connectionbuilder, ISqlStatement sqlstatement )
+        /// <param name="connectionBuilder">The connectionbuilder.</param>
+        /// <param name="sqlStatement">The sqlstatement.</param>
+        public AdapterBuilder( IConnectionBuilder connectionBuilder, ISqlStatement sqlStatement )
             : this()
         {
-            ConnectionBuilder = connectionbuilder;
+            ConnectionBuilder = connectionBuilder;
             Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
-            SqlStatement = sqlstatement;
+            SqlStatement = sqlStatement;
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
             CommandFactory = new CommandFactory( CommandBuilder );
             SelectCommand = CommandFactory.GetSelectCommand();
         }
-
-        /// <summary>
-        /// Gets the connection.
-        /// </summary>
-        /// <returns></returns>
-        public DbConnection GetConnection()
-        {
-            try
-            {
-                return Verify.IsRef( Connection )
-                    ? Connection
-                    : default( DbConnection );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( DbConnection );
-            }
-        }
-
-        /// <summary>
-        /// Gets the connection builder.
-        /// </summary>
-        /// <returns></returns>
-        public IConnectionBuilder GetConnectionBuilder()
-        {
-            try
-            {
-                return Verify.IsRef( ConnectionBuilder )
-                    ? ConnectionBuilder
-                    : default( IConnectionBuilder );
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-                return default( IConnectionBuilder );
-            }
-        }
-
+        
         /// <summary>
         /// Fails the specified ex.
         /// </summary>
@@ -137,7 +99,7 @@ namespace BudgetExecution
         private protected static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error?.SetText( );
+            _error?.SetText( ex.Message );
             _error?.ShowDialog();
         }
     }

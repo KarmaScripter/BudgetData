@@ -153,7 +153,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Source( Source )
+                return Validate.IsSource( Source )
                     ? Source
                     : Source.NS;
             }
@@ -171,7 +171,7 @@ namespace BudgetExecution
         {
             try
             {
-                return Verify.Provider( Provider )
+                return Validate.IsProvider( Provider )
                     ? Provider
                     : Provider.NS;
             }

@@ -9,189 +9,81 @@ namespace BudgetExecution
     using System.Configuration;
     using System.Diagnostics.CodeAnalysis;
     using System.IO;
-    using System.Linq;
-    using static System.Configuration.ConfigurationManager;
 
     /// <summary>
     /// 
     /// </summary>
     [ SuppressMessage( "ReSharper", "MemberCanBeMadeStatic.Global" ) ]
     [ SuppressMessage( "ReSharper", "MemberCanBePrivate.Global" ) ]
+    [ SuppressMessage( "ReSharper", "VirtualMemberNeverOverridden.Global" ) ]
     public abstract class ConnectionBase
     {
         /// <summary>
         /// The connector
         /// </summary>
-        public ConnectionStringSettingsCollection Connectors { get; set; } = ConnectionStrings;
+        public virtual ConnectionStringSettingsCollection Connectors { get; set; } = ConfigurationManager.ConnectionStrings;
 
         /// <summary>
         /// The provider path
         /// </summary>
-        public NameValueCollection ProviderPath { get; set; } = AppSettings;
+        public virtual NameValueCollection AppSettings { get; set; } = ConfigurationManager.AppSettings;
 
         /// <summary>
         /// The source
         /// </summary>
-        public Source Source { get; set; }
+        public virtual Source Source { get; set; }
 
         /// <summary>
         /// The provider
         /// </summary>
-        public Provider Provider { get; set; }
+        public virtual Provider Provider { get; set; }
 
         /// <summary>
         /// The file extension
         /// </summary>
-        public EXT FileExtension { get; set; }
+        public virtual EXT FileExtension { get; set; }
 
         /// <summary>
         /// The file path
         /// </summary>
-        public string FilePath { get; set; }
+        public virtual string FilePath { get; set; }
 
         /// <summary>
         /// The file name
         /// </summary>
-        public string FileName { get; set; }
+        public virtual string FileName { get; set; }
 
         /// <summary>
         /// The table name
         /// </summary>
-        public string TableName { get; set; }
+        public virtual string TableName { get; set; }
 
         /// <summary>
         /// The connection string
         /// </summary>
-        public string ConnectionString { get; set; }
-
-        /// <summary>
-        /// Sets the source.
-        /// </summary>
-        /// <param name="source">
-        /// The source.</param>
-        private protected void SetSource( Source source )
-        {
-            try
-            {
-                Source = Verify.Source( source )
-                    ? source
-                    : Source.NS;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the source.
-        /// </summary>
-        /// <param name="fileName">Name of the file.</param>
-        private protected void SetSource( string fileName )
-        {
-            if( Verify.IsInput( fileName )
-                && File.Exists( fileName )
-                && Resource.Sources?.Contains( fileName ) == true )
-            {
-                try
-                {
-                    Source = (Source)Enum.Parse( typeof( Source ), fileName );
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-
-            if( !Verify.IsInput( fileName )
-                || !File.Exists( fileName )
-                || !Resource.Sources?.Contains( fileName ) != true )
-            {
-                return;
-            }
-
-            {
-                try
-                {
-                    Source = Source.External;
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
-        /// <summary>
-        /// Sets the provider.
-        /// </summary>
-        /// <param name="provider">The provider.</param>
-        private protected void SetProvider( Provider provider )
-        {
-            try
-            {
-                Provider = Verify.Provider( provider )
-                    && Resource.Providers?.Contains( provider.ToString() ) == true
-                        ? (Provider)Enum.Parse( typeof( Provider ), $"{provider}" )
-                        : Provider.NS;
-            }
-            catch( Exception ex )
-            {
-                Fail( ex );
-            }
-        }
-
-        /// <summary>
-        /// Sets the provider.
-        /// </summary>
-        /// <param name="extension">The extension.</param>
-        private protected void SetProvider( EXT extension )
-        {
-            if( Validate.EXT( extension ) )
-            {
-                try
-                {
-                    Provider = extension switch
-                    {
-                        EXT.MDB => Provider.OleDb,
-                        EXT.XLS => Provider.OleDb,
-                        EXT.XLSX => Provider.Excel,
-                        EXT.CSV => Provider.CSV,
-                        EXT.SDF => Provider.SqlCe,
-                        EXT.DB => Provider.SQLite,
-                        EXT.MDF => Provider.SqlServer,
-                        EXT.ACCDB => Provider.Access,
-                        _ => Provider.SQLite
-                    };
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-        }
-
+        public virtual string ConnectionString { get; set; }
+        
         /// <summary>
         /// Sets the file path.
         /// </summary>
         /// <param name="provider">The provider.</param>
-        private protected string GetFilePath( Provider provider )
+        public virtual string GetFilePath( Provider provider )
         {
-            if( Verify.Provider( provider ) )
+            if( Validate.IsProvider( provider ) )
             {
                 try
                 {
                     FilePath = provider switch
                     {
-                        Provider.OleDb => ProviderPath[ "OleDb" ],
-                        Provider.Access => ProviderPath[ "Access" ],
-                        Provider.SQLite => ProviderPath[ "SQLite" ],
-                        Provider.SqlCe => ProviderPath[ "SqlCe" ],
-                        Provider.SqlServer => ProviderPath[ "SqlServer" ],
-                        Provider.CSV => ProviderPath[ "CSV" ],
-                        Provider.Excel => ProviderPath[ "Excel" ],
-                        Provider.NS => ProviderPath[ "Excel" ],
-                        _ => ProviderPath[ "SQLite" ]
+                        Provider.OleDb => AppSettings[ "OleDb" ],
+                        Provider.Access => AppSettings[ "Access" ],
+                        Provider.SQLite => AppSettings[ "SQLite" ],
+                        Provider.SqlCe => AppSettings[ "SqlCe" ],
+                        Provider.SqlServer => AppSettings[ "SqlServer" ],
+                        Provider.CSV => AppSettings[ "CSV" ],
+                        Provider.Excel => AppSettings[ "Excel" ],
+                        Provider.NS => AppSettings[ "Excel" ],
+                        _ => AppSettings[ "SQLite" ]
                     };
 
                     return !string.IsNullOrEmpty( FilePath )
@@ -211,7 +103,7 @@ namespace BudgetExecution
         /// Sets the file path.
         /// </summary>
         /// <param name="filePath">The filePath.</param>
-        private protected string GetFilePath( string filePath )
+        public virtual string GetFilePath( string filePath )
         {
             try
             {
@@ -226,60 +118,7 @@ namespace BudgetExecution
                 return string.Empty;
             }
         }
-
-        /// <summary>
-        /// Sets the file extension.
-        /// </summary>
-        /// <param name="filePath">The filePath.</param>
-        private protected string GetFileExtension( string filePath )
-        {
-            if( Verify.IsInput( filePath ) )
-            {
-                try
-                {
-                    var _fileExtension = Path.GetExtension( filePath )
-                            ?.Trim( '.' )
-                            ?.ToUpper();
-
-                    FileExtension = Enum.IsDefined( typeof( EXT ), _fileExtension )
-                        ? (EXT)Enum.Parse( typeof( EXT ), _fileExtension )
-                        : EXT.NS;
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                }
-            }
-
-            return string.Empty;
-        }
-
-        /// <summary>
-        /// Sets the name of the file.
-        /// </summary>
-        /// <param name="filePath">The file path.</param>
-        private protected string GetFileName( string filePath )
-        {
-            if( Verify.IsInput( filePath ) )
-            {
-                try
-                {
-                    var _filename = Path.GetFileNameWithoutExtension( filePath );
-
-                    return !string.IsNullOrEmpty( _filename )
-                        ? _filename
-                        : string.Empty;
-                }
-                catch( Exception ex )
-                {
-                    Fail( ex );
-                    return string.Empty;
-                }
-            }
-
-            return string.Empty;
-        }
-
+        
         /// <summary>
         /// Sets the provider path.
         /// </summary>
@@ -322,9 +161,9 @@ namespace BudgetExecution
         /// Sets the connection string.
         /// </summary>
         /// <param name="provider">The provider.</param>
-        private protected string GetConnectionString( Provider provider )
+        public virtual string GetConnectionString( Provider provider )
         {
-            if( Verify.Provider( provider ) )
+            if( Validate.IsProvider( provider ) )
             {
                 try
                 {
@@ -334,7 +173,7 @@ namespace BudgetExecution
                         case Provider.Excel:
                         case Provider.CSV:
                         {
-                            var _connection = ConnectionStrings[ provider.ToString() ]?.ConnectionString;
+                            var _connection = Connectors[ provider.ToString() ]?.ConnectionString;
 
                             return Verify.IsInput( _connection )
                                 ? _connection?.Replace( "{FilePath}", FilePath )
@@ -346,8 +185,7 @@ namespace BudgetExecution
                         case Provider.SqlCe:
                         case Provider.SqlServer:
                         {
-                            var _connection = ConnectionStrings[ provider.ToString() ]
-                                              ?.ConnectionString;
+                            var _connection = Connectors[ provider.ToString() ]?.ConnectionString;
 
                             return Verify.IsInput( _connection )
                                 ? _connection
@@ -371,7 +209,7 @@ namespace BudgetExecution
         private protected static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error?.SetText( );
+            _error?.SetText( ex.Message );
             _error?.ShowDialog();
         }
     }

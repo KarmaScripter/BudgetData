@@ -131,7 +131,7 @@ namespace BudgetExecution
                 {
                     var _provider = connectionBuilder.Provider;
 
-                    if( Verify.Provider( _provider ) )
+                    if( Validate.IsProvider( _provider ) )
                     {
                         switch( _provider )
                         {
@@ -245,7 +245,7 @@ namespace BudgetExecution
             {
                 var _provider = ConnectionBuilder.Provider;
 
-                return Verify.Provider( _provider )
+                return Validate.IsProvider( _provider )
                     ? _provider
                     : Provider.NS;
             }
@@ -267,7 +267,7 @@ namespace BudgetExecution
             {
                 var _source = ConnectionBuilder.Source;
 
-                return Verify.Source( _source )
+                return Validate.IsSource( _source )
                     ? _source
                     : Source.NS;
             }
@@ -285,7 +285,7 @@ namespace BudgetExecution
         private protected static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error?.SetText( );
+            _error?.SetText( ex.Message );
             _error?.ShowDialog();
         }
     }

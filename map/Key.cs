@@ -244,7 +244,7 @@ namespace BudgetExecution
         {
             try
             {
-                PrimaryKey = Verify.Field( keyName )
+                PrimaryKey = Validate.IsField( keyName )
                     ? keyName
                     : PrimaryKey.NS;
             }
@@ -262,7 +262,7 @@ namespace BudgetExecution
         private protected void SetPrimaryKey( DataRow dataRow, PrimaryKey keyName )
         {
             if( Verify.IsRow( dataRow )
-                && Verify.Field( keyName ) )
+                && Validate.IsField( keyName ) )
             {
                 try
                 {
@@ -331,7 +331,7 @@ namespace BudgetExecution
         private static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error?.SetText( );
+            _error?.SetText( ex.Message );
             _error?.ShowDialog();
         }
     }

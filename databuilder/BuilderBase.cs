@@ -28,9 +28,9 @@ namespace BudgetExecution
 
                 if( _columns?.Count > 0 )
                 {
-                    foreach( DataColumn column in _columns )
+                    foreach( DataColumn _dataColumn in _columns )
                     {
-                        _values?.Add( column.Ordinal );
+                        _values?.Add( _dataColumn.Ordinal );
                     }
                 }
 

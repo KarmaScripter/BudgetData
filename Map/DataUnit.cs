@@ -5,10 +5,7 @@
 namespace BudgetExecution
 {
     using System;
-    using System.Collections.Generic;
-    using System.Data;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
 
     /// <summary>
     /// 
@@ -68,7 +65,7 @@ namespace BudgetExecution
         private protected static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error?.SetText();
+            _error?.SetText( ex.Message );
             _error?.ShowDialog();
         }
     }

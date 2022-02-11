@@ -7,14 +7,6 @@ namespace BudgetExecution
     public interface IDataUnit 
     {
         /// <summary>
-        /// Gets or sets the name.
-        /// </summary>
-        /// <value>
-        /// The name.
-        /// </value>
-        string Name { get; set; }
-
-        /// <summary>
         /// Gets or sets the value.
         /// </summary>
         /// <value>

@@ -82,7 +82,7 @@ namespace BudgetExecution
         /// Saves the file.
         /// </summary>
         /// <param name="workBook">The work book.</param>
-        public void SaveFile( Workbook workBook )
+        public void SaveFile( ExcelPackage workBook )
         {
             if( workBook != null )
             {
@@ -94,9 +94,10 @@ namespace BudgetExecution
                         FilterIndex = 1
                     };
 
-                    if( _dialog.ShowDialog() == DialogResult.OK )
+                    if( _dialog?.ShowDialog() == DialogResult.OK )
                     {
-                        workBook.SaveAs( _dialog.FileName );
+                        var _name = _dialog.FileName;
+                        workBook.Save( _name );
                         const string _successful = "Save Successful!";
                         using var _message = new Message( _successful );
                         _message?.ShowDialog();
@@ -311,7 +312,7 @@ namespace BudgetExecution
                 var _filePath = GetConnectionBuilder().ProviderPath[ Provider.ToString() ];
                 var _application = new App();
                 var _workbook = _application.Workbooks.Open( _filePath );
-                Worksheet worksheet = _workbook.Sheets[ 1 ];
+                var worksheet = _workbook.Sheets[ 1 ];
                 var _range = worksheet.UsedRange;
                 var _rows = _range.Rows.Count;
                 var _columns = _range.Columns.Count;
@@ -331,7 +332,7 @@ namespace BudgetExecution
                     }
                 }
 
-                Release( _range, worksheet, _workbook, _application );
+                Release( _range, worksheet, _application );
             }
             catch( Exception ex )
             {
@@ -379,10 +380,8 @@ namespace BudgetExecution
         /// </summary>
         /// <param name="range">The range.</param>
         /// <param name="workSheet">The work sheet.</param>
-        /// <param name="workBook">The work book.</param>
         /// <param name="excel">The excel.</param>
-        protected virtual void Release( Range range, Worksheet workSheet, Workbook workBook,
-            App excel )
+        protected virtual void Release( Range range, Worksheet workSheet, App excel )
         {
             try
             {
@@ -390,8 +389,6 @@ namespace BudgetExecution
                 GC.WaitForPendingFinalizers();
                 Marshal.ReleaseComObject( range );
                 Marshal.ReleaseComObject( workSheet );
-                workBook.Close();
-                Marshal.ReleaseComObject( workBook );
                 excel.Quit();
                 Marshal.ReleaseComObject( excel );
             }

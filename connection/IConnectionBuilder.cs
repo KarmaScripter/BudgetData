@@ -5,7 +5,6 @@
 namespace BudgetExecution
 {
     using System.Collections.Specialized;
-    using System.Configuration;
 
     /// <summary>
     /// </summary>

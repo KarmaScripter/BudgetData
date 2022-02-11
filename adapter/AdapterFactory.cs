@@ -68,7 +68,7 @@ namespace BudgetExecution
         public AdapterFactory( AdapterBuilder adapterBuilder )
         {
             AdapterBuilder = adapterBuilder;
-            ConnectionBuilder = AdapterBuilder.GetConnectionBuilder();
+            ConnectionBuilder = AdapterBuilder.ConnectionBuilder;
             Connection = new ConnectionFactory( ConnectionBuilder )?.GetConnection();
             SqlStatement = new SqlStatement( ConnectionBuilder );
             CommandBuilder = new CommandBuilder( ConnectionBuilder, SqlStatement );
@@ -115,7 +115,7 @@ namespace BudgetExecution
                 {
                     var _provider = ConnectionBuilder.Provider;
 
-                    if( Verify.Provider( _provider ) )
+                    if( Validate.IsProvider( _provider ) )
                     {
                         switch( _provider )
                         {
@@ -299,7 +299,7 @@ namespace BudgetExecution
         private protected static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error.SetText();
+            _error?.SetText( ex.Message );
             _error.ShowDialog();
         }
     }

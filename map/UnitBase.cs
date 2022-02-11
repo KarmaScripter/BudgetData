@@ -6,6 +6,7 @@ namespace BudgetExecution
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using VisualPlus.Extensibility;
 
     /// <summary>
     /// 
@@ -43,8 +44,8 @@ namespace BudgetExecution
             {
                 try
                 {
-                    return unit.Name.Equals( Name ) 
-                        && unit.Value?.Equals( Value ) == true;
+                    return unit.GetName()?.Equals( Name )   == true
+                        && unit.Value.Equals( Value ) == true;
                 }
                 catch( Exception ex )
                 {
@@ -63,7 +64,7 @@ namespace BudgetExecution
         private protected static void Fail( Exception ex )
         {
             using var _error = new Error( ex );
-            _error?.SetText( );
+            _error?.SetText( ex.Message );
             _error?.ShowDialog();
         }
     }

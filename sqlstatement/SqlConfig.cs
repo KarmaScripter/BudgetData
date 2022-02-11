@@ -103,7 +103,7 @@ namespace BudgetExecution
         /// <returns></returns>
         public IEnumerable<string> GetScriptFiles()
         {
-            if( Verify.Provider( Provider )
+            if( Validate.IsProvider( Provider )
                 && Enum.IsDefined( typeof( SQL ), CommandType ) )
             {
                 try

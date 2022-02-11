@@ -50,26 +50,14 @@
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.AdapterBuilder"/> class.
             </summary>
-            <param name="commandbuilder">The commandbuilder.</param>
+            <param name="commandBuilder">The commandbuilder.</param>
         </member>
         <member name="M:BudgetExecution.AdapterBuilder.#ctor(BudgetExecution.IConnectionBuilder,BudgetExecution.ISqlStatement)">
             <summary>
             Initializes a new instance of the <see cref="T:BudgetExecution.AdapterBuilder"/> class.
             </summary>
-            <param name="connectionbuilder">The connectionbuilder.</param>
-            <param name="sqlstatement">The sqlstatement.</param>
-        </member>
-        <member name="M:BudgetExecution.AdapterBuilder.GetConnection">
-            <summary>
-            Gets the connection.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:BudgetExecution.AdapterBuilder.GetConnectionBuilder">
-            <summary>
-            Gets the connection builder.
-            </summary>
-            <returns></returns>
+            <param name="connectionBuilder">The connectionbuilder.</param>
+            <param name="sqlStatement">The sqlstatement.</param>
         </member>
         <member name="M:BudgetExecution.AdapterBuilder.Fail(System.Exception)">
             <summary>
@@ -616,7 +604,7 @@
             The connector
             </summary>
         </member>
-        <member name="P:BudgetExecution.ConnectionBase.ProviderPath">
+        <member name="P:BudgetExecution.ConnectionBase.AppSettings">
             <summary>
             The provider path
             </summary>
@@ -656,31 +644,6 @@
             The connection string
             </summary>
         </member>
-        <member name="M:BudgetExecution.ConnectionBase.SetSource(BudgetExecution.Source)">
-            <summary>
-            Sets the source.
-            </summary>
-            <param name="source">
-            The source.</param>
-        </member>
-        <member name="M:BudgetExecution.ConnectionBase.SetSource(System.String)">
-            <summary>
-            Sets the source.
-            </summary>
-            <param name="fileName">Name of the file.</param>
-        </member>
-        <member name="M:BudgetExecution.ConnectionBase.SetProvider(BudgetExecution.Provider)">
-            <summary>
-            Sets the provider.
-            </summary>
-            <param name="provider">The provider.</param>
-        </member>
-        <member name="M:BudgetExecution.ConnectionBase.SetProvider(BudgetExecution.EXT)">
-            <summary>
-            Sets the provider.
-            </summary>
-            <param name="extension">The extension.</param>
-        </member>
         <member name="M:BudgetExecution.ConnectionBase.GetFilePath(BudgetExecution.Provider)">
             <summary>
             Sets the file path.
@@ -692,18 +655,6 @@
             Sets the file path.
             </summary>
             <param name="filePath">The filePath.</param>
-        </member>
-        <member name="M:BudgetExecution.ConnectionBase.GetFileExtension(System.String)">
-            <summary>
-            Sets the file extension.
-            </summary>
-            <param name="filePath">The filePath.</param>
-        </member>
-        <member name="M:BudgetExecution.ConnectionBase.GetFileName(System.String)">
-            <summary>
-            Sets the name of the file.
-            </summary>
-            <param name="filePath">The file path.</param>
         </member>
         <member name="M:BudgetExecution.ConnectionBase.GetProviderPath(System.String)">
             <summary>
@@ -2062,17 +2013,10 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:BudgetExecution.Error.#ctor(System.Exception)">
+        <member name="T:BudgetExecution.Error">
             <summary>
-            Initializes a new instance of the <see cref="T:BudgetExecution.Error"/> class.
+            
             </summary>
-            <param name="ext">The ext.</param>
-        </member>
-        <member name="M:BudgetExecution.Error.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:BudgetExecution.Error"/> class.
-            </summary>
-            <param name="message">The message.</param>
         </member>
         <member name="P:BudgetExecution.Error.Exception">
             <summary>
@@ -2087,17 +2031,28 @@
             Gets or sets the text associated with this control.
             </summary>
         </member>
+        <member name="M:BudgetExecution.Error.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:BudgetExecution.Error"/> class.
+            </summary>
+        </member>
+        <member name="M:BudgetExecution.Error.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BudgetExecution.Error"/> class.
+            </summary>
+            <param name="ext">The ext.</param>
+        </member>
+        <member name="M:BudgetExecution.Error.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:BudgetExecution.Error"/> class.
+            </summary>
+            <param name="message">The message.</param>
+        </member>
         <member name="M:BudgetExecution.Error.SetText(System.String)">
             <summary>
             Sets the text.
             </summary>
             <param name="message">The message.</param>
-        </member>
-        <member name="M:BudgetExecution.Error.SetText(System.Exception)">
-            <summary>
-            Sets the text.
-            </summary>
-            <param name="ex">The message.</param>
         </member>
         <member name="F:BudgetExecution.Error.components">
             <summary>
@@ -2495,14 +2450,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="P:BudgetExecution.IDataUnit.Name">
-            <summary>
-            Gets or sets the name.
-            </summary>
-            <value>
-            The name.
-            </value>
-        </member>
         <member name="P:BudgetExecution.IDataUnit.Value">
             <summary>
             Gets or sets the value.
@@ -2834,14 +2781,6 @@
             </summary>
             <param name="ex">The ex.</param>
         </member>
-        <member name="M:BudgetExecution.Message.#ctor(System.String)">
-            <summary>
-            Initializes a new instance of the <see cref = "T:BudgetExecution.Message"/> class.
-            </summary>
-            <param name = "message" >
-            The message.
-            </param>
-        </member>
         <member name="P:BudgetExecution.Message.Stack">
             <summary>
             Gets the stack.
@@ -2857,6 +2796,20 @@
             <value>
             The target.
             </value>
+        </member>
+        <member name="M:BudgetExecution.Message.#ctor">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:BudgetExecution.Message"/> class.
+            </summary>
+        </member>
+        <member name="M:BudgetExecution.Message.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref = "T:BudgetExecution.Message"/> class.
+            </summary>
+            <param name = "message" >
+            The message.
+            </param>
         </member>
         <member name="M:BudgetExecution.Message.OnOkButtonClicked(System.Object,System.EventArgs)">
             <summary>
@@ -3163,7 +3116,7 @@
             <param name="connectionBuilder">The connectionBuilder.</param>
             <param name="sqlStatement">The sqlStatement.</param>
         </member>
-        <member name="M:BudgetExecution.ExcelQuery.SaveFile(Microsoft.Office.Interop.Excel.Workbook)">
+        <member name="M:BudgetExecution.ExcelQuery.SaveFile(OfficeOpenXml.ExcelPackage)">
             <summary>
             Saves the file.
             </summary>
@@ -3218,13 +3171,12 @@
             <param name="dataTable">The Data table.</param>
             <returns></returns>
         </member>
-        <member name="M:BudgetExecution.ExcelQuery.Release(Microsoft.Office.Interop.Excel.Range,Microsoft.Office.Interop.Excel.Worksheet,Microsoft.Office.Interop.Excel.Workbook,Microsoft.Office.Interop.Excel.Application)">
+        <member name="M:BudgetExecution.ExcelQuery.Release(Microsoft.Office.Interop.Excel.Range,Microsoft.Office.Interop.Excel.Worksheet,Microsoft.Office.Interop.Excel.Application)">
             <summary>
             Releases the specified range.
             </summary>
             <param name="range">The range.</param>
             <param name="workSheet">The work sheet.</param>
-            <param name="workBook">The work book.</param>
             <param name="excel">The excel.</param>
         </member>
         <member name="M:BudgetExecution.ExcelQuery.Dispose(System.Boolean)">
@@ -3428,11 +3380,6 @@
             <summary>
             Performs application-defined tasks associated with freeing, releasing, or
             resetting unmanaged resources.
-            </summary>
-        </member>
-        <member name="T:BudgetExecution.QueryBase">
-            <summary>
-            
             </summary>
         </member>
         <member name="P:BudgetExecution.QueryBase.Args">
